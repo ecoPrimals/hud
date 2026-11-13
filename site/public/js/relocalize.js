@@ -14,21 +14,27 @@
 (function(){
   "use strict";
 
-  const EAST = 'http://192.168.4.244:8080';
-  const GATE = 'http://192.168.4.244:8443';
+  // ZK SMASH: zero hardcoded IPs — resolve from location.hostname + π-ports
+  var H = location.hostname;
+  const EAST = 'http://' + H + ':9937';   // π[44:48] → data server
+  const GATE = 'http://' + H + ':4197';   // π[36:40] → gate
 
-  // Gate identity map
+  // Gate identity map — keyed by last octet for LAN detection
+  // Runtime resolves: WebRTC discovers viewer IP → octet lookup → identity
   const GATES = {
-    '192.168.4.244': { name: 'eastGate',      role: 'BRAIN',       perspective: 'self-reflection',    hud: 'dashboard' },
-    '192.168.4.103': { name: 'eastGate-wifi',  role: 'BRAIN-wifi',  perspective: 'self-wireless',      hud: 'dashboard' },
-    '192.168.4.147': { name: 'northGate',      role: 'HEART',       perspective: 'heart-to-brain',     hud: 'absorption' },
-    '192.168.4.237': { name: 'ironGate',       role: 'FORGE',       perspective: 'forge-to-organism',  hud: 'scan' },
-    '192.168.4.107': { name: 'graftGate',      role: 'GRAFT',       perspective: 'graft-to-organism',  hud: 'synthesis' },
-    '192.168.4.100': { name: 'blueGate',       role: 'IDE',         perspective: 'code-looking-out',   hud: 'ide' },
-    '192.168.4.3':   { name: 'sporeGate',      role: 'FORGE',       perspective: 'spore-to-organism',  hud: 'forge' },
-    '192.168.4.148': { name: 'southGate',      role: 'PHONE',       perspective: 'voice-in-hand',      hud: 'compact' },
-    '192.168.9.217': { name: 'grapheneGate',   role: 'DIAMOND_LENS',perspective: 'inside-looking-out', hud: 'ambient' },
-    '192.168.4.1':   { name: 'Flint',          role: 'CHIASM',      perspective: 'crossing-all',       hud: 'chiasm' },
+    '244': { name: 'eastGate',      role: 'BRAIN',       perspective: 'self-reflection',    hud: 'dashboard' },
+    '103': { name: 'eastGate-wifi',  role: 'BRAIN-wifi',  perspective: 'self-wireless',      hud: 'dashboard' },
+    '147': { name: 'northGate',      role: 'HEART',       perspective: 'heart-to-brain',     hud: 'absorption' },
+    '237': { name: 'ironGate',       role: 'FORGE',       perspective: 'forge-to-organism',  hud: 'scan' },
+    '107': { name: 'graftGate',      role: 'GRAFT',       perspective: 'graft-to-organism',  hud: 'synthesis' },
+    '100': { name: 'blueGate',       role: 'IDE',         perspective: 'code-looking-out',   hud: 'ide' },
+    '3':   { name: 'sporeGate',      role: 'FORGE',       perspective: 'spore-to-organism',  hud: 'forge' },
+    '148': { name: 'southGate',      role: 'PHONE',       perspective: 'voice-in-hand',      hud: 'compact' },
+    '217': { name: 'grapheneGate',   role: 'DIAMOND_LENS',perspective: 'inside-looking-out', hud: 'ambient' },
+    '229': { name: 'grapheneGate',   role: 'DIAMOND_LENS',perspective: 'inside-looking-out', hud: 'ambient' },
+    '1':   { name: 'Flint',          role: 'CHIASM',      perspective: 'crossing-all',       hud: 'chiasm' },
+    '176': { name: 'deckGate',       role: 'FACE',        perspective: 'face-outward',       hud: 'deck' },
+    '203': { name: 'deckGate-wifi',  role: 'FACE',        perspective: 'face-outward',       hud: 'deck' },
   };
 
   // Inversions — the fundamental duality of every sense
@@ -60,8 +66,9 @@
       ip = ips.find(i => i.startsWith('192.168.')) || ips[0] || null;
     } catch(e) {}
 
-    // Build viewer info
-    const gate = GATES[ip] || { name: 'unknown', role: 'VISITOR', perspective: 'outside-looking-in', hud: 'public' };
+    // Build viewer info — ZK: match by last octet, no full IP stored
+    const octet = ip ? ip.split('.').pop() : null;
+    const gate = (octet && GATES[octet]) || { name: 'unknown', role: 'VISITOR', perspective: 'outside-looking-in', hud: 'public' };
 
     viewerInfo = {
       ip: ip,

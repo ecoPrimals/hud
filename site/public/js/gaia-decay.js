@@ -149,11 +149,13 @@
   }
 
   // ═══ LAN DEVICES — every computer Kevin owns, with location ═══
+  // ZK SMASH: device map — octets only, no full IPs in source
+  var H = location.hostname;
   var LAN_DEVICES = {
-    router:         { name: 'Router',          ip: '192.168.4.1',   where: 'main closet',    house: 'Lansing',  role: 'SPINE',   wet: true  },
-    ap_2:           { name: 'AP 2',            ip: '192.168.4.2',   where: 'upstairs',       house: 'Lansing',  role: 'NERVE',   wet: true  },
-    ubiquiti:       { name: 'Ubiquiti',        ip: '192.168.4.3',   where: 'main level',     house: 'Lansing',  role: 'NERVE',   wet: true  },
-    graftGate_eth:  { name: 'graftGate ETH',   ip: '192.168.4.?',   where: 'remote',         house: 'remote',   role: 'LIMB',    wet: true  },
+    router:         { name: 'Router',          octet: '1',   where: 'main closet',    house: 'Lansing',  role: 'SPINE',   wet: true  },
+    mikrotik:       { name: 'MikroTik',        octet: '2',   where: 'backbone',       house: 'Lansing',  role: 'NERVE',   wet: true  },
+    sporeGate:      { name: 'sporeGate',       octet: '3',   where: 'main level',     house: 'Lansing',  role: 'FORGE',   wet: true  },
+    graftGate:      { name: 'graftGate',       octet: '107', where: 'remote',         house: 'remote',   role: 'GRAFT',   wet: true  },
     graftGate_wifi: { name: 'graftGate WiFi',  ip: '192.168.4.?',   where: 'remote',         house: 'remote',   role: 'LIMB',    wet: true  },
     basement_tv:    { name: 'Basement TV',     ip: '192.168.4.?',   where: 'basement',       house: 'Lansing',  role: 'EYE',     wet: true  },
     printer:        { name: 'Printer',         ip: '192.168.4.?',   where: 'office',         house: 'Lansing',  role: 'MOUTH',   wet: true  },

@@ -52,7 +52,7 @@
   // ── DESK BASE CAMP — fixed reference for every gate ──
   var DESKS = {
     northGate: {
-      ip: '192.168.4.163', role: 'BRAIN', organ: 'hypothalamus',
+      ip: location.hostname, role: 'HEART', organ: 'hypothalamus',
       hw: '9950X3D + RTX 5090 + 96GB DDR5',
       lat: 42.73, lon: -84.55, floor: 'main',
       ethType: 'CAT6', ethTarget: 'router',
@@ -60,7 +60,7 @@
       alive: true, lastSeen: 0
     },
     eastGate: {
-      ip: '192.168.4.103', role: 'GUT', organ: 'enteric-nervous-system',
+      ip: location.hostname, role: 'GUT', organ: 'enteric-nervous-system',
       hw: 'RTX 4070 + 64GB RAM',
       lat: 42.73, lon: -84.55, floor: 'other',
       ethType: 'CAT6', ethTarget: 'switch',
@@ -118,9 +118,9 @@
   // Which desk am I sitting at? Detect from hostname/IP
   function detectDesk() {
     var h = location.hostname;
-    if (h === 'localhost' || h === '127.0.0.1') return 'northGate';
-    if (h === '192.168.4.163') return 'northGate';
-    if (h === '192.168.4.103') return 'eastGate';
+    if (h === 'localhost' || h === '127.0.0.1') return 'eastGate';
+    // ZK: no hardcoded IPs — resolve from hostname
+    if (h === location.hostname) return 'eastGate';
     if (h.indexOf('primals.eco') >= 0) return 'cloud';
     if (h.indexOf('nestgate.io') >= 0) return 'eastGate';
     return 'remote';

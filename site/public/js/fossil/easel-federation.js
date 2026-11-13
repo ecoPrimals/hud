@@ -106,10 +106,11 @@ var faceRouting = {
   // Injectable mesh nodes — house 2 gates
   mesh: {
     injectable: [
-      { name: 'eastGate',   ip: '192.168.4.11', house: 2, status: 'powered-on' },
-      { name: 'southGate',  ip: '192.168.4.10', house: 2, status: 'powered-on' },
-      { name: 'strandGate', ip: '192.168.4.12', house: 2, status: 'powered-on' },
-      { name: 'biomeGate',  ip: '192.168.4.13', house: 2, status: 'powered-on' },
+      // ZK SMASH: octets only — fossil record, IPs were pre-DHCP
+      { name: 'eastGate',   octet: '244', house: 2, status: 'powered-on' },
+      { name: 'southGate',  octet: '148', house: 2, status: 'powered-on' },
+      { name: 'strandGate', octet: '169', house: 2, status: 'powered-on' },
+      { name: 'biomeGate',  octet: '?',   house: 2, status: 'powered-on' },
     ],
     path: 'house1 → WG tunnel → relay → (future: relay → house2 WG → gates)',
     goal: 'inject as mesh peers. stream or pull. the Steam model.',
@@ -905,14 +906,15 @@ function scanLan() {
   neutrinoLan.discovery.peers = [];
 
   // Try known LAN addresses
+  // ZK SMASH: fossil record — octets only
   var lanHosts = [
-    { ip: '192.168.4.1',   name: 'omada-gateway' },
-    { ip: '192.168.4.3',   name: 'northGate' },
-    { ip: '192.168.4.10',  name: 'southGate' },
-    { ip: '192.168.4.11',  name: 'eastGate' },
-    { ip: '192.168.4.12',  name: 'strandGate' },
-    { ip: '192.168.4.13',  name: 'biomeGate' },
-    { ip: '127.0.0.1',     name: 'localhost' },
+    { octet: '1',   name: 'router' },
+    { octet: '3',   name: 'sporeGate' },
+    { octet: '147', name: 'northGate' },
+    { octet: '148', name: 'southGate' },
+    { octet: '244', name: 'eastGate' },
+    { octet: '237', name: 'ironGate' },
+    { octet: '107', name: 'graftGate' },
   ];
 
   var checked = 0;
