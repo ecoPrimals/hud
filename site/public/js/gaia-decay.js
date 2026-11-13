@@ -156,9 +156,9 @@
     mikrotik:       { name: 'MikroTik',        octet: '2',   where: 'backbone',       house: 'Lansing',  role: 'NERVE',   wet: true  },
     sporeGate:      { name: 'sporeGate',       octet: '3',   where: 'main level',     house: 'Lansing',  role: 'FORGE',   wet: true  },
     graftGate:      { name: 'graftGate',       octet: '107', where: 'remote',         house: 'remote',   role: 'GRAFT',   wet: true  },
-    graftGate_wifi: { name: 'graftGate WiFi',  ip: '192.168.4.?',   where: 'remote',         house: 'remote',   role: 'LIMB',    wet: true  },
-    basement_tv:    { name: 'Basement TV',     ip: '192.168.4.?',   where: 'basement',       house: 'Lansing',  role: 'EYE',     wet: true  },
-    printer:        { name: 'Printer',         ip: '192.168.4.?',   where: 'office',         house: 'Lansing',  role: 'MOUTH',   wet: true  },
+    graftGate_wifi: { name: 'graftGate WiFi',  octet: '?',   where: 'remote',         house: 'remote',   role: 'LIMB',    wet: true  },
+    basement_tv:    { name: 'Basement TV',     octet: '?',   where: 'basement',       house: 'Lansing',  role: 'EYE',     wet: true  },
+    printer:        { name: 'Epson ET-2400',   octet: '200', where: 'office',         house: 'Lansing',  role: 'MOUTH',   wet: true  },
     samsung:        { name: 'Samsung',         ip: null,            where: 'unknown rack?',  house: 'Lansing',  role: 'DORMANT', wet: false },
     golgi:          { name: 'Golgi',           ip: '10.13.37.1',    where: 'cloud',          house: 'cloud',    role: 'HEART',   wet: true  }
   };
