@@ -69,7 +69,7 @@ h3{color:#999;font-size:11px;margin:8px 0 4px;text-transform:uppercase}
   </div>
   <div id="controls" class="hud-panel">
     WASD/Arrows: move | Click: select/command | Space: pause<br>
-    1-9: select squad | T: talk | F: fight | R: rest | B: build
+    1-9: select squad | A: select all | T: talk | E: eat | F: fight
   </div>
   <div id="log" class="hud-panel"></div>
 </div>
@@ -135,6 +135,7 @@ function Entity(id, name, x, y, faction, isSquad) {
 // --- WORLD STATE ---
 var world = new Uint8Array(WORLD_W * WORLD_H);
 var fogOfWar = new Uint8Array(WORLD_W * WORLD_H);
+var foodMap = new Uint8Array(WORLD_W * WORLD_H);
 var entities = [];
 var selectedEntity = null;
 var nextEntityId = 0;
@@ -164,7 +165,35 @@ function generateWorld() {
       }
     }
   }
+  spawnFood();
   gameLog('World generated: ' + WORLD_W + 'x' + WORLD_H + ' tiles', 'world');
+}
+
+function spawnFood() {
+  for (var y = 0; y < WORLD_H; y++) {
+    for (var x = 0; x < WORLD_W; x++) {
+      var t = world[y * WORLD_W + x];
+      if (t === TERRAIN.DIFFICULT && Math.random() < 0.12) {
+        foodMap[y * WORLD_W + x] = 1;
+      } else if (t === TERRAIN.OPEN && Math.random() < 0.04) {
+        foodMap[y * WORLD_W + x] = 1;
+      } else if (t === TERRAIN.SURFACE) {
+        foodMap[y * WORLD_W + x] = 2;
+      }
+    }
+  }
+}
+
+function regrowFood() {
+  if (TICK % 50 !== 0) return;
+  for (var i = 0; i < 40; i++) {
+    var x = Math.floor(Math.random() * WORLD_W);
+    var y = Math.floor(Math.random() * WORLD_H);
+    var t = world[y * WORLD_W + x];
+    if (foodMap[y * WORLD_W + x] === 0 && (t === TERRAIN.DIFFICULT || t === TERRAIN.OPEN)) {
+      if (Math.random() < 0.3) foodMap[y * WORLD_W + x] = 1;
+    }
+  }
 }
 
 // --- SPAWN ENTITIES ---
@@ -241,22 +270,66 @@ function alifeTick() {
   var timeOfDay = times[Math.floor(hour / 3)] || 'Night';
   document.getElementById('world-clock').textContent = 'Day ' + day + ' — ' + timeOfDay;
 
+  regrowFood();
+
   for (var i = 0; i < entities.length; i++) {
     var e = entities[i];
     if (!e.alive) continue;
 
-    e.hunger = Math.max(0, e.hunger - 0.02 * GAME_SPEED);
-    if (e.fatigue < 100) e.fatigue += 0.01 * GAME_SPEED;
+    e.hunger = Math.max(0, e.hunger - 0.005 * GAME_SPEED);
+    if (e.fatigue < 100) e.fatigue += 0.003 * GAME_SPEED;
 
     if (e.hunger <= 0) {
-      e.hp -= 0.5;
+      e.hp -= 0.1;
       if (e.hp <= 0) { e.alive = false; gameLog(e.name + ' starved.', 'combat'); }
+    }
+
+    if (e.hp < e.maxHp && e.hunger > 50) {
+      e.hp = Math.min(e.maxHp, e.hp + 0.02);
     }
 
     if (!e.isSquad) {
       npcBehavior(e);
+    } else if (e.hunger < 50 && e.action !== 'player_move') {
+      if (!tryEat(e) && e.hunger < 20) {
+        var wx = e.x + Math.floor(Math.random() * 9) - 4;
+        var wy = e.y + Math.floor(Math.random() * 9) - 4;
+        wx = Math.max(0, Math.min(WORLD_W - 1, wx));
+        wy = Math.max(0, Math.min(WORLD_H - 1, wy));
+        moveToward(e, wx, wy);
+        e.action = 'starving';
+      }
     }
   }
+}
+
+function tryEat(e) {
+  var idx = e.y * WORLD_W + e.x;
+  if (foodMap[idx] > 0) {
+    var amt = foodMap[idx] === 2 ? 40 : 20;
+    e.hunger = Math.min(100, e.hunger + amt);
+    foodMap[idx] = 0;
+    e.action = 'eating';
+    return true;
+  }
+  var searchR = e.hunger < 15 ? 12 : 6;
+  var bestDist = Infinity, bestX = -1, bestY = -1;
+  for (var dy = -searchR; dy <= searchR; dy++) {
+    for (var dx = -searchR; dx <= searchR; dx++) {
+      var fx = e.x + dx, fy = e.y + dy;
+      if (fx < 0 || fy < 0 || fx >= WORLD_W || fy >= WORLD_H) continue;
+      if (foodMap[fy * WORLD_W + fx] > 0) {
+        var d = Math.abs(dx) + Math.abs(dy);
+        if (d < bestDist) { bestDist = d; bestX = fx; bestY = fy; }
+      }
+    }
+  }
+  if (bestX >= 0) {
+    moveToward(e, bestX, bestY);
+    e.action = 'foraging';
+    return true;
+  }
+  return false;
 }
 
 function npcBehavior(e) {
@@ -266,6 +339,10 @@ function npcBehavior(e) {
       e.x = next.x; e.y = next.y;
     }
     return;
+  }
+
+  if (e.hunger < 40) {
+    if (tryEat(e)) return;
   }
 
   var hostileFactions = FACTIONS[e.faction] ? FACTIONS[e.faction].hostile : [];
@@ -284,13 +361,22 @@ function npcBehavior(e) {
   } else if (nearestHostile && nearDist <= 10) {
     moveToward(e, nearestHostile.x, nearestHostile.y);
     e.action = 'pursuing';
-  } else {
-    if (Math.random() < 0.1) {
-      var wx = e.x + Math.floor(Math.random() * 11) - 5;
-      var wy = e.y + Math.floor(Math.random() * 11) - 5;
+  } else if (e.hunger < 60) {
+    if (!tryEat(e)) {
+      var wx = e.x + Math.floor(Math.random() * 15) - 7;
+      var wy = e.y + Math.floor(Math.random() * 15) - 7;
       wx = Math.max(0, Math.min(WORLD_W - 1, wx));
       wy = Math.max(0, Math.min(WORLD_H - 1, wy));
       moveToward(e, wx, wy);
+      e.action = 'foraging';
+    }
+  } else {
+    if (Math.random() < 0.1) {
+      var wx2 = e.x + Math.floor(Math.random() * 11) - 5;
+      var wy2 = e.y + Math.floor(Math.random() * 11) - 5;
+      wx2 = Math.max(0, Math.min(WORLD_W - 1, wx2));
+      wy2 = Math.max(0, Math.min(WORLD_H - 1, wy2));
+      moveToward(e, wx2, wy2);
       e.action = 'wandering';
     } else {
       e.action = 'idle';
@@ -447,6 +533,15 @@ function render() {
         ctx.fillStyle = t === TERRAIN.WALL ? '#555' : '#3a2a2a';
         ctx.fillRect(sx * TILE + 1, sy * TILE + 1, TILE - 2, TILE - 2);
       }
+
+      if (fog === 2 && foodMap[wy * WORLD_W + wx] > 0) {
+        ctx.fillStyle = foodMap[wy * WORLD_W + wx] === 2 ? '#8a6' : '#564';
+        ctx.fillRect(sx * TILE + 5, sy * TILE + 5, 3, 3);
+        if (foodMap[wy * WORLD_W + wx] === 2) {
+          ctx.fillRect(sx * TILE + 3, sy * TILE + 6, 2, 2);
+          ctx.fillRect(sx * TILE + 9, sy * TILE + 4, 2, 2);
+        }
+      }
     }
   }
 
@@ -584,6 +679,10 @@ document.addEventListener('keydown', function(ev) {
   }
   if (ev.key === 't' || ev.key === 'T') {
     if (selectedEntity) queueTissueInference(selectedEntity, null);
+  }
+  if (ev.key === 'e' || ev.key === 'E') {
+    var eaters = entities.filter(function(e) { return e.selected && e.isSquad && e.alive; });
+    eaters.forEach(function(e) { if (tryEat(e)) gameLog(e.name + ' eats. Hunger: ' + e.hunger.toFixed(0) + '%', 'world'); });
   }
 });
 document.addEventListener('keyup', function(ev) { keys[ev.key] = false; });
