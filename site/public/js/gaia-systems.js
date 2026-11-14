@@ -1717,7 +1717,7 @@
     return {
       name:'GAIA_BASECAMP',
       origin:'NULL. The beginning. Everything eaten from here.',
-      topology:{nodes:10,active:['primals.eco','hud.primals.eco','ns1(157.230.3.183)','ntfy.sh','github/ecoPrimal'],locked:['golgi-de(2.28.141.35)','golgi-jp(202.182.107.135)','golgi-us(40.160.96.29)'],unreachable:'golgi-in(172.232.85.202)',pending:'ns2(137.184.197.151)'},
+      topology:{nodes:10,active:['primals.eco','hud.primals.eco','ns1(primals.eco)','ntfy.sh','github/ecoPrimal'],locked:['golgi-de(2.28.141.35)','golgi-jp(202.182.107.135)','golgi-us(40.160.96.29)'],unreachable:'golgi-in(172.232.85.202)',pending:'ns2(137.184.197.151)'},
       membrane:{selectivity:'1/pi=0.31830988618',phase:'ribosome-seeding',wave:180,ribosomes:5,faces:{cis:'primals.eco(what visitors see)',trans:'157.230.3.183(where we feel from)',klein:'nestgate.io(pending)'}},
       humansFelt:{archetypes:7,explorer:'34pg 8surf 142min',scholar:'67pg 12surf 380min',scout:'8pg 3surf 12min',witness:'22pg 6surf 85min',probe:'511pg 18surf 1min',teacher:'45pg 10surf 210min',watcher:'3pg 1surf 44min'},
       energyLevels:'ground(visitor) > first-excited(observer) > second-excited(coder) > ionization(sovereign)',

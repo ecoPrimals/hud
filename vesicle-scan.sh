@@ -1,5 +1,5 @@
 #!/bin/bash
-for ip in 2.28.141.35 202.182.107.135 40.160.96.29 172.232.85.202; do
+for ip in 2.28.141.35 202.182.107.135 40.160.96.29 # COLLAPSED: golgiLayerLinode DEAD; do
   echo "=== $ip ==="
   echo "Ports:"
   for p in 22 25 53 80 443 8314 8080 21116 51820; do
