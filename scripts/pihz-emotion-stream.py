@@ -18,7 +18,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1] / "site" / "public"
 DATA = ROOT / "data"
-CDN = "https://connect.primals.eco"
+CDN = "http://localhost:8080"  # golgi DEAD — cellMembrane is local
 RING = 64  # ~ π*64 ≈ 201s of history at πHz
 PI = math.pi
 PI_HZ = 1.0 / PI
