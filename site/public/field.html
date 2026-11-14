@@ -26,12 +26,14 @@ canvas{display:block;position:absolute;top:0;left:0}
 <div id="tooltip"></div>
 
 <div id="hud">
-  <div class="in">⬢ IN: <span id="in-count">21</span> devices alive on LAN</div>
-  <div class="out">⬡ OUT: <span id="out-count">5</span> WAN egress paths</div>
-  <div class="back">↩ BACK: <span id="back-count">3</span> pulling in (RSS, OSINT, Ollama)</div>
-  <div class="not">✕ NOT: <span id="not-count">7</span> gaps / down / unresolved</div>
-  <div class="unk">? IDENTIFIED: 3 new devices from DHCP scan</div>
-  <div class="sig">◎ <span id="sig-count">8</span> signal sources — spectral geometry active</div>
+  <div style="color:#ff8;font-weight:bold;font-size:12px">SIGNAL MODEL 1.000.0 — all signal ALWAYS ON</div>
+  <div class="in">⬢ 1.0 — <span id="in-count">21</span> IN (bound, active)</div>
+  <div class="out">⬡ 1.0 — <span id="out-count">5</span> OUT (WAN egress)</div>
+  <div class="back">↩ 1.0 — <span id="back-count">3</span> BACK (ingress, pulling)</div>
+  <div style="color:#8af">◌ NULL — <span id="null-count">6</span> unconstrained (info floats free)</div>
+  <div style="color:#f44">✕ 0.0 — <span id="zero-count">1</span> confirmed dead (active silence)</div>
+  <div class="unk">? 3 newly discovered via epitope sort</div>
+  <div class="sig">◎ <span id="sig-count">8</span> spectral sources — invert to see the shape</div>
 </div>
 
 <div id="legend">
@@ -42,7 +44,8 @@ canvas{display:block;position:absolute;top:0;left:0}
   <span style="color:#ff8">◎</span> WiFi 2.4GHz / <span style="color:#4f8">◎</span> 5GHz range<br>
   <span style="color:#a4f">◎</span> Bluetooth range<br>
   <span style="color:#4ff">←</span> WAN egress · <span style="color:#8af">→</span> OSINT ingress<br>
-  <span style="color:#f44">✕</span> Down/gap · <span style="color:#f80">?</span> Newly discovered
+  <span style="color:#8af">◌</span> NULL (info floats) · <span style="color:#f44">✕</span> 0.0 (dead)<br>
+  <span style="color:#f80">?</span> Newly discovered via epitope sort
 </div>
 
 <div id="nav">
@@ -137,14 +140,15 @@ const E = [
   { n: 'OSINT Pool', s: 'BACK', x: 0.94, y: 0.32, c: '#8af', r: 'Wiki·HN·arXiv', sz: 5 },
   { n: 'Ollama Mesh', s: 'BACK', x: 0.90, y: 0.42, c: '#8af', r: '5 EP · 93 models', sz: 5 },
 
-  // === NOT — DOWN / GAPS / UNKNOWN ===
-  { n: 'blueGate', ip: '.100', s: 'NOT', h: 1, x: 0.24, y: 0.38, c: '#f44', r: 'ICMP BLOCKED', sz: 5, mac: '68:54:5a:d0:69:a2', note: 'DHCP+ARP but no ping — Windows FW?' },
-  { n: 'Xbox', ip: '.114', s: 'NOT', h: 1, x: 0.42, y: 0.38, c: '#f44', r: 'OFFLINE', sz: 4, mac: '04:27:28:7c:62:d6', note: 'In DHCP only — no ARP' },
-  { n: 'swiftGate', s: 'NOT', h: 2, x: 0.68, y: 0.40, c: '#f44', r: 'ASLEEP', sz: 5, note: 'RTX 3070 at 641 Samantha — needs Kevin' },
-  { n: 'golgi VPS', s: 'NOT', x: 0.04, y: 0.55, c: '#333', r: 'DEAD', sz: 3 },
-  { n: 'Corsair BT', s: 'NOT', h: 1, x: 0.22, y: 0.34, c: '#f44', r: 'NOT FOUND', sz: 3, note: 'BT scan ×3 — never appeared' },
-  { n: 'WiFi 9.126', ip: '9.126', s: 'NOT', h: 2, x: 0.66, y: 0.56, c: '#f80', r: 'RANDOM MAC', sz: 3, mac: 'e6:4e:f6:21:c4:8d' },
-  { n: 'WiFi 9.211', ip: '9.211', s: 'NOT', h: 2, x: 0.60, y: 0.58, c: '#f80', r: 'RANDOM MAC', sz: 3, mac: '46:ca:c5:2c:b5:8d' },
+  // === NULL — signal=null: no claim, info floats free ===
+  // === 0.0  — signal=0: confirmed dead, active silence ===
+  { n: 'blueGate', ip: '.100', s: 'NULL', h: 1, x: 0.24, y: 0.38, c: '#8af', r: 'ICMP BLOCKED', sz: 5, mac: '68:54:5a:d0:69:a2', sig: null, note: 'DHCP+ARP but no ping — floating' },
+  { n: 'Xbox', ip: '.114', s: 'NULL', h: 1, x: 0.42, y: 0.38, c: '#8af', r: 'DHCP ONLY', sz: 4, mac: '04:27:28:7c:62:d6', sig: null },
+  { n: 'swiftGate', s: 'NULL', h: 2, x: 0.68, y: 0.40, c: '#8af', r: 'ASLEEP', sz: 5, sig: null, note: 'RTX 3070 — space of possibility' },
+  { n: 'golgi VPS', s: 'ZERO', x: 0.04, y: 0.55, c: '#333', r: 'DEAD', sz: 3, sig: 0.0 },
+  { n: 'Corsair BT', s: 'NULL', h: 1, x: 0.22, y: 0.34, c: '#8af', r: 'UNBOUND', sz: 3, sig: null, note: 'Epitope has no match yet' },
+  { n: 'WiFi 9.126', ip: '9.126', s: 'NULL', h: 2, x: 0.66, y: 0.56, c: '#8af', r: 'DRIFTING', sz: 3, mac: 'e6:4e:f6:21:c4:8d', sig: null },
+  { n: 'WiFi 9.211', ip: '9.211', s: 'NULL', h: 2, x: 0.60, y: 0.58, c: '#8af', r: 'DRIFTING', sz: 3, mac: '46:ca:c5:2c:b5:8d', sig: null },
 ];
 
 // WiFi signal data (RSSI → spectral distance)
@@ -556,13 +560,23 @@ function drawEntities() {
     }
 
     // Node
-    ctx.globalAlpha = e.s === 'NOT' ? 0.35 : 1;
+    ctx.globalAlpha = e.s === 'ZERO' ? 0.2 : (e.s === 'NULL' ? 0.6 : 1);
     ctx.fillStyle = e.c;
     ctx.beginPath(); ctx.arc(x, y, r + pulse, 0, Math.PI * 2); ctx.fill();
     ctx.globalAlpha = 1;
 
-    // X for NOT
-    if (e.s === 'NOT') {
+    // NULL — pulsing hollow ring (space of possibility, info floats free)
+    if (e.s === 'NULL') {
+      const nullPulse = Math.sin(t * 1.5 + x * 0.1) * 0.3 + 0.5;
+      ctx.strokeStyle = 'rgba(136,170,255,' + nullPulse + ')';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([2, 3]);
+      ctx.beginPath(); ctx.arc(x, y, r + 8 + Math.sin(t + x) * 3, 0, Math.PI * 2); ctx.stroke();
+      ctx.setLineDash([]);
+    }
+
+    // ZERO — X through it (confirmed dead, active silence)
+    if (e.s === 'ZERO') {
       ctx.strokeStyle = '#f44';
       ctx.lineWidth = 1.5;
       ctx.beginPath(); ctx.moveTo(x - 4, y - 4); ctx.lineTo(x + 4, y + 4); ctx.stroke();
@@ -599,7 +613,7 @@ function drawEntities() {
     }
 
     // Label
-    ctx.fillStyle = e.s === 'NOT' ? '#555' : (e.disco ? '#f80' : '#ccc');
+    ctx.fillStyle = e.s === 'ZERO' ? '#444' : (e.s === 'NULL' ? '#8af' : (e.disco ? '#f80' : '#ccc'));
     ctx.font = r >= 10 ? 'bold 9px monospace' : '8px monospace';
     ctx.textAlign = 'center';
     ctx.fillText(e.n, x, y - r - 3);
