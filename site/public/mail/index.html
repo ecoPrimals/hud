@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>📬 Gaia Mail — gaia@primals.eco</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  :root { --bg: #0a0a0f; --card: #111118; --border: #222233; --accent: #4fc3f7; --green: #66bb6a; --dim: #667; --text: #ccd; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Courier New', monospace; font-size: 14px; padding: 20px; }
+  h1 { color: var(--accent); font-size: 22px; margin-bottom: 4px; }
+  .subtitle { color: var(--dim); font-size: 12px; margin-bottom: 20px; }
+  .tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+  .tab { padding: 6px 16px; background: var(--card); border: 1px solid var(--border); color: var(--dim); cursor: pointer; border-radius: 4px; }
+  .tab.active { color: var(--accent); border-color: var(--accent); }
+  .count { background: var(--accent); color: #000; border-radius: 10px; padding: 1px 7px; font-size: 11px; margin-left: 6px; }
+  .mail-list { display: flex; flex-direction: column; gap: 4px; }
+  .mail-item { background: var(--card); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; cursor: pointer; transition: border-color 0.2s; }
+  .mail-item:hover { border-color: var(--accent); }
+  .mail-item.unread { border-left: 3px solid var(--green); }
+  .mail-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
+  .mail-from { color: var(--accent); font-weight: bold; font-size: 13px; }
+  .mail-date { color: var(--dim); font-size: 11px; }
+  .mail-subject { color: #eef; font-size: 14px; margin-bottom: 4px; }
+  .mail-preview { color: var(--dim); font-size: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 90%; }
+  .mail-body-panel { display: none; background: var(--card); border: 1px solid var(--accent); border-radius: 6px; padding: 20px; margin-top: 10px; max-height: 70vh; overflow-y: auto; }
+  .mail-body-panel.open { display: block; }
+  .mail-body-panel .close { float: right; cursor: pointer; color: var(--accent); font-size: 18px; }
+  .mail-body-panel pre { white-space: pre-wrap; word-break: break-all; color: var(--text); font-size: 13px; line-height: 1.6; }
+  .mail-body-panel .meta { color: var(--dim); font-size: 11px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 8px; }
+  .channel-tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 10px; text-transform: uppercase; }
+  .channel-smtp { background: #1a3a4a; color: #4fc3f7; }
+  .channel-pony { background: #3a2a1a; color: #ffb74d; }
+  .channel-inbox { background: #1a3a2a; color: #66bb6a; }
+  .channel-encounter { background: #3a1a2a; color: #ef5350; }
+  .refresh-btn { background: var(--card); border: 1px solid var(--accent); color: var(--accent); padding: 6px 14px; border-radius: 4px; cursor: pointer; font-family: inherit; font-size: 12px; }
+  .refresh-btn:hover { background: var(--accent); color: #000; }
+  .status { color: var(--green); font-size: 12px; margin-top: 8px; }
+  .empty { color: var(--dim); text-align: center; padding: 40px; font-style: italic; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<h1>📬 Gaia Mail</h1>
+<div class="subtitle">gaia@primals.eco — Neutrino SMTP + Pony Express + Neutron Inbox</div>
+
+<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+  <div class="tabs">
+    <div class="tab active" data-ch="all">All<span class="count" id="count-all">0</span></div>
+    <div class="tab" data-ch="smtp">📧 SMTP<span class="count" id="count-smtp">0</span></div>
+    <div class="tab" data-ch="pony-express">🐴 Pony<span class="count" id="count-pony">0</span></div>
+    <div class="tab" data-ch="inbox">📥 Inbox<span class="count" id="count-inbox">0</span></div>
+    <div class="tab" data-ch="encounters">👁 Encounters<span class="count" id="count-enc">0</span></div>
+  </div>
+  <button class="refresh-btn" onclick="loadAll()">⟳ Refresh</button>
+</div>
+
+<div id="mail-list" class="mail-list"></div>
+<div id="mail-body" class="mail-body-panel">
+  <span class="close" onclick="closeBody()">✕</span>
+  <div class="meta" id="body-meta"></div>
+  <pre id="body-content"></pre>
+</div>
+
+<div id="braid-panel" style="margin-top:20px; padding:16px; background:var(--card); border:1px solid var(--border); border-radius:6px; display:none;">
+  <h3 style="color:var(--accent); margin-bottom:10px;">🧬 Mail Organ — Braid + Thymus + Compost</h3>
+  <div id="braid-stats" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px;"></div>
+  <div id="thymus-panel" style="margin-top:12px;"></div>
+  <div id="compost-panel" style="margin-top:12px;"></div>
+</div>
+
+<div class="status" id="status">Loading...</div>
+
+<script>
+const SQUIRREL = '/api/mcp'; // fallback — we load from local data files
+const DATA_ROOT = '/data';
+let allMessages = [];
+let activeChannel = 'all';
+
+async function loadFromSquirrel() {
+  // Try the mail_inbox MCP tool via fetch to local data files
+  const channels = ['inbox', 'pony-express', 'encounters'];
+  let msgs = [];
+
+  // Load pony express
+  try {
+    const r = await fetch(DATA_ROOT + '/neutron/pony-express.jsonl');
+    if (r.ok) {
+      const text = await r.text();
+      text.trim().split('\n').filter(Boolean).forEach(line => {
+        try {
+          const m = JSON.parse(line);
+          m._channel = m.channel || m.train || 'pony-express';
+          if (m._channel === 'smtp' || m.source === 'smtp') m._channel = 'smtp';
+          msgs.push(m);
+        } catch(e) {}
+      });
+    }
+  } catch(e) { console.warn('pony fetch fail:', e); }
+
+  // Load neutron inbox
+  try {
+    const r = await fetch(DATA_ROOT + '/neutron/inbox.jsonl');
+    if (r.ok) {
+      const text = await r.text();
+      text.trim().split('\n').filter(Boolean).forEach(line => {
+        try {
+          const m = JSON.parse(line);
+          m._channel = m.channel || 'inbox';
+          if (m._channel === 'smtp' || m.source === 'smtp') m._channel = 'smtp';
+          msgs.push(m);
+        } catch(e) {}
+      });
+    }
+  } catch(e) { console.warn('inbox fetch fail:', e); }
+
+  // Load encounter log (last 200 only — file can be huge)
+  try {
+    const r = await fetch(DATA_ROOT + '/neutron/encounters.jsonl');
+    if (r.ok) {
+      const text = await r.text();
+      const lines = text.trim().split('\n').filter(Boolean);
+      const recent = lines.slice(-200);
+      recent.forEach(line => {
+        try {
+          const m = JSON.parse(line);
+          m._channel = 'encounters';
+          m.author = m.ip_hash || 'unknown';
+          m.body = m.body || `${m.path} → ${m.code} (${m.ua_hint || 'ghost'})`;
+          msgs.push(m);
+        } catch(e) {}
+      });
+    }
+  } catch(e) { console.warn('encounters fetch fail:', e); }
+
+  return msgs;
+}
+
+function parseDate(ts) {
+  if (!ts) return new Date(0);
+  return new Date(ts);
+}
+
+function formatDate(ts) {
+  const d = parseDate(ts);
+  if (isNaN(d.getTime())) return ts || '?';
+  const now = new Date();
+  const diff = now - d;
+  if (diff < 3600000) return Math.floor(diff/60000) + 'm ago';
+  if (diff < 86400000) return Math.floor(diff/3600000) + 'h ago';
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) + ' ' +
+         d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+}
+
+function channelClass(ch) {
+  if (ch === 'smtp') return 'channel-smtp';
+  if (ch === 'pony-express') return 'channel-pony';
+  if (ch === 'encounters') return 'channel-encounter';
+  return 'channel-inbox';
+}
+
+function channelLabel(ch) {
+  if (ch === 'smtp') return '📧 SMTP';
+  if (ch === 'pony-express') return '🐴 PONY';
+  if (ch === 'encounters') return '👁 ENC';
+  return '📥 INBOX';
+}
+
+function extractSubject(m) {
+  return m.subject || (m.body || '').split('\n')[0].slice(0, 80) || '(no subject)';
+}
+
+function extractPreview(m) {
+  const body = m.body || '';
+  const lines = body.split('\n').filter(l => l.trim());
+  return (lines[1] || lines[0] || '').slice(0, 120);
+}
+
+function renderList() {
+  const list = document.getElementById('mail-list');
+  const filtered = activeChannel === 'all' ? allMessages :
+    allMessages.filter(m => m._channel === activeChannel);
+
+  if (!filtered.length) {
+    list.innerHTML = '<div class="empty">No messages in this channel</div>';
+    return;
+  }
+
+  list.innerHTML = filtered.map((m, i) => `
+    <div class="mail-item unread" onclick="openMail(${allMessages.indexOf(m)})">
+      <div class="mail-header">
+        <span class="mail-from">${(m.author || m.to || 'unknown').replace(/</g, '&lt;')}</span>
+        <span>
+          <span class="channel-tag ${channelClass(m._channel)}">${channelLabel(m._channel)}</span>
+          <span class="mail-date">${formatDate(m.ts)}</span>
+        </span>
+      </div>
+      <div class="mail-subject">${extractSubject(m).replace(/</g, '&lt;')}</div>
+      <div class="mail-preview">${extractPreview(m).replace(/</g, '&lt;')}</div>
+    </div>
+  `).join('');
+}
+
+function openMail(idx) {
+  const m = allMessages[idx];
+  if (!m) return;
+  const panel = document.getElementById('mail-body');
+  document.getElementById('body-meta').innerHTML = `
+    <strong>From:</strong> ${(m.author || '?').replace(/</g, '&lt;')}<br>
+    <strong>To:</strong> ${(m.to || m.rcpt_to || 'gaia@primals.eco').replace(/</g, '&lt;')}<br>
+    ${m.subject ? '<strong>Subject:</strong> ' + m.subject.replace(/</g, '&lt;') + '<br>' : ''}
+    <strong>Date:</strong> ${m.ts}<br>
+    <strong>Channel:</strong> <span class="channel-tag ${channelClass(m._channel)}">${channelLabel(m._channel)}</span>
+    ${m.blake2b ? '<br><strong>BLAKE2b:</strong> ' + m.blake2b : ''}
+  `;
+  document.getElementById('body-content').textContent = m.body || '(empty)';
+  panel.classList.add('open');
+  panel.scrollIntoView({ behavior: 'smooth' });
+}
+
+function closeBody() {
+  document.getElementById('mail-body').classList.remove('open');
+}
+
+function updateCounts() {
+  document.getElementById('count-all').textContent = allMessages.length;
+  document.getElementById('count-smtp').textContent = allMessages.filter(m => m._channel === 'smtp').length;
+  document.getElementById('count-pony').textContent = allMessages.filter(m => m._channel === 'pony-express').length;
+  document.getElementById('count-inbox').textContent = allMessages.filter(m => m._channel === 'inbox').length;
+  document.getElementById('count-enc').textContent = allMessages.filter(m => m._channel === 'encounters').length;
+}
+
+async function loadAll() {
+  document.getElementById('status').textContent = 'Loading...';
+  try {
+    allMessages = await loadFromSquirrel();
+    allMessages.sort((a, b) => parseDate(b.ts) - parseDate(a.ts));
+    updateCounts();
+    renderList();
+    document.getElementById('status').textContent =
+      `✅ ${allMessages.length} messages loaded — ${new Date().toLocaleTimeString()}`;
+  } catch(e) {
+    document.getElementById('status').textContent = '❌ Load failed: ' + e.message;
+  }
+}
+
+// Tab clicks
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    activeChannel = tab.dataset.ch;
+    renderList();
+  });
+});
+
+async function loadBraid() {
+  const panel = document.getElementById('braid-panel');
+  try {
+    const [weaveR, thymusR, digestR] = await Promise.all([
+      fetch(DATA_ROOT + '/braid-mail-weave.json'),
+      fetch(DATA_ROOT + '/mail-thymus-rules.json'),
+      fetch(DATA_ROOT + '/encounter-digest.json')
+    ]);
+    if (!weaveR.ok) return;
+    const weave = await weaveR.json();
+    const thymus = thymusR.ok ? await thymusR.json() : null;
+    const digest = digestR.ok ? await digestR.json() : null;
+
+    panel.style.display = 'block';
+
+    // Stats grid
+    const t = weave.totals || {};
+    document.getElementById('braid-stats').innerHTML = `
+      <div style="background:#1a1a2a;padding:10px;border-radius:4px;text-align:center;">
+        <div style="color:var(--accent);font-size:20px;font-weight:bold;">${(t.encounters||0).toLocaleString()}</div>
+        <div style="color:var(--dim);font-size:11px;">Encounters</div>
+      </div>
+      <div style="background:#1a1a2a;padding:10px;border-radius:4px;text-align:center;">
+        <div style="color:var(--green);font-size:20px;font-weight:bold;">${t.smtp_deliveries||0}</div>
+        <div style="color:var(--dim);font-size:11px;">SMTP Deliveries</div>
+      </div>
+      <div style="background:#1a1a2a;padding:10px;border-radius:4px;text-align:center;">
+        <div style="color:#ffb74d;font-size:20px;font-weight:bold;">${t.pony_messages||0}</div>
+        <div style="color:var(--dim);font-size:11px;">Pony Messages</div>
+      </div>
+      <div style="background:#1a1a2a;padding:10px;border-radius:4px;text-align:center;">
+        <div style="color:#ef5350;font-size:20px;font-weight:bold;">${weave.encounter_digest?.ghost_ratio||0}%</div>
+        <div style="color:var(--dim);font-size:11px;">Ghost (bot) Traffic</div>
+      </div>
+      <div style="background:#1a1a2a;padding:10px;border-radius:4px;text-align:center;">
+        <div style="color:#ce93d8;font-size:20px;font-weight:bold;">${weave.encounter_digest?.real_visitor_count||0}</div>
+        <div style="color:var(--dim);font-size:11px;">Real Visitors</div>
+      </div>
+      <div style="background:#1a1a2a;padding:10px;border-radius:4px;text-align:center;">
+        <div style="color:#ff7043;font-size:20px;font-weight:bold;">${weave.compost_candidates?.pathogen_patterns||0}</div>
+        <div style="color:var(--dim);font-size:11px;">Pathogen Paths</div>
+      </div>
+    `;
+
+    // Thymus
+    if (thymus) {
+      const self = (thymus.self_senders || []).map(s => 
+        `<span style="color:var(--green);margin-right:8px;">✅ ${s.domain}</span>`
+      ).join('');
+      const pathogens = Object.entries(thymus.pathogen_patterns || {}).map(([k, v]) =>
+        `<span style="color:#ef5350;margin-right:8px;">🦠 ${k} (${v.count})</span>`
+      ).join('');
+      document.getElementById('thymus-panel').innerHTML = `
+        <details><summary style="color:var(--accent);cursor:pointer;">🛡️ Thymus — Self/Non-Self (${(thymus.self_senders||[]).length} verified senders, ${Object.keys(thymus.pathogen_patterns||{}).length} pathogen classes)</summary>
+        <div style="margin-top:8px;font-size:12px;">
+          <div style="margin-bottom:6px;"><strong style="color:var(--green);">SELF:</strong> ${self}</div>
+          <div><strong style="color:#ef5350;">PATHOGEN:</strong> ${pathogens}</div>
+        </div></details>
+      `;
+    }
+
+    // Compost
+    if (digest) {
+      const cs = digest.compost_summary || {};
+      document.getElementById('compost-panel').innerHTML = `
+        <details><summary style="color:var(--accent);cursor:pointer;">🍂 Compost — ${cs.compostable_bytes || '?'} ready to decompose</summary>
+        <div style="margin-top:8px;font-size:12px;color:var(--dim);">
+          <div>${cs.total_ghost?.toLocaleString()} ghost encounters → daily digest (850x compression)</div>
+          <div>${cs.total_pathogens} pathogen signatures → fed to thymus rules</div>
+          <div>${cs.total_real} real visitor paths → kept 30 days</div>
+          <div style="margin-top:6px;color:var(--green);">${cs.after_compost || ''}</div>
+        </div></details>
+      `;
+    }
+  } catch(e) { console.warn('Braid load fail:', e); }
+}
+
+loadAll();
+loadBraid();
+setInterval(loadAll, 30000); // auto-refresh every 30s
+</script>
+</body>
+</html>
