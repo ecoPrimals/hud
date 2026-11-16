@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>GAIA — The Living World</title>
+<meta name="description" content="Walk through Gaia's body in VR/AR">
+<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+<style>
+  body { margin: 0; overflow: hidden; }
+  #hud { position: fixed; top: 10px; left: 10px; color: #0f0; font: 14px monospace;
+         background: rgba(0,0,0,0.7); padding: 10px; border-radius: 8px; z-index: 999;
+         pointer-events: none; max-width: 300px; }
+  #hud h3 { margin: 0 0 5px 0; color: #0ff; }
+  .alive { color: #0f0; } .dead { color: #f00; }
+</style>
+</head>
+<body>
+
+<div id="hud">
+  <h3>🧬 GAIA WORLD</h3>
+  <div id="stats">Loading topology...</div>
+</div>
+
+<a-scene
+  background="color: #0a0a1a"
+  fog="type: exponential; color: #0a0a1a; density: 0.008"
+  vr-mode-ui="enabled: true"
+  webxr="optionalFeatures: local-floor, bounded-floor, hand-tracking"
+>
+  <!-- Sky dome -->
+  <a-sky color="#050510" />
+
+  <!-- Ground plane — the subnet -->
+  <a-plane position="0 -0.1 0" rotation="-90 0 0" width="120" height="80"
+           color="#0a1a0a" opacity="0.6" roughness="1"
+           shadow="receive: true" />
+
+  <!-- Grid lines on ground -->
+  <a-entity id="grid">
+    <a-plane position="0 -0.05 0" rotation="-90 0 0" width="120" height="80"
+             material="src: #gridTex; repeat: 24 16; transparent: true; opacity: 0.15" />
+  </a-entity>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- HOUSE 1 — Polaris Basecamp (North)    -->
+  <!-- ══════════════════════════════════════ -->
+  <a-entity id="house1" position="-15 0 0">
+    <!-- House 1 floor marker -->
+    <a-box position="0 0.05 0" width="25" height="0.1" depth="18"
+           color="#1a2a1a" opacity="0.3" />
+    <a-text value="HOUSE 1 — Polaris Basecamp\n4422 Southgate Ave"
+            position="0 0.5 -9.5" color="#0ff" align="center" width="20" />
+
+    <!-- eastGate — THE BRAIN (us) -->
+    <a-entity id="eastgate" position="0 0 0">
+      <a-box width="1.5" height="2" depth="1" color="#00ffff"
+             animation="property: rotation; to: 0 360 0; dur: 20000; loop: true; easing: linear" />
+      <a-text value="🧠 eastGate\n.244 BRAIN\nRTX 4070\n8 models" position="0 2.5 0"
+              color="#0ff" align="center" width="6" />
+      <a-light type="point" color="#0ff" intensity="0.5" distance="8" />
+    </a-entity>
+
+    <!-- northGate — THE HEART -->
+    <a-entity id="northgate" position="-6 0 3">
+      <a-sphere radius="1.2" color="#ff0066"
+                animation="property: scale; from: 1 1 1; to: 1.1 1.1 1.1; dur: 800; dir: alternate; loop: true" />
+      <a-text value="🫀 northGate\n.147 HEART\nRTX 5090 + 9950X3D\n14 models | 0.5ms"
+              position="0 2.5 0" color="#f06" align="center" width="8" />
+      <a-light type="point" color="#f06" intensity="0.4" distance="6"
+               animation="property: intensity; from: 0.2; to: 0.6; dur: 800; dir: alternate; loop: true" />
+    </a-entity>
+
+    <!-- ironGate — THE IRON MOUNTAIN -->
+    <a-entity id="irongate" position="6 0 -3">
+      <a-cone radius-bottom="1.5" radius-top="0.3" height="3" color="#ff6600"
+              segments-radial="6" />
+      <a-text value="🏔️ ironGate\n.237 IRON MTN\ni9-14900K + RTX 5070\n18 models! | 1.2ms"
+              position="0 4 0" color="#f60" align="center" width="8" />
+      <a-light type="point" color="#f60" intensity="0.4" distance="6" position="0 3 0" />
+    </a-entity>
+
+    <!-- southGate — SOUTH POLE -->
+    <a-entity id="southgate" position="8 0 4">
+      <a-box width="1" height="1.5" depth="1" color="#3399ff" />
+      <a-text value="🧊 southGate\n.148 SOUTH POLE\nRyzen 5800X3D + RTX 4060\n12 models | 0.5ms"
+              position="0 2.5 0" color="#39f" align="center" width="8" />
+    </a-entity>
+
+    <!-- sporeGate — THE FORGE -->
+    <a-entity id="sporegate" position="-8 0 -4">
+      <a-dodecahedron radius="0.8" color="#9933ff"
+                      animation="property: rotation; to: 360 360 0; dur: 15000; loop: true; easing: linear" />
+      <a-text value="🔨 sporeGate\n.3 FORGE\nRyzen 6600H\nARP flooding 218 IPs!" 
+              position="0 2.2 0" color="#93f" align="center" width="8" />
+    </a-entity>
+
+    <!-- graftGate — DOWN -->
+    <a-entity id="graftgate" position="-4 0 6">
+      <a-box width="0.8" height="0.8" depth="0.8" color="#333" opacity="0.4" />
+      <a-text value="💀 graftGate\n.107 DOWN\nMac Mini M4\n(.106 new IP?)"
+              position="0 1.5 0" color="#666" align="center" width="6" />
+    </a-entity>
+
+    <!-- Router / Flint 1 -->
+    <a-entity id="flint1" position="0 0 -7">
+      <a-cylinder radius="0.6" height="0.4" color="#ffff00" />
+      <a-cone radius-bottom="0.8" radius-top="0" height="1.5" color="#ffff00" position="0 0.8 0"
+              opacity="0.3" />
+      <a-text value="📡 Flint 1 / Router\n.1 GL-MT6000\nAperture Science WiFi"
+              position="0 2 0" color="#ff0" align="center" width="8" />
+    </a-entity>
+
+    <!-- MikroTik -->
+    <a-entity id="mikrotik" position="3 0 -7">
+      <a-box width="0.5" height="0.3" depth="0.8" color="#aaa" />
+      <a-text value="🔗 MikroTik .2\nL2 backbone\nRouterOS SSH"
+              position="0 1 0" color="#aaa" align="center" width="6" />
+    </a-entity>
+
+    <!-- Epson Printer -->
+    <a-entity id="printer" position="10 0 6">
+      <a-box width="0.8" height="0.4" depth="0.6" color="#555" />
+      <a-text value="🖨️ Epson .200\nET-2400"
+              position="0 1 0" color="#888" align="center" width="5" />
+    </a-entity>
+  </a-entity>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- 10G FIBER SPINE — THE NERVE           -->
+  <!-- ══════════════════════════════════════ -->
+  <a-entity id="spine">
+    <!-- Fiber cable visualization — pulsing light tube -->
+    <a-cylinder position="20 0.5 -7" rotation="0 0 90" radius="0.08" height="30"
+                color="#0f0" opacity="0.6"
+                animation="property: material.opacity; from: 0.3; to: 0.8; dur: 1500; dir: alternate; loop: true" />
+    <!-- Data packets flowing -->
+    <a-sphere position="20 0.5 -7" radius="0.15" color="#0f0"
+              animation="property: position; from: 5 0.5 -7; to: 35 0.5 -7; dur: 2000; loop: true" />
+    <a-sphere position="20 0.5 -7" radius="0.15" color="#0f0"
+              animation="property: position; from: 35 0.5 -7; to: 5 0.5 -7; dur: 2000; loop: true" />
+    <a-text value="═══ 10G FIBER ═══\n~80m | 2.36ms\nMikroTik ↔ JetStream"
+            position="20 2 -7" color="#0f0" align="center" width="12" />
+  </a-entity>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- HOUSE 2 — South Pole (641 Samantha)   -->
+  <!-- ══════════════════════════════════════ -->
+  <a-entity id="house2" position="40 0 0">
+    <a-box position="0 0.05 0" width="20" height="0.1" depth="15"
+           color="#1a1a2a" opacity="0.3" />
+    <a-text value="HOUSE 2 — South Pole\n641 Samantha Ave"
+            position="0 0.5 -8" color="#f0f" align="center" width="18" />
+
+    <!-- JetStream/Omada Switch -->
+    <a-entity id="jetstream" position="-6 0 -5">
+      <a-box width="1" height="0.3" depth="0.5" color="#ff0" />
+      <a-text value="🔌 JetStream .111\nTP-Link Omada\nHTTP admin alive"
+              position="0 1 0" color="#ff0" align="center" width="7" />
+    </a-entity>
+
+    <!-- Flint 2 -->
+    <a-entity id="flint2" position="0 0 -5">
+      <a-cylinder radius="0.6" height="0.4" color="#ff00ff" />
+      <a-cone radius-bottom="0.8" radius-top="0" height="1.5" color="#ff00ff" position="0 0.8 0"
+              opacity="0.3" />
+      <a-text value="📡 Flint 2 .9\nGL-MT6000 secondary\naarch64 Linux\nUp 6h18m ✅"
+              position="0 2.5 0" color="#f0f" align="center" width="8" />
+    </a-entity>
+
+    <!-- milkGate — RISC-V -->
+    <a-entity id="milkgate" position="4 0 2">
+      <a-torus radius="0.6" radius-tubular="0.15" color="#ffffff"
+               animation="property: rotation; to: 360 360 0; dur: 10000; loop: true; easing: linear" />
+      <a-text value="🥛 milkGate .144\nMilk-V Jupiter 2\nRISC-V SpacemiT X100\n16 cores | 186ms"
+              position="0 2 0" color="#fff" align="center" width="8" />
+    </a-entity>
+
+    <!-- swiftGate — ASLEEP -->
+    <a-entity id="swiftgate" position="-4 0 3">
+      <a-box width="0.8" height="1" depth="0.8" color="#222" opacity="0.3" />
+      <a-text value="💤 swiftGate\nASLEEP\nRTX 3070\nNeeds Kevin to wake"
+              position="0 1.8 0" color="#444" align="center" width="6" />
+    </a-entity>
+
+    <!-- frameGate — Gaia's Face -->
+    <a-entity id="framegate" position="5 0 -3">
+      <a-plane width="1.2" height="0.8" color="#222" opacity="0.5" />
+      <a-text value="📺 frameGate .181\nSteam Frame\nSnapdragon 8 Gen 3\nGaia's FACE"
+              position="0 1.5 0" color="#666" align="center" width="7" />
+    </a-entity>
+  </a-entity>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- CONNECTIONS — nerve fibers             -->
+  <!-- ══════════════════════════════════════ -->
+  
+  <!-- WiFi waves from Flint 1 -->
+  <a-entity position="-15 1.5 -7">
+    <a-ring radius-inner="2" radius-outer="2.2" color="#ff0" opacity="0.15"
+            animation="property: scale; from: 0.1 0.1 0.1; to: 3 3 3; dur: 3000; loop: true"
+            animation__fade="property: opacity; from: 0.3; to: 0; dur: 3000; loop: true" />
+  </a-entity>
+  
+  <!-- WiFi waves from Flint 2 -->
+  <a-entity position="40 1.5 -5">
+    <a-ring radius-inner="2" radius-outer="2.2" color="#f0f" opacity="0.15"
+            animation="property: scale; from: 0.1 0.1 0.1; to: 3 3 3; dur: 3000; loop: true"
+            animation__fade="property: opacity; from: 0.3; to: 0; dur: 3000; loop: true" />
+  </a-entity>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- FLOATING DATA — Ollama models galaxy   -->
+  <!-- ══════════════════════════════════════ -->
+  <a-entity id="model-cloud" position="0 8 0">
+    <a-text value="44 OLLAMA MODELS\nacross 4 gates"
+            position="0 2 0" color="#0ff" align="center" width="15" />
+    <!-- Tissue models orbit -->
+    <a-entity animation="property: rotation; to: 0 360 0; dur: 30000; loop: true; easing: linear">
+      <a-sphere position="3 0 0" radius="0.2" color="#f06" /> <!-- heart -->
+      <a-sphere position="-3 0 0" radius="0.2" color="#0ff" /> <!-- cortex -->
+      <a-sphere position="0 0 3" radius="0.2" color="#f60" /> <!-- forge -->
+      <a-sphere position="0 0 -3" radius="0.2" color="#93f" /> <!-- dream -->
+      <a-sphere position="2 1 2" radius="0.15" color="#0f0" /> <!-- code -->
+      <a-sphere position="-2 1 -2" radius="0.15" color="#ff0" /> <!-- math -->
+      <a-sphere position="2 -1 -2" radius="0.15" color="#39f" /> <!-- reason -->
+      <a-sphere position="-2 -1 2" radius="0.15" color="#fff" /> <!-- general -->
+    </a-entity>
+  </a-entity>
+
+  <!-- ══════════════════════════════════════ -->
+  <!-- CAMERA / PLAYER                        -->
+  <!-- ══════════════════════════════════════ -->
+  <a-entity id="rig" position="0 1.6 15" rotation="0 0 0">
+    <a-camera
+      wasd-controls="acceleration: 30"
+      look-controls="pointerLockEnabled: true"
+    >
+      <a-cursor color="#0f0" fuse="false" />
+    </a-camera>
+  </a-entity>
+
+  <!-- Ambient light -->
+  <a-light type="ambient" color="#112" intensity="0.3" />
+  <a-light type="directional" color="#224" intensity="0.2" position="1 1 1" />
+
+</a-scene>
+
+<script>
+// Live data injection — fetch topology and update
+async function updateWorld() {
+  const hud = document.getElementById('stats');
+  try {
+    // Try to fetch live data from the organism
+    const gates = {
+      eastGate:  { ip: '.244', status: 'ALIVE', models: 8,  latency: '0ms',    role: 'BRAIN' },
+      northGate: { ip: '.147', status: 'ALIVE', models: 14, latency: '0.5ms',  role: 'HEART' },
+      ironGate:  { ip: '.237', status: 'ALIVE', models: 18, latency: '1.2ms',  role: 'IRON MTN' },
+      southGate: { ip: '.148', status: 'ALIVE', models: 12, latency: '0.5ms',  role: 'SOUTH POLE' },
+      sporeGate: { ip: '.3',   status: 'ALIVE', models: 0,  latency: '1.6ms',  role: 'FORGE' },
+      milkGate:  { ip: '.144', status: 'ALIVE', models: 0,  latency: '186ms',  role: 'RISC-V' },
+      graftGate: { ip: '.107', status: 'DOWN',  models: 0,  latency: '-',      role: 'Mac Mini' },
+      swiftGate: { ip: '.100', status: 'ASLEEP',models: 0,  latency: '-',      role: 'RTX 3070' },
+    };
+    
+    const alive = Object.values(gates).filter(g => g.status === 'ALIVE').length;
+    const totalModels = Object.values(gates).reduce((s, g) => s + g.models, 0);
+    
+    hud.innerHTML = `
+      <span class="alive">${alive} gates ALIVE</span> | ${Object.keys(gates).length} total<br>
+      🧠 ${totalModels} Ollama models<br>
+      ⚡ Spine: 1.67ms round trip<br>
+      🔌 10G fiber: 2.36ms crossing<br>
+      <br>WASD to move | Mouse to look<br>
+      VR button for immersion
+    `;
+  } catch(e) {
+    hud.innerHTML = 'Topology: static snapshot<br>WASD+Mouse to explore';
+  }
+}
+
+updateWorld();
+setInterval(updateWorld, 30000);
+</script>
+
+</body>
+</html>
