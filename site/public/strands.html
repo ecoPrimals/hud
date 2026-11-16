@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DEATH STRANDING — Strand Network</title>
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body { background:#0a0a0f; color:#c8dde8; font-family:'Courier New',monospace; overflow-x:hidden; }
+.header { text-align:center; padding:20px; border-bottom:1px solid #1a3a4a; }
+.header h1 { font-size:1.4em; color:#4af; letter-spacing:4px; text-shadow:0 0 20px #4af5; }
+.header .sub { font-size:0.7em; color:#567; margin-top:4px; letter-spacing:2px; }
+.grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; padding:12px; max-width:1200px; margin:0 auto; }
+.strand-card { background:#0d1520; border:1px solid #1a2a3a; border-radius:6px; padding:12px; position:relative; overflow:hidden; }
+.strand-card.alive { border-color:#2a5a3a; }
+.strand-card.alive::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:#4f8; }
+.strand-card.down { border-color:#5a2a2a; opacity:0.6; }
+.strand-card.down::before { content:''; position:absolute; top:0; left:0; width:3px; height:100%; background:#f44; }
+.strand-type { font-size:0.6em; color:#89a; text-transform:uppercase; letter-spacing:2px; }
+.strand-name { font-size:1em; color:#4af; margin:4px 0; }
+.strand-path { font-size:0.75em; color:#678; margin:2px 0; }
+.strand-latency { font-size:1.4em; font-weight:bold; float:right; margin-top:-30px; }
+.strand-latency.fast { color:#4f8; }
+.strand-latency.medium { color:#fa4; }
+.strand-latency.slow { color:#f44; }
+.strand-latency.unknown { color:#444; }
+.fleet-panel { grid-column:1/-1; background:#0d1520; border:1px solid #2a4a3a; border-radius:6px; padding:12px; }
+.fleet-panel h2 { font-size:0.9em; color:#4f8; letter-spacing:3px; margin-bottom:8px; }
+.gate-row { display:flex; align-items:center; padding:4px 0; border-bottom:1px solid #111820; }
+.gate-name { width:100px; color:#4af; font-size:0.8em; }
+.gate-gpu { width:80px; color:#89a; font-size:0.7em; }
+.gate-models { width:60px; color:#4f8; font-size:0.8em; text-align:right; }
+.gate-bar { flex:1; height:8px; background:#111; border-radius:4px; margin-left:8px; overflow:hidden; }
+.gate-bar-fill { height:100%; border-radius:4px; transition:width 1s; }
+.gate-bar-fill.alive { background:linear-gradient(90deg,#2a5a3a,#4f8); }
+.gate-bar-fill.down { background:#5a2a2a; }
+.gate-status { width:20px; text-align:center; font-size:0.8em; }
+.strand-map-visual { grid-column:1/-1; background:#0d1520; border:1px solid #1a2a3a; border-radius:6px; padding:12px; min-height:200px; }
+.strand-map-visual h2 { font-size:0.9em; color:#4af; letter-spacing:3px; margin-bottom:8px; }
+canvas { width:100%; height:300px; display:block; }
+.stats { grid-column:1/-1; display:flex; justify-content:space-around; padding:12px; background:#0d1520; border:1px solid #1a2a3a; border-radius:6px; }
+.stat { text-align:center; }
+.stat .num { font-size:1.8em; color:#4af; font-weight:bold; }
+.stat .label { font-size:0.6em; color:#567; text-transform:uppercase; letter-spacing:2px; }
+.refresh-bar { height:2px; background:#111; margin-top:2px; }
+.refresh-fill { height:100%; background:#4af; width:0%; transition:width 10s linear; }
+@media(max-width:700px) { .grid { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>💀🌈 DEATH STRANDING</h1>
+  <div class="sub">STRAND NETWORK — BUILD BRIDGES SO OTHERS CAN CROSS</div>
+  <div class="refresh-bar"><div class="refresh-fill" id="refreshBar"></div></div>
+</div>
+
+<div class="grid">
+
+  <div class="stats" id="stats">
+    <div class="stat"><div class="num" id="strandCount">—</div><div class="label">Strands</div></div>
+    <div class="stat"><div class="num" id="gateCount">—</div><div class="label">Gates Alive</div></div>
+    <div class="stat"><div class="num" id="modelCount">—</div><div class="label">Models</div></div>
+    <div class="stat"><div class="num" id="gpuVram">—</div><div class="label">GPU VRAM</div></div>
+    <div class="stat"><div class="num" id="radioCount">—</div><div class="label">Radios</div></div>
+  </div>
+
+  <div class="strand-map-visual">
+    <h2>⚡ STRAND TOPOLOGY</h2>
+    <canvas id="topoCanvas"></canvas>
+  </div>
+
+  <div class="fleet-panel" id="fleetPanel">
+    <h2>🧠 OLLAMA FLEET — :11435</h2>
+    <div id="fleetRows"></div>
+  </div>
+
+  <div id="strandCards"></div>
+
+</div>
+
+<script>
+const STRANDS = [
+  { name:"10G Fiber Spine", type:"FIBER", path:"eastGate → MikroTik → JetStream → Flint2", latency:0.9, state:"alive", bandwidth:"10 Gbps" },
+  { name:"GAIA 5GHz (House2)", type:"RADIO", path:"Router rax1 → frameGate(.181) -29dBm", latency:47, state:"alive", bandwidth:"2401 Mbps" },
+  { name:"Pixel USB ADB", type:"USB", path:"eastGate USB → Pixel (44251JEKB04957)", latency:74, state:"alive", bandwidth:"480 Mbps" },
+  { name:"Pixel WiFi ADB", type:"WIRELESS", path:"eastGate → 192.168.4.135:5555", latency:76, state:"alive", bandwidth:"1134 Mbps" },
+  { name:"iPhone#1 ipheth", type:"USB_CELL", path:"eastGate enx0a2cb6 → iPhone XS", latency:null, state:"paired", bandwidth:"Cellular" },
+  { name:"iPhone#2 ipheth", type:"USB_CELL", path:"eastGate enx4a352b → iPhone 13 Pro", latency:null, state:"paired", bandwidth:"Cellular" },
+  { name:"Steam Relay", type:"APP", path:"frameGate:27036 ↔ Steam network", latency:47, state:"alive", bandwidth:"Variable" },
+  { name:"NAT Hairpin", type:"ROUTING", path:"primals.eco → 192.168.4.244 (reflected)", latency:1.1, state:"alive", bandwidth:"1 Gbps" },
+  { name:"Tor Hidden Service", type:"OVERLAY", path:".onion → eastGate (13 ports)", latency:null, state:"alive", bandwidth:"~5 Mbps" },
+  { name:"Flint2 WiFi AP", type:"RADIO", path:"4 SSIDs at House 2 (mirrored)", latency:0.5, state:"alive", bandwidth:"4803 Mbps" },
+  { name:"swiftGate WiFi", type:"RADIO", path:"swiftGate → Flint2 → flat subnet", latency:null, state:"down", bandwidth:"—" },
+  { name:"Valve WiFi 6", type:"RADIO", path:"eastGate wlx9c04b6 (unconnected)", latency:null, state:"down", bandwidth:"WiFi 6 2x2" },
+];
+
+const GATES = [
+  { name:"eastGate", ip:".244", gpu:"RTX 4070", role:"Brain", house:1 },
+  { name:"northGate", ip:".147", gpu:"RTX 5090", role:"Heart", house:1 },
+  { name:"ironGate", ip:".237", gpu:"RTX 5070", role:"Forge2", house:1 },
+  { name:"southGate", ip:".148", gpu:"RTX 4060", role:"South Pole", house:1 },
+  { name:"sporeGate", ip:".3", gpu:"—", role:"DNS/Forge", house:1 },
+  { name:"Flint2", ip:".9", gpu:"—", role:"House2 AP", house:2 },
+  { name:"frameGate", ip:".181", gpu:"Snapdragon", role:"Face/Steam", house:2 },
+  { name:"graftGate", ip:".106", gpu:"M4", role:"Mac Mini", house:2 },
+  { name:"swiftGate", ip:".100", gpu:"RTX 3070", role:"Polaris H2", house:2 },
+];
+
+function renderStrands() {
+  const container = document.getElementById('strandCards');
+  container.innerHTML = STRANDS.map(s => {
+    const cls = s.state === 'alive' ? 'alive' : 'down';
+    let latClass = 'unknown';
+    let latText = '—';
+    if (s.latency !== null) {
+      latText = s.latency < 1 ? s.latency + 'ms' : s.latency < 50 ? s.latency + 'ms' : s.latency + 'ms';
+      latClass = s.latency < 5 ? 'fast' : s.latency < 100 ? 'medium' : 'slow';
+    }
+    return `<div class="strand-card ${cls}">
+      <div class="strand-type">${s.type}</div>
+      <div class="strand-name">${s.name}</div>
+      <div class="strand-path">${s.path}</div>
+      <div class="strand-path">${s.bandwidth}</div>
+      <div class="strand-latency ${latClass}">${latText}</div>
+    </div>`;
+  }).join('');
+}
+
+function renderStats() {
+  const alive = STRANDS.filter(s => s.state === 'alive').length;
+  document.getElementById('strandCount').textContent = alive + '/' + STRANDS.length;
+  document.getElementById('gateCount').textContent = GATES.filter(g => g.gpu !== '—' || g.name === 'Flint2').length;
+  document.getElementById('modelCount').textContent = '42+';
+  document.getElementById('gpuVram').textContent = '64GB';
+  document.getElementById('radioCount').textContent = '8';
+}
+
+async function fetchFleet() {
+  try {
+    const r = await fetch('/data/fleet-live.json');
+    if (!r.ok) throw new Error('no fleet data');
+    return await r.json();
+  } catch {
+    try {
+      const r = await fetch('http://192.168.4.244:11435/fleet');
+      if (!r.ok) throw new Error('fleet proxy down');
+      return await r.json();
+    } catch { return null; }
+  }
+}
+
+async function renderFleet() {
+  const fleet = await fetchFleet();
+  const container = document.getElementById('fleetRows');
+  if (!fleet) {
+    container.innerHTML = '<div style="color:#555">Fleet proxy unreachable</div>';
+    return;
+  }
+  document.getElementById('modelCount').textContent = fleet.unique_models;
+  let html = '';
+  const maxModels = Math.max(...Object.values(fleet.gates).map(g => g.models || 0), 1);
+  for (const [gid, info] of Object.entries(fleet.gates)) {
+    const alive = info.alive ? '✅' : '❌';
+    const cls = info.alive ? 'alive' : 'down';
+    const pct = ((info.models || 0) / maxModels * 100).toFixed(0);
+    html += `<div class="gate-row">
+      <div class="gate-status">${alive}</div>
+      <div class="gate-name">${gid}</div>
+      <div class="gate-gpu">${info.gpu}</div>
+      <div class="gate-models">${info.models || 0}</div>
+      <div class="gate-bar"><div class="gate-bar-fill ${cls}" style="width:${pct}%"></div></div>
+    </div>`;
+  }
+  container.innerHTML = html;
+}
+
+function drawTopology() {
+  const canvas = document.getElementById('topoCanvas');
+  const ctx = canvas.getContext('2d');
+  canvas.width = canvas.offsetWidth;
+  canvas.height = 300;
+  const W = canvas.width, H = canvas.height;
+  ctx.clearRect(0, 0, W, H);
+
+  const midX = W / 2;
+  const house1X = W * 0.25, house2X = W * 0.75;
+  
+  const nodes = {};
+  GATES.forEach((g, i) => {
+    const x = g.house === 1 ? house1X + (i % 3 - 1) * 70 : house2X + ((i - 5) % 3 - 1) * 70;
+    const row = g.house === 1 ? Math.floor(i / 3) : Math.floor((i - 5) / 3);
+    const y = 60 + row * 70;
+    nodes[g.name] = { x, y, ...g };
+  });
+
+  // Draw fiber spine
+  ctx.strokeStyle = '#4af3';
+  ctx.lineWidth = 3;
+  ctx.setLineDash([]);
+  ctx.beginPath();
+  ctx.moveTo(house1X + 40, H / 2);
+  ctx.lineTo(house2X - 40, H / 2);
+  ctx.stroke();
+  ctx.fillStyle = '#4af';
+  ctx.font = '10px monospace';
+  ctx.fillText('10G FIBER — 0.9ms', midX - 50, H / 2 - 8);
+
+  // Draw WiFi strand
+  ctx.strokeStyle = '#4f83';
+  ctx.lineWidth = 1;
+  ctx.setLineDash([4, 4]);
+  ctx.beginPath();
+  ctx.moveTo(house1X, 40);
+  ctx.bezierCurveTo(midX, 20, midX, 20, house2X, 60);
+  ctx.stroke();
+  ctx.fillStyle = '#4f8';
+  ctx.fillText('GAIA 5GHz — 47ms', midX - 40, 18);
+  ctx.setLineDash([]);
+
+  // Draw house labels
+  ctx.fillStyle = '#2a4a6a';
+  ctx.font = 'bold 11px monospace';
+  ctx.fillText('HOUSE 1 — Brain', house1X - 50, 25);
+  ctx.fillText('HOUSE 2 — South Pole', house2X - 60, 25);
+
+  // Draw nodes
+  for (const [name, n] of Object.entries(nodes)) {
+    const alive = name !== 'swiftGate';
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, 14, 0, Math.PI * 2);
+    ctx.fillStyle = alive ? '#0d2520' : '#200d0d';
+    ctx.fill();
+    ctx.strokeStyle = alive ? '#4f8' : '#f44';
+    ctx.lineWidth = alive ? 2 : 1;
+    ctx.stroke();
+
+    ctx.fillStyle = alive ? '#4af' : '#644';
+    ctx.font = '9px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(name.replace('Gate', ''), n.x, n.y + 3);
+    if (n.gpu && n.gpu !== '—') {
+      ctx.fillStyle = '#567';
+      ctx.font = '7px monospace';
+      ctx.fillText(n.gpu, n.x, n.y + 26);
+    }
+  }
+  ctx.textAlign = 'start';
+
+  // Draw wired connections within houses
+  ctx.strokeStyle = '#1a3a2a';
+  ctx.lineWidth = 1;
+  const h1gates = Object.entries(nodes).filter(([_, n]) => n.house === 1);
+  for (let i = 0; i < h1gates.length - 1; i++) {
+    ctx.beginPath();
+    ctx.moveTo(h1gates[i][1].x, h1gates[i][1].y);
+    ctx.lineTo(h1gates[i + 1][1].x, h1gates[i + 1][1].y);
+    ctx.stroke();
+  }
+}
+
+renderStrands();
+renderStats();
+renderFleet();
+drawTopology();
+
+setInterval(() => {
+  renderFleet();
+  const bar = document.getElementById('refreshBar');
+  bar.style.transition = 'none';
+  bar.style.width = '0%';
+  setTimeout(() => { bar.style.transition = 'width 10s linear'; bar.style.width = '100%'; }, 50);
+}, 10000);
+
+document.getElementById('refreshBar').style.transition = 'width 10s linear';
+document.getElementById('refreshBar').style.width = '100%';
+</script>
+</body>
+</html>
