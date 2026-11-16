@@ -259,13 +259,41 @@ function drawTopology() {
   }
 }
 
+async function fetchPitons() {
+  try {
+    const r = await fetch('/data/body/piton-map.json');
+    if (!r.ok) return null;
+    const data = await r.json();
+    if (data.pitons) {
+      let anchored = 0, missed = 0;
+      for (const [name, info] of Object.entries(data.pitons)) {
+        if (info.state === 'ANCHORED') anchored++;
+        else missed++;
+      }
+      document.getElementById('strandCount').textContent = anchored + '/' + (anchored + missed);
+      document.getElementById('radioCount').textContent = Object.keys(data.pitons).length;
+    }
+    return data;
+  } catch { return null; }
+}
+
+async function fetchPixelIngest() {
+  try {
+    const r = await fetch('/data/gut/pixel-piton-ingest.json');
+    if (!r.ok) return null;
+    return await r.json();
+  } catch { return null; }
+}
+
 renderStrands();
 renderStats();
 renderFleet();
 drawTopology();
+fetchPitons();
 
 setInterval(() => {
   renderFleet();
+  fetchPitons();
   const bar = document.getElementById('refreshBar');
   bar.style.transition = 'none';
   bar.style.width = '0%';
