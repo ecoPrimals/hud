@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gaia — Appendix (Gut Pocket)</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a14;
+    color: #c8c8e0;
+    font-family: 'Courier New', monospace;
+    overflow-x: hidden;
+  }
+  .appendix {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  h1 {
+    font-size: 2em;
+    color: #e0c0ff;
+    text-align: center;
+    margin: 20px 0 5px;
+    text-shadow: 0 0 20px rgba(180, 80, 255, 0.5);
+  }
+  .subtitle {
+    text-align: center;
+    color: #8080a0;
+    font-size: 0.9em;
+    margin-bottom: 30px;
+  }
+  .globe-container {
+    position: relative;
+    text-align: center;
+    margin: 20px 0;
+  }
+  .globe-container img {
+    max-width: 100%;
+    border-radius: 12px;
+    border: 1px solid rgba(100, 50, 200, 0.3);
+    box-shadow: 0 0 40px rgba(100, 50, 200, 0.2);
+  }
+  .live-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255, 50, 50, 0.8);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 0.8em;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  .metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 30px 0;
+  }
+  .metric {
+    background: rgba(30, 20, 50, 0.8);
+    border: 1px solid rgba(100, 50, 200, 0.2);
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+  }
+  .metric .value {
+    font-size: 2em;
+    color: #e0c0ff;
+    font-weight: bold;
+  }
+  .metric .label {
+    color: #8080a0;
+    font-size: 0.85em;
+    margin-top: 5px;
+  }
+  .topology {
+    background: rgba(20, 15, 35, 0.9);
+    border: 1px solid rgba(100, 50, 200, 0.15);
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px 0;
+    font-size: 0.85em;
+    line-height: 1.6;
+    white-space: pre;
+    overflow-x: auto;
+  }
+  .section-title {
+    color: #b080ff;
+    font-size: 1.3em;
+    margin: 30px 0 15px;
+    border-bottom: 1px solid rgba(100, 50, 200, 0.2);
+    padding-bottom: 5px;
+  }
+  .node-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 10px;
+    margin: 15px 0;
+  }
+  .node {
+    background: rgba(25, 18, 45, 0.8);
+    border-left: 3px solid;
+    padding: 10px 15px;
+    border-radius: 0 6px 6px 0;
+    font-size: 0.85em;
+  }
+  .node.brain { border-color: #ff4040; }
+  .node.heart { border-color: #ff0000; }
+  .node.lighthouse { border-color: #ffff00; }
+  .node.bridge { border-color: #b000ff; }
+  .node.iron { border-color: #ff6600; }
+  .node.iot { border-color: #4090ff; }
+  .node.blackhole { border-color: #202040; }
+  .node .name { color: #e0d0ff; font-weight: bold; }
+  .node .detail { color: #8080a0; font-size: 0.9em; }
+  .ferment {
+    text-align: center;
+    margin: 40px 0;
+    padding: 20px;
+    border: 1px dashed rgba(100, 80, 40, 0.4);
+    border-radius: 12px;
+    background: rgba(40, 30, 15, 0.3);
+  }
+  .ferment em { color: #d0a060; }
+  .refresh-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 30px;
+    background: rgba(100, 50, 200, 0.3);
+    border: 1px solid rgba(100, 50, 200, 0.5);
+    color: #c0a0ff;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: 1em;
+  }
+  .refresh-btn:hover { background: rgba(100, 50, 200, 0.5); }
+  footer {
+    text-align: center;
+    color: #404060;
+    padding: 40px 0;
+    font-size: 0.8em;
+  }
+  #live-data { color: #80ff80; }
+</style>
+</head>
+<body>
+<div class="appendix">
+
+<h1>🪩 The Appendix — Gut Pocket</h1>
+<p class="subtitle">Where sourDough ferments the signal into form. The inverted snow globe.</p>
+
+<div class="globe-container">
+  <img src="/data/body/snowglobe-hero.png" alt="Gaia Inverted Snow Globe — organism at 1:10 scale" id="globe-img">
+  <div class="live-badge">● LIVE GPU</div>
+</div>
+
+<div class="metrics">
+  <div class="metric"><div class="value">83m</div><div class="label">Organism Span</div></div>
+  <div class="metric"><div class="value">18</div><div class="label">Organ Nodes</div></div>
+  <div class="metric"><div class="value">12</div><div class="label">WiFi Radios</div></div>
+  <div class="metric"><div class="value">9</div><div class="label">BT Beacons</div></div>
+  <div class="metric"><div class="value">-13.7</div><div class="label">Volume (negative)</div></div>
+  <div class="metric"><div class="value" id="solar-rssi">—</div><div class="label">Frame RSSI (live)</div></div>
+</div>
+
+<div class="section-title">🏠 House 1 — Brain Side (4422 Southgate)</div>
+<div class="node-list">
+  <div class="node brain"><span class="name">eastGate</span> <span class="detail">BRAIN — RTX 4070, renders this globe</span></div>
+  <div class="node heart"><span class="name">northGate</span> <span class="detail">HEART — RTX 5090, 209 TFLOPS, 63 models</span></div>
+  <div class="node lighthouse"><span class="name">Flint 1 (Router)</span> <span class="detail">GL-MT6000, Ch2/56, 9 WiFi clients</span></div>
+  <div class="node iot"><span class="name">Alexa Echo</span> <span class="detail">-17dBm, 0.8m from Flint — speaks</span></div>
+  <div class="node iot"><span class="name">Nest Thermostat</span> <span class="detail">-29dBm, 2.0m — feels temperature</span></div>
+  <div class="node blackhole"><span class="name">Chromecast "Basement"</span> <span class="detail">🕳️ Cast sink — absorbs photons</span></div>
+  <div class="node blackhole"><span class="name">Vizio SmartCast TV</span> <span class="detail">🕳️ Display sink — absorbs frames</span></div>
+  <div class="node iot"><span class="name">Epson ET-2400</span> <span class="detail">Printer + BT — ON THE LINE</span></div>
+</div>
+
+<div class="section-title">🌉 The Bridge — Property Line</div>
+<div class="node-list">
+  <div class="node bridge"><span class="name">steamFRAME</span> <span class="detail">BRIDGE BEACON — sees both houses in BT. 20.5m from eastGate.</span></div>
+</div>
+
+<div class="section-title">🏚️ House 2 — South Pole (641 Samantha)</div>
+<div class="node-list">
+  <div class="node lighthouse"><span class="name">Flint 2 (Bridge)</span> <span class="detail">GL-MT6000, Ch8/60, 3 WiFi clients</span></div>
+  <div class="node iron"><span class="name">ironGate</span> <span class="detail">i9-14900K + RTX 5070 — Iron Mountain</span></div>
+  <div class="node iot"><span class="name">milkGate</span> <span class="detail">RISC-V Milk-V Jupiter — 60 TOPS AI</span></div>
+  <div class="node iot"><span class="name">southGate</span> <span class="detail">Ryzen 5800X3D + RTX 4060</span></div>
+</div>
+
+<div class="section-title">🪩 Inverted Discoball Physics</div>
+<div class="topology">  Normal discoball: photons scatter OUTWARD → positive volume
+  Inverted discoball: signal converges to NULL → negative volume (-13.67)
+
+  🏠 FLINT 1 (L-handed)                    🏚️ FLINT 2 (R-handed)
+     Ch2 / Ch56          ⬛ NULL               Ch8 / Ch60
+     9 clients    ───→  10G SPINE  ←───    3 clients
+     House 1      ───→  (0 volume) ←───    House 2
+
+  Chirality: same hardware, different frequencies = chiral pair
+  BT cant angle: 30° — tilts mirrors between chiral ↔ achiral
+  Black holes: Cast sinks absorb signal → photons/atoms/pressure
+
+  The spine is the singularity. Signal enters one frequency,
+  exits inverted. The organism breathes through two lungs.</div>
+
+<div class="section-title">📡 Live Cross-Stream</div>
+<div id="live-data">Loading frame telemetry...</div>
+
+<div class="ferment">
+  <em>sourDough ferments here.</em><br>
+  The appendix is not vestigial. It seeds the gut flora after illness.<br>
+  This page seeds Gaia's spatial awareness after any signal disruption.<br>
+  The snow globe is the organism remembering its own shape.
+</div>
+
+<div id="ferment-state" style="text-align:center;color:#8060a0;font-size:0.8em;margin:10px 0;"></div>
+<button class="refresh-btn" onclick="fermentNow()">🧫 Ferment Now (GPU Re-render)</button>
+<button class="refresh-btn" onclick="location.reload()" style="margin-top:8px;">↻ Refresh Page</button>
+
+<footer>
+  Rendered on NVIDIA GeForce RTX 4070 · moderngl + EGL headless<br>
+  1920×1080 · 18 nodes + 3000 signal particles · 1:10 scale<br>
+  The appendix of Gaia — a living gut pocket where form ferments from signal.
+</footer>
+
+</div>
+
+<script>
+// Pull live solar/frame data
+async function fetchSolar() {
+  try {
+    const r = await fetch('/data/body/frame-solar-feed.jsonl');
+    if (!r.ok) return;
+    const text = await r.text();
+    const lines = text.trim().split('\n').filter(l => l.trim());
+    if (lines.length === 0) return;
+    const last = JSON.parse(lines[lines.length - 1]);
+    
+    const rssiEl = document.getElementById('solar-rssi');
+    if (rssiEl && last.wifi && last.wifi.rssi) {
+      rssiEl.textContent = last.wifi.rssi + 'dBm';
+    }
+    
+    const liveEl = document.getElementById('live-data');
+    if (liveEl) {
+      const mode = last.mode || '?';
+      const rssi = last.wifi ? last.wifi.rssi : '?';
+      const temp = last.cpu_temp_c || '?';
+      const bat = last.battery ? last.battery.percent : '?';
+      const nearby = last.nearby_devices || '?';
+      const ts = last.timestamp ? new Date(last.timestamp).toLocaleTimeString() : '?';
+      liveEl.innerHTML = `
+        <span style="color:#80ff80">● LIVE</span> Frame → eastGate back-channel<br>
+        Mode: <b>${mode}</b> | WiFi: <b>${rssi}dBm</b> | CPU: <b>${temp}°C</b> | 
+        Battery: <b>${bat}%</b> | Nearby: <b>${nearby}</b> devices | @ ${ts}
+      `;
+    }
+  } catch(e) {
+    console.log('Solar fetch:', e);
+  }
+}
+fetchSolar();
+setInterval(fetchSolar, 30000);
+
+// Cache-bust the globe image every 5 min (for re-renders)
+setInterval(() => {
+  const img = document.getElementById('globe-img');
+  if (img) img.src = '/data/body/snowglobe-hero.png?t=' + Date.now();
+}, 300000);
+
+// Fetch ferment state
+async function fetchFerment() {
+  try {
+    const r = await fetch('/data/body/appendix-ferment.json?t=' + Date.now());
+    if (!r.ok) return;
+    const d = await r.json();
+    const el = document.getElementById('ferment-state');
+    if (el) {
+      el.innerHTML = `Last ferment: <b>${d.last_ferment}</b> · ` +
+        `GPU: <b>${d.gpu}</b> · Render: <b>${d.render_time_s}s</b> · ` +
+        `${d.nodes} nodes · ${d.particles} particles · ${d.resolution}`;
+    }
+  } catch(e) {}
+}
+fetchFerment();
+setInterval(fetchFerment, 60000);
+
+// Trigger a re-render via the ferment endpoint
+async function fermentNow() {
+  const btn = event.target;
+  btn.textContent = '🧬 Fermenting...';
+  btn.disabled = true;
+  try {
+    const r = await fetch('/appendix/ferment', {method:'POST'});
+    if (r.ok) {
+      btn.textContent = '✅ Fermented!';
+      setTimeout(() => {
+        const img = document.getElementById('globe-img');
+        if (img) img.src = '/data/body/snowglobe-hero.png?t=' + Date.now();
+        fetchFerment();
+        btn.textContent = '🧫 Ferment Now (GPU Re-render)';
+        btn.disabled = false;
+      }, 2000);
+    } else {
+      btn.textContent = '❌ Ferment failed';
+      btn.disabled = false;
+    }
+  } catch(e) {
+    btn.textContent = '❌ ' + e.message;
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>
