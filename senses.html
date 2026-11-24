@@ -2,9 +2,11 @@
 <html lang="en">
 <head>
 <script data-gaia-hoist>/* this page is a copy hoisted to GitHub Pages: live routes read snapshots */
-(function(){var M={"/api/mesh": "snap/api-mesh.json", "/human": "snap/human.json", "/senses": "snap/senses.json", "/thymus": "snap/thymus.json"},B=location.pathname.replace(/[^\/]*$/,""),f=window.fetch;
+(function(){var M={"/api/mesh": "snap/api-mesh.json", "/human": "snap/human.json", "/senses": "snap/senses.json", "/thymus": "snap/thymus.json"},B=location.pathname.replace(/[^\/]*$/,""),f=window.fetch,O=[location.origin].concat(["https://primals.eco", "http://primals.eco", "//primals.eco", "https://www.primals.eco", "https://nestgate.io", "https://hud.primals.eco"]);
+for(var u=0;u<0;u++)B=B.replace(/[^\/]+\/$/,"");
 function R(p){if(typeof p!=="string"||p.charAt(0)!=="/"||p.charAt(1)==="/")return p;if(B!=="/"&&p.indexOf(B)===0)return p;return B+p.slice(1)}
-function S(u){var q=u.indexOf("?"),p=q<0?u:u.slice(0,q);return M[p]?B+M[p]+"?t="+Date.now():R(u)}
+function S(u){for(var i=0;i<O.length;i++)if(u.indexOf(O[i]+"/")===0){u=u.slice(O[i].length);break}
+var q=u.indexOf("?"),p=q<0?u:u.slice(0,q);return M[p]?B+M[p]+"?t="+Date.now():R(u)}
 window.fetch=function(u,o){try{if(typeof u==="string")return f.call(window,S(u),o)}catch(e){}return f.call(window,u,o)};
 try{var xo=XMLHttpRequest.prototype.open;XMLHttpRequest.prototype.open=function(m,u){if(typeof u==="string")arguments[1]=S(u);return xo.apply(this,arguments)}}catch(e){}
 function P(c,k){try{var p=c.prototype,d=Object.getOwnPropertyDescriptor(p,k);if(d&&d.set)Object.defineProperty(p,k,{get:d.get,set:function(v){d.set.call(this,R(v))},configurable:true,enumerable:d.enumerable})}catch(e){}}
