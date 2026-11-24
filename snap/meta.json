@@ -1,15 +1,12 @@
 {
- "ts": "2026-11-24T17:54:36Z",
+ "ts": "2026-11-24T18:11:44Z",
  "by": "polaris",
  "tip": "5a2b35b2c",
- "routes": {
-  "/api/mesh": "snap/api-mesh.json",
-  "/human": "snap/human.json",
-  "/senses": "snap/senses.json",
-  "/thymus": "snap/thymus.json"
+ "read_from": {
+  "eastgate": 269
  },
- "not_read": [
-  "/chipmunk (not JSON)",
-  "/detroit-data/highlights.json (http 502)"
- ]
+ "files": 272,
+ "routes": 4,
+ "not_read": 31,
+ "held_back": 2
 }

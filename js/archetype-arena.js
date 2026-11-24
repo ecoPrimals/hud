@@ -1,8 +1,11 @@
-﻿// archetype-arena.js — archetypes with input AND output
+// archetype-arena.js — archetypes with input AND output
 // Each archetype challenges you. Different genres. Different games.
 // Educational gaming IS an axis. So is horror. So is argument.
+// The archetypes fight, teach, scare, and compete.
 (function() {
   'use strict';
+
+  // The archetypes — each has a game genre, input type, and personality
   var ARCHETYPES = [
     {
       id: 'scribe', name: 'The Scribe', icon: '𓏞',
@@ -142,6 +145,7 @@
       inputType: 'keyboard'
     }
   ];
+
   var currentArch = 0;
   var gameState = null;
   var visible = false;
@@ -152,6 +156,8 @@
   var lives = 3;
   var gameTimer = null;
   var gameActive = false;
+
+  // === TYPING GAME ENGINE ===
   function startTypingGame(arch) {
     score = 0; lives = 3; gameActive = true;
     var words = arch.words.slice();
@@ -159,17 +165,20 @@
     var currentWord = '';
     var typed = '';
     var startTime = Date.now();
+
     function nextWord() {
       if (wordIdx >= words.length || lives <= 0) { endGame(arch); return; }
       currentWord = words[wordIdx++];
       typed = '';
       renderTyping(currentWord, typed, arch);
     }
+
     function onKey(e) {
       if (!gameActive) return;
       if (e.key === 'Escape') { endGame(arch); return; }
       if (e.key.length !== 1) return;
       e.preventDefault();
+
       typed += e.key.toLowerCase();
       if (currentWord.startsWith(typed)) {
         if (typed === currentWord) {
@@ -188,15 +197,19 @@
         if (lives <= 0) endGame(arch);
       }
     }
+
     gameArea._keyHandler = onKey;
     document.addEventListener('keydown', onKey);
     nextWord();
   }
+
   function renderTyping(word, typed, arch) {
     if (!gameArea) return;
     var isHorror = arch.genre === 'horror';
     var html = '<div style="text-align:center;padding:20px">';
     html += '<div style="font:9px monospace;color:#484f58;margin-bottom:12px">' + arch.challenge + '</div>';
+
+    // The word with typed chars highlighted
     html += '<div style="font:' + (isHorror ? '28' : '24') + 'px monospace;letter-spacing:4px;margin:16px 0;' +
       'color:' + (isHorror ? '#f85149' : '#e6edf3') + '">';
     for (var i = 0; i < word.length; i++) {
@@ -207,26 +220,34 @@
       }
     }
     html += '</div>';
+
+    // Lives + score
     html += '<div style="font:10px monospace;color:#6e7681;margin-top:12px">';
     html += '<span style="color:#f85149">' + '♥'.repeat(lives) + '♡'.repeat(3 - lives) + '</span>';
     html += ' · score: <span style="color:#d29922">' + score + '</span>';
     html += '</div>';
+
     if (isHorror) {
       html += '<div style="font:8px monospace;color:#f85149;opacity:0.4;margin-top:8px;animation:pulse 0.5s infinite">' +
         '░'.repeat(Math.floor(Math.random() * 20 + 5)) + '</div>';
     }
+
     html += '</div>';
     gameArea.innerHTML = html;
   }
+
+  // === SORT GAME ENGINE ===
   function startSortGame(arch) {
     score = 0; lives = 3; gameActive = true;
     gameArea._sortLog = []; // track player's classifications for taxonomy
     var items = arch.items.slice().sort(function() { return Math.random() - 0.5; });
     var itemIdx = 0;
+
     function nextItem() {
       if (itemIdx >= items.length || lives <= 0) { endGame(arch); return; }
       renderSort(items[itemIdx], arch);
     }
+
     function onKey(e) {
       if (!gameActive) return;
       if (e.key === 'Escape') { endGame(arch); return; }
@@ -234,7 +255,10 @@
       var choice = map[e.key.toLowerCase()];
       if (!choice) return;
       e.preventDefault();
+
+      // Log the player's classification into the taxonomy
       gameArea._sortLog.push(choice);
+
       if (choice === items[itemIdx].answer) {
         score += 5;
         renderTaunt(arch, true);
@@ -245,10 +269,12 @@
       itemIdx++;
       nextItem();
     }
+
     gameArea._keyHandler = onKey;
     document.addEventListener('keydown', onKey);
     nextItem();
   }
+
   function renderSort(item, arch) {
     if (!gameArea) return;
     var html = '<div style="text-align:center;padding:20px">';
@@ -266,14 +292,18 @@
     html += '</div></div>';
     gameArea.innerHTML = html;
   }
+
+  // === DEBATE GAME ENGINE ===
   function startDebateGame(arch) {
     score = 0; gameActive = true;
     var claims = arch.claims.slice().sort(function() { return Math.random() - 0.5; });
     var claimIdx = 0;
+
     function nextClaim() {
       if (claimIdx >= claims.length) { endGame(arch); return; }
       renderDebate(claims[claimIdx], arch);
     }
+
     window._debateChoice = function(choice) {
       if (!gameActive) return;
       var claim = claims[claimIdx];
@@ -292,8 +322,10 @@
       gameArea.innerHTML = html;
     };
     window._debateNext = function() { claimIdx++; nextClaim(); };
+
     nextClaim();
   }
+
   function renderDebate(claim, arch) {
     if (!gameArea) return;
     var html = '<div style="text-align:center;padding:20px">';
@@ -313,23 +345,28 @@
     html += '</div>';
     gameArea.innerHTML = html;
   }
+
+  // === SPEED GAME ENGINE ===
   function startSpeedGame(arch) {
     score = 0; lives = 3; gameActive = true;
     var targetKey = '';
     var round = 0;
     var maxRounds = 20;
+
     function nextRound() {
       if (round >= maxRounds || lives <= 0) { endGame(arch); return; }
       round++;
       targetKey = arch.keys[Math.floor(Math.random() * arch.keys.length)];
       renderSpeed(targetKey, arch);
     }
+
     function onKey(e) {
       if (!gameActive) return;
       if (e.key === 'Escape') { endGame(arch); return; }
       var k = e.key.toUpperCase();
       if (arch.keys.indexOf(k) === -1) return;
       e.preventDefault();
+
       if (k === targetKey) {
         score += 3;
         renderTaunt(arch, true);
@@ -339,10 +376,12 @@
       }
       nextRound();
     }
+
     gameArea._keyHandler = onKey;
     document.addEventListener('keydown', onKey);
     nextRound();
   }
+
   function renderSpeed(key, arch) {
     if (!gameArea) return;
     var html = '<div style="text-align:center;padding:20px">';
@@ -362,18 +401,23 @@
     html += '</div></div>';
     gameArea.innerHTML = html;
   }
+
+  // === PORTAL GAME ENGINE ===
   function startPortalGame(arch) {
     score = 0; gameActive = true;
     var chambers = arch.chambers.slice().sort(function() { return Math.random() - 0.5; });
     var chamberIdx = 0;
+
     function nextChamber() {
       if (chamberIdx >= chambers.length) { endGame(arch); return; }
       renderPortal(chambers[chamberIdx], arch);
     }
+
     window._portalConnect = function() {
       if (!gameActive) return;
       var chamber = chambers[chamberIdx];
       score += 8;
+      // Show the answer — the chipmunk learns!
       var html = '<div style="text-align:center;padding:20px">';
       html += '<div style="font:9px monospace;color:#ff8c00;margin-bottom:8px">🟠 PORTAL CONNECTED 🔵</div>';
       html += '<div style="display:flex;gap:16px;justify-content:center;align-items:center;margin:12px 0">';
@@ -401,11 +445,13 @@
     window._portalNext = function() { chamberIdx++; nextChamber(); };
     nextChamber();
   }
+
   function renderPortal(chamber, arch) {
     if (!gameArea) return;
     var html = '<div style="text-align:center;padding:20px">';
     html += '<div style="font:9px monospace;color:#484f58;margin-bottom:12px">' + arch.challenge + '</div>';
     html += '<div style="font:9px monospace;color:#6e7681;margin-bottom:16px">the chipmunk is stuck between two concepts. connect them.</div>';
+    // Two portals
     html += '<div style="display:flex;gap:24px;justify-content:center;align-items:center;margin:20px 0">';
     html += '<div style="text-align:center">';
     html += '<div style="width:60px;height:60px;border:3px solid #ff8c00;border-radius:50%;display:flex;' +
@@ -418,7 +464,9 @@
       'align-items:center;justify-content:center;font:11px monospace;color:#58a6ff;margin:0 auto 6px">🔵</div>';
     html += '<div style="font:13px monospace;color:#58a6ff">' + chamber.to + '</div>';
     html += '</div></div>';
+    // Hint
     html += '<div style="font:10px monospace;color:#d29922;margin:12px 0;font-style:italic">"' + chamber.hint + '"</div>';
+    // Buttons
     html += '<div style="display:flex;gap:12px;justify-content:center;margin-top:16px">';
     html += '<button onclick="window._portalConnect()" style="background:rgba(255,140,0,0.2);' +
       'border:1px solid rgba(255,140,0,0.4);color:#ff8c00;font:12px monospace;padding:10px 24px;' +
@@ -431,12 +479,15 @@
     html += '</div>';
     gameArea.innerHTML = html;
   }
+
+  // === COACH / SPORT GAME ENGINE ===
   function startCoachGame(arch) {
     score = 0; lives = 3; gameActive = true;
     var exercises = arch.exercises.slice().sort(function() { return Math.random() - 0.5; });
     var exIdx = 0;
     var timerStart = 0;
     var timerInterval = null;
+
     function nextExercise() {
       if (exIdx >= exercises.length || lives <= 0) {
         clearInterval(timerInterval);
@@ -444,6 +495,7 @@
       }
       timerStart = Date.now();
       renderCoach(exercises[exIdx], arch, 100);
+      // Timer countdown
       clearInterval(timerInterval);
       timerInterval = setInterval(function() {
         var elapsed = (Date.now() - timerStart) / 1000;
@@ -458,6 +510,7 @@
         }
       }, 100);
     }
+
     function onKey(e) {
       if (!gameActive) return;
       if (e.key === 'Escape') { clearInterval(timerInterval); endGame(arch); return; }
@@ -479,29 +532,38 @@
       exIdx++;
       nextExercise();
     }
+
     gameArea._keyHandler = onKey;
     document.addEventListener('keydown', onKey);
     nextExercise();
   }
+
   function renderCoach(exercise, arch, pct) {
     if (!gameArea) return;
     var html = '<div style="text-align:center;padding:20px">';
     html += '<div style="font:9px monospace;color:#3fb950;margin-bottom:8px">' + arch.challenge + '</div>';
+    // Timer bar
     html += '<div style="width:100%;max-width:300px;height:4px;background:rgba(48,54,61,0.5);border-radius:2px;margin:0 auto 16px">';
     html += '<div id="coach-timer-bar" style="width:' + pct + '%;height:100%;background:#3fb950;border-radius:2px;transition:width 0.1s linear"></div>';
     html += '</div>';
+    // Question
     html += '<div style="font:16px monospace;color:#e6edf3;margin:16px 0">' + exercise.q + '</div>';
+    // Input
     html += '<input id="coach-input" type="text" autofocus style="background:rgba(22,27,34,0.8);' +
       'border:1px solid rgba(63,185,80,0.3);color:#e6edf3;font:14px monospace;padding:8px 16px;' +
       'border-radius:8px;width:80%;max-width:300px;text-align:center;outline:none" placeholder="type answer, press Enter">';
+    // Status
     html += '<div style="font:10px monospace;color:#6e7681;margin-top:12px">';
     html += '<span style="color:#f85149">' + '♥'.repeat(lives) + '♡'.repeat(3 - lives) + '</span>';
     html += ' · reps: <span style="color:#d29922">' + score + '</span>';
     html += ' · set ' + (exIdx + 1) + '/' + arch.exercises.length;
     html += '</div></div>';
     gameArea.innerHTML = html;
+    // Focus input
     setTimeout(function() { var inp = document.getElementById('coach-input'); if (inp) inp.focus(); }, 50);
   }
+
+  // === COMMON ===
   function renderTaunt(arch, success) {
     var tauntEl = document.getElementById('arena-taunt');
     if (!tauntEl) return;
@@ -513,6 +575,7 @@
     tauntEl.style.opacity = '1';
     setTimeout(function() { tauntEl.style.opacity = '0.4'; }, 1500);
   }
+
   function endGame(arch) {
     gameActive = false;
     if (gameArea._keyHandler) {
@@ -533,6 +596,7 @@
     html += '</div>';
     gameArea.innerHTML = html;
   }
+
   function startGame(idx) {
     currentArch = idx;
     var arch = ARCHETYPES[idx];
@@ -547,6 +611,8 @@
       case 'sport': startCoachGame(arch); break;
     }
   }
+
+  // === PATHFINDER PUZZLE ===
   function startPuzzleGame(arch) {
     score = 0; gameActive = true;
     var size = arch.gridSize;
@@ -560,6 +626,7 @@
     grid[0][0].visited = true;
     var pathCost = 0;
     var pos = { r: 0, c: 0 };
+
     window._puzzleClick = function(r, c) {
       if (!gameActive) return;
       if (Math.abs(r - pos.r) + Math.abs(c - pos.c) !== 1) return; // adjacent only
@@ -575,8 +642,10 @@
         renderPuzzle(grid, pos, pathCost, arch);
       }
     };
+
     renderPuzzle(grid, pos, pathCost, arch);
   }
+
   function renderPuzzle(grid, pos, cost, arch) {
     if (!gameArea) return;
     var html = '<div style="text-align:center;padding:16px">';
@@ -603,6 +672,8 @@
     html += '</div>';
     gameArea.innerHTML = html;
   }
+
+  // === ARENA UI ===
   function renderArena(arch) {
     gameArea.innerHTML = '';
     var taunt = document.getElementById('arena-taunt');
@@ -615,6 +686,7 @@
     }
     taunt.textContent = '';
   }
+
   function renderMenu() {
     if (!gameArea) return;
     var html = '<div style="padding:12px">';
@@ -623,6 +695,7 @@
     html += '<div style="font:9px monospace;color:#6e7681">choose your challenger. input AND output.</div>';
     html += '</div>';
     html += '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:8px">';
+
     ARCHETYPES.forEach(function(arch, i) {
       html += '<div onclick="window._arenaStart(' + i + ')" style="background:rgba(13,17,23,0.7);' +
         'border:1px solid rgba(48,54,61,0.5);border-radius:8px;padding:10px;cursor:pointer;' +
@@ -636,12 +709,15 @@
         '<div style="font:9px monospace;color:#6e7681">' + arch.desc + '</div>' +
         '</div>';
     });
+
     html += '</div></div>';
     gameArea.innerHTML = html;
   }
+
   window._arenaStart = function(i) { startGame(i); };
   window._arenaReplay = function() { startGame(currentArch); };
   window._arenaMenu = renderMenu;
+
   function toggle() {
     visible = !visible;
     if (!container) build();
@@ -659,23 +735,30 @@
       setTimeout(function() { container.style.display = 'none'; }, 300);
     }
   }
+
   function build() {
     container = document.createElement('div');
     container.id = 'archetype-arena';
     container.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:25;' +
       'background:rgba(8,6,10,0.97);display:none;overflow-y:auto;opacity:0;transition:opacity 0.3s ease';
+
     gameArea = document.createElement('div');
     gameArea.id = 'arena-game';
     gameArea.style.cssText = 'max-width:720px;margin:0 auto;padding:8px';
     container.appendChild(gameArea);
+
+    // Close
     var close = document.createElement('button');
     close.innerHTML = '✕';
     close.style.cssText = 'position:fixed;top:12px;right:16px;z-index:26;background:none;' +
       'border:none;color:#484f58;font:16px monospace;cursor:pointer';
     close.addEventListener('click', toggle);
     container.appendChild(close);
+
     document.body.appendChild(container);
   }
+
+  // Button
   function addBtn() {
     var btn = document.createElement('button');
     btn.id = 'arena-btn';
@@ -688,13 +771,18 @@
     btn.addEventListener('click', toggle);
     document.body.appendChild(btn);
   }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', addBtn);
   } else {
     addBtn();
   }
+
+  // === FEED BACK INTO THE ORGANISM ===
+  // Arena results → taxonomy tree → campfire heat → gyro state
   var arenaLog = [];
   try { arenaLog = JSON.parse(localStorage.getItem('arena-log') || '[]'); } catch(e) {}
+
   function feedBack(arch, finalScore) {
     var entry = {
       ts: Date.now(),
@@ -703,26 +791,41 @@
       score: finalScore,
       sortCounts: { self: 0, 'non-self': 0, partial: 0, null: 0 }
     };
+
+    // If sorter game, count the player's actual classifications
     if (arch.id === 'sorter' && gameArea._sortLog) {
       gameArea._sortLog.forEach(function(s) { entry.sortCounts[s]++; });
     }
+
     arenaLog.push(entry);
     if (arenaLog.length > 200) arenaLog = arenaLog.slice(-200);
     try { localStorage.setItem('arena-log', JSON.stringify(arenaLog)); } catch(e) {}
+
+    // 1. Feed sort counts into the membrane's unified_sort
     if (window._chipmunkCore && window._chipmunkCore.injectSort) {
       window._chipmunkCore.injectSort(entry.sortCounts);
     }
+
+    // 2. Generate campfire heat from gameplay
     var heat = Math.min(1.0, finalScore / 50);
     var storyId = 's038';
     if (window._campfire && window._campfire.addHeat) {
       window._campfire.addHeat(storyId, heat);
     }
+
+    // 3. Shift gyro state based on genre (the game MOVES the organism)
     if (window._gyroState) {
       var gs = window._gyroState;
+      // Educational games push toward surface (close examination)
+      // Horror pushes toward depth (darkness)
+      // Speed pushes RPM up
+      // Arguments push toward cosmic (big picture)
       if (arch.genre === 'educational' || arch.genre === 'typing') {
         if (typeof window._gearFlash === 'function') window._gearFlash();
       }
     }
+
+    // 4. Write to readout if available
     var readout = document.querySelector('.readout');
     if (readout) {
       var div = document.createElement('div');
@@ -734,15 +837,21 @@
       readout.insertBefore(div, readout.firstChild);
     }
   }
+
+  // Patch endGame to call feedBack
   var _origEndGame = endGame;
   endGame = function(arch) {
     feedBack(arch, score);
     _origEndGame(arch);
   };
+
+  // === TAXONOMY TREE — the self-sort series ===
+  // Builds a visual tree from arena history showing classification patterns
   function buildTaxonomyTree() {
     var totals = { self: 0, 'non-self': 0, partial: 0, null: 0 };
     var genreTotals = {};
     var seriesData = [];
+
     arenaLog.forEach(function(entry) {
       Object.keys(entry.sortCounts).forEach(function(k) {
         totals[k] = (totals[k] || 0) + entry.sortCounts[k];
@@ -752,6 +861,7 @@
       genreTotals[entry.genre].totalScore += entry.score;
       seriesData.push({ ts: entry.ts, score: entry.score, genre: entry.genre });
     });
+
     return {
       sort_taxonomy: totals,
       genre_tree: genreTotals,
@@ -760,12 +870,17 @@
       total_score: arenaLog.reduce(function(a, b) { return a + b.score; }, 0)
     };
   }
+
+  // Expose the taxonomy tree
   window._arena = {
     toggle: toggle,
     archetypes: ARCHETYPES,
     taxonomy: buildTaxonomyTree,
     log: function() { return arenaLog; }
   };
+
+  // === FIRE: campfire story for the arena ===
+  // The arena generates story s038: "the archetypes fight"
   var ARENA_STORY = {
     id: 's038',
     title: 'the archetypes fight',
@@ -778,6 +893,8 @@
       'challenge is the input. learning is the output. the fire between them is the game.',
     heat: 0.9
   };
+
+  // Inject story into campfire data if accessible
   try {
     var stories = JSON.parse(localStorage.getItem('campfire-stories') || '[]');
     if (!stories.find(function(s) { return s.id === 's038'; })) {

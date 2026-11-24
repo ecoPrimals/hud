@@ -1,20 +1,27 @@
-﻿// sine-breath.js — everything oscillates
+// sine-breath.js — everything oscillates
 // The chromatogram: green=boundary, brown=feeds, violet=strands, null=void, white=signal
 // Every node rides a sine wave. The organism breathes.
 (function() {
   'use strict';
+
+  // Frequencies (Hz)
   var F_BOUNDARY = 0.1;      // 10s cycle — membrane edge breathes
   var F_FEED     = 0.017;    // 60s cycle — soil turns slowly
   var F_STRAND   = 0.5;      // 2s cycle — output shimmers
   var F_NULL     = 0.1 * Math.PI; // irrational — void never repeats
   var F_GYRO     = 0.05;     // 20s — the slowest rotation
+
   var TWO_PI = Math.PI * 2;
   var t0 = Date.now();
+
   function sine(freq, phase) {
     var t = (Date.now() - t0) / 1000;
     return Math.sin(t * freq * TWO_PI + (phase || 0));
   }
+
   function lerp(a, b, t) { return a + (b - a) * Math.max(0, Math.min(1, t)); }
+
+  // Oscillate opacity of elements matching a selector
   function breathe(selector, freq, minOpacity, maxOpacity, phase) {
     var els = document.querySelectorAll(selector);
     if (!els.length) return;
@@ -24,6 +31,8 @@
       els[i].style.opacity = opacity.toFixed(3);
     }
   }
+
+  // Oscillate hue-rotate on an element
   function chromaShift(selector, freq, maxDeg, phase) {
     var els = document.querySelectorAll(selector);
     if (!els.length) return;
@@ -33,6 +42,8 @@
       els[i].style.filter = 'hue-rotate(' + deg.toFixed(1) + 'deg)';
     }
   }
+
+  // Oscillate transform (subtle translate/scale)
   function waver(selector, freq, maxPx, phase) {
     var els = document.querySelectorAll(selector);
     if (!els.length) return;
@@ -45,6 +56,8 @@
       els[i].style.transform = existing + ' translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px)';
     }
   }
+
+  // SVG circle oscillation (radius pulse)
   function pulseCircles(freq, minScale, maxScale) {
     var circles = document.querySelectorAll('#membrane-focal-svg circle');
     if (!circles.length) return;
@@ -61,27 +74,46 @@
       circles[i].setAttribute('r', (parseFloat(baseR) * scale).toFixed(1));
     }
   }
+
+  // The main breath loop — runs at ~15fps (not 60, this is a slow breath)
   var BREATH_INTERVAL = 66; // ms (~15fps)
+
   function breathLoop() {
+    // Boundary elements (green) — breathe at heartbeat
     breathe('.btn-ring', F_BOUNDARY, 0.7, 1.0, 0);
     breathe('.top-bar', F_BOUNDARY, 0.85, 1.0, Math.PI / 4);
+
+    // Feed/data elements (brown/amber) — slow pulse
     breathe('.readout', F_FEED, 0.8, 1.0, 0);
     breathe('.note-float', F_FEED, 0.5, 0.8, Math.PI / 2);
+
+    // Strand output (violet) — fast shimmer
     breathe('.ep-strip', F_STRAND, 0.6, 1.0, 0);
     breathe('.trace-strip', F_STRAND, 0.5, 0.9, Math.PI / 6);
+
+    // SVG membrane circles — gentle pulse
     pulseCircles(F_BOUNDARY, 0.92, 1.08);
+
+    // Null space (internal mode) — pi-rate breathing
     if (document.body.classList.contains('internal-mode')) {
       breathe('#dim-label', F_NULL, 0.3, 0.7, 0);
       chromaShift('#membrane-focal-svg', F_NULL, 8, 0);
     }
+
+    // Chipmunk dialogue — thought-rate waver
     waver('.chipmunk-entry', F_STRAND, 0.5, 0);
+
     setTimeout(breathLoop, BREATH_INTERVAL);
   }
+
+  // Start after DOM ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() { setTimeout(breathLoop, 1000); });
   } else {
     setTimeout(breathLoop, 1000);
   }
+
+  // Expose for other modules
   window._sineBreathe = {
     sine: sine, lerp: lerp, breathe: breathe,
     F_BOUNDARY: F_BOUNDARY, F_FEED: F_FEED, F_STRAND: F_STRAND, F_NULL: F_NULL

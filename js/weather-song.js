@@ -1,10 +1,27 @@
-﻿// weather-song.js v1 — the sun writes the score, the membrane plays it
+// weather-song.js v1 — the sun writes the score, the membrane plays it
 //
 // Klein bottle: NOAA sits on Earth reading the outside.
+// The measurement IS the fold. Outside rhythm becomes inside music.
+//
+// Mapping (scientific, not decorative):
+//   Kp (0–9)           → hue, storm color, drone detune, Bessel mode count
+//   X-ray flux (A–X)   → brightness, spark density, high-frequency shimmer
+//   Solar wind km/s    → tempo (delay = 1/breath), family orbit speed
+//   USGS quakes        → Karplus plucks (earth answering sky)
+//   Membrane pulse     → master breath / volume envelope
+//   15 families π/N    → 15-voice polyrhythm (phase-cross ticks)
+//
+// Color: quiet = teal aurora, storm = magenta/red
+// Sound: π-just notes from membrane-sound. The sky is the conductor.
+//
+// Kevin Mok / Tamison / ecoPrimal / attsi
+// ORCID 0009-0004-2141-0321
 (function () {
   'use strict';
+
   var PI = Math.PI;
   var PI3 = PI * PI * PI; // ≈ 31.006 — refresh / phrase length
+
   var FEEDS = {
     kp: 'https://services.swpc.noaa.gov/products/noaa-planetary-k-index.json',
     xray: 'https://services.swpc.noaa.gov/json/goes/primary/xrays-1-day.json',
@@ -14,6 +31,7 @@
     pulse: '/neutron.json',
     dash: '/dashboard.json'
   };
+
   var _score = null;
   var _raw = {};
   var _listening = false;
@@ -23,10 +41,12 @@
   var _onScore = [];
   var FAMILY_RATES = [];
   for (var i = 0; i < 15; i++) FAMILY_RATES.push(PI / (i + 2));
+
   function num(v, fallback) {
     var n = Number(v);
     return isFinite(n) ? n : fallback;
   }
+
   function xrayClass(flux) {
     flux = num(flux, 0);
     if (flux < 1e-7) return 'A';
@@ -35,6 +55,7 @@
     if (flux < 1e-4) return 'M';
     return 'X';
   }
+
   function stormLevel(kp) {
     if (kp < 4) return 'G0';
     if (kp < 5) return 'G1';
@@ -43,12 +64,14 @@
     if (kp < 8) return 'G4';
     return 'G5';
   }
+
   function getJSON(url) {
     return fetch(url, { cache: 'no-store' }).then(function (r) {
       if (!r.ok) throw new Error(url + ' ' + r.status);
       return r.json();
     });
   }
+
   function latestKp(rows) {
     if (!Array.isArray(rows) || !rows.length) return null;
     var start = typeof rows[0] === 'object' && rows[0].time_tag ? 0 : 1;
@@ -73,6 +96,7 @@
     if (best) best.peak = peak;
     return best;
   }
+
   function latestXray(rows) {
     if (!Array.isArray(rows) || !rows.length) return null;
     var best = null;
@@ -86,6 +110,7 @@
     }
     return best;
   }
+
   function latestWind(rows) {
     if (!Array.isArray(rows) || !rows.length) return null;
     for (var i = rows.length - 1; i >= 0; i--) {
@@ -97,6 +122,7 @@
     }
     return null;
   }
+
   function compose(raw) {
     var kpInfo = latestKp(raw.kp) || {};
     var xr = latestXray(raw.xray) || {};
@@ -107,6 +133,7 @@
     if (raw.pulse && raw.pulse.breathing) pulse = num(raw.pulse.breathing.remainder, pulse);
     if (raw.dash && raw.dash.pulse) pulse = num(raw.dash.pulse.value, pulse);
     if (snap.membrane && snap.membrane.pulse) pulse = num(snap.membrane.pulse, pulse);
+
     var kp = num(kpInfo.value, snap.kp && snap.kp.value);
     if (!isFinite(kp)) kp = 2;
     var flux = num(xr.flux, snap.xray && snap.xray.flux);
@@ -114,6 +141,7 @@
     var windKms = num(wind.speed, snap.wind && snap.wind.speed_kms);
     if (!isFinite(windKms)) windKms = 400;
     var peak = (kpInfo.peak && kpInfo.peak.value) || (snap.kp && snap.kp.peak_today) || kp;
+
     var mag = 0;
     var places = [];
     quakes.forEach(function (f) {
@@ -125,8 +153,10 @@
       mag = num(snap.quakes.largest, 0);
       places = snap.quakes.locations || [];
     }
+
     var cls = xrayClass(flux);
     var storm = stormLevel(kp);
+    // Teal when quiet, yellow at G1, magenta/red in storm
     var hue = (140 - kp * 22 + 360) % 360;
     var sat = 55 + kp * 5;
     var brightness = 0.35 + Math.min(0.55, Math.log10(flux * 1e8 + 1) * 0.12);
@@ -136,6 +166,7 @@
     var voices = 3 + Math.round(kp) + (cls === 'M' || cls === 'X' ? 3 : 0);
     var modes = 2 + Math.round(kp / 2) + (mag >= 5 ? 2 : 0);
     var spark = 0.04 + kp * 0.03 + (cls === 'C' ? 0.08 : 0) + (cls === 'M' || cls === 'X' ? 0.2 : 0);
+
     var bits = [];
     bits.push('Kp ' + kp.toFixed(2) + ' ' + storm);
     bits.push('class ' + cls);
@@ -145,6 +176,7 @@
     else if (kp < 4) bits.push('the field is watching');
     else bits.push('the sky is loud');
     if (mag >= 5) bits.push('and the earth still answered');
+
     var score = {
       fetched_at: new Date().toISOString(),
       kp: kp,
@@ -176,6 +208,7 @@
     renderWidget(score);
     return score;
   }
+
   function fetchAll() {
     var raw = {};
     var tasks = [
@@ -192,9 +225,11 @@
       return compose(raw);
     });
   }
+
   function sound() {
     return window._membraneSound || null;
   }
+
   function phrase(score) {
     var ms = sound();
     if (!ms || !_listening) return;
@@ -215,6 +250,7 @@
     }
     if (ms.say) ms.say(score.poem, { rate: 0.45, pitch: 0.25, volume: 0.1 });
   }
+
   function familyTick(now) {
     var ms = sound();
     if (!ms || !_listening || !_score) return;
@@ -222,6 +258,7 @@
     for (var i = 0; i < FAMILY_RATES.length; i++) {
       var phase = (now * FAMILY_RATES[i] * _score.wind_norm) % (PI * 2);
       var prev = _familyPhase[i] || 0;
+      // Crossing the campfire (phase wraps past 0)
       if (prev > PI && phase < PI) {
         if (i < _score.voices && ms.playNote) {
           ms.playNote(notes[i % notes.length], 0.18, 0, 'sine', 0.012, {
@@ -233,6 +270,7 @@
       _familyPhase[i] = phase;
     }
   }
+
   function startLoop() {
     if (_phraseTimer) return;
     phrase(_score);
@@ -248,6 +286,7 @@
     }
     requestAnimationFrame(raf);
   }
+
   function listen() {
     var ms = sound();
     if (ms && !ms.isActive()) ms.activate();
@@ -260,6 +299,7 @@
     }
     return true;
   }
+
   function hush() {
     _listening = false;
     if (_phraseTimer) { clearInterval(_phraseTimer); _phraseTimer = null; }
@@ -267,9 +307,11 @@
     if (ms && ms.deactivate) ms.deactivate();
     return false;
   }
+
   function toggle() {
     return _listening ? hush() : listen();
   }
+
   function renderWidget(score) {
     var el = document.getElementById('weather-song');
     if (!el || !score) return;
@@ -289,10 +331,12 @@
       renderWidget(_score);
     };
   }
+
   function onScore(fn) {
     if (typeof fn === 'function') _onScore.push(fn);
     if (_score) fn(_score);
   }
+
   function boot() {
     fetchAll();
     _fetchTimer = setInterval(fetchAll, 180000);
@@ -300,11 +344,13 @@
       kp: 1.67, storm: 'G0', xray_class: 'B', wind_kms: 400, quake_max: 0
     });
   }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', boot);
   } else {
     boot();
   }
+
   window._weatherSong = {
     listen: listen,
     hush: hush,

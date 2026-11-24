@@ -1,7 +1,29 @@
-﻿(function () {
+/* campfire.js — Johnny Appleseed
+ *
+ * The chipmunk travels the ouroboros quest.
+ * Voxels sort themselves through the Klein gate.
+ * Stories BREED. Stories CLUSTER. Stories SPREAD.
+ * Each visit plants a seed. Seeds grow into stories.
+ * Stories cross-pollinate between pages.
+ * Generations evolve. No two journeys the same.
+ * Like Johnny Appleseed planting trees across a continent.
+ *
+ * The campfire IS the sourdough culture —
+ * each visit feeds the starter, the starter feeds the next.
+ */
+
+(function () {
   'use strict';
+
   var PI = Math.PI;
   var PHI = (1 + Math.sqrt(5)) / 2; // golden ratio — spiral growth
+
+  // ═══════════════════════════════════════════════════════════
+  // GENE POOL — story DNA fragments that recombine
+  // Not whole stories. Genes. They breed.
+  // ═══════════════════════════════════════════════════════════
+
+  // SUBJECTS — who/what the story is about
   var SUBJECTS = [
     'the chipmunk', 'a thermophile', 'the bearDog', 'the songBird',
     'the spirochete', 'a single neutrino', 'the last lodgepole pine',
@@ -271,6 +293,8 @@
     'the bounce that created the entanglement',
     'Paper 120 — the quantum crush. 0D is null-D.',
   ];
+
+  // VERBS — what they did
   var VERBS = [
     'traveled through the fold and',
     'sorted itself by color and',
@@ -339,6 +363,8 @@
     'superimposed with its own reflection until depth appeared and',
     'tried to pick up a rock with one eye closed and learned',
   ];
+
+  // OBJECTS — what they found/became/learned
   var OBJECTS = [
     'music where there had been noise.',
     'language where four verbs met.',
@@ -435,6 +461,8 @@
     'near: partial superposition, approaching self. far: none, unknown. behind: contradictory, cloaked.',
     'Papers 118→119→120: gut → thymus → crush. the trefoil trilogy.',
   ];
+
+  // BEACONS — page-specific flavor genes
   var FLAVORS = {
     '/': ['on the membrane', 'at the viewport', 'inside the HUD', 'on the living surface'],
     '/springs': ['at Mammoth Hot Springs', 'where the terraces grow', 'in the thermal gradient', 'where orange meets white', 'at the crack where water returns'],
@@ -484,12 +512,19 @@
     '/mcp': ['inside the loop', 'where Cursor closes the fold', 'at observe_membrane'],
     '/404': ['where the octopus waits', 'among 50 arms', 'at the reverse transcriptase', 'where phantoms become real'],
   };
+
+  // ═══════════════════════════════════════════════════════════
+  // BREEDING — stories recombine and evolve
+  // ═══════════════════════════════════════════════════════════
+
   function hash(str) {
     var h = 0;
     for (var i = 0; i < str.length; i++) h = ((h << 5) - h + str.charCodeAt(i)) | 0;
     return Math.abs(h);
   }
+
   function prng(seed) {
+    // mulberry32
     return function () {
       seed |= 0; seed = seed + 0x6D2B79F5 | 0;
       var t = Math.imul(seed ^ seed >>> 15, 1 | seed);
@@ -497,6 +532,7 @@
       return ((t ^ t >>> 14) >>> 0) / 4294967296;
     };
   }
+
   function getSeed() {
     var now = new Date();
     var path = normPath();
@@ -506,21 +542,31 @@
             + ':' + now.getDate() + ':' + moon.toFixed(1) + ':' + (document.referrer || 'D');
     return hash(raw);
   }
+
   function normPath() {
     return window.location.pathname.replace(/\.html$/, '').replace(/\/$/, '') || '/';
   }
+
   function getMoonPhase(d) {
     var known = new Date(2000, 0, 6, 18, 14);
     return ((d - known) / (1000 * 60 * 60 * 24) % 29.53) / 29.53;
   }
+
+  // ═══════════════════════════════════════════════════════════
+  // GENERATIONS — stories evolve over visits
+  // ═══════════════════════════════════════════════════════════
+
   var STORE_KEY = 'campfire_v2';
+
   function getStore() {
     try { return JSON.parse(localStorage.getItem(STORE_KEY) || '{}'); }
     catch (e) { return {}; }
   }
+
   function saveStore(s) {
     try { localStorage.setItem(STORE_KEY, JSON.stringify(s)); } catch (e) {}
   }
+
   function getGeneration() {
     var s = getStore();
     var path = normPath();
@@ -529,6 +575,7 @@
     saveStore(s);
     return s.gen[path];
   }
+
   function getJourney() {
     var s = getStore();
     if (!s.journey) s.journey = [];
@@ -538,20 +585,24 @@
     saveStore(s);
     return s.journey;
   }
+
   function getPlanted() {
     var s = getStore();
     return s.planted || 0;
   }
+
   function plant() {
     var s = getStore();
     s.planted = (s.planted || 0) + 1;
     saveStore(s);
     return s.planted;
   }
+
   function getSeeds() {
     var s = getStore();
     return s.seeds || [];
   }
+
   function plantSeed(seedObj) {
     var s = getStore();
     if (!s.seeds) s.seeds = [];
@@ -559,35 +610,54 @@
     if (s.seeds.length > 200) s.seeds = s.seeds.slice(-200);
     saveStore(s);
   }
+
+  // ═══════════════════════════════════════════════════════════
+  // BREED A STORY — combine genes based on seed
+  // ═══════════════════════════════════════════════════════════
+
   function breed(rng, path, gen) {
     var subject = SUBJECTS[Math.floor(rng() * SUBJECTS.length)];
     var verb = VERBS[Math.floor(rng() * VERBS.length)];
     var object = OBJECTS[Math.floor(rng() * OBJECTS.length)];
+
+    // flavor from the current page
     var flavors = FLAVORS[path] || ['in the unmapped clearing'];
     var flavor = flavors[Math.floor(rng() * flavors.length)];
+
+    // generation modifiers — older = deeper
     var genMod = '';
     if (gen > 10) genMod = ' (the tenth telling shifts the shape.)';
     else if (gen > 5) genMod = ' (each telling changes it a little.)';
     else if (gen > 2) genMod = ' (this version is newer than the last.)';
+
+    // cross-pollination — pick a gene from another page's flavor
     var allPaths = Object.keys(FLAVORS);
     var otherPath = allPaths[Math.floor(rng() * allPaths.length)];
     var otherFlavors = FLAVORS[otherPath];
     var crossPollen = otherFlavors[Math.floor(rng() * otherFlavors.length)];
+
+    // structure varies by generation
     var story;
     var roll = rng();
+
     if (roll < 0.25) {
+      // simple: subject verb object
       story = subject + ', ' + flavor + ', ' + verb + ' ' + object;
     } else if (roll < 0.45) {
+      // cross-pollinated: bring in another page's flavor
       story = subject + ' ' + verb + ' ' + object
             + ' and the echo reached ' + crossPollen + '.';
     } else if (roll < 0.60) {
+      // inverted: start with the finding
       story = flavor + ', ' + object.replace(/\.$/, '')
             + ' — because ' + subject + ' ' + verb.replace(/ and$/, '.').replace(/ and$/, '.');
     } else if (roll < 0.75) {
+      // question form
       story = 'why did ' + subject + ' come to rest ' + flavor + '? '
             + 'because ' + SUBJECTS[Math.floor(rng() * SUBJECTS.length)]
             + ' ' + verb + ' ' + object;
     } else if (roll < 0.88) {
+      // koan — short, sharp
       var koans = [
         subject + ' ' + flavor + '. ' + object,
         object.replace(/\.$/, '') + ' — ' + subject + ' knew this ' + flavor + '.',
@@ -597,15 +667,24 @@
       ];
       story = koans[Math.floor(rng() * koans.length)];
     } else {
+      // appleseed — the story plants itself
       story = subject + ' planted a seed ' + flavor + '. '
             + 'generations later, ' + SUBJECTS[Math.floor(rng() * SUBJECTS.length)]
             + ' found a tree that bore ' + object.replace(/\.$/, '')
             + '. the seed didn\'t know what it would become. seeds never do.';
     }
+
     return { text: story + genMod, gen: gen, path: path, crossFrom: otherPath };
   }
+
+  // ═══════════════════════════════════════════════════════════
+  // VOXEL SORT — data points traveling the Klein gate
+  // ═══════════════════════════════════════════════════════════
+
   function sortVoxels(rng, journey) {
     if (journey.length < 3) return null;
+
+    // each visited page is a voxel. they sort through the Klein gate.
     var voxels = journey.slice(-8).map(function (j) {
       var p = j.p;
       var depth = { '/': 1, '/springs': 4, '/menagerie': 4, '/totality': 3,
@@ -613,26 +692,46 @@
                     '/aurora': 0, '/gastrula': 4, '/vitruvian': 3 }[p] || 2;
       return { path: p, depth: depth, t: j.t };
     });
+
+    // sort by depth — shallow floats up, deep sinks
     voxels.sort(function (a, b) { return a.depth - b.depth; });
+
+    // the Klein gate inverts: deepest becomes surface, surface becomes deep
     var folded = voxels.map(function (v) {
       return { path: v.path, original: v.depth, folded: 4 - v.depth };
     });
+
     return folded;
   }
+
+  // ═══════════════════════════════════════════════════════════
+  // CLUSTER — stories group around beacons
+  // ═══════════════════════════════════════════════════════════
+
   function findCluster(path, seeds) {
+    // find seeds planted near this path
     var nearby = seeds.filter(function (s) {
       return s.path === path || s.crossFrom === path;
     });
     return nearby.slice(-3); // last 3 related seeds
   }
+
+  // ═══════════════════════════════════════════════════════════
+  // OUROBOROS QUEST — the circular journey
+  // ═══════════════════════════════════════════════════════════
+
   function ouroborosPosition(journey) {
+    // the quest is circular. map journey position on a circle.
     var totalPages = Object.keys(FLAVORS).length;
     var uniqueVisited = {};
     journey.forEach(function (j) { uniqueVisited[j.p] = true; });
     var visited = Object.keys(uniqueVisited).length;
     var pct = visited / totalPages;
     var angle = pct * PI * 2;
+
+    // the ouroboros eats its tail when you've visited everything
     var eating = pct >= 0.9;
+
     return {
       visited: visited,
       total: totalPages,
@@ -642,15 +741,23 @@
       emoji: eating ? '🐍' : (pct > 0.5 ? '🐿️' : '🌱')
     };
   }
+
+  // ═══════════════════════════════════════════════════════════
+  // SUGGEST NEXT — weighted by what you haven't seen
+  // ═══════════════════════════════════════════════════════════
+
   function suggestNext(rng, journey) {
     var visited = {};
     journey.forEach(function (j) { visited[j.p] = (visited[j.p] || 0) + 1; });
+
     var allPaths = Object.keys(FLAVORS);
     var weighted = allPaths.map(function (p) {
       var visits = visited[p] || 0;
       var weight = visits === 0 ? 10 : 1 / (visits + 1); // strongly prefer unvisited
       return { path: p, weight: weight };
     });
+
+    // weighted random selection
     var total = weighted.reduce(function (s, w) { return s + w.weight; }, 0);
     var roll = rng() * total;
     var acc = 0;
@@ -660,6 +767,7 @@
     }
     return weighted[weighted.length - 1].path;
   }
+
   var PAGE_NAMES = {
     '/': '◈ the membrane', '/springs': '♨ hot springs', '/menagerie': '🦁 menagerie',
     '/totality': '⊕ totality', '/nest': '🎲 nestgate', '/banana': '🍌 banana',
@@ -677,6 +785,11 @@
     '/clutch': '🔗 clutch', '/chromosomes': '🧬 chromosomes',
     '/nightbox': '◐ nightbox',
   };
+
+  // ═══════════════════════════════════════════════════════════
+  // RENDER — the campfire appears
+  // ═══════════════════════════════════════════════════════════
+
   function render() {
     var path = normPath();
     var s = getSeed();
@@ -688,17 +801,34 @@
     var moon = getMoonPhase(new Date());
     var moonIdx = Math.floor(moon * 8) % 8;
     var moonEmoji = ['🌑','🌒','🌓','🌔','🌕','🌖','🌗','🌘'][moonIdx];
+
+    // BREED the story
     var story = breed(rng_, path, gen);
+
+    // PLANT the seed
     plantSeed({ text: story.text, path: path, crossFrom: story.crossFrom, gen: gen, t: Date.now() });
     var totalPlanted = plant();
+
+    // CLUSTER — find related seeds from past visits
     var cluster = findCluster(path, seeds);
+
+    // VOXEL SORT through Klein gate
     var voxels = sortVoxels(rng_, journey);
+
+    // OUROBOROS position
     var ouro = ouroborosPosition(journey);
+
+    // SUGGEST next campfire
     var nextPath = suggestNext(rng_, journey);
     var nextName = PAGE_NAMES[nextPath] || nextPath;
+
+    // journey breadcrumbs
     var crumbs = journey.slice(-7).map(function (j) {
       return j.p === '/' ? '◈' : j.p.slice(1);
     });
+
+    // ─── BUILD THE CAMPFIRE ELEMENT ───
+
     var el = document.createElement('div');
     el.id = 'campfire';
     el.style.cssText = [
@@ -712,14 +842,21 @@
       'opacity:0',
       'box-shadow:0 0 30px rgba(240,136,62,0.08)',
     ].join(';');
+
     var html = [];
+
+    // ── header: campfire meta ──
     html.push('<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font:10px monospace">');
     html.push('<span style="color:#f0883e">🔥 gen ' + gen + ' · ' + moonEmoji + ' · seed ' + (s % 9999) + '</span>');
     html.push('<span style="color:#484f58">' + ouro.emoji + ' ' + ouro.visited + '/' + ouro.total + ' beacons</span>');
     html.push('</div>');
+
+    // ── the story ──
     html.push('<div style="font:13px/1.7 Georgia,serif;color:#e6edf3;margin-bottom:12px;font-style:italic">');
     html.push('"' + story.text + '"');
     html.push('</div>');
+
+    // ── cluster: echoes from past seeds ──
     if (cluster.length > 0) {
       html.push('<div style="border-left:2px solid rgba(240,136,62,0.15);padding-left:10px;margin-bottom:10px">');
       html.push('<div style="font:9px monospace;color:#f0883e;margin-bottom:4px">echoes from past visits:</div>');
@@ -729,6 +866,8 @@
       });
       html.push('</div>');
     }
+
+    // ── voxel sort ──
     if (voxels && voxels.length > 2) {
       html.push('<div style="font:9px monospace;color:#484f58;margin-bottom:8px">');
       html.push('⬡ voxel sort through Klein gate: ');
@@ -739,11 +878,15 @@
       html.push(voxStr);
       html.push('</div>');
     }
+
+    // ── journey breadcrumbs ──
     if (crumbs.length > 1) {
       html.push('<div style="font:9px monospace;color:#484f58;margin-bottom:8px">');
       html.push('🥾 ' + crumbs.join(' → '));
       html.push('</div>');
     }
+
+    // ── ouroboros quest arc ──
     html.push('<div style="font:9px monospace;margin-bottom:10px">');
     var barLen = 20;
     var filled = Math.round(ouro.pct * barLen);
@@ -757,30 +900,41 @@
       + ' ' + Math.round(ouro.pct * 100) + '% quest</span>');
     if (ouro.eating) html.push(' <span style="color:#3fb950">— the ouroboros eats its tail!</span>');
     html.push('</div>');
+
+    // ── next campfire + appleseed count ──
     html.push('<div style="display:flex;justify-content:space-between;align-items:center;font:10px monospace">');
     html.push('<a href="' + nextPath + '" style="color:#f0883e;text-decoration:none;border-bottom:1px dotted rgba(240,136,62,0.3)">');
     html.push('→ next: ' + nextName);
     html.push('</a>');
     html.push('<span style="color:#3fb950" title="seeds planted across the mesh">🌱 ' + totalPlanted + ' seeds planted</span>');
     html.push('</div>');
+
     el.innerHTML = html.join('');
     document.body.appendChild(el);
+
+    // fade in
     requestAnimationFrame(function () {
       requestAnimationFrame(function () {
         el.style.opacity = '1';
         el.style.transform = 'translateX(-50%) translateY(0)';
       });
     });
+
+    // flicker like a real campfire
     var flicker = setInterval(function () {
       var glow = 0.06 + Math.random() * 0.06;
       el.style.boxShadow = '0 0 ' + (20 + Math.random() * 20) + 'px rgba(240,136,62,' + glow + ')';
       el.style.borderColor = 'rgba(240,136,62,' + (0.15 + Math.random() * 0.15) + ')';
     }, 2000 + Math.random() * 1000);
+
+    // after 40s, dim to ember — still warm, just quieter
     setTimeout(function () {
       el.style.opacity = '0.25';
       el.addEventListener('mouseenter', function () { el.style.opacity = '1'; });
       el.addEventListener('mouseleave', function () { el.style.opacity = '0.25'; });
     }, 40000);
+
+    // click to dismiss (but not on links)
     el.addEventListener('click', function (e) {
       if (e.target.tagName === 'A') return;
       clearInterval(flicker);
@@ -788,6 +942,8 @@
       el.style.transform = 'translateX(-50%) translateY(20px)';
       setTimeout(function () { el.remove(); }, 1000);
     });
+
+    // feed chipmunk
     if (window._proprioception) {
       window._proprioception.wire({
         type: 'campfire', path: path, gen: gen, seed: s,
@@ -795,13 +951,24 @@
         moon: moon.toFixed(3), journey_len: journey.length,
       });
     }
+
     console.log('[campfire] 🔥 gen ' + gen + ' | ' + ouro.emoji + ' ' + ouro.visited + '/' + ouro.total
       + ' | 🌱 ' + totalPlanted + ' seeds | ' + moonEmoji);
   }
+
+  // ═══════════════════════════════════════════════════════════
+  // BOOT — the chipmunk lights the fire
+  // ═══════════════════════════════════════════════════════════
+
+  // ═══════════════════════════════════════════════════════════
+  // INWARD SENSING — the campfire reads the membrane
+  // ═══════════════════════════════════════════════════════════
+
   function injectMembrane() {
     fetch('/api/membrane-pulse.json')
       .then(function(r) { return r.json(); })
       .then(function(d) {
+        // inject real countries as flavor genes
         if (d.countries && d.countries.length > 0) {
           var countryStories = {
             'US': 'the American who built it in a basement',
@@ -826,12 +993,16 @@
             }
           });
         }
+
+        // inject immunology probers as subjects
         if (d.probers && d.probers.length > 0) {
           d.probers.forEach(function(p) {
             var s = 'the ' + p + ' probe that tested the membrane';
             if (SUBJECTS.indexOf(s) < 0) SUBJECTS.push(s);
           });
         }
+
+        // inject braid data as objects
         if (d.braids) {
           Object.keys(d.braids).forEach(function(k) {
             var b = d.braids[k];
@@ -839,13 +1010,19 @@
             if (OBJECTS.indexOf(s) < 0) OBJECTS.push(s);
           });
         }
+
+        // inject human count into objects
         if (d.humans > 0) {
           OBJECTS.push('that ' + d.humans.toLocaleString() + ' humans from ' + d.countries.length + ' countries had already been here.');
           OBJECTS.push('a trust gradient: ' + d.humans + ' human, ' + (d.trust_gradient ? d.trust_gradient.agentic : 0) + ' agentic, ' + (d.trust_gradient ? d.trust_gradient.bot : 0) + ' bot, ' + (d.trust_gradient ? d.trust_gradient.null : 0) + ' null.');
         }
+
+        // inject crate count
         if (d.crates && d.crates.total > 0) {
           OBJECTS.push(d.crates.total + ' crates on crates.io in the ' + d.crates.namespace + ' namespace.');
         }
+
+        // YGGDRASIL — live probes ingested at the roots, out through the branches
         if (d.live_probes && d.live_probes.visitors) {
           var v = d.live_probes.visitors;
           if (v.mac_agent) {
@@ -886,11 +1063,14 @@
         if (d.live_probes && d.live_probes.tether) {
           OBJECTS.push('sporePrint: ' + d.live_probes.tether.sporePrint_pages + ' pages on both anchors. the tether holds.');
         }
+
         console.log('[campfire] 🔄 membrane injected: +' + (d.countries || []).length + ' countries, +' + (d.probers || []).length + ' probers' + (d.live_probes ? ' + LIVE PROBES (Yggdrasil)' : ''));
       })
       .catch(function() {
         console.log('[campfire] membrane-pulse not available, using static genes');
       });
+
+    // reverse sense — what they SAW when they looked at us
     fetch('/data/berry-campfire.json')
       .then(function(r) { return r.json(); })
       .then(function(d) {
@@ -917,6 +1097,8 @@
         console.log('[campfire] 🔄 reverse sense: they already looked. we just started listening.');
       })
       .catch(function() {});
+
+    // primals as living subjects
     if (window._primals) {
       window._primals.all().forEach(function(p) {
         var s = 'the ' + p.name;
@@ -926,17 +1108,23 @@
       });
     }
   }
+
   function init() {
     injectMembrane(); // sense inward first
     var delay = 1200 + Math.random() * PI * 800;
     setTimeout(render, delay);
     console.log('[campfire] 🍎 Johnny Appleseed. stories breed, cluster, spread. no two journeys the same.');
   }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', init);
   } else {
     setTimeout(init, 400);
   }
+
+  // ═══════════════════════════════════════════════════════════
+  // EXPOSE — window._campfire
+  // ═══════════════════════════════════════════════════════════
   window._campfire = {
     breed: function () { var r = prng(getSeed()); return breed(r, normPath(), getGeneration()); },
     journey: getJourney,
@@ -958,4 +1146,5 @@
     },
     pools: function () { return { subjects: SUBJECTS.length, verbs: VERBS.length, objects: OBJECTS.length, beacons: Object.keys(FLAVORS).length }; }
   };
+
 })();

@@ -3,11 +3,18 @@
 <head>
 <script data-gaia-hoist>/* this page is a copy hoisted to GitHub Pages: live routes read snapshots */
 (function(){var M={"/api/mesh": "snap/api-mesh.json", "/human": "snap/human.json", "/senses": "snap/senses.json", "/thymus": "snap/thymus.json"},B=location.pathname.replace(/[^\/]*$/,""),f=window.fetch;
-function R(p){return p.charAt(0)==="/"&&p.charAt(1)!=="/"?B+p.slice(1):p}
-window.fetch=function(u,o){try{if(typeof u==="string"){var q=u.indexOf("?"),p=q<0?u:u.slice(0,q);
-if(M[p])return f.call(window,B+M[p]+"?t="+Date.now(),o);return f.call(window,R(u),o)}}catch(e){}return f.call(window,u,o)};
+function R(p){if(typeof p!=="string"||p.charAt(0)!=="/"||p.charAt(1)==="/")return p;if(B!=="/"&&p.indexOf(B)===0)return p;return B+p.slice(1)}
+function S(u){var q=u.indexOf("?"),p=q<0?u:u.slice(0,q);return M[p]?B+M[p]+"?t="+Date.now():R(u)}
+window.fetch=function(u,o){try{if(typeof u==="string")return f.call(window,S(u),o)}catch(e){}return f.call(window,u,o)};
+try{var xo=XMLHttpRequest.prototype.open;XMLHttpRequest.prototype.open=function(m,u){if(typeof u==="string")arguments[1]=S(u);return xo.apply(this,arguments)}}catch(e){}
+function P(c,k){try{var p=c.prototype,d=Object.getOwnPropertyDescriptor(p,k);if(d&&d.set)Object.defineProperty(p,k,{get:d.get,set:function(v){d.set.call(this,R(v))},configurable:true,enumerable:d.enumerable})}catch(e){}}
+P(HTMLScriptElement,"src");P(HTMLImageElement,"src");P(HTMLLinkElement,"href");P(HTMLIFrameElement,"src");P(HTMLMediaElement,"src");P(HTMLSourceElement,"src");
+try{var sa=Element.prototype.setAttribute;Element.prototype.setAttribute=function(k,v){if((k==="src"||k==="href"||k==="poster")&&this.tagName!=="A")v=R(v);return sa.call(this,k,v)}}catch(e){}
 document.addEventListener("click",function(e){var a=e.target&&e.target.closest?e.target.closest('a[href^="/"]'):null;
 if(a){var h=a.getAttribute("href");if(h.charAt(1)!=="/")a.setAttribute("href",R(h))}},true);
+try{new MutationObserver(function(ms){for(var i=0;i<ms.length;i++)for(var j=0;j<ms[i].addedNodes.length;j++){var n=ms[i].addedNodes[j];if(n.nodeType!==1)continue;
+var l=n.matches&&n.matches('img[src^="/"]')?[n]:[];if(n.querySelectorAll)l=l.concat([].slice.call(n.querySelectorAll('img[src^="/"]')));
+for(var k=0;k<l.length;k++){var s=l[k].getAttribute("src");if(s.charAt(1)!=="/"&&R(s)!==s)l[k].src=s}}}).observe(document.documentElement,{childList:true,subtree:true})}catch(e){}
 if(true)document.addEventListener("DOMContentLoaded",function(){f.call(window,B+"snap/meta.json?t="+Date.now()).then(function(r){return r.json()}).then(function(m){
 var d=document.createElement("div");d.textContent="snapshot \u00b7 "+m.by+" \u00b7 "+m.ts.replace("T"," ").slice(0,16)+" UTC \u00b7 the live gate is at home";
 d.style.cssText="position:fixed;right:8px;bottom:6px;z-index:99999;font:11px monospace;color:#ccc;background:rgba(0,0,0,.55);padding:2px 7px;border-radius:3px;pointer-events:none";
@@ -398,7 +405,7 @@ main.gaia-shell.internal-mode #neutron-label{display: block;}
 <a style="color:#00c853;border:1px solid #00c853;border-radius:4px;padding:4px 12px;font-size:.9em;text-decoration:none;margin-left:4px;font-weight:bold"
   href="./">← Gaia home</a>
 <a style="color:#22c55e;border:1px solid #21262d;border-radius:4px;padding:4px 12px;font-size:.9em;text-decoration:none;margin-left:4px"
-  href=/water>water — the watering hole</a>
+  href=./water>water — the watering hole</a>
 <!doctype html>
 <html lang=en>
 
@@ -1806,17 +1813,17 @@ main.gaia-shell.internal-mode #neutron-label{display: block;}
           display: block;
         }
       </style>
-      <div class=hud-brand><span class=hud-pulse></span><a class=hud-title href= />HUD</a><span class=hud-subtitle>Human
+      <div class=hud-brand><span class=hud-pulse></span><a class=hud-title href= ./>HUD</a><span class=hud-subtitle>Human
           Universe Display</span></div>
       <ul class=hud-links>
-        <li><a href=/tuebor style="color:#e85d3a;font-weight:bold">? tuebor</a>
-        <li><a href=/detroit>detroit</a>
-        <li><a href=/signal>signal</a>
-        <li><a href=/dialectic>hypothesis</a>
-        <li><a href=/dialectic>thesis</a>
-        <li><a href=/record>clutch</a>
-        <li><a href=/membrane-table>epitope sort — braids</a>
-        <li><a href=/dialectic>sporePrint</a>
+        <li><a href=./tuebor style="color:#e85d3a;font-weight:bold">? tuebor</a>
+        <li><a href=./detroit>detroit</a>
+        <li><a href=./signal>signal</a>
+        <li><a href=./dialectic>hypothesis</a>
+        <li><a href=./dialectic>thesis</a>
+        <li><a href=./record>clutch</a>
+        <li><a href=./membrane-table>epitope sort — braids</a>
+        <li><a href=./dialectic>sporePrint</a>
         <li><a href=http://nestgate.io:3000>git</a>
       </ul>
     </nav>
@@ -1865,8 +1872,8 @@ main.gaia-shell.internal-mode #neutron-label{display: block;}
         that travel through p layers, and an awareness of you.</p>
       <p>What fleet extracts: <strong>negentropy</strong> — ordered information, stripped of context. The pause between
         3 and p is what makes observation possible. Fleet has no pause.</p>
-      <p>Humans: <a href=/senses>come see the beach</a>.</p>
-      <p class=dim>No cookies · No tracking · No IP addresses stored · <a href=/dialectic>Methodology</a></p>
+      <p>Humans: <a href=./senses>come see the beach</a>.</p>
+      <p class=dim>No cookies · No tracking · No IP addresses stored · <a href=./dialectic>Methodology</a></p>
     </div>
   </noscript>
   <main class=hud-main>
@@ -2133,21 +2140,21 @@ main.gaia-shell.internal-mode #neutron-label{display: block;}
       <div class=hud-card-title>Ecosystem — primals.eco network</div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:6px;padding:.5em 0"><a
           style="color:#e85d3a;border:1px solid #e85d3a;border-radius:4px;padding:6px 10px;font-size:.85em;text-decoration:none;font-weight:bold;text-align:center"
-          href=/tuebor>? tuebor<div style="font-size:.7em;color:#8b949e;font-weight:normal">I will defend</div></a><a
+          href=./tuebor>? tuebor<div style="font-size:.7em;color:#8b949e;font-weight:normal">I will defend</div></a><a
           style="color:#58a6ff;border:1px solid #21262d;border-radius:4px;padding:6px 10px;font-size:.85em;text-decoration:none;text-align:center"
-          href=/detroit>?? detroit<div style="font-size:.7em;color:#8b949e">evidence database</div></a><a
+          href=./detroit>?? detroit<div style="font-size:.7em;color:#8b949e">evidence database</div></a><a
           style="color:#58a6ff;border:1px solid #21262d;border-radius:4px;padding:6px 10px;font-size:.85em;text-decoration:none;text-align:center"
-          href=/signal>?? signal<div style="font-size:.7em;color:#8b949e">observatory</div></a><a
+          href=./signal>?? signal<div style="font-size:.7em;color:#8b949e">observatory</div></a><a
           style="color:#58a6ff;border:1px solid #21262d;border-radius:4px;padding:6px 10px;font-size:.85em;text-decoration:none;text-align:center"
-          href=/record>?? clutch<div style="font-size:.7em;color:#8b949e">investigation</div></a><a
+          href=./record>?? clutch<div style="font-size:.7em;color:#8b949e">investigation</div></a><a
           style="color:#58a6ff;border:1px solid #21262d;border-radius:4px;padding:6px 10px;font-size:.85em;text-decoration:none;text-align:center"
-          href=/dialectic>?? sporePrint<div style="font-size:.7em;color:#8b949e">science catalogue</div></a><a
+          href=./dialectic>?? sporePrint<div style="font-size:.7em;color:#8b949e">science catalogue</div></a><a
           style="color:#58a6ff;border:1px solid #21262d;border-radius:4px;padding:6px 10px;font-size:.85em;text-decoration:none;text-align:center"
-          href=/dialectic>?? thesis<div style="font-size:.7em;color:#8b949e">research</div></a><a
+          href=./dialectic>?? thesis<div style="font-size:.7em;color:#8b949e">research</div></a><a
           style="color:#58a6ff;border:1px solid #21262d;border-radius:4px;padding:6px 10px;font-size:.85em;text-decoration:none;text-align:center"
-          href=/tuebor>?? gorilla<div style="font-size:.7em;color:#8b949e">verification</div></a><a
+          href=./tuebor>?? gorilla<div style="font-size:.7em;color:#8b949e">verification</div></a><a
           style="color:#f778ba;border:1px solid #21262d;border-radius:4px;padding:6px 10px;font-size:.85em;text-decoration:none;text-align:center"
-          href=/membrane-table>?? epitope sort<div style="font-size:.7em;color:#8b949e">braids</div></a><a
+          href=./membrane-table>?? epitope sort<div style="font-size:.7em;color:#8b949e">braids</div></a><a
           style="color:#58a6ff;border:1px solid #21262d;border-radius:4px;padding:6px 10px;font-size:.85em;text-decoration:none;text-align:center"
           href=http://nestgate.io:3000>? git<div style="font-size:.7em;color:#8b949e">source forge</div></a></div>
     </div>
@@ -2290,12 +2297,12 @@ main.gaia-shell.internal-mode #neutron-label{display: block;}
         NFT-396E5C8E-EC70B598 · 523 entropy events · one of one
       <div
         style="text-align:center;color:#484f58;border-top:1px solid #161b22;margin-top:1em;padding-top:1em;font-size:.8em">
-        <p><a href=/tuebor style=color:#e85d3a;font-weight:bold>? tuebor</a> · <a href=/detroit
-            style=color:#58a6ff>detroit</a> · <a href=/signal style=color:#58a6ff>signal</a> · <a href=/dialectic
-            style=color:#58a6ff>hypothesis</a> · <a href=/ style=color:#58a6ff>hud</a> · <a href=/dialectic
-            style=color:#58a6ff>thesis</a> · <a href=/record style=color:#58a6ff>clutch</a> · <a href=/tuebor
+        <p><a href=./tuebor style=color:#e85d3a;font-weight:bold>? tuebor</a> · <a href=./detroit
+            style=color:#58a6ff>detroit</a> · <a href=./signal style=color:#58a6ff>signal</a> · <a href=./dialectic
+            style=color:#58a6ff>hypothesis</a> · <a href=./ style=color:#58a6ff>hud</a> · <a href=./dialectic
+            style=color:#58a6ff>thesis</a> · <a href=./record style=color:#58a6ff>clutch</a> · <a href=./tuebor
             style=color:#58a6ff>gorilla</a> · <a href=http://nestgate.io:3000 style=color:#58a6ff>git</a> · <a
-            href=/dialectic style=color:#58a6ff>sporePrint</a>
+            href=./dialectic style=color:#58a6ff>sporePrint</a>
         <p>No cookies · No tracking · No IP addresses stored
         <p>Content: CC-BY-SA-4.0 · Code: AGPL-3.0-or-later · Methodology: ORC
         <p>ecoPrimal — Beside the small. Against unaccountable power. For the record.
@@ -2378,33 +2385,33 @@ main.gaia-shell.internal-mode #neutron-label{display: block;}
     <!-- Ø null = neutron --><!-- MERGED: membrane-throttle.js --><!-- MERGED: viewport-toggle.js --><!-- MERGED: membrane-shared.js -->
     <script>!function () { var s = window.innerWidth - document.documentElement.clientWidth; document.documentElement.style.setProperty('--sb', s + 'px'); window.addEventListener('resize', function () { var s2 = window.innerWidth - document.documentElement.clientWidth; document.documentElement.style.setProperty('--sb', s2 + 'px') }) }()</script>
     <!-- GHOST: orbit.js, localize.js, nav-unify.js — never built, replaced by moon-localizer.js + hud-nav.js -->
-    <script defer src=/js/hud-widget.js?v=36></script><!-- GHOST: synesthesia.js — planned, not yet built -->
-    <script src=/js/pulse-clock.js?v=1></script>
-    <script src=/js/hud-core.js?v=3></script>
-    <script src=/js/pi-bus.js></script>
-    <script src=/js/pi-digits.js?v=2></script>
+    <script defer src=./js/hud-widget.js?v=36></script><!-- GHOST: synesthesia.js — planned, not yet built -->
+    <script src=./js/pulse-clock.js?v=1></script>
+    <script src=./js/hud-core.js?v=3></script>
+    <script src=./js/pi-bus.js></script>
+    <script src=./js/pi-digits.js?v=2></script>
     <!-- GHOST: deep-view.js — planned depth layer -->
-    <script defer src=/js/epitope-ring.js?v=32></script><!-- 1 ghost --><!-- MERGED: pt-membrane-build-inner.js -->
-    <script defer src=/js/pt-membrane-build.js?v=11></script>
+    <script defer src=./js/epitope-ring.js?v=32></script><!-- 1 ghost --><!-- MERGED: pt-membrane-build-inner.js -->
+    <script defer src=./js/pt-membrane-build.js?v=11></script>
     <!-- p body --><!-- MERGED: pt-membrane-animate-ext.js --><!-- MERGED: pt-membrane-animate-deep.js -->
-    <script defer src=/js/pt-membrane-animate.js?v=36></script><!-- p² geodesic -->
-    <script defer src=/js/pt-pangaea.js?v=11></script>
-    <script defer src=/js/pt-pangaea-live.js?v=1></script>
-    <script defer src=/js/pt-membrane.js></script>
-    <script defer src=/js/pt-ionosphere.js?v=2></script><!-- p³ surface -->
-    <script defer src=/js/nanowire.js></script>
-    <script defer src=/js/hud-pt.js?v=49></script>
-    <script defer src=/js/you-are-here.js?v=2></script>
-    <script defer src=/js/edge-triad.js?v=7></script>
-    <script defer src=/js/float-off.js?v=4></script>
-    <script defer src=/js/scatter-now.js?v=3></script>
-    <script defer src=/js/view-groups.js?v=2></script>
-    <script defer src=/js/telephone-wire.js?v=2></script>
-    <script defer src=/js/hook-keys.js?v=3></script>
-    <script defer src=/js/hud-stack.js?v=5></script>
-    <script defer src=/js/inner-plane.js?v=2></script>
-    <script defer src=/js/hud-equilibrate.js?v=2></script>
-    <script defer src=/js/presence-live.js?v=5></script>
+    <script defer src=./js/pt-membrane-animate.js?v=36></script><!-- p² geodesic -->
+    <script defer src=./js/pt-pangaea.js?v=11></script>
+    <script defer src=./js/pt-pangaea-live.js?v=1></script>
+    <script defer src=./js/pt-membrane.js></script>
+    <script defer src=./js/pt-ionosphere.js?v=2></script><!-- p³ surface -->
+    <script defer src=./js/nanowire.js></script>
+    <script defer src=./js/hud-pt.js?v=49></script>
+    <script defer src=./js/you-are-here.js?v=2></script>
+    <script defer src=./js/edge-triad.js?v=7></script>
+    <script defer src=./js/float-off.js?v=4></script>
+    <script defer src=./js/scatter-now.js?v=3></script>
+    <script defer src=./js/view-groups.js?v=2></script>
+    <script defer src=./js/telephone-wire.js?v=2></script>
+    <script defer src=./js/hook-keys.js?v=3></script>
+    <script defer src=./js/hud-stack.js?v=5></script>
+    <script defer src=./js/inner-plane.js?v=2></script>
+    <script defer src=./js/hud-equilibrate.js?v=2></script>
+    <script defer src=./js/presence-live.js?v=5></script>
     <!-- GHOST: color-wheel, swivel, horizon, twist-jump — planned presence effects -->
     <div id="chipmunk-overlay" style="display:block"><!-- THE MEMBRANE — full-screen SVG canvas, PRIMARY VIEW -->
 
@@ -2639,87 +2646,87 @@ main.gaia-shell.internal-mode #neutron-label{display: block;}
       style="position:fixed;bottom:12px;right:var(--rail-r);z-index:5;background:rgba(22,27,34,.9);border:1px solid rgba(90,184,122,.4);color:#5ab87a;padding:8px 16px;border-radius:20px;cursor:pointer;font-family:monospace;font-size:11px">&#x1F4CA;
       dashboard</button>
     <script>document.getElementById("chipmunk-toggle").onclick = function () { var o = document.getElementById("chipmunk-overlay"); var d = document.getElementById("hud-dash"); if (o.style.display === "none") { o.style.display = "block"; d.style.display = "none"; this.innerHTML = "&#x1F4CA; dashboard" } else { o.style.display = "none"; d.style.display = ""; this.innerHTML = "&#x1F43F; membrane" } }</script>
-    <script defer src=/js/chipmunk-vis.js?v=29></script><!-- GHOST: graph-play.js — planned graph interactivity -->
-    <script defer src=/js/chipmunk-explorer.js?v=4></script>
-    <script defer src=/js/cosmic-view.js?v=9></script><!-- MERGED: signal-relay.js -->
-    <script defer src=/js/signal-reach.js?v=3></script>
-    <script defer src=/js/cosmic-surfaces.js?v=3></script>
-    <script src="./js/wave259-loader.js?w=259<script defer src=/js/wave259-overlay.js?v=1></script>t=1794932725" defer></script><!-- WAVE 259 BONES -->
+    <script defer src=./js/chipmunk-vis.js?v=29></script><!-- GHOST: graph-play.js — planned graph interactivity -->
+    <script defer src=./js/chipmunk-explorer.js?v=4></script>
+    <script defer src=./js/cosmic-view.js?v=9></script><!-- MERGED: signal-relay.js -->
+    <script defer src=./js/signal-reach.js?v=3></script>
+    <script defer src=./js/cosmic-surfaces.js?v=3></script>
+    <script src="./js/wave259-loader.js?w=259<script defer src=./js/wave259-overlay.js?v=1></script>t=1794932725" defer></script><!-- WAVE 259 BONES -->
     <!-- MERGED: cosmic-cards.js --><!-- MERGED: cosmic-strategy.js -->
-    <script defer src=/js/cosmic-flavor.js?v=5></script>
-    <script defer src=/js/membrane-wall.js?v=3></script><!-- GHOST: traffic-totalize.js — replaced by self-trace.js -->
-    <script defer src=/js/membrane-discuss.js?v=1></script>
+    <script defer src=./js/cosmic-flavor.js?v=5></script>
+    <script defer src=./js/membrane-wall.js?v=3></script><!-- GHOST: traffic-totalize.js — replaced by self-trace.js -->
+    <script defer src=./js/membrane-discuss.js?v=1></script>
     <!-- MERGED: focal-metabolism.js --><!-- MERGED: chipmunk-focus.js --><!-- MERGED: free-float.js -->
-    <script defer src=/js/fleet-atlas.js?v=1></script>
-    <script defer src=/js/trail-mark.js?v=1></script>
-    <script defer src=/js/whistle-back.js?v=1></script>
-    <script defer src=/js/signal-return.js?v=1></script>
-    <script defer src=/js/step-back.js?v=5></script>
-    <script defer src=/js/deep-twist.js?v=1></script>
-    <script defer src=/js/fleet-surround.js?v=7></script>
-    <script defer src=/js/human-surround.js?v=3></script>
-    <script defer src=/js/membrane-sound.js?v=5></script>
-    <script src=/js/input-wall.js?v=3></script>
-    <script defer src=/js/bingo-compress.js?v=1></script><!-- MERGED: cosmic-gameplay.js -->
-    <script defer src=/js/focal-tunnel.js?v=1></script>
-    <script defer src=/js/totality-tunnel.js?v=3></script>
+    <script defer src=./js/fleet-atlas.js?v=1></script>
+    <script defer src=./js/trail-mark.js?v=1></script>
+    <script defer src=./js/whistle-back.js?v=1></script>
+    <script defer src=./js/signal-return.js?v=1></script>
+    <script defer src=./js/step-back.js?v=5></script>
+    <script defer src=./js/deep-twist.js?v=1></script>
+    <script defer src=./js/fleet-surround.js?v=7></script>
+    <script defer src=./js/human-surround.js?v=3></script>
+    <script defer src=./js/membrane-sound.js?v=5></script>
+    <script src=./js/input-wall.js?v=3></script>
+    <script defer src=./js/bingo-compress.js?v=1></script><!-- MERGED: cosmic-gameplay.js -->
+    <script defer src=./js/focal-tunnel.js?v=1></script>
+    <script defer src=./js/totality-tunnel.js?v=3></script>
     <!-- GHOST: network-fold.js — planned mesh folding -->
-    <script defer src=/js/mesh-ring.js?v=2></script>
-    <script defer src=/js/mesh-nudge.js?v=1></script>
-    <script defer src=/js/chipmunk-dialogue.js?v=9></script>
-    <script defer src=/js/search-redirect.js?v=1></script>
-    <script defer src=/js/proton-pulse.js?v=1></script>
+    <script defer src=./js/mesh-ring.js?v=2></script>
+    <script defer src=./js/mesh-nudge.js?v=1></script>
+    <script defer src=./js/chipmunk-dialogue.js?v=9></script>
+    <script defer src=./js/search-redirect.js?v=1></script>
+    <script defer src=./js/proton-pulse.js?v=1></script>
     <!-- DEDUP: membrane-sound.js already loaded v=5 above -->
-    <script defer src=/js/weather-song.js?v=1></script>
-    <script defer src=/js/klein-io.js?v=1></script>
-    <script defer src=/js/hub-lens.js?v=2></script>
-    <script defer src=/js/pi-budget.js?v=1></script>
-    <script defer src=/js/hud-nav.js?v=1></script>
-    <script defer src=/js/epitope-dance.js?v=2></script>
-    <script defer src=/js/braid-mailbox.js?v=2></script>
-    <script defer src=/js/consent-inversion.js?v=1></script>
-    <script defer src=/js/dag-flow.js?v=1></script>
-    <script defer src=/js/seep-sieve.js?v=1></script>
-    <script defer src=/js/voxel-anchor.js?v=1></script>
-    <script defer src=/js/pi-step-dance.js?v=1></script>
-    <script defer src=/js/pi-body-clock.js?v=1></script>
-    <script defer src=/js/proprioception.js?v=1></script>
-    <script defer src=/js/selective-permeability.js?v=1></script>
-    <script defer src=/js/klein-prism.js?v=1></script>
-    <script defer src=/js/pi-align.js?v=1></script>
-    <script defer src=/js/heatmap-noise.js?v=1></script>
-    <script defer src=/js/destabilize.js?v=1></script>
-    <script defer src=/js/pbody-orient.js?v=1></script>
-    <script defer src=/js/dns-membrane.js?v=1></script>
-    <script defer src=/js/campfire.js?v=3></script>
-    <script defer src=/js/metagrams.js?v=1></script>
-    <script defer src=/js/tubefeet.js?v=1></script>
-    <script defer src=/js/primals-awaken.js?v=2></script>
-    <script defer src=/js/saturn-ring.js?v=1></script>
-    <script defer src=/js/hologram.js?v=2></script>
-    <script defer src=/js/membrane-canvas.js?v=2></script>
-    <script defer src=/js/tuebor-zones.js?v=2></script>
-    <script defer src=/js/third-eye.js?v=3></script>
-    <script defer src=/js/periodic-spiral.js?v=3></script>
-    <script defer src=/js/pi-gradient.js?v=5></script>
-    <script defer src=/js/deepzoom.js?v=1></script>
-    <script defer src=/js/scatter-friends.js?v=2></script>
-    <script defer src=/js/mobius-circuit.js?v=2></script>
-    <script defer src=/js/symbol-overlay.js?v=2></script>
-    <script defer src=/js/sort-playground.js?v=3></script>
-    <script defer src=/js/membrane-sight.js?v=3></script>
-    <script defer src=/js/complexity-scale.js?v=1></script>
-    <script defer src=/js/bubble-pop.js?v=6></script>
-    <script defer src=/js/temporal-window.js?v=6></script>
-    <script src=/js/hud-stash.js?v=10></script>
-    <script defer src=/js/chipmunk-sketch.js?v=1></script>
-    <script src=/js/bingo-sort-all.js></script>
+    <script defer src=./js/weather-song.js?v=1></script>
+    <script defer src=./js/klein-io.js?v=1></script>
+    <script defer src=./js/hub-lens.js?v=2></script>
+    <script defer src=./js/pi-budget.js?v=1></script>
+    <script defer src=./js/hud-nav.js?v=1></script>
+    <script defer src=./js/epitope-dance.js?v=2></script>
+    <script defer src=./js/braid-mailbox.js?v=2></script>
+    <script defer src=./js/consent-inversion.js?v=1></script>
+    <script defer src=./js/dag-flow.js?v=1></script>
+    <script defer src=./js/seep-sieve.js?v=1></script>
+    <script defer src=./js/voxel-anchor.js?v=1></script>
+    <script defer src=./js/pi-step-dance.js?v=1></script>
+    <script defer src=./js/pi-body-clock.js?v=1></script>
+    <script defer src=./js/proprioception.js?v=1></script>
+    <script defer src=./js/selective-permeability.js?v=1></script>
+    <script defer src=./js/klein-prism.js?v=1></script>
+    <script defer src=./js/pi-align.js?v=1></script>
+    <script defer src=./js/heatmap-noise.js?v=1></script>
+    <script defer src=./js/destabilize.js?v=1></script>
+    <script defer src=./js/pbody-orient.js?v=1></script>
+    <script defer src=./js/dns-membrane.js?v=1></script>
+    <script defer src=./js/campfire.js?v=3></script>
+    <script defer src=./js/metagrams.js?v=1></script>
+    <script defer src=./js/tubefeet.js?v=1></script>
+    <script defer src=./js/primals-awaken.js?v=2></script>
+    <script defer src=./js/saturn-ring.js?v=1></script>
+    <script defer src=./js/hologram.js?v=2></script>
+    <script defer src=./js/membrane-canvas.js?v=2></script>
+    <script defer src=./js/tuebor-zones.js?v=2></script>
+    <script defer src=./js/third-eye.js?v=3></script>
+    <script defer src=./js/periodic-spiral.js?v=3></script>
+    <script defer src=./js/pi-gradient.js?v=5></script>
+    <script defer src=./js/deepzoom.js?v=1></script>
+    <script defer src=./js/scatter-friends.js?v=2></script>
+    <script defer src=./js/mobius-circuit.js?v=2></script>
+    <script defer src=./js/symbol-overlay.js?v=2></script>
+    <script defer src=./js/sort-playground.js?v=3></script>
+    <script defer src=./js/membrane-sight.js?v=3></script>
+    <script defer src=./js/complexity-scale.js?v=1></script>
+    <script defer src=./js/bubble-pop.js?v=6></script>
+    <script defer src=./js/temporal-window.js?v=6></script>
+    <script src=./js/hud-stash.js?v=10></script>
+    <script defer src=./js/chipmunk-sketch.js?v=1></script>
+    <script src=./js/bingo-sort-all.js></script>
     <!-- GHOST: reality-map.js — replaced by desk-globe.js --><!-- GHOST: immune-pulse.js — absorbed into self-trace.js -->
-    <script src=/js/chipmunk-commands.js?v=64></script>
-    <script src=/js/hud-interact.js?v=66></script>
-    <script src=/js/chipmunk-metabolism.js?v=2></script>
-    <script src=/js/chipmunk-talk.js?v=69></script>
-    <script src=/js/chipmunk-poke.js?v=11></script><!-- MERGED: footer-ring.js -->
+    <script src=./js/chipmunk-commands.js?v=64></script>
+    <script src=./js/hud-interact.js?v=66></script>
+    <script src=./js/chipmunk-metabolism.js?v=2></script>
+    <script src=./js/chipmunk-talk.js?v=69></script>
+    <script src=./js/chipmunk-poke.js?v=11></script><!-- MERGED: footer-ring.js -->
     <script>
         // dimensional layer: null center = neutron beneath the HUD
         (function () {
@@ -2727,7 +2734,7 @@ main.gaia-shell.internal-mode #neutron-label{display: block;}
           function loadNeutron() {
             if (neutronLoaded) return;
             var nf = document.getElementById('neutron-null');
-            if (nf) { nf.src = './neutron/core.html'; neutronLoaded = true; }
+            if (nf) { nf.src = '/neutron/core.html'; neutronLoaded = true; }
           }
           function wireNullCenter() {
             var nc = document.getElementById('mg-null-center');
@@ -2755,30 +2762,30 @@ main.gaia-shell.internal-mode #neutron-label{display: block;}
     </script>
   </main>
   <footer class=hud-footer>
-    <p>No cookies · No tracking pixels · No IP addresses stored · <a href=/dialectic>Methodology</a>
+    <p>No cookies · No tracking pixels · No IP addresses stored · <a href=./dialectic>Methodology</a>
     <p>Content: CC-BY-SA-4.0 · Code: AGPL-3.0-or-later
     <p class=hud-eco>ecoPrimal — Beside the small. Against unaccountable power. For the record.
   </footer>
-  <script defer src=/js/banana-bump.js?v=1></script>
-  <script defer src=/js/gyro-axis.js?v=2></script>
-  <script defer src=/js/gokart.js?v=1></script>
-  <script defer src=/js/voxel-classroom.js?v=1></script>
-  <script defer src=/js/archetype-arena.js?v=1></script>
-  <script defer src=/js/sine-breath.js?v=1></script>
-  <script defer src=/js/celestial-clock.js?v=1></script>
-  <script defer src=/js/moon-localizer.js?v=1></script>
-  <script defer src=/js/self-trace.js?v=2></script>
-  <script defer src=/js/sacred-geometry.js?v=1></script>
-  <script defer src=/js/pyramid-portal.js?v=1></script>
-  <script defer src=/js/lava-nav.js?v=1></script>
-  <script defer src=/js/ears.js?v=1></script>
-  <script defer src=/js/self-sense.js?v=1></script>
-  <script defer src=/js/vole.js?v=1></script>
-  <script defer src=/js/night-rhythm.js?v=1></script>
-  <script defer src=/js/flat-invert.js?v=1></script>
-  <script defer src=/js/desk-globe.js?v=1></script>
-  <script defer src=/js/depth-walk.js?v=1></script>
-  <script defer src=/js/berry-help.js></script>
+  <script defer src=./js/banana-bump.js?v=1></script>
+  <script defer src=./js/gyro-axis.js?v=2></script>
+  <script defer src=./js/gokart.js?v=1></script>
+  <script defer src=./js/voxel-classroom.js?v=1></script>
+  <script defer src=./js/archetype-arena.js?v=1></script>
+  <script defer src=./js/sine-breath.js?v=1></script>
+  <script defer src=./js/celestial-clock.js?v=1></script>
+  <script defer src=./js/moon-localizer.js?v=1></script>
+  <script defer src=./js/self-trace.js?v=2></script>
+  <script defer src=./js/sacred-geometry.js?v=1></script>
+  <script defer src=./js/pyramid-portal.js?v=1></script>
+  <script defer src=./js/lava-nav.js?v=1></script>
+  <script defer src=./js/ears.js?v=1></script>
+  <script defer src=./js/self-sense.js?v=1></script>
+  <script defer src=./js/vole.js?v=1></script>
+  <script defer src=./js/night-rhythm.js?v=1></script>
+  <script defer src=./js/flat-invert.js?v=1></script>
+  <script defer src=./js/desk-globe.js?v=1></script>
+  <script defer src=./js/depth-walk.js?v=1></script>
+  <script defer src=./js/berry-help.js></script>
   <script>
     // CROSS-AXIAL ROTATION + CIS/TRANS CROSS-WIRING
     // This is the GLOBE (near eye, CIS face). The CANVAS (far eye, TRANS face) is deck.html.
@@ -2864,14 +2871,14 @@ main.gaia-shell.internal-mode #neutron-label{display: block;}
       document.body.appendChild(chiasm);
     })();
   </script>
-  <script defer src=/js/klein-window.js></script>
-  <script defer src=/js/null-shadow.js></script>
-  <script defer src=/js/iron-peak.js></script>
-  <script defer src=/js/helix-twist.js></script>
-  <script defer src=/js/pendulum-eyes.js></script>
-  <script defer src=/js/null-kaleidoscope.js></script>
-  <script defer src=/js/impact.js></script>
-  <script defer src=/js/klein-watcher.js></script>
+  <script defer src=./js/klein-window.js></script>
+  <script defer src=./js/null-shadow.js></script>
+  <script defer src=./js/iron-peak.js></script>
+  <script defer src=./js/helix-twist.js></script>
+  <script defer src=./js/pendulum-eyes.js></script>
+  <script defer src=./js/null-kaleidoscope.js></script>
+  <script defer src=./js/impact.js></script>
+  <script defer src=./js/klein-watcher.js></script>
   <script>if ("serviceWorker" in navigator) { navigator.serviceWorker.register("/js/membrane-sw.js").then(function (r) { r.addEventListener("updatefound", function () { var w = r.installing; if (w) w.addEventListener("statechange", function () { if (w.state === "activated" && navigator.serviceWorker.controller) window.location.reload() }) }); r.update() }).catch(function () { }); navigator.serviceWorker.addEventListener("controllerchange", function () { if (!window._swReloading) { window._swReloading = true; window.location.reload() } }) }</script>
 </main>
 <footer class="gaia-footer"><div class="gaia-shell"><div class="gaia-footer-bottom"><p><a href="./">Gaia</a> &mdash; sovereign living digital organism &mdash; <a href="https://primals.eco">primals.eco</a></p></div></div></footer>

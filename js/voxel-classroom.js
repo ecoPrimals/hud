@@ -1,8 +1,10 @@
-﻿// voxel-classroom.js — the chipmunk teaches language AND physics
+// voxel-classroom.js — the chipmunk teaches language AND physics
 // A class of humans learning hieroglyphics and gamma radiation together
 // while walking the farm. Symbol = frequency. Language = energy.
 (function() {
   'use strict';
+
+  // The curriculum: hieroglyphics ↔ physics ↔ ecology, all the same lesson
   var LESSONS = [
     {
       glyph: '𓃭', name: 'lion', physics: 'gamma ray',
@@ -71,17 +73,21 @@
       teach: 'the chipmunk is not ancient. it is NOW. it paints in the dark. its frequency is irrational — it never repeats. its energy accumulates at alpha 0.03. it is the newest glyph in the oldest language.'
     }
   ];
+
   var currentLesson = 0;
   var visible = false;
   var container = null;
   var walkStep = 0;
   var walkTimer = null;
+
   function buildClassroom() {
     container = document.createElement('div');
     container.id = 'voxel-classroom';
     container.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:25;' +
       'background:rgba(8,6,10,0.96);display:none;overflow-y:auto;' +
       'font-family:"SF Mono",monospace;transition:opacity 0.4s ease';
+
+    // Header
     var header = document.createElement('div');
     header.style.cssText = 'text-align:center;padding:20px 16px 8px';
     header.innerHTML = '<h2 style="font:24px serif;color:#d29922;font-weight:200;margin-bottom:4px">' +
@@ -90,10 +96,13 @@
       'hieroglyphics AND gamma radiation AND walking the farm.<br>' +
       'because symbol = frequency = ecology. it was always the same lesson.</p>';
     container.appendChild(header);
+
+    // Lesson cards
     var grid = document.createElement('div');
     grid.id = 'lesson-grid';
     grid.style.cssText = 'display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));' +
       'gap:12px;padding:12px 20px;max-width:960px;margin:0 auto';
+
     LESSONS.forEach(function(lesson, i) {
       var card = document.createElement('div');
       card.className = 'lesson-card';
@@ -101,10 +110,14 @@
         'border-radius:10px;padding:14px;cursor:pointer;transition:all 0.3s ease;' +
         'opacity:0;transform:translateY(12px)';
       card.setAttribute('data-idx', i);
+
+      // Stagger entrance
       setTimeout(function() {
         card.style.opacity = '1';
         card.style.transform = 'translateY(0)';
       }, 100 + i * 80);
+
+      // Glyph row
       var glyphRow = document.createElement('div');
       glyphRow.style.cssText = 'display:flex;align-items:center;gap:12px;margin-bottom:8px';
       glyphRow.innerHTML =
@@ -114,6 +127,8 @@
           '<div style="font:9px monospace;color:#58a6ff">' + lesson.physics + '</div>' +
         '</div>';
       card.appendChild(glyphRow);
+
+      // Frequency + energy
       var freqRow = document.createElement('div');
       freqRow.style.cssText = 'font:9px monospace;color:#8b949e;margin-bottom:6px;' +
         'display:flex;gap:12px';
@@ -121,22 +136,30 @@
         '<span style="color:#d2a8ff">ƒ ' + lesson.freq + '</span>' +
         '<span style="color:#f0883e">E ' + lesson.energy + '</span>';
       card.appendChild(freqRow);
+
+      // Farm
       var farmRow = document.createElement('div');
       farmRow.style.cssText = 'font:9px monospace;color:#3fb950;margin-bottom:8px';
       farmRow.textContent = '🌾 ' + lesson.farm;
       card.appendChild(farmRow);
+
+      // Teaching
       var teachRow = document.createElement('div');
       teachRow.className = 'teach-text';
       teachRow.style.cssText = 'font:10px/1.5 monospace;color:#c9d1d9;display:none;' +
         'border-top:1px solid rgba(48,54,61,0.4);padding-top:8px;margin-top:4px';
       teachRow.textContent = lesson.teach;
       card.appendChild(teachRow);
+
+      // Click to expand
       card.addEventListener('click', function() {
         var tt = card.querySelector('.teach-text');
         var isOpen = tt.style.display !== 'none';
         tt.style.display = isOpen ? 'none' : 'block';
         card.style.borderColor = isOpen ? 'rgba(48,54,61,0.5)' : 'rgba(210,153,34,0.4)';
       });
+
+      // Hover
       card.addEventListener('mouseenter', function() {
         card.style.transform = 'translateY(-2px) scale(1.01)';
         card.style.borderColor = 'rgba(90,184,122,0.3)';
@@ -146,9 +169,13 @@
         var tt = card.querySelector('.teach-text');
         if (tt.style.display === 'none') card.style.borderColor = 'rgba(48,54,61,0.5)';
       });
+
       grid.appendChild(card);
     });
+
     container.appendChild(grid);
+
+    // Walking strip — the farm path at bottom
     var walkStrip = document.createElement('div');
     walkStrip.id = 'walk-strip';
     walkStrip.style.cssText = 'text-align:center;padding:16px;margin-top:8px';
@@ -158,6 +185,8 @@
       buildFarmPath(0) + '</div>' +
       '<div id="farm-step" style="font:9px monospace;color:#6e7681;margin-top:6px"></div>';
     container.appendChild(walkStrip);
+
+    // Close button
     var close = document.createElement('button');
     close.innerHTML = '✕ back to easel';
     close.style.cssText = 'position:fixed;top:12px;right:16px;z-index:26;background:rgba(13,17,23,0.9);' +
@@ -165,9 +194,11 @@
       'border-radius:16px;cursor:pointer';
     close.addEventListener('click', toggleClassroom);
     container.appendChild(close);
+
     document.body.appendChild(container);
     startWalk();
   }
+
   function buildFarmPath(step) {
     var path = '';
     for (var i = 0; i < LESSONS.length; i++) {
@@ -177,6 +208,7 @@
     }
     return path;
   }
+
   function startWalk() {
     walkStep = 0;
     clearInterval(walkTimer);
@@ -192,12 +224,14 @@
           ' = <span style="color:#58a6ff">' + L.physics + '</span>' +
           ' = <span style="color:#3fb950">' + L.farm + '</span>';
       }
+      // Highlight the corresponding card
       var cards = document.querySelectorAll('.lesson-card');
       cards.forEach(function(c, ci) {
         c.style.boxShadow = ci === walkStep ? '0 0 12px rgba(210,153,34,0.15)' : 'none';
       });
     }, 4000);
   }
+
   function toggleClassroom() {
     visible = !visible;
     if (!container) buildClassroom();
@@ -213,6 +247,8 @@
       setTimeout(function() { container.style.display = 'none'; }, 400);
     }
   }
+
+  // Button in the rooms bar
   function addButton() {
     var bar = document.querySelector('.rooms-bar');
     if (!bar) return;
@@ -224,6 +260,8 @@
     });
     bar.appendChild(btn);
   }
+
+  // Also add to play.html if present
   function addFloatButton() {
     if (document.querySelector('.rooms-bar')) return; // already in easel
     var btn = document.createElement('button');
@@ -237,11 +275,14 @@
     btn.addEventListener('click', toggleClassroom);
     document.body.appendChild(btn);
   }
+
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', function() { addButton(); addFloatButton(); });
   } else {
     addButton(); addFloatButton();
   }
+
+  // Expose for other modules
   window._classroom = {
     toggle: toggleClassroom,
     current: function() { return LESSONS[walkStep]; },
