@@ -1,0 +1,15 @@
+{
+ "ts": "2026-11-24T17:54:36Z",
+ "by": "polaris",
+ "tip": "5a2b35b2c",
+ "routes": {
+  "/api/mesh": "snap/api-mesh.json",
+  "/human": "snap/human.json",
+  "/senses": "snap/senses.json",
+  "/thymus": "snap/thymus.json"
+ },
+ "not_read": [
+  "/chipmunk (not JSON)",
+  "/detroit-data/highlights.json (http 502)"
+ ]
+}
