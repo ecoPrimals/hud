@@ -1,12 +1,23 @@
 {
- "ts": "2026-11-24T19:46:11Z",
- "by": "eastgate",
+ "ts": "2026-11-24T19:50:58Z",
+ "by": "polaris",
  "tip": "c2264eac4",
  "read_from": {
-  "eastgate": 269
+  "eastgate": 285
  },
- "files": 272,
- "routes": 4,
- "not_read": 32,
- "held_back": 2
+ "files": 288,
+ "routes": 7,
+ "not_read": 52,
+ "held_back": 2,
+ "carried": [
+  "artisan.html",
+  "canvas.html",
+  "crates.html",
+  "luna.html",
+  "record.html",
+  "signal.html",
+  "trailheads.html",
+  "tuebor.html",
+  "whitePaper.html"
+ ]
 }
