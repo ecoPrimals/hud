@@ -9,8 +9,8 @@
 <meta name="gaia-digested" content="2026-10-26T07:30:00Z"><meta name="gaia-wave" content="214">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>p-Rate Set � ecoPrimals</title>
-<meta name="description" content="Only binary is 0?1. Intake all marks on 0. Output to point. Willis � epitope � ladder/leak � flow = one p-rate set.">
+<title>π-Rate Set � ecoPrimals</title>
+<meta name="description" content="Only binary is 0↔1. Intake all marks on 0. Output to point. Willis � epitope � ladder/leak � flow = one π-rate set.">
 <link rel="alternate" type="application/json" href="/pi-rate-set.json">
 <style>
   :root {
@@ -95,22 +95,22 @@
 </head>
 <body>
 <main>
-  <h1>p-Rate Set</h1>
+  <h1>π-Rate Set</h1>
   <p class="tag">only binary � marks on 0 � out to point</p>
   <p class="lead">
     <strong>0</strong> and <strong>1</strong> are the only binary.
     We intake <em>all</em> on the 0-face � dashes, plus, star, cuneiform lines.
-    Everything received points toward the singularity. Willis, epitope, ladder/leak, and flow share one p clock.
+    Everything received points toward the singularity. Willis, epitope, ladder/leak, and flow share one π clock.
   </p>
 
   <div class="bits" aria-label="only binary">
     <div class="bit"><strong>0</strong> intake � marks � discarnate channel</div>
     <div class="bit"><strong>1</strong> asserted � passed � incarnate</div>
   </div>
-  <p class="marks" aria-label="mark alphabet on zero">- &nbsp; -- &nbsp; + &nbsp; * &nbsp; ??</p>
+  <p class="marks" aria-label="mark alphabet on zero">− &nbsp; −− &nbsp; + &nbsp; ∗ &nbsp; 𒀸</p>
 
   <section>
-    <h2>All in ? out to point</h2>
+    <h2>All in → out to point</h2>
     <p id="pipeline">Loading pipeline�</p>
   </section>
 
@@ -128,11 +128,11 @@
       <li><a href="/klein-ladder.json">ladder</a> � <a href="/klein-leak-eons.json">leak</a></li>
       <li><a href="/modality-faces.html">modality faces</a></li>
         <li><a href="/local-cns-pns.html">local CNS/PNS</a> � <a href="/local-cns-pns.json">JSON</a></li>
-      <li><a href="/green-spectrum-pi-yoyo.html">green spectrum � p yoyo</a></li>
+      <li><a href="/green-spectrum-pi-yoyo.html">green spectrum � π yoyo</a></li>
   </ul>
   </section>
 
-  <footer>ecoPrimals � R_p geometric mean of W�E�L�F � leftover marks = interaction space until pointed</footer>
+  <footer>ecoPrimals � R_π geometric mean of W�E�L�F � leftover marks = interaction space until pointed</footer>
 </main>
 <script>
 async function boot() {
@@ -141,7 +141,7 @@ async function boot() {
   const live = document.getElementById('live');
   try {
     const d = await fetch('/pi-rate-set.json').then(r => r.json());
-    pipeline.textContent = d.all_in_out_to_point.pipeline.join(' ? ');
+    pipeline.textContent = d.all_in_out_to_point.pipeline.join(' → ');
     const m = d.pi_rate_set.members;
     rates.innerHTML = Object.entries(m).map(([k, v]) =>
       `<div class="rate"><b>${v.rate_symbol}</b><span><strong>${k}</strong> � ${v.meter}</span></div>`

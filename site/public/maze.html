@@ -36,10 +36,10 @@ canvas { display: block; width: 100vw; height: 100vh; }
 </head>
 <body>
 
-<div id="nav"><a href="/">? hud</a> · <a href="/klein">8 klein</a> · <a href="/totality">? totality</a></div>
+<div id="nav"><a href="/">← hud</a> · <a href="/klein">∞ klein</a> · <a href="/totality">⊕ totality</a></div>
 
 <div id="info">
-  <div class="title">8 *.primals.eco — the wildcard maze</div>
+  <div class="title">∞ *.primals.eco — the wildcard maze</div>
   <div>every subdomain is a cell · live = exit · dead = wall · the maze IS the Klein surface</div>
 </div>
 
@@ -177,7 +177,7 @@ function buildHexGrid() {
       if (Math.hypot(h.x - x, h.y - y) < size * 1.5) { tooClose = true; break; }
     }
     if (!tooClose) {
-      const names = ['?','??','...','¦','¦','¦','Ø','?','?','f','?','?','8','?','?','?','?','?','?','?'];
+      const names = ['?','??','...','░','▒','▓','∅','λ','∂','φ','ψ','ω','∞','◌','◍','◎','☉','♾','⊕','⊗'];
       hexes.push({ id: names[i % names.length], ring: 5, status: 'unknown', domain: 'void',
         desc: 'dark matter — unmapped wildcard space. type any subdomain. the maze catches it.',
         x, y, size: size * 0.7 });

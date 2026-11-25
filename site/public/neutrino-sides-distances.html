@@ -55,7 +55,7 @@ fetch('/neutrino-sides-distances.json').then(r=>r.json()).then(d=>{
     <div class="cell out"><strong>outer chair</strong>${f.outer_chair}</div>
     <div class="cell out"><strong>outer tunnel</strong>${f.outer_tunnel}</div>
     <div class="cell out"><strong>outer mouth</strong>${f.outer_mouth}</div>
-    <div class="cell meta"><strong>meta</strong>NG-inner ${del.meta_northgate_minus_inner_ms}ms · CDN/golgi ×${del.meta_cdn_over_golgi} · ${f.meta}</div>`;
+    <div class="cell meta"><strong>meta</strong>NG−inner ${del.meta_northgate_minus_inner_ms}ms · CDN/golgi ×${del.meta_cdn_over_golgi} · ${f.meta}</div>`;
   const folds = (d.meta.hash_folds||[]).filter(x=>x.outer_ok);
   const matched = folds.filter(x=>x.match).length;
   document.getElementById('live').textContent =

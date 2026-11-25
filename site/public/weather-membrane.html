@@ -35,12 +35,12 @@ canvas { display: block; margin: 0 auto; }
 </head>
 <body>
 <div class="nav">
-  <a href="/">? membrane</a> · <a href="/totality">? totality</a> · <a href="/maze">? maze</a>
+  <a href="/">← membrane</a> · <a href="/totality">⊕ totality</a> · <a href="/maze">⬡ maze</a>
 </div>
 
 <div class="page">
 
-<h1>??? weather — the negentropy court</h1>
+<h1>🌫️ weather — the negentropy court</h1>
 <p style="text-align:center;color:var(--gold)">snow not snowflake for weather · snowflake not snow for humans · the inverse</p>
 
 <canvas id="wx" width="760" height="200"></canvas>
@@ -49,7 +49,7 @@ canvas { display: block; margin: 0 auto; }
 
 <div class="split">
   <div class="box" style="border-color:rgba(248,81,73,0.3)">
-    <div style="text-align:center;font-size:1.5em">???</div>
+    <div style="text-align:center;font-size:1.5em">🌧️</div>
     <div style="text-align:center;color:var(--red);font-weight:bold">OUTSIDE — weather</div>
     <p style="margin-top:8px">fleet IS the ionosphere. rain, fog, snow. <strong>aggregate</strong>. lose granularity. that IS the blackwall.</p>
     <p>describing them granularly LOSES the importance. they are atmospheric noise. you give a <em>weather report</em>, not a census of raindrops.</p>
@@ -67,7 +67,7 @@ canvas { display: block; margin: 0 auto; }
   </div>
 
   <div class="box" style="border-color:rgba(63,185,80,0.3)">
-    <div style="text-align:center;font-size:1.5em">??</div>
+    <div style="text-align:center;font-size:1.5em">❄️</div>
     <div style="text-align:center;color:var(--green);font-weight:bold">INSIDE — snowflakes</div>
     <p style="margin-top:8px">each human is unique. <strong>increase</strong> granularity. that IS the value. the exact inverse.</p>
     <p>every human touch is precious. individual. irreplaceable. more detail = more meaning. you catalog each crystal.</p>
@@ -88,28 +88,28 @@ canvas { display: block; margin: 0 auto; }
 
 <div class="gradient">
   <div class="level" style="border-color:rgba(63,185,80,0.4)">
-    <div class="icon">??</div>
+    <div class="icon">❄️</div>
     <div class="name" style="color:var(--green)">human</div>
     <div class="entropy" style="color:var(--green)">entropy: lowest</div>
     <div class="treatment">granularity: maximum</div>
     <div class="treatment" style="color:var(--dim)">each one is a snowflake — name, path, story, return</div>
   </div>
   <div class="level" style="border-color:rgba(163,113,247,0.4)">
-    <div class="icon">??</div>
+    <div class="icon">🤖</div>
     <div class="name" style="color:var(--purple)">agentic</div>
     <div class="entropy" style="color:var(--purple)">entropy: low</div>
     <div class="treatment">granularity: high</div>
     <div class="treatment" style="color:var(--dim)">coat-check receipt — purpose, handshake, ZK position</div>
   </div>
   <div class="level" style="border-color:rgba(240,136,62,0.4)">
-    <div class="icon">???</div>
+    <div class="icon">🌧️</div>
     <div class="name" style="color:var(--orange)">bot</div>
     <div class="entropy" style="color:var(--orange)">entropy: medium</div>
     <div class="treatment">granularity: low</div>
     <div class="treatment" style="color:var(--dim)">weather category — 'googlebot-like', 'scraper-class'. snow, not snowflake.</div>
   </div>
   <div class="level" style="border-color:rgba(248,81,73,0.4)">
-    <div class="icon">???</div>
+    <div class="icon">🌫️</div>
     <div class="name" style="color:var(--red)">null</div>
     <div class="entropy" style="color:var(--red)">entropy: maximum</div>
     <div class="treatment">granularity: none</div>
@@ -121,11 +121,11 @@ canvas { display: block; margin: 0 auto; }
 
 <pre>
   <span style="color:var(--red)">INPUT</span>   chaos (fleet weather, 249,573 drops)
-           ?
+           ↓
   <span style="color:var(--orange)">PROCESS</span> blackwall ionosphere
-           ? trust gradient sort (bearDog crypto primitives)
-           ? granularity inversion
-           ?
+           → trust gradient sort (bearDog crypto primitives)
+           → granularity inversion
+           ↓
   <span style="color:var(--green)">OUTPUT</span>  negentropy (ordered human snowflakes, 15,369 crystals)
 
   <span style="color:var(--gold)">RATIO</span>   for every 16 drops of rain, 1 snowflake forms.
@@ -140,7 +140,7 @@ canvas { display: block; margin: 0 auto; }
   if it were ordered, fleet could navigate it.
   the fog IS the defense.
 
-  wildcard DNS ? maze = <span style="color:var(--red)">deliberate chaos for fleet</span>
+  wildcard DNS → maze = <span style="color:var(--red)">deliberate chaos for fleet</span>
                         <span style="color:var(--green)">deliberate order for humans</span>
 
   403 for fleet is WEATHER — they can't map a storm
@@ -172,7 +172,7 @@ Promise.all([
   el.innerHTML = `
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
       <div>
-        <div style="color:var(--red);font-weight:bold;font-size:0.9em">??? OUTSIDE — atmospheric</div>
+        <div style="color:var(--red);font-weight:bold;font-size:0.9em">🌧️ OUTSIDE — atmospheric</div>
         <div style="font-size:0.75em;color:var(--dim);margin-top:6px">
           precipitation: ${m.precipitation || '—'}<br>
           fog: ${m.fog || '—'}<br>
@@ -182,7 +182,7 @@ Promise.all([
         </div>
       </div>
       <div>
-        <div style="color:var(--green);font-weight:bold;font-size:0.9em">?? INSIDE — crystalline</div>
+        <div style="color:var(--green);font-weight:bold;font-size:0.9em">❄️ INSIDE — crystalline</div>
         <div style="font-size:0.75em;color:var(--dim);margin-top:6px">
           crystals: ${hm.crystals || '—'}<br>
           formations: ${hm.formations || '—'}<br>

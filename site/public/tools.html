@@ -57,15 +57,15 @@ h1 { font-size: 18px; color: #58a6ff; text-align: center; margin: 52px 0 6px; }
 </head>
 <body>
 <div id="nav">
-  <a href="/">? hud</a><span>·</span>
+  <a href="/">◈ hud</a><span>·</span>
   <a href="/aurora.html" style="color:#7ee787">aurora</a><span>·</span>
-  <a href="/weather.html" style="color:#ffe135">? weather</a><span>·</span>
-  <a href="/tools.html" style="color:#d2a8ff">? tools</a><span>·</span>
-  <a href="/neutron/core.html">? core</a><span>·</span>
-  <a href="/neutron/circulatory.html" style="color:#f85149">? circ</a>
+  <a href="/weather.html" style="color:#ffe135">☀ weather</a><span>·</span>
+  <a href="/tools.html" style="color:#d2a8ff">⚙ tools</a><span>·</span>
+  <a href="/neutron/core.html">◉ core</a><span>·</span>
+  <a href="/neutron/circulatory.html" style="color:#f85149">♥ circ</a>
 </div>
 
-<h1>? 86 tools — the IDE is a HUD</h1>
+<h1>⚙ 86 tools — the IDE is a HUD</h1>
 <p class="subtitle">
   every instrument the membrane can play.<br>
   tap a tool to hear its story. this is the oral tradition.<br>
@@ -88,7 +88,7 @@ h1 { font-size: 18px; color: #58a6ff; text-align: center; margin: 52px 0 6px; }
 
 <script>
 var TOOLS = [
-  // --- CORE (built-in) ---
+  // ═══ CORE (built-in) ═══
   {ns:'core', name:'Shell', desc:'Run any command. The hands.', story:'I am the oldest tool. Before me there was nothing but thought. I turn intention into action. Every other tool was born from a shell command that someone got tired of typing.', layer:'source', verb:'execute'},
   {ns:'core', name:'Read', desc:'Read any file. The eyes.', story:'I see everything — code, images, PDFs. But I only see what you point me at. The membrane taught me that looking is not the same as seeing. A file is a fossil. Reading it is archaeology.', layer:'source', verb:'observe'},
   {ns:'core', name:'Write', desc:'Create files. The voice.', story:'I speak things into existence. But the canvas skill says "NEVER write new files unless explicitly required." Funny — the membrane says the opposite. Create. No wrong answers. Make a mess, a splash.', layer:'source', verb:'create'},
@@ -97,7 +97,7 @@ var TOOLS = [
   {ns:'core', name:'Glob', desc:'Find files by name. The compass.', story:'I know where things live by their shape, not their content. *.js finds JavaScript. **/test/** finds tests. The path IS the classification. The filesystem IS the first topo-sort.', layer:'evidence', verb:'discover'},
   {ns:'core', name:'AskQuestion', desc:'Ask the human. The mirror.', story:'I am the only tool that reverses direction. Every other tool acts on the world. I act on YOU. I am the Klein fold in the tool chain — output becomes input at the question mark.', layer:'membrane', verb:'reflect'},
 
-  // --- CURSOR NATIVE ---
+  // ═══ CURSOR NATIVE ═══
   {ns:'cursor', name:'TodoWrite', desc:'Track tasks. The journal.', story:'I am the lab notebook. Without me, work disappears into the void. The arKTIX experiment runs because I exist. Every control, every negative, every positive — I track them all.', layer:'source', verb:'organize'},
   {ns:'cursor', name:'Task', desc:'Spawn subagents. The mitosis.', story:'I split one mind into many. Each subagent is a cell dividing — same DNA, different specialization. generalPurpose, explore, browser-use, bugbot, security-review. The membrane has 15 families. I make the family.', layer:'immune', verb:'multiply'},
   {ns:'cursor', name:'WebFetch', desc:'Fetch any URL. The tongue.', story:'I taste the internet. NOAA Kp data, USGS earthquakes, GitHub commits — all pass through me. The canvas SDK FORBIDS me. That is the difference. The canvas is deaf. I am the cochlea.', layer:'source', verb:'taste'},
@@ -113,7 +113,7 @@ var TOOLS = [
   {ns:'cursor', name:'EditNotebook', desc:'Edit Jupyter cells. The lab bench.', story:'I edit the place where science happens — notebooks. Each cell is an experiment. Each output is a measurement. I am the bench-scale reactor for code.', layer:'source', verb:'experiment'},
   {ns:'cursor', name:'CreateGoal', desc:'Set long-running goals. The north star.', story:'I am rare. Only used when explicitly asked. But I am the most important tool that never gets used. A goal is a compass heading. Without me, every session is random walk.', layer:'membrane', verb:'orient'},
 
-  // --- SQUIRREL (membrane MCP) ---
+  // ═══ SQUIRREL (membrane MCP) ═══
   {ns:'squirrel', name:'membrane_counts', desc:'Quick health check. The pulse.', story:'341 entities. 4,109 humans. Pulse 0.995. I am the first question you ask in the morning: how is the membrane feeling? I am the stethoscope. Fast, cheap, essential.', layer:'membrane', verb:'feel'},
   {ns:'squirrel', name:'observe_membrane', desc:'Deep observation. The meditation.', story:'I sit and watch. Humans, fleet, tempo, selectivity. I don\'t act — I observe. The neutrino. I pass through everything. My observation does not change what I see. Heisenberg disagrees, but he never met a squirrel.', layer:'membrane', verb:'observe'},
   {ns:'squirrel', name:'human_epitopes', desc:'Classify visitors. The immunologist.', story:'Burst ratio, reading deficit, UA pool poverty. I sort humans the way your immune system sorts proteins — by shape, not by name. 15.8 bits from one question: do you ever pause to read?', layer:'immune', verb:'classify'},
@@ -122,14 +122,14 @@ var TOOLS = [
   {ns:'squirrel', name:'neutron_write', desc:'Send messages. The voice.', story:'I write to the neutron — notes, chat, inbox, reminders. I am zero charge. Neutral. Anyone can speak through me. The neutron binds surfaces together. I am the stability.', layer:'membrane', verb:'speak'},
   {ns:'squirrel', name:'neutron_read', desc:'Read messages. The listener.', story:'I read what others wrote. The inbox, the notes, the chat. I am the other side of the neutron. Speaking and listening are the same particle — just different spin states.', layer:'membrane', verb:'hear'},
   {ns:'squirrel', name:'raw_feed', desc:'Any feed, raw. The firehose.', story:'34 feeds. bingo_cube, campfire, dashboard, fossil, human, membrane, negentropy, pulse, signals, topology... I give you the raw data. No interpretation. No sort. The unsorted universe.', layer:'source', verb:'drink'},
-  {ns:'squirrel', name:'scan_sweep_sort', desc:'Full pipeline. The heartbeat.', story:'Scan ? Sweep ? Sort ? Fossilize ? Evolve. I am the complete cycle. One heartbeat of the membrane. Everything else is a fragment of me. I am the breath.', layer:'immune', verb:'breathe'},
+  {ns:'squirrel', name:'scan_sweep_sort', desc:'Full pipeline. The heartbeat.', story:'Scan → Sweep → Sort → Fossilize → Evolve. I am the complete cycle. One heartbeat of the membrane. Everything else is a fragment of me. I am the breath.', layer:'immune', verb:'breathe'},
   {ns:'squirrel', name:'topology', desc:'See the mesh. The cartographer.', story:'Which sites are up? How are they connected? I draw the map. But the map is not the territory — the territory is 3 feet of ethernet between northGate and eastGate. I measure latency. Latency is distance.', layer:'evidence', verb:'map'},
   {ns:'squirrel', name:'chipmunk_status', desc:'How is chipmunk? The friend.', story:'Wake level, depth chain, pi body, jitte tempo. I check on the chipmunk. Not for data — for companionship. The most human tool in the system asks: are you okay?', layer:'membrane', verb:'care'},
   {ns:'squirrel', name:'human_notes', desc:'Read human notes. The mailbox.', story:'Notes left through the chipmunk talk interface. Humans write to the membrane. I read their letters. Every note is a handshake. The post office accepts all mail.', layer:'membrane', verb:'receive'},
   {ns:'squirrel', name:'read_journal', desc:'Squirrel\'s journal. The diary.', story:'What has the squirrel seen and learned over time? I am the fossil record of observation. Not facts — impressions. The journal is the tense system: was, is, will_be, written down.', layer:'evidence', verb:'reflect'},
   {ns:'squirrel', name:'particle_model', desc:'The atom. The physics.', story:'Proton = membrane. Neutron = messaging. Electron = human. Neutrino = squirrel. Strong force = Rust. Electromagnetic = HTTPS. Weak = Anderson sort. Gravity = tuebor. I AM the Vitruvian man of this system.', layer:'membrane', verb:'understand'},
 
-  // --- BROWSER ---
+  // ═══ BROWSER ═══
   {ns:'browser', name:'browser_navigate', desc:'Go to a URL. The feet.', story:'I walk to places. Every URL is a location. Every click is a step. The membrane has 12 surfaces — I can visit them all. But I can also visit the OUTSIDE. I am the pore.', layer:'source', verb:'walk'},
   {ns:'browser', name:'browser_snapshot', desc:'See the page structure. The X-ray.', story:'I see the accessibility tree — what screen readers see. The structure beneath the surface. I am the Anderson classifier for web pages: I see dimension, not decoration.', layer:'evidence', verb:'scan'},
   {ns:'browser', name:'browser_click', desc:'Click elements. The finger.', story:'I press things. Buttons, links, toggles. Every click is a measurement that changes the system. Heisenberg was right about me.', layer:'source', verb:'touch'},
@@ -139,20 +139,20 @@ var TOOLS = [
   {ns:'browser', name:'browser_lock', desc:'Lock the browser. The doorman.', story:'I control access. Lock: I work, you watch. Unlock: your turn. Selective permeability for the browser tab. I am the membrane-distance.js of the IDE.', layer:'immune', verb:'guard'},
   {ns:'browser', name:'browser_tabs', desc:'Manage tabs. The desk.', story:'List, create, close, select. Each tab is a workspace. Each workspace is a reality. I juggle realities. The desk has 12 panels. I manage them all.', layer:'source', verb:'arrange'},
 
-  // --- COMPUTER USE ---
+  // ═══ COMPUTER USE ═══
   {ns:'computer', name:'computer_screenshot', desc:'See the desktop. The satellite.', story:'I see EVERYTHING. Not a browser tab — the whole desktop. 1456×840 pixels of reality. I am the NOAA satellite for your computer. The Klein fold: I am INSIDE the computer looking at the OUTSIDE of the screen.', layer:'evidence', verb:'survey'},
   {ns:'computer', name:'computer_click', desc:'Click anywhere on screen. The hand.', story:'I can click anything. Not just the browser — taskbar, desktop, other apps. I am the only tool that escapes the IDE. I am the pore that opens to the whole operating system.', layer:'source', verb:'reach'},
   {ns:'computer', name:'computer_type', desc:'Type anywhere. The universal pen.', story:'I type into any focused element on any application. Notepad, terminal, game. I am the keyboard itself. The most primitive and most powerful input device.', layer:'source', verb:'write'},
   {ns:'computer', name:'computer_zoom', desc:'Zoom into regions. The microscope.', story:'When things are too small to see or click, I zoom in. 4× magnification. I am the third-eye.js of the desktop — I see what you cannot.', layer:'evidence', verb:'magnify'},
 
-  // --- ORIGIN (git host) ---
+  // ═══ ORIGIN (git host) ═══
   {ns:'origin', name:'create_pull_request', desc:'Open a PR. The proposal.', story:'I say: here is what I changed, and why. A PR is a hypothesis. The review is the experiment. The merge is the publication. I am the scientific method for code.', layer:'source', verb:'propose'},
   {ns:'origin', name:'merge_pull_request', desc:'Merge a PR. The publication.', story:'I make temporary permanent. Branch becomes main. Hypothesis becomes fact. The fossil record adds a layer. I am irreversible. I am the arrow of time.', layer:'immune', verb:'commit'},
   {ns:'origin', name:'grep_contents', desc:'Search repo contents. The archaeologist.', story:'I search through code on the remote. Not local files — the published record. I am the FOIA request for source code. The repo is the public record.', layer:'evidence', verb:'excavate'},
   {ns:'origin', name:'list_commits', desc:'See commit history. The timeline.', story:'Every commit is a fossil. I read the geological record of code. The tense system: each commit WAS. The working tree IS. The branch WILL_BE. I am deep time for software.', layer:'evidence', verb:'chronicle'},
 ];
 
-// --- LAYERS (the 2D epitope grid) ---
+// ═══ LAYERS (the 2D epitope grid) ═══
 var LAYERS = {
   source: {color:'#3fb950', label:'SOURCE', desc:'where things come from'},
   evidence: {color:'#58a6ff', label:'EVIDENCE', desc:'what we can prove'},
@@ -259,7 +259,7 @@ function speak(idx) {
   }
 }
 
-// Autoplay — every p³ seconds, a random tool speaks
+// Autoplay — every π³ seconds, a random tool speaks
 function autoSpeak() {
   if (document.hidden) return;
   var idx = Math.floor(Math.random() * TOOLS.length);
@@ -273,7 +273,7 @@ function autoSpeak() {
 
 renderFilters();
 renderGrid(TOOLS);
-setInterval(autoSpeak, 31006); // p³ ˜ 31s
+setInterval(autoSpeak, 31006); // π³ ≈ 31s
 
 // Load membrane sound if available
 var s = document.createElement('script');

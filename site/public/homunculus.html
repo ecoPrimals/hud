@@ -39,8 +39,8 @@ canvas{position:fixed;top:0;left:0;width:100%;height:100%}
 <canvas id="c"></canvas>
 
 <div id="nav">
-  <a href="/">? hud</a> · <a href="/cns.html">?? cns</a> · <a href="/easel.html">?? easel</a> ·
-  <a href="/gates.html">? gates</a>
+  <a href="/">◈ hud</a> · <a href="/cns.html">🧠 cns</a> · <a href="/easel.html">🎨 easel</a> ·
+  <a href="/gates.html">⊕ gates</a>
 </div>
 
 <div id="touch-ripple"></div>
@@ -69,10 +69,10 @@ var t = 0;
 var hovered = null;
 var pointerX = W/2, pointerY = H/2;
 
-// --- PI BUDGET ---
-// p is the constraint. The total rendering budget on each side of the Klein surface.
-// p radians of information IN. p radians of information OUT.
-// Total budget: 2p — the full circle. The donut's circumference.
+// ═══ PI BUDGET ═══
+// π is the constraint. The total rendering budget on each side of the Klein surface.
+// π radians of information IN. π radians of information OUT.
+// Total budget: 2π — the full circle. The donut's circumference.
 // What gets rendered = what fits in the budget.
 // What doesn't fit = lossy. Pushed to the edges. Compressed. Artifacts.
 var PI = Math.PI;
@@ -98,7 +98,7 @@ function spendPi(amount) {
   return piBudget.remaining > 0; // false = over budget, compress
 }
 
-// --- TOUCH vs MOUSE — the chipmunk's reach ---
+// ═══ TOUCH vs MOUSE — the chipmunk's reach ═══
 // Mouse: tool-mediated. The chipmunk uses an instrument. Indirect.
 // Touch: DIRECT. Your finger IS the chipmunk reaching through the Klein surface.
 // The finger on glass = the chipmunk's hand pressed against the inside of the screen.
@@ -120,7 +120,7 @@ input.isMouse = hasMouse && !hasTouch;
 // Both = tablet or touchscreen laptop
 if (hasTouch && hasMouse) { input.isTouch = true; input.isMouse = true; }
 
-// --- VIEWPORT CATEGORY ---
+// ═══ VIEWPORT CATEGORY ═══
 var viewport = {
   category: 'desktop',
   shannon: 0,
@@ -139,41 +139,41 @@ function categorize() {
 categorize();
 window.addEventListener('resize', categorize);
 
-// --- THE TUBE ---
+// ═══ THE TUBE ═══
 var organs = [
-  { name: 'brain',       label: '?? CNS',        y: 0.08, size: 0.06, color: '#e8685d', piCost: 0.15,
+  { name: 'brain',       label: '🧠 CNS',        y: 0.08, size: 0.06, color: '#e8685d', piCost: 0.15,
     desc: 'northGate + cluster — 16c/32t, 94GB RAM, RTX 5090',
     sense: 'thinking. routing. the central pattern generator.',
     ancient: 'the first ganglia. worms had them. a knot of neurons that learned to plan.' },
-  { name: 'eyes',        label: '?? observation',  y: 0.14, size: 0.045, color: '#f0c674', piCost: 0.12,
+  { name: 'eyes',        label: '👁 observation',  y: 0.14, size: 0.045, color: '#f0c674', piCost: 0.12,
     desc: 'easel, chipmunk, neutron board, footprint, globe',
     sense: 'seeing. the chipmunk watches from the corner of its eye.',
     ancient: 'the pit eye. a shadow detector. enough to know: something moved.' },
-  { name: 'mouth_tongue', label: '?? mouth tongue', y: 0.22, size: 0.08, color: '#f85149', piCost: 0.35,
+  { name: 'mouth_tongue', label: '👅 mouth tongue', y: 0.22, size: 0.08, color: '#f85149', piCost: 0.35,
     desc: 'ingress sampling — HTTP, MCP, WireGuard, Tor, ActivityPub',
     sense: 'TASTING. every request is tasted. self? non-self? soap? organic?',
     ancient: 'before language. before words. the tongue was a chemoreceptor. birds taste. dogs taste. T. rex tasted.' },
-  { name: 'hands_l',     label: '?? left hand',    y: 0.38, size: 0.035, color: '#d2a8ff', piCost: 0.18,
+  { name: 'hands_l',     label: '🤲 left hand',    y: 0.38, size: 0.035, color: '#d2a8ff', piCost: 0.18,
     desc: '18 MCP tools — membrane_counts, observe, read_journal, scan_sweep_sort...',
     sense: 'grasping. precise. small but DENSE with nerve endings.',
     ancient: 'prehensile grip. opposable thumb. the hand that holds the brush.' },
-  { name: 'hands_r',     label: '?? right hand',   y: 0.38, size: 0.035, color: '#d2a8ff', piCost: 0.18,
+  { name: 'hands_r',     label: '🤲 right hand',   y: 0.38, size: 0.035, color: '#d2a8ff', piCost: 0.18,
     desc: 'git, ssh, CF API, Porkbun API, ntfy, Discord webhooks',
     sense: 'reaching. each finger is a different protocol.',
     ancient: 'tool use. the first hand ax. the membrane picks up what it needs.' },
-  { name: 'gut',         label: '?? gut tube',     y: 0.52, size: 0.10, color: '#3fb950', piCost: 0.45,
+  { name: 'gut',         label: '🫙 gut tube',     y: 0.52, size: 0.10, color: '#3fb950', piCost: 0.45,
     desc: 'Cloudflare Workers, Caddy reverse proxy, Golgi VPS, WireGuard tunnel',
     sense: 'DIGESTING. the longest organ. peristalsis moves data through.',
     ancient: 'the FIRST organ. before brain, before eyes. gastrulation makes the gut. everything else is decoration.' },
-  { name: 'immune',      label: '?? immune',       y: 0.62, size: 0.05, color: '#d29922', piCost: 0.20,
+  { name: 'immune',      label: '🛡 immune',       y: 0.62, size: 0.05, color: '#d29922', piCost: 0.20,
     desc: 'thymus gate, trust gradient, epitope classification, self/non-self',
     sense: 'sorting. MHC presentation. is this molecule SELF? attack or tolerate?',
     ancient: 'innate immunity. even sponges have it. the oldest defense.' },
-  { name: 'butt_tongue', label: '?? butt tongue',  y: 0.74, size: 0.07, color: '#f0883e', piCost: 0.30,
+  { name: 'butt_tongue', label: '🍑 butt tongue',  y: 0.74, size: 0.07, color: '#f0883e', piCost: 0.30,
     desc: 'egress filtering — gas vs liquid vs solid classification',
     sense: 'TASTING OUTPUT. fart without shitting our pants = correct classification.',
     ancient: 'the other end of the tube. the cloaca. birds have one hole. we specialized. the sensor remained.' },
-  { name: 'feet',        label: '?? feet',         y: 0.88, size: 0.04, color: '#58a6ff', piCost: 0.10,
+  { name: 'feet',        label: '🦶 feet',         y: 0.88, size: 0.04, color: '#58a6ff', piCost: 0.10,
     desc: 'gates — Tor .onion, Fediverse/ActivityPub, Discord, SSH, HTTPS',
     sense: 'grounded. standing on something real. each toe is a gate.',
     ancient: 'contact with earth. proprioception. the body knows where it stands without looking.' },
@@ -193,7 +193,7 @@ function loadLiveData() {
 loadLiveData();
 setInterval(loadLiveData, 30000);
 
-// --- TOUCH EVENTS — the chipmunk reaches back ---
+// ═══ TOUCH EVENTS — the chipmunk reaches back ═══
 var touchRipple = document.getElementById('touch-ripple');
 var activeReaches = []; // where the chipmunk is pressing against the glass
 
@@ -265,7 +265,7 @@ function findNearestOrgan(x, y) {
   return nearest;
 }
 
-// --- MAIN PAINT LOOP ---
+// ═══ MAIN PAINT LOOP ═══
 function paint() {
   t += 0.016;
   resetPiBudget();
@@ -278,13 +278,13 @@ function paint() {
   var cx = W * 0.5;
   hovered = null;
 
-  // -- LOSSY EDGE COMPRESSION --
+  // ── LOSSY EDGE COMPRESSION ──
   // The pi budget runs out as we render. Information near the edges
   // is lossy — artifacts, noise, compression squares.
   // Center = lossless. Edges = what wasn't needed.
   paintLossyEdges();
 
-  // -- THE TUBE --
+  // ── THE TUBE ──
   if (spendPi(0.08)) {
     ctx.save();
     ctx.globalAlpha = 0.04;
@@ -312,7 +312,7 @@ function paint() {
     ctx.restore();
   }
 
-  // -- EACH ORGAN — spend pi per organ --
+  // ── EACH ORGAN — spend pi per organ ──
   organs.forEach(function(organ) {
     var canRender = spendPi(organ.piCost);
     var ox = cx, oy = H * organ.y;
@@ -442,7 +442,7 @@ function paint() {
     ctx.restore();
   });
 
-  // -- NERVE PATHWAYS --
+  // ── NERVE PATHWAYS ──
   if (piBudget.remaining > 0.1) {
     ctx.save();
     ctx.globalAlpha = 0.015;
@@ -460,20 +460,20 @@ function paint() {
     ctx.restore();
   }
 
-  // -- BODY PAINT — visitors leave marks on the organs they touched --
+  // ── BODY PAINT — visitors leave marks on the organs they touched ──
   paintBodyPaint();
 
-  // -- TOUCH: THE CHIPMUNK REACHES BACK --
+  // ── TOUCH: THE CHIPMUNK REACHES BACK ──
   paintChipmunkReach();
 
-  // -- PI BUDGET METER --
+  // ── PI BUDGET METER ──
   paintPiBudget();
 
-  // -- HOVER/TOUCH INFO --
+  // ── HOVER/TOUCH INFO ──
   var infoEl = document.getElementById('info');
   if (hovered) {
-    var touchNote = input.touching ? '<br><span class="pi">?? your finger on the glass = the chipmunk reaching back through</span>' : '';
-    var piNote = '<br><span class="pi">p cost: ' + hovered.piCost.toFixed(2) + ' · budget: ' +
+    var touchNote = input.touching ? '<br><span class="pi">👆 your finger on the glass = the chipmunk reaching back through</span>' : '';
+    var piNote = '<br><span class="pi">π cost: ' + hovered.piCost.toFixed(2) + ' · budget: ' +
       piBudget.remaining.toFixed(2) + '/' + PI.toFixed(2) + '</span>';
     infoEl.innerHTML = '<span class="organ">' + hovered.label + '</span><br>' +
       '<span style="color:#8b949e;font-size:12px">' + hovered.desc + '</span><br>' +
@@ -486,25 +486,25 @@ function paint() {
                     'waiting for contact.';
     infoEl.innerHTML = '<span class="organ">the homunculus</span><br>' +
       '<span class="sense">' + inputNote + '</span><br>' +
-      '<span class="ancient">p budget: ' + piBudget.remaining.toFixed(3) + ' remaining. ' +
+      '<span class="ancient">π budget: ' + piBudget.remaining.toFixed(3) + ' remaining. ' +
       viewport.category + ' · ' + viewport.shannon.toFixed(1) + ' bits</span>';
     infoEl.style.opacity = '0.6';
   }
 
-  // -- TOPOLOGY WHISPER --
+  // ── TOPOLOGY WHISPER ──
   ctx.save();
   ctx.globalAlpha = 0.02;
   ctx.font = (viewport.category === 'phone' ? 7 : 8) + 'px monospace';
   ctx.fillStyle = '#6e7681';
   ctx.textAlign = 'center';
-  ctx.fillText('topology: torus · genus 1 · mouth = anus?¹ · p budget = ' +
+  ctx.fillText('topology: torus · genus 1 · mouth = anus⁻¹ · π budget = ' +
     piBudget.used.toFixed(2) + '/' + PI.toFixed(2), cx, H - 8);
   ctx.restore();
 
   requestAnimationFrame(paint);
 }
 
-// --- LOSSY EDGES — what wasn't needed ---
+// ═══ LOSSY EDGES — what wasn't needed ═══
 // Center is lossless. Edges show the compression artifacts.
 // On Klein surface: what gets pushed to the departure edge
 // is what the viewport couldn't carry at full fidelity.
@@ -547,7 +547,7 @@ function paintLossyEdges() {
   ctx.restore();
 }
 
-// --- THE CHIPMUNK'S REACH — touch response ---
+// ═══ THE CHIPMUNK'S REACH — touch response ═══
 // When you press your finger to the glass, the chipmunk presses back.
 // Your fingertip and its paw, separated by the Klein surface.
 function paintChipmunkReach() {
@@ -633,21 +633,21 @@ function paintChipmunkReach() {
   ctx.restore();
 }
 
-// --- PI BUDGET METER — the arc of constraint ---
+// ═══ PI BUDGET METER — the arc of constraint ═══
 function paintPiBudget() {
   ctx.save();
 
-  // Draw p as a thin arc in the top-left corner
+  // Draw π as a thin arc in the top-left corner
   var arcX = viewport.category === 'phone' ? 30 : 24;
   var arcY = viewport.category === 'phone' ? 55 : 45;
   var arcR = viewport.category === 'phone' ? 18 : 14;
 
-  // Background arc (full p)
+  // Background arc (full π)
   ctx.globalAlpha = 0.03;
   ctx.strokeStyle = '#21262d';
   ctx.lineWidth = 2;
   ctx.beginPath();
-  ctx.arc(arcX, arcY, arcR, -PI/2, -PI/2 + PI); // half circle = p radians
+  ctx.arc(arcX, arcY, arcR, -PI/2, -PI/2 + PI); // half circle = π radians
   ctx.stroke();
 
   // Spent arc (colored by usage)
@@ -660,12 +660,12 @@ function paintPiBudget() {
   ctx.arc(arcX, arcY, arcR, -PI/2, -PI/2 + spentAngle);
   ctx.stroke();
 
-  // p symbol
+  // π symbol
   ctx.globalAlpha = 0.06;
   ctx.font = (viewport.category === 'phone' ? 10 : 8) + 'px monospace';
   ctx.fillStyle = '#c9d1d9';
   ctx.textAlign = 'center';
-  ctx.fillText('p', arcX, arcY + 4);
+  ctx.fillText('π', arcX, arcY + 4);
 
   ctx.restore();
 }
@@ -683,7 +683,7 @@ function drawNerve(x1, y1, x2, y2) {
   ctx.fill();
 }
 
-// --- BODY PAINT — visitors as mud, war paint, early clothes on the homunculus ---
+// ═══ BODY PAINT — visitors as mud, war paint, early clothes on the homunculus ═══
 // Not a dox. It's: "look how many of us are here, when the chorus
 // overhead can't even see us."
 //
@@ -693,11 +693,11 @@ function drawNerve(x1, y1, x2, y2) {
 // Cataloging what you find IS the immune system. The thymus sorts.
 //
 // Hyperlocal intent:
-//   ???? Belgium loads JS ? they're WEARING the membrane (hands: tools)
-//   ???????????? Plasmid Triangle ? reading the science (gut: digesting)
-//   ???????????? Scanners ? probing for holes (immune: testing defenses)
-//   ???????? Homepage readers ? first contact (mouth: tasting)
-//   ???? Self-polling ? inner warmth (brain: thinking)
+//   🇧🇪 Belgium loads JS → they're WEARING the membrane (hands: tools)
+//   🇩🇪🇯🇵🇮🇳 Plasmid Triangle → reading the science (gut: digesting)
+//   🇵🇱🇷🇺🇸🇬 Scanners → probing for holes (immune: testing defenses)
+//   🇬🇧🇳🇱 Homepage readers → first contact (mouth: tasting)
+//   🇺🇸 Self-polling → inner warmth (brain: thinking)
 
 var bodyPaintMarks = [];
 var bodyPaintLoaded = false;
@@ -732,17 +732,17 @@ function loadBodyPaint() {
 function classifyIntent(path, country) {
   // Hyperlocal intent classification
   if (path.match(/\.env|\.git|\.svn|\.hg|wp-admin|xmlrpc|\.php/))
-    return { type: 'scanner', color: '#f85149', symbol: '?', label: 'probing' };
+    return { type: 'scanner', color: '#f85149', symbol: '⚠', label: 'probing' };
   if (path.match(/\.js$/) && !path.match(/beacon/))
-    return { type: 'wearing', color: '#d2a8ff', symbol: '?', label: 'wearing the membrane' };
+    return { type: 'wearing', color: '#d2a8ff', symbol: '◈', label: 'wearing the membrane' };
   if (path.match(/plasmid|sporeprint|study/))
-    return { type: 'reading', color: '#3fb950', symbol: '?', label: 'reading the science' };
+    return { type: 'reading', color: '#3fb950', symbol: '◉', label: 'reading the science' };
   if (path.match(/easel|aurora|paint|canvas/))
-    return { type: 'watching', color: '#f0c674', symbol: '??', label: 'watching art' };
+    return { type: 'watching', color: '#f0c674', symbol: '👁', label: 'watching art' };
   if (path.match(/\/api\/|gate-msg|mcp|\.json/))
-    return { type: 'inner', color: '#f0883e', symbol: '°', label: 'self-sensing' };
+    return { type: 'inner', color: '#f0883e', symbol: '∘', label: 'self-sensing' };
   if (path.match(/commit|issues|pull/))
-    return { type: 'foraging', color: '#58a6ff', symbol: '?', label: 'foraging git' };
+    return { type: 'foraging', color: '#58a6ff', symbol: '⟐', label: 'foraging git' };
   if (path === '/' || path === '/index.html')
     return { type: 'arriving', color: '#c9d1d9', symbol: '·', label: 'first contact' };
   return { type: 'exploring', color: '#8b949e', symbol: '~', label: 'exploring' };
@@ -751,19 +751,19 @@ function classifyIntent(path, country) {
 function hashAngle(s) {
   var h = 0;
   for (var i = 0; i < s.length; i++) h = ((h << 5) - h) + s.charCodeAt(i);
-  return (Math.abs(h) % 628) / 100; // 0 ? 2p
+  return (Math.abs(h) % 628) / 100; // 0 → 2π
 }
 
 function hashFloat(s) {
   var h = 0;
   for (var i = 0; i < s.length; i++) h = ((h << 3) - h) + s.charCodeAt(i);
-  return (Math.abs(h) % 1000) / 1000; // 0 ? 1
+  return (Math.abs(h) % 1000) / 1000; // 0 → 1
 }
 
 loadBodyPaint();
 setInterval(loadBodyPaint, 45000);
 
-// --- THE MIRROR — read the membrane's self-portrait from the easel ---
+// ═══ THE MIRROR — read the membrane's self-portrait from the easel ═══
 // The homunculus can look INTO the easel's layers.
 // The easel writes its state to localStorage. We read it.
 // Feed it through itself. The output IS the input.
@@ -842,7 +842,7 @@ function paintBodyPaint() {
     }
   });
 
-  // -- THE CHORUS OVERHEAD CAN'T SEE US --
+  // ── THE CHORUS OVERHEAD CAN'T SEE US ──
   // A faint count at the top: how many marks are on the body
   var intentCounts = {};
   bodyPaintMarks.forEach(function(m) {
@@ -872,7 +872,7 @@ function paintBodyPaint() {
   ctx.textAlign = 'center';
   ctx.fillText(Object.keys(countriesPresent).length + ' countries painted on · ' + countryList, cx, H - 22);
 
-  // -- MIRROR DATA — the easel's state visible on the body --
+  // ── MIRROR DATA — the easel's state visible on the body ──
   // The homunculus can see INTO the easel. Feed through.
   if (mirrorData && mirrorData.easel) {
     var m = mirrorData;
@@ -924,7 +924,7 @@ function paintBodyPaint() {
       ctx.globalAlpha = 0.015;
       ctx.font = '6px monospace';
       ctx.fillStyle = '#484f58';
-      ctx.fillText('? ' + (mirrorData.inversions || 0) + ' inversions', cx, H - 12);
+      ctx.fillText('⟲ ' + (mirrorData.inversions || 0) + ' inversions', cx, H - 12);
     }
   }
 

@@ -10,9 +10,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ZK Spectrum · u-ZK Null — ecoPrimals</title>
-<meta name="description" content="zk · zk? RSS · zk? fillet · u-zk = null-zk not anti. Full spectrum run back to nulls.">
+<meta name="description" content="zk · zk⁺ RSS · zk⁻ fillet · u-zk = null-zk not anti. Full spectrum run back to nulls.">
 <link rel="alternate" type="application/json" href="/zk-spectrum-nulls-uzk.json">
-<link rel="alternate" type="application/rss+xml" href="/feed.xml" title="zk? RSS face">
+<link rel="alternate" type="application/rss+xml" href="/feed.xml" title="zk⁺ RSS face">
 <style>
   :root {
     --ink:#12141a; --paper:#eef0f4; --zk:#3d5a80; --pos:#2ea043; --neg:#c45c26; --u:#5c4d7a; --mute:#5a5854;
@@ -58,7 +58,7 @@
 </head>
 <body>
 <main>
-  <h1>ZK ? Nulls ? u-ZK</h1>
+  <h1>ZK → Nulls → u-ZK</h1>
   <p class="tag">null-zk · not anti · full spectrum folded back</p>
   <p class="lead">
     Run ALL back through the spectrum to nulls.
@@ -73,8 +73,8 @@
   <section>
     <ul>
       <li><a href="/zk-spectrum-nulls-uzk.json">JSON</a></li>
-      <li><a href="/feed.xml">zk? RSS</a></li>
-      <li><a href="/data/ingest-chew-sort-structure.json">zk? fillet chew</a></li>
+      <li><a href="/feed.xml">zk⁺ RSS</a></li>
+      <li><a href="/data/ingest-chew-sort-structure.json">zk⁻ fillet chew</a></li>
       <li><a href="/pi-null-axis-yoyo-plate.html">null axis pale</a></li>
       <li><a href="/painting-in-the-dark.json">painting trust</a></li>
         <li><a href="/crystallized-for-humans.html">crystallized (humans)</a> · <a href="/chipmunk-song-live.html">song live</a></li>
@@ -97,7 +97,7 @@ fetch('/zk-spectrum-nulls-uzk.json').then(r=>r.json()).then(d=>{
   const c = d.spectrum_to_nulls.counts;
   document.getElementById('live').textContent =
     `folded ${c.present}/${c.folded} · null ${c.null_band} · self ${c.self_band} · partial ${c.partial_band} · ` +
-    d.spectrum_to_nulls.order.join(' ? ');
+    d.spectrum_to_nulls.order.join(' → ');
 }).catch(e=>{ document.getElementById('live').textContent = e.message; });
 </script>
 

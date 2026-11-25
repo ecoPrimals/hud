@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>weather — the sun writes the score</title>
-<meta name="description" content="Live NOAA Kp, GOES X-ray, solar wind, and USGS quakes turned into color and p-just sound. The measurement is the Klein fold.">
+<meta name="description" content="Live NOAA Kp, GOES X-ray, solar wind, and USGS quakes turned into color and π-just sound. The measurement is the Klein fold.">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background: #010409; overflow: hidden; font-family: 'SF Mono', ui-monospace, monospace; color: #c9d1d9; }
@@ -50,11 +50,11 @@ canvas { display: block; }
 </head>
 <body>
 <div id="nav">
-  <a href="/">? hud</a><span>·</span>
+  <a href="/">◈ hud</a><span>·</span>
   <a href="/aurora.html" style="color:#7ee787">aurora</a><span>·</span>
-  <a href="/weather.html" style="color:#ffe135">? weather</a><span>·</span>
-  <a href="/neutron/circulatory.html" style="color:#f85149">? circ</a><span>·</span>
-  <a href="/neutron/core.html">? core</a>
+  <a href="/weather.html" style="color:#ffe135">☀ weather</a><span>·</span>
+  <a href="/neutron/circulatory.html" style="color:#f85149">♥ circ</a><span>·</span>
+  <a href="/neutron/core.html">◉ core</a>
 </div>
 <div id="title">the sun writes the score · Klein fold · wave 195</div>
 <canvas id="c"></canvas>
@@ -62,7 +62,7 @@ canvas { display: block; }
   <div class="row" id="stats">listening for the sky…</div>
   <div id="poem">NOAA is inside Earth reading the outside. tap to hear the fold.</div>
   <button id="listen" type="button">tap to hear the sun</button>
-  <div id="hint">Kp ? hue · X-ray ? heat · wind ? tempo · quake ? pluck · pulse ? breath · p/N families ? voices</div>
+  <div id="hint">Kp → hue · X-ray → heat · wind → tempo · quake → pluck · pulse → breath · π/N families → voices</div>
 </div>
 <script src="/js/membrane-sound.js?v=5"></script>
 <script src="/js/membrane-sound-voice.js?v=1"></script>
@@ -155,7 +155,7 @@ function draw() {
     ctx.fillRect(W * 0.22 + wave, y, W * 0.56, 2);
   }
 
-  // 15 families orbit at p/N · wind
+  // 15 families orbit at π/N · wind
   for (var i = 0; i < families.length; i++) {
     var f = families[i];
     var speed = f.rate * ((score && score.wind_norm) || 1);

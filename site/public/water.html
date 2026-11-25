@@ -124,7 +124,7 @@ button:hover{opacity:0.9}button.dm{background:var(--dim)}button.cy{background:va
 <div style="text-align:center;margin:1.5rem 0;font-size:1.4rem;color:var(--dim);animation:bob 2s ease-in-out infinite">&#8595;</div>
 </div>
 
-<!-- --- THE BUCKLER  shield up front --- -->
+<!-- ═══ THE BUCKLER  shield up front ═══ -->
 <div class="float" id="float-buckler">
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.6rem">
 <a href="https://detroit.primals.eco" class="box" style="border-color:var(--gold);text-decoration:none;display:block">
@@ -456,11 +456,11 @@ var THEATER_CATALOG=[
   {id:'EatforHealth1954',title:'Eat for Health (1954)',cat:'science'},
 ];
 var THEATER_ROUTES={
-  'banana':[{t:'Paper 1: Anderson QS',u:'https://primals.eco/science/01-anderson-qs/'},{t:'?? banana test',u:'/banana.html'}],
-  'cosmos':[{t:'Paper 50: p-Dimensional',u:'https://primals.eco/science/50-pi-dimensional-observation/'},{t:'? weather sonification',u:'/weather.html'},{t:'?? globe',u:'/neutron/globe.html'}],
-  'bacteria':[{t:'Paper 3: BioAg Microbiome',u:'https://primals.eco/science/03-bioag-microbiome/'},{t:'?? helixVision',u:'/neutron/helix.html'},{t:'protein structure (article)',u:'https://github.com/ecoPrimals/wateringHole/blob/main/docs/protein-structure-rust.md'}],
-  'film':[{t:'Paper 80: Artisan & Comedian',u:'https://primals.eco/science/80-the-artisan-and-the-comedian/'},{t:'?? easel',u:'/easel.html'}],
-  'science':[{t:'Paper 117: Primal Reclassification',u:'https://primals.eco/science/117-the-primal-reclassification/'},{t:'getting started (article)',u:'https://github.com/ecoPrimals/wateringHole/blob/main/docs/getting-started.md'},{t:'?? all 117 papers',u:'https://primals.eco/science/'}],
+  'banana':[{t:'Paper 1: Anderson QS',u:'https://primals.eco/science/01-anderson-qs/'},{t:'🍌 banana test',u:'/banana.html'}],
+  'cosmos':[{t:'Paper 50: π-Dimensional',u:'https://primals.eco/science/50-pi-dimensional-observation/'},{t:'☀ weather sonification',u:'/weather.html'},{t:'🌐 globe',u:'/neutron/globe.html'}],
+  'bacteria':[{t:'Paper 3: BioAg Microbiome',u:'https://primals.eco/science/03-bioag-microbiome/'},{t:'🧬 helixVision',u:'/neutron/helix.html'},{t:'protein structure (article)',u:'https://github.com/ecoPrimals/wateringHole/blob/main/docs/protein-structure-rust.md'}],
+  'film':[{t:'Paper 80: Artisan & Comedian',u:'https://primals.eco/science/80-the-artisan-and-the-comedian/'},{t:'🎨 easel',u:'/easel.html'}],
+  'science':[{t:'Paper 117: Primal Reclassification',u:'https://primals.eco/science/117-the-primal-reclassification/'},{t:'getting started (article)',u:'https://github.com/ecoPrimals/wateringHole/blob/main/docs/getting-started.md'},{t:'📖 all 117 papers',u:'https://primals.eco/science/'}],
 };
 function loadTheater(cat){
   var pool=cat==='random'?THEATER_CATALOG:THEATER_CATALOG.filter(function(f){return f.cat===cat});
@@ -489,7 +489,7 @@ FEEDS.forEach(function(f){if(f.indexOf(ql)!==-1)R.push({t:"feed",h:'<a href="/'+
 var box=document.getElementById("results-box");box.innerHTML=R.length?R.map(function(r){return'<div class="fi"><span style="color:var(--dim);font-size:0.7rem">'+(r.t==="gene"?"&#9850;":r.t==="primal"?"&#9670;":r.t==="feed"?"&#9741;":"&#9733;")+'</span> '+r.h+'</div>'}).join(""):'<p>no results for "'+q+'"</p>';
 document.getElementById("search-results").classList.remove("hidden");document.getElementById("main-content").classList.add("hidden")}
 if("serviceWorker" in navigator)navigator.serviceWorker.register("/sw.js").catch(function(){});
-// --- BINGO CUBE ---
+// ═══ BINGO CUBE ═══
 var EPITOPES=[{id:"investigation",label:"INVEST.",color:"#e85d3a"},{id:"topology",label:"TOPOLOGY",color:"#58a6ff"},{id:"philosophy",label:"PHILO.",color:"#d2a8ff"},{id:"method",label:"METHOD",color:"#5ab87a"},{id:"immune",label:"IMMUNE",color:"#f0e68c"},{id:"science",label:"SCIENCE",color:"#c9d1d9"},{id:"signal",label:"SIGNAL",color:"#ec4899"},{id:"physics",label:"PHYSICS",color:"#06b6d4"}];
 var cubeState=null,dragSrc=null;
 function loadCubeState(){try{var s=localStorage.getItem("bingo-cube-state");if(s){cubeState=JSON.parse(s);return}}catch(e){}cubeState={order:[0,1,2,3,-1,4,5,6,7],values:EPITOPES.map(function(){return Math.floor(Math.random()*40)+5})}}
@@ -502,7 +502,7 @@ function downloadCube(){renderCubeCanvas();var l=document.createElement("a");l.d
 async function copyCube(){renderCubeCanvas();try{var b=await new Promise(function(r){document.getElementById("cube-canvas").toBlob(r,"image/png")});await navigator.clipboard.write([new ClipboardItem({"image/png":b})]);document.getElementById("cube-hint").textContent="copied!";setTimeout(function(){document.getElementById("cube-hint").textContent="drag cells to swap."},2000)}catch(e){downloadCube()}}
 async function anchorCube(){renderCubeCanvas();var d=document.getElementById("cube-canvas").toDataURL("image/png");var buf=new Uint8Array(d.length);for(var i=0;i<d.length;i++)buf[i]=d.charCodeAt(i);var h=await crypto.subtle.digest("SHA-256",buf);var hex=Array.from(new Uint8Array(h)).map(function(b){return b.toString(16).padStart(2,"0")}).join("");try{await fetch("/api/anchor",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({identity_hash:"bingo-cube:"+hex.substring(0,32)})});document.getElementById("cube-hint").innerHTML='<span style="color:var(--a)">anchored! '+hex.substring(0,16)+'...</span>'}catch(e){document.getElementById("cube-hint").textContent="anchor failed"}}
 buildCubeGrid();
-// --- STARDUST + BERRY + CHIPMUNK ---
+// ═══ STARDUST + BERRY + CHIPMUNK ═══
 (function(){var TAU=Math.PI*2,field=document.getElementById("stardust"),dusts=[],mouseX=-200,mouseY=-200;
 var EARTH_TAU=TAU/86400,LUNAR_TAU=TAU/(29.53*86400),ELASTIC_K=0.0003;
 function worldAngle(){var n=new Date(),s=n.getUTCHours()*3600+n.getUTCMinutes()*60+n.getUTCSeconds()+n.getUTCMilliseconds()/1000;return(s/86400)*TAU}

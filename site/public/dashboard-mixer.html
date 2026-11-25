@@ -123,15 +123,15 @@ footer .pulse { color: var(--green); animation: pulse 2s infinite; }
 <body>
 <div id="app">
   <header>
-    <span>??</span>
+    <span>👁</span>
     <h1>dashboard � the mixing board</h1>
     <span class="stats" id="stats">loading...</span>
     <div class="mode-btns">
-      <button class="active" data-mode="mixer">?? mixer</button>
-      <button data-mode="sphere">?? abstract</button>
-      <button data-mode="grid">?? concrete</button>
-      <button data-mode="braid">?? braid</button>
-      <button data-mode="ocenter">? O+</button>
+      <button class="active" data-mode="mixer">🎚 mixer</button>
+      <button data-mode="sphere">🔮 abstract</button>
+      <button data-mode="grid">🧱 concrete</button>
+      <button data-mode="braid">🌊 braid</button>
+      <button data-mode="ocenter">⊕ O+</button>
     </div>
     <div class="nav-links">
       <a href="/">HUD</a> <a href="https://nestgate.io/ide.html">desk</a> <a href="/self-model.html">self</a> <a href="/epoch-rooms.html">epochs</a>
@@ -157,9 +157,9 @@ footer .pulse { color: var(--green); animation: pulse 2s infinite; }
   </div>
 
   <footer>
-    <span class="pulse">?</span>
+    <span class="pulse">●</span>
     <span id="foot-status">scanning feeds...</span>
-    <span style="margin-left:auto">refreshes every p�10s � all data is real � the dashboard IS the eye</span>
+    <span style="margin-left:auto">refreshes every π�10s � all data is real � the dashboard IS the eye</span>
   </footer>
 </div>
 
@@ -174,18 +174,18 @@ let sphereCtx, braidCtx;
 let t = 0;
 
 const FEED_ICONS = {
-  now: '?', negentropy: '??', topology: '??', chipmunk: '??', membrane: '??',
-  heartbeat: '??', campfire: '??', csf: '??', energy: '?', human: '??',
-  braid: '??', green: '??', dashboard: '??', backscatter: '??', hello: '??',
-  manifest: '??', presence: '??', state: '??', temperature: '??', triad: '?',
-  entropy: '??', doorbell: '??', fleet: '?', modality: '??',
+  now: '⏱', negentropy: '🌌', topology: '🕸', chipmunk: '🐿', membrane: '🫧',
+  heartbeat: '💓', campfire: '🔥', csf: '🧠', energy: '⚡', human: '👤',
+  braid: '🔗', green: '🌿', dashboard: '📊', backscatter: '📡', hello: '👋',
+  manifest: '📋', presence: '👁', state: '🔄', temperature: '🌡', triad: '△',
+  entropy: '🎲', doorbell: '🔔', fleet: '⚓', modality: '🎭',
 };
 
 function iconFor(name) {
   for (const [k, v] of Object.entries(FEED_ICONS)) {
     if (name.includes(k)) return v;
   }
-  return '?';
+  return '◇';
 }
 
 function ageClass(ts) {
@@ -395,8 +395,8 @@ function renderSphere() {
     sphereCtx.fillStyle = 'rgba(88,166,255,0.2)';
     sphereCtx.font = '9px monospace';
     sphereCtx.textAlign = 'center';
-    sphereCtx.fillText('size ?', cx + R + 30, cy);
-    sphereCtx.fillText('? freshness', cx, cy - R - 15);
+    sphereCtx.fillText('size →', cx + R + 30, cy);
+    sphereCtx.fillText('↑ freshness', cx, cy - R - 15);
     sphereCtx.fillText('abstract Cartesian sphere', cx, h - 20);
 
     requestAnimationFrame(frame);
@@ -500,7 +500,7 @@ function renderBraid() {
     braidCtx.fillStyle = 'rgba(163,113,247,0.2)';
     braidCtx.font = '10px monospace';
     braidCtx.textAlign = 'center';
-    braidCtx.fillText('sourdough braid � each feed is a strand, time flows right ?', w / 2, 20);
+    braidCtx.fillText('sourdough braid � each feed is a strand, time flows right →', w / 2, 20);
 
     requestAnimationFrame(frame);
   }
@@ -523,8 +523,8 @@ function renderOCenter() {
     const n = feeds.length || 1;
 
     // === ORTHOGONAL AXES � the + at center ===
-    // X-axis (horizontal) = TIME (fresh left ? stale right)
-    // Y-axis (vertical)   = SIZE (small top ? big bottom)
+    // X-axis (horizontal) = TIME (fresh left → stale right)
+    // Y-axis (vertical)   = SIZE (small top → big bottom)
     // Z-axis (depth/color) = CATEGORY (type of feed)
     // W-axis (radius pulse) = ALIVE/DEAD
 
@@ -560,10 +560,10 @@ function renderOCenter() {
     ctx.fillStyle = 'rgba(88,166,255,0.15)';
     ctx.font = '8px monospace';
     ctx.textAlign = 'center';
-    ctx.fillText('? fresh � TIME � stale ?', cx, cy - oR - 50);
+    ctx.fillText('← fresh � TIME � stale →', cx, cy - oR - 50);
     ctx.save(); ctx.translate(cx + oR + 50, cy);
     ctx.rotate(-Math.PI / 2);
-    ctx.fillText('? small � SIZE � big ?', 0, 0);
+    ctx.fillText('← small � SIZE � big →', 0, 0);
     ctx.restore();
 
     // Plot feeds orthogonally from center
@@ -627,10 +627,10 @@ function renderOCenter() {
 
     // === INNER ENGINES � the processors at the heart of the O ===
     const engines = [
-      { name: 'scan', icon: '??', angle: 0,           color: '#3fb950', desc: 'sweep � sort' },
-      { name: 'ferment', icon: '??', angle: Math.PI/2,    color: '#d29922', desc: 'sourdough' },
-      { name: 'weave', icon: '??', angle: Math.PI,        color: '#a371f7', desc: 'braid' },
-      { name: '??', icon: '??', angle: Math.PI*1.5,     color: '#58a6ff', desc: 'painter' },
+      { name: 'scan', icon: '🔬', angle: 0,           color: '#3fb950', desc: 'sweep � sort' },
+      { name: 'ferment', icon: '🍞', angle: Math.PI/2,    color: '#d29922', desc: 'sourdough' },
+      { name: 'weave', icon: '🔗', angle: Math.PI,        color: '#a371f7', desc: 'braid' },
+      { name: '🐿', icon: '🐿', angle: Math.PI*1.5,     color: '#58a6ff', desc: 'painter' },
     ];
     const eR = oR * 0.65;
     engines.forEach((eng, ei) => {
@@ -676,11 +676,11 @@ function renderOCenter() {
     ctx.fillStyle = 'rgba(88,166,255,0.1)';
     ctx.font = '7px monospace';
     ctx.textAlign = 'left';
-    ctx.fillText('X: time ?', cx + 15, cy - 3);
+    ctx.fillText('X: time →', cx + 15, cy - 3);
     ctx.textAlign = 'center';
-    ctx.fillText('Y: size ?', cx + 3, cy + 15);
+    ctx.fillText('Y: size ↓', cx + 3, cy + 15);
     ctx.textAlign = 'left';
-    ctx.fillText('Z: depth ?', cx + 10, cy - 14);
+    ctx.fillText('Z: depth ↗', cx + 10, cy - 14);
 
     // Life is orthogonal
     ctx.fillStyle = 'rgba(163,113,247,0.12)';

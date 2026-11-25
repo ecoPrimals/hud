@@ -34,8 +34,8 @@
   <div id="pairs"></div>
   <p><a href="/etiology-key-pairs-traceback.json">JSON</a> �
      <a href="/immune-math-opsonize-drip.html">immune math</a> �
-     <a href="/antifungal-neurotoxin-dataset.json">antifungal?neurotoxin</a></p>
-  <footer>ecoPrimals � agent?phenotype � walk cascade backward</footer>
+     <a href="/antifungal-neurotoxin-dataset.json">antifungal↔neurotoxin</a></p>
+  <footer>ecoPrimals � agent↔phenotype � walk cascade backward</footer>
 </main>
 <script>
 fetch('/etiology-key-pairs-traceback.json').then(r=>r.json()).then(d=>{
@@ -45,7 +45,7 @@ fetch('/etiology-key-pairs-traceback.json').then(r=>r.json()).then(d=>{
     `<em>Asbestos:</em> ${a.asbestos_nuance}<br><br>` +
     `<em>HPV/cervix:</em> ${a.viral_nuance}`;
   document.getElementById('pairs').innerHTML = d.key_pairs.slice(0,8).map(p =>
-    `<div class="pair"><b>${p.agent}</b> ? <span class="ph">${p.phenotype}</span><br>` +
+    `<div class="pair"><b>${p.agent}</b> ↔ <span class="ph">${p.phenotype}</span><br>` +
     `<small>crush: ${p.crush_point} � rip: ${p.rip_inside}</small></div>`
   ).join('');
 });

@@ -54,9 +54,9 @@ a{color:#58a6ff}
 </style></head><body>
 <div class="page">
 
-<h1>?? Spinal Column</h1>
-<p>The wire along which ALL signals travel. <strong class="green">Afferent</strong> (sensory) flows <strong class="green">UP ?</strong>.
-<strong class="orange">Efferent</strong> (motor) flows <strong class="orange">DOWN ?</strong>.
+<h1>🦴 Spinal Column</h1>
+<p>The wire along which ALL signals travel. <strong class="green">Afferent</strong> (sensory) flows <strong class="green">UP ↑</strong>.
+<strong class="orange">Efferent</strong> (motor) flows <strong class="orange">DOWN ↓</strong>.
 <strong class="purple">Both</strong> on the <strong>SAME fibers</strong>. Dave's nerves along the column.</p>
 
 <p class="dim">HUD = the ONLY viewport (brain). Desk = puppet strings (motor cortex).
@@ -64,9 +64,9 @@ The spinal column connects them. <code>spinal-column.js</code> is the wire.
 30 vertebrae: C1�C7 cervical, T1�T12 thoracic, L1�L5 lumbar, S1�S5 sacral.</p>
 
 <div class="legend">
-  <span><span class="dot" style="background:#3fb950"></span> afferent (sensory ?)</span>
-  <span><span class="dot" style="background:#f0883e"></span> efferent (motor ?)</span>
-  <span><span class="dot" style="background:#58a6ff"></span> both (?)</span>
+  <span><span class="dot" style="background:#3fb950"></span> afferent (sensory ↑)</span>
+  <span><span class="dot" style="background:#f0883e"></span> efferent (motor ↓)</span>
+  <span><span class="dot" style="background:#58a6ff"></span> both (↕)</span>
 </div>
 
 <h2>Cervical (C1�C7) � Brain & Neck � Highest Bandwidth</h2>
@@ -92,7 +92,7 @@ The desk pulls puppet strings � efferent commands that travel DOWN the cord to
 The response travels BACK UP the same fiber � afferent data returning to the viewport.</p>
 
 <p class="dim" style="margin-top:24px">
-<a href="/">HUD ?</a> � <a href="/cns.html">CNS</a> � <a href="/local-cns-pns.html">local CNS/PNS</a> �
+<a href="/">HUD ↑</a> � <a href="/cns.html">CNS</a> � <a href="/local-cns-pns.html">local CNS/PNS</a> �
 <a href="/homunculus.html">homunculus</a> � <a href="https://nestgate.io/ide.html">desk (IDE)</a> �
 <a href="https://nestgate.io/desk.html">sys desk</a>
 </p>
@@ -141,7 +141,7 @@ VERTEBRAE.forEach(v => {
   row.className = 'v-row';
 
   const dirCls = v.dir === 'afferent' ? 'up' : v.dir === 'efferent' ? 'down' : 'both';
-  const dirArrow = v.dir === 'afferent' ? '? sensory' : v.dir === 'efferent' ? '? motor' : '? both';
+  const dirArrow = v.dir === 'afferent' ? '↑ sensory' : v.dir === 'efferent' ? '↓ motor' : '↕ both';
 
   row.innerHTML = `
     <div class="v-id ${v.region}">${v.id}</div>

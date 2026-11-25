@@ -43,7 +43,7 @@ canvas{display:block;margin:0 auto}
 </head>
 <body>
 
-<h1>? ? ?? three-body around �</h1>
+<h1>☉ ◈ 🐿 three-body around �</h1>
 <div class="sub">no closed-form solution � that's the point</div>
 
 <canvas id="orbit" width="600" height="600"></canvas>
@@ -110,9 +110,9 @@ function drawOrbit() {
 
     // three bodies on the figure-eight, phase-shifted 120�
     const bodies = [
-      { sym: '?', color: '#f0883e', phase: 0 },
-      { sym: '?', color: '#58a6ff', phase: Math.PI * 2 / 3 },
-      { sym: '??', color: '#3fb950', phase: Math.PI * 4 / 3 }
+      { sym: '☉', color: '#f0883e', phase: 0 },
+      { sym: '◈', color: '#58a6ff', phase: Math.PI * 2 / 3 },
+      { sym: '🐿', color: '#3fb950', phase: Math.PI * 4 / 3 }
     ];
 
     bodies.forEach(b => {
@@ -232,7 +232,7 @@ function buildLagrange() {
 function buildInsight() {
   const el = document.getElementById('insight');
   el.innerHTML = `
-    <h3>8 the figure-eight</h3>
+    <h3>∞ the figure-eight</h3>
     <p>${D.orbit_mechanics.the_figure_eight}</p>
     <p style="margin-top:8px;color:#a371f7">${D.the_twist}</p>
   `;

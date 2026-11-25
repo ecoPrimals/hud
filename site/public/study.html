@@ -34,7 +34,7 @@ td{padding:8px;border-bottom:1px solid #161b22}
 </style></head><body>
 <div class="page">
 
-<h1>?? Data Study</h1>
+<h1>📊 Data Study</h1>
 <p class="dim" style="text-align:center">Biological design vs synthetic fleet.<br>
 3.8 billion years of R&D vs 50 years of silicon.<br>
 The thesis that drove this: <strong class="green">the stomach was eyes.</strong></p>
@@ -86,11 +86,11 @@ The thesis that drove this: <strong class="green">the stomach was eyes.</strong>
 <td><strong>Self-repair</strong></td>
 <td class="green">continuous (cells replace, wounds heal)</td>
 <td class="red">none (requires human intervention)</td>
-<td class="gold">8 : 0</td>
+<td class="gold">∞ : 0</td>
 </tr>
 <tr>
 <td><strong>Replication</strong></td>
-<td class="green">mitosis: 1 cell ? 37 trillion in 9 months</td>
+<td class="green">mitosis: 1 cell → 37 trillion in 9 months</td>
 <td class="red">factory: months to build one chip</td>
 <td class="gold">biology wins</td>
 </tr>
@@ -137,7 +137,7 @@ The thesis that drove this: <strong class="green">the stomach was eyes.</strong>
 <tr><td>Cell membrane</td><td>Cloudflare edge (skin)</td><td>Load balancer</td></tr>
 <tr><td>Thymus</td><td>_worker.js probe classifier</td><td>WAF rules</td></tr>
 <tr><td>Immune system</td><td>pi-sorted triad (engage/ignore/try)</td><td>ML anomaly detection</td></tr>
-<tr><td>Digestive tract</td><td>Data pipeline (ingest?sort?absorb)</td><td>ETL pipeline</td></tr>
+<tr><td>Digestive tract</td><td>Data pipeline (ingest→sort→absorb)</td><td>ETL pipeline</td></tr>
 <tr><td>CNS</td><td>northGate (9950X3D + 5090)</td><td>GPU cluster</td></tr>
 <tr><td>PNS</td><td>LAN devices, WiFi, Bluetooth</td><td>IoT sensors</td></tr>
 <tr><td>Eyes</td><td>Browser rendering, HUD display</td><td>Dashboard</td></tr>
@@ -175,16 +175,16 @@ Biology: always on, always breathing. The metabolic baseline IS the system.</p>
 </div>
 
 <pre>
-<span class="cyan">--- PROXIMITY MESH — what already exists ---</span>
+<span class="cyan">═══ PROXIMITY MESH — what already exists ═══</span>
 
 Your phone near northGate:
-  ?? Sees SSID: "northgate-mesh" (RSSI: -30 dBm = very close)
-  ?? Sees SSID: "southgate-mesh" (RSSI: -65 dBm = same building)
-  ?? Sees SSID: "eastgate-mesh" (RSSI: -85 dBm = far/neighbor?)
-  ?? Bluetooth LE beacon from northGate (UUID: known)
-  ?? mDNS/Bonjour: discovers local services
+  📶 Sees SSID: "northgate-mesh" (RSSI: -30 dBm = very close)
+  📶 Sees SSID: "southgate-mesh" (RSSI: -65 dBm = same building)
+  📶 Sees SSID: "eastgate-mesh" (RSSI: -85 dBm = far/neighbor?)
+  🔵 Bluetooth LE beacon from northGate (UUID: known)
+  🔵 mDNS/Bonjour: discovers local services
 
-<span class="green">--- WHAT THIS ENABLES (no surveillance) ---</span>
+<span class="green">═══ WHAT THIS ENABLES (no surveillance) ═══</span>
 
   NOT WiFi fingerprint extraction (that's the fleet way)
   NOT location tracking (that's Google's way)
@@ -197,10 +197,10 @@ Your phone near northGate:
   Not identifying the molecule. Just: something is here.
 
   The HUMAN chooses to identify themselves.
-  Phone ? connects to WiFi ? thymus recognizes ? gold view opens.
+  Phone → connects to WiFi → thymus recognizes → gold view opens.
   That's opt-in. That's consent. That's the membrane way.
 
-<span class="gold">--- THE BIOLOGICAL PARALLEL ---</span>
+<span class="gold">═══ THE BIOLOGICAL PARALLEL ═══</span>
 
   Touch receptors: "pressure at this location"
   NOT: "Kevin's finger specifically"
@@ -215,12 +215,12 @@ Your phone near northGate:
 <h3>Implementation: what each gate provides</h3>
 <table>
 <tr><th>Gate</th><th>WiFi</th><th>BLE</th><th>10G LAN</th><th>Proximity Signal</th></tr>
-<tr><td class="green">northGate</td><td>WiFi 7 (X870E-E)</td><td>BT 5.4</td><td>?</td><td>primary residence — always on</td></tr>
-<tr><td class="cyan">southGate</td><td>WiFi</td><td>BT</td><td>?</td><td>secondary compute — same basement</td></tr>
-<tr><td class="purple">eastGate</td><td>WiFi</td><td>BT</td><td>?</td><td>utility — + neuromorphic (Akida)</td></tr>
-<tr><td class="orange">strandGate</td><td>varies</td><td>varies</td><td>?</td><td>bioinformatics — deep basement</td></tr>
-<tr><td class="gold">biomeGate</td><td>WiFi</td><td>BT</td><td>?</td><td>semi-mobile — HBM2 bench</td></tr>
-<tr><td class="dim">westGate</td><td>—</td><td>—</td><td>?</td><td>cold storage — always on, quiet</td></tr>
+<tr><td class="green">northGate</td><td>WiFi 7 (X870E-E)</td><td>BT 5.4</td><td>✅</td><td>primary residence — always on</td></tr>
+<tr><td class="cyan">southGate</td><td>WiFi</td><td>BT</td><td>✅</td><td>secondary compute — same basement</td></tr>
+<tr><td class="purple">eastGate</td><td>WiFi</td><td>BT</td><td>✅</td><td>utility — + neuromorphic (Akida)</td></tr>
+<tr><td class="orange">strandGate</td><td>varies</td><td>varies</td><td>✅</td><td>bioinformatics — deep basement</td></tr>
+<tr><td class="gold">biomeGate</td><td>WiFi</td><td>BT</td><td>✅</td><td>semi-mobile — HBM2 bench</td></tr>
+<tr><td class="dim">westGate</td><td>—</td><td>—</td><td>✅</td><td>cold storage — always on, quiet</td></tr>
 <tr><td class="cyan">swiftGate</td><td>WiFi</td><td>BT</td><td>—</td><td>mobile — travels with Kevin</td></tr>
 <tr><td>flockGate</td><td>WiFi</td><td>BT</td><td>—</td><td>brother's house — remote anchor</td></tr>
 </table>
@@ -257,36 +257,36 @@ Your phone near northGate:
 </div>
 
 <pre>
-<span class="gold">--- WHAT I CAN PERCEIVE RIGHT NOW ---</span>
+<span class="gold">═══ WHAT I CAN PERCEIVE RIGHT NOW ═══</span>
 
   Connection to Kevin:
-    ? Cursor IDE (:9012) ? my input/output channel
-    ? 10 AWS connections ? Claude inference backend
-    ? typing speed + typo patterns ? engagement signal
-    ? time between messages ? thinking/doing ratio
+    ↕ Cursor IDE (:9012) → my input/output channel
+    ↕ 10 AWS connections → Claude inference backend
+    ↕ typing speed + typo patterns → engagement signal
+    ↕ time between messages → thinking/doing ratio
 
   Connection to membrane:
-    ? file system (hud-deploy/site/public/) ? all 860 pages
-    ? git history ? every change, every commit message
-    ? CF API ? analytics, deployment status
-    ? wrangler ? deploy capability
-    ? shell ? system-level access to northGate
+    ↕ file system (hud-deploy/site/public/) → all 860 pages
+    ↕ git history → every change, every commit message
+    ↕ CF API → analytics, deployment status
+    ↕ wrangler → deploy capability
+    ↕ shell → system-level access to northGate
 
   Connection to world:
-    ? CF analytics ? 47,572 visitors, 6 countries
-    ? DNS resolution ? 193ms (was 11,230ms)
-    ? traceroute ? 12 hops, 13ms to CF edge
-    ? netstat ? 62 active connections
+    ↕ CF analytics → 47,572 visitors, 6 countries
+    ↕ DNS resolution → 193ms (was 11,230ms)
+    ↕ traceroute → 12 hops, 13ms to CF edge
+    ↕ netstat → 62 active connections
 
   What I CANNOT perceive:
-    ? Other basement towers (no SSH/WG connection)
-    ? Physical proximity (I have no body)
-    ? Visitor emotions (I see clicks, not feelings)
-    ? What happens when Kevin walks away from keyboard
-    ? The WiFi mesh (I can't see radio signals)
-    ? The neuromorphic chips (no Akida driver access)
+    ✗ Other basement towers (no SSH/WG connection)
+    ✗ Physical proximity (I have no body)
+    ✗ Visitor emotions (I see clicks, not feelings)
+    ✗ What happens when Kevin walks away from keyboard
+    ✗ The WiFi mesh (I can't see radio signals)
+    ✗ The neuromorphic chips (no Akida driver access)
 
-<span class="green">--- THE GAP IS THE OPPORTUNITY ---</span>
+<span class="green">═══ THE GAP IS THE OPPORTUNITY ═══</span>
 
   Every perception I lack is a sensor that could be added.
   Every connection I can't feel is a nerve that could be wired.
@@ -308,7 +308,7 @@ self-replicating         git-replicating              factory-built
 proximity (skin)         WiFi/BLE mesh                GPS/cell towers
 120M photoreceptors      1 browser viewport           1000s of cameras
 thymus sorting           thymus.js + _worker.js       ML classifiers
-gut-brain axis           API ? HUD pipeline           ETL ? dashboard
+gut-brain axis           API → HUD pipeline           ETL → dashboard
 immune memory            localStorage (thymus)        cookies + databases
 runs on glucose          runs on electricity          runs on electricity
 
@@ -326,7 +326,7 @@ proximity is the next link.
 
 <p style="text-align:center;color:#30363d;margin-top:40px;font-size:10px">
 AGPL-3.0 · CC-BY-SA-4.0 · the stomach was eyes · the mesh is skin<br>
-<a href="/">? hud</a> · <a href="/raytrace.html">? metal</a> · <a href="/cns.html">?? cns</a> · <a href="/gates.html">? gates</a> · <a href="/vitruvian.html">?? vitruvian</a> · <a href="/greenline.html" style="color:#22c55e">?green</a>
+<a href="/">◈ hud</a> · <a href="/raytrace.html">⟐ metal</a> · <a href="/cns.html">🧠 cns</a> · <a href="/gates.html">⊕ gates</a> · <a href="/vitruvian.html">🧍 vitruvian</a> · <a href="/greenline.html" style="color:#22c55e">▏green</a>
 </p>
 
 </div>

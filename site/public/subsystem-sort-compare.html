@@ -28,7 +28,7 @@ a{color:var(--accent)}
 footer{margin-top:2rem;font-size:.7em;color:var(--dim);text-align:center}
 </style></head><body>
 <main>
-<h1>?? Subsystem Sort</h1>
+<h1>🔬 Subsystem Sort</h1>
 <p class="tag">10 mouths · 4 anchors · unified through nestgate.io</p>
 <div id="cards"></div>
 <div class="plan" id="plan"></div>
@@ -46,7 +46,7 @@ fetch('/subsystem-sort-compare.json').then(r=>r.json()).then(d=>{
       <h3>${s.id} · ${s.name} <span class="status ${st}">${s.status}</span></h3>
       <div>${s.type} · ${s.direction || ''} · auth: ${s.auth || 'n/a'}</div>
       <div class="role">${s.role || ''}</div>
-      <div class="resolve">? ${s.resolve || ''}</div>
+      <div class="resolve">→ ${s.resolve || ''}</div>
       ${s.url?`<div><a href="${s.url}">${s.url}</a></div>`:''}
     </div>`;
   });

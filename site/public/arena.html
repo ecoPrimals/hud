@@ -6,7 +6,7 @@
     <link rel="canonical" href="https://nestgate.io/arena.html">
 <meta name="gaia-digested" content="2026-10-26T07:30:00Z"><meta name="gaia-wave" content="214">
 <meta charset=utf-8><meta content="width=device-width,initial-scale=1" name=viewport>
-<title>? Arena  basement AI, live on the membrane</title>
+<title>⟐ Arena  basement AI, live on the membrane</title>
 <meta content="Two local AI models. One RTX 5090. Same prompt. You vote. Every inference runs on northGate metal  no cloud, no API key, no surveillance." name=description>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -74,11 +74,11 @@ footer a{color:#58a6ff;margin:0 6px}
 </style></head><body>
 <div class=page>
 
-<h1>? Arena</h1>
+<h1>⟐ Arena</h1>
 <p class=subtitle>basement AI  live on the RTX 5090  no cloud  you judge</p>
 
 <div class=hw-bar>
-  <span><span class=live>?</span> northGate</span>
+  <span><span class=live>●</span> northGate</span>
   <span class=chip>RTX 5090 · 32 GB</span>
   <span class=chip>Ryzen 9 9950X3D · 16c/32t</span>
   <span class=chip>96 GB DDR5</span>
@@ -91,9 +91,9 @@ footer a{color:#58a6ff;margin:0 6px}
 </div>
 
 <div class=btn-row>
-  <button class="btn btn-go" id=btn-fight onclick=fight()>? Fight!</button>
-  <button class=btn onclick="document.getElementById('prompt').value=randomPrompt()">?? Random</button>
-  <button class=btn onclick="clearArena()">? Clear</button>
+  <button class="btn btn-go" id=btn-fight onclick=fight()>⟐ Fight!</button>
+  <button class=btn onclick="document.getElementById('prompt').value=randomPrompt()">🎲 Random</button>
+  <button class=btn onclick="clearArena()">↻ Clear</button>
   <select class=btn id=model-a>
     <option value="gemma3:12b">Gemma 3 (12B)</option>
     <option value="phi4-mini">Phi-4 Mini (3.8B)</option>
@@ -131,13 +131,13 @@ footer a{color:#58a6ff;margin:0 6px}
 </div>
 
 <div class=vote-row id=vote-row style="display:none">
-  <button class="vote-btn vote-a" onclick="vote('a')">?? A wins</button>
-  <button class="vote-btn vote-tie" onclick="vote('tie')">?? Tie</button>
-  <button class="vote-btn vote-b" onclick="vote('b')">?? B wins</button>
+  <button class="vote-btn vote-a" onclick="vote('a')">👈 A wins</button>
+  <button class="vote-btn vote-tie" onclick="vote('tie')">🤝 Tie</button>
+  <button class="vote-btn vote-b" onclick="vote('b')">👉 B wins</button>
 </div>
 
 <div class=scoreboard>
-  <h3>? Elo Scoreboard (this session)</h3>
+  <h3>⟐ Elo Scoreboard (this session)</h3>
   <div class=score-grid id=scoreboard></div>
 </div>
 
@@ -147,11 +147,11 @@ footer a{color:#58a6ff;margin:0 6px}
   <p>Every token generated on <span class=green>northGate</span> metal in Lansing, Michigan.</p>
   <p>No data leaves the basement unless you copy-paste it yourself.</p>
   <p style="margin-top:12px">
-    <a href="/">? membrane</a>
-    <a href="/raytrace.html">? metal</a>
-    <a href="/gates.html">? gates</a>
-    <a href="/cns.html">? cns</a>
-    <a href="https://discord.gg/EaVxDyNU" target=_blank>? tavern</a>
+    <a href="/">⟐ membrane</a>
+    <a href="/raytrace.html">⟐ metal</a>
+    <a href="/gates.html">⟐ gates</a>
+    <a href="/cns.html">⟐ cns</a>
+    <a href="https://discord.gg/EaVxDyNU" target=_blank>⟐ tavern</a>
   </p>
   <p class=dim style="margin-top:8px">primals.eco · AGPL-3.0 · cite: Mok, K. (2026). Arena.</p>
 </footer>
@@ -274,7 +274,7 @@ async function streamModel(model, prompt, bodyEl, tokensEl, speedEl) {
     }
   } catch (e) {
     cursor.remove();
-    bodyEl.textContent = `? Error: ${e.message}\n\nIs Ollama running on localhost:11434?\nThe arena connects directly to your local Ollama.`;
+    bodyEl.textContent = `❌ Error: ${e.message}\n\nIs Ollama running on localhost:11434?\nThe arena connects directly to your local Ollama.`;
   }
 
   return tokenCount;
@@ -288,11 +288,11 @@ async function fight() {
   fighting = true;
   const btn = document.getElementById('btn-fight');
   btn.disabled = true;
-  btn.textContent = '? Fighting';
+  btn.textContent = '⟐ Fighting';
   document.getElementById('vote-row').style.display = 'none';
 
   const prompt = document.getElementById('prompt').value.trim();
-  if (!prompt) { fighting = false; btn.disabled = false; btn.textContent = '? Fight!'; return; }
+  if (!prompt) { fighting = false; btn.disabled = false; btn.textContent = '⟐ Fight!'; return; }
 
   const mA = document.getElementById('model-a').value;
   const mB = document.getElementById('model-b').value;
@@ -327,7 +327,7 @@ async function fight() {
   document.getElementById('vote-row').style.display = 'flex';
   fighting = false;
   btn.disabled = false;
-  btn.textContent = '? Fight!';
+  btn.textContent = '⟐ Fight!';
 
   log(`Done: ${mA} (${timeA}s) vs ${mB} (${timeB}s)`);
 }

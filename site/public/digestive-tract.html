@@ -114,7 +114,7 @@ footer { padding: 8px 12px; border-top: 1px solid var(--border); font-size: .8em
 <body>
 
 <header>
-  <span>??</span>
+  <span>🫁</span>
   <h1>the digestive tract</h1>
   <span class="stats" id="stats">loading...</span>
   <div class="nav-links">
@@ -130,7 +130,7 @@ footer { padding: 8px 12px; border-top: 1px solid var(--border); font-size: .8em
   <div class="particle"></div>
 
   <div class="core-block" id="core-block">
-    <h2>? IRREDUCIBLE CORE</h2>
+    <h2>⬇ IRREDUCIBLE CORE</h2>
     <div class="numbers">894 files � 59MB � 252K lines</div>
     <div class="desc">the minimum viable membrane � remove any file and something breaks</div>
     <div class="composition" id="composition"></div>
@@ -139,8 +139,8 @@ footer { padding: 8px 12px; border-top: 1px solid var(--border); font-size: .8em
   <div id="stages"></div>
 
   <div class="cycle-block" id="cycle-block">
-    <div class="arrow">?</div>
-    <h2>RECOMPOSE ? INGEST</h2>
+    <div class="arrow">↻</div>
+    <h2>RECOMPOSE → INGEST</h2>
     <div class="desc">the published membrane IS the next irreducible core. visitor traces feed back to stage 1. nothing is lost.</div>
     <div class="musical-scale" id="musical-scale"></div>
   </div>
@@ -154,8 +154,8 @@ footer { padding: 8px 12px; border-top: 1px solid var(--border); font-size: .8em
 'use strict';
 
 const ORGAN_ICONS = {
-  mouth: '??', stomach: '??', small_intestine: '??', liver: '??',
-  pancreas: '??', large_intestine: '??', colon: '??', rectum: '??'
+  mouth: '👄', stomach: '🫁', small_intestine: '🧬', liver: '🫀',
+  pancreas: '🌿', large_intestine: '🍞', colon: '🗜', rectum: '🌱'
 };
 
 const STAGE_COLORS = [
@@ -182,7 +182,7 @@ async function load() {
   const stagesEl = document.getElementById('stages');
   data.tract.forEach((stage, i) => {
     const color = STAGE_COLORS[i] || 'var(--fg)';
-    const icon = ORGAN_ICONS[stage.organ] || '?';
+    const icon = ORGAN_ICONS[stage.organ] || '⚙';
     const side = i % 2 === 0 ? 'right' : 'left';
 
     const html = `
@@ -203,7 +203,7 @@ async function load() {
   });
 
   const scale = document.getElementById('musical-scale');
-  scale.textContent = '? ' + data.cycle.musical_scale;
+  scale.textContent = '♪ ' + data.cycle.musical_scale;
 }
 
 function stageCardHTML(stage, color) {
@@ -214,7 +214,7 @@ function stageCardHTML(stage, color) {
       <div class="process">${stage.process}</div>
       <div class="primals">${stage.primals.map(p => '<span>' + p + '</span>').join('')}</div>
       <div class="feeds">${stage.feeds.map(f => '<span>' + f + '</span>').join('')}</div>
-      <div class="musical">? ${stage.musical_key}</div>
+      <div class="musical">♪ ${stage.musical_key}</div>
     </div>
   `;
 }

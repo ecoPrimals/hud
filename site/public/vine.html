@@ -50,9 +50,9 @@ body{background:#0d1117;color:#c9d1d9;font-family:system-ui,-apple-system,sans-s
   <span style="color:#22c55e;font-weight:bold">swarmVine</span><br>
   Vine is dead. We pick it up.<br>
   6 sec · all media · all mediums<br>
-  <a href="/" style="color:#58a6ff;text-decoration:none">? hud</a> ·
-  <a href="/easel.html" style="color:#d2a8ff;text-decoration:none">?? easel</a> ·
-  <a href="/gates.html" style="color:#3fb950;text-decoration:none">?? gates</a>
+  <a href="/" style="color:#58a6ff;text-decoration:none">◈ hud</a> ·
+  <a href="/easel.html" style="color:#d2a8ff;text-decoration:none">🎨 easel</a> ·
+  <a href="/gates.html" style="color:#3fb950;text-decoration:none">🚪 gates</a>
 </div>
 
 <div id="vine-feed"></div>
@@ -61,18 +61,18 @@ body{background:#0d1117;color:#c9d1d9;font-family:system-ui,-apple-system,sans-s
 <div id="vine-ui">
   <div id="vine-timer"></div>
   <div id="vine-controls">
-    <button class="vine-btn" id="btn-paint" title="Paint on canvas">?? paint</button>
-    <button class="vine-btn" id="btn-text" title="Text overlay">?? text</button>
-    <button class="vine-btn" id="btn-audio" title="Record audio">?? audio</button>
-    <button class="vine-btn" id="btn-camera" title="Camera input">?? camera</button>
-    <button class="vine-btn" id="btn-easel" title="Live easel feed">??? easel</button>
-    <button class="vine-btn" style="background:#f8514930;border-color:#f85149" id="btn-record">? record</button>
-    <button class="vine-btn" id="btn-play">? play</button>
+    <button class="vine-btn" id="btn-paint" title="Paint on canvas">🎨 paint</button>
+    <button class="vine-btn" id="btn-text" title="Text overlay">📝 text</button>
+    <button class="vine-btn" id="btn-audio" title="Record audio">🎤 audio</button>
+    <button class="vine-btn" id="btn-camera" title="Camera input">📷 camera</button>
+    <button class="vine-btn" id="btn-easel" title="Live easel feed">🐿️ easel</button>
+    <button class="vine-btn" style="background:#f8514930;border-color:#f85149" id="btn-record">⏺ record</button>
+    <button class="vine-btn" id="btn-play">▶ play</button>
   </div>
 </div>
 
 <script>
-// --- swarmVine — the gossip agent primal ---
+// ═══ swarmVine — the gossip agent primal ═══
 // swarmVine is primal #14. Genus cnidaria, species solidus, phenotype: SYMBIONT.
 // 7,965 lines of Rust. The gossip mesh protocol.
 // Twitter killed Vine in 2017. We're picking it up.
@@ -119,7 +119,7 @@ function resize() {
 window.addEventListener('resize', resize);
 resize();
 
-// --- VINE STATE ---
+// ═══ VINE STATE ═══
 var VINE_DURATION = 6000; // 6 seconds, like the original
 var vineState = {
   mode: 'idle',       // idle, recording, playing
@@ -148,7 +148,7 @@ var vineState = {
   cameraVideo: null,
 };
 
-// --- ZK EPHEMERALS — anti-secret null bubbles ---
+// ═══ ZK EPHEMERALS — anti-secret null bubbles ═══
 // Each clip gets a hash at birth. While alive: anti-secret (everything visible).
 // When ephemeral expires: content vanishes, hash remains = null bubble.
 // You can prove "this existed" without showing what it was.
@@ -194,7 +194,7 @@ function tickEphemeral(clip) {
 
     // Update label
     var el = document.getElementById('chipmunk-reaction');
-    el.textContent = '?? clip collapsed to null bubble: ' + clip.zkHash;
+    el.textContent = '🫧 clip collapsed to null bubble: ' + clip.zkHash;
     el.style.opacity = '1';
     setTimeout(function() { el.style.opacity = '0'; }, 3000);
   }
@@ -213,12 +213,12 @@ function updateGossipLabel() {
     alive + ' alive · ' + nulled + ' null bubbles · ' +
     chipmunkCount + ' by chipmunk</span><br>' +
     '<span style="color:#6e7681;font-size:9px">ZK ephemerals · anti-secret while alive · null when gone</span><br>' +
-    '<a href="/" style="color:#58a6ff;text-decoration:none;font-size:10px">? hud</a> · ' +
-    '<a href="/easel.html" style="color:#d2a8ff;text-decoration:none;font-size:10px">?? easel</a> · ' +
-    '<a href="/gates.html" style="color:#3fb950;text-decoration:none;font-size:10px">?? gates</a>';
+    '<a href="/" style="color:#58a6ff;text-decoration:none;font-size:10px">◈ hud</a> · ' +
+    '<a href="/easel.html" style="color:#d2a8ff;text-decoration:none;font-size:10px">🎨 easel</a> · ' +
+    '<a href="/gates.html" style="color:#3fb950;text-decoration:none;font-size:10px">🚪 gates</a>';
 }
 
-// --- PAINT MODE — finger/mouse painting on canvas ---
+// ═══ PAINT MODE — finger/mouse painting on canvas ═══
 var painting = false;
 var lastX = 0, lastY = 0;
 var paintStrokes = []; // stored during recording
@@ -261,7 +261,7 @@ function drawStroke(s) {
   ctx.globalAlpha = 1;
 }
 
-// --- MEDIA BUTTONS ---
+// ═══ MEDIA BUTTONS ═══
 var mediaButtons = {
   paint: document.getElementById('btn-paint'),
   text: document.getElementById('btn-text'),
@@ -308,7 +308,7 @@ Object.keys(mediaButtons).forEach(function(key) {
   });
 });
 
-// --- RECORD ---
+// ═══ RECORD ═══
 var recordBtn = document.getElementById('btn-record');
 var timerEl = document.getElementById('vine-timer');
 
@@ -326,7 +326,7 @@ function startRecording() {
   vineState.frames = [];
   paintStrokes = [];
   recordBtn.classList.add('recording');
-  recordBtn.textContent = '? stop';
+  recordBtn.textContent = '⏹ stop';
 
   // Start audio recording if active
   if (vineState.activeMedia.audio && vineState.audioStream) {
@@ -363,7 +363,7 @@ function recordFrame() {
   }
 
   // Draw active media layers
-  var t = elapsed / VINE_DURATION; // 0?1 progress
+  var t = elapsed / VINE_DURATION; // 0→1 progress
 
   // Camera layer (background)
   if (vineState.activeMedia.camera && vineState.cameraVideo) {
@@ -438,7 +438,7 @@ function drawEaselFrame(t) {
 function stopRecording() {
   vineState.recording = false;
   recordBtn.classList.remove('recording');
-  recordBtn.textContent = '? record';
+  recordBtn.textContent = '⏺ record';
   timerEl.textContent = '';
 
   if (vineState.audioRecorder && vineState.audioRecorder.state !== 'inactive') {
@@ -468,7 +468,7 @@ function stopRecording() {
   }
 }
 
-// --- PLAYBACK ---
+// ═══ PLAYBACK ═══
 var playBtn = document.getElementById('btn-play');
 playBtn.addEventListener('click', function() {
   if (vineState.clips.length === 0) return;
@@ -482,7 +482,7 @@ function playClip(idx) {
   if (clip._nullified) {
     // Null bubble — show the ghost
     var el = document.getElementById('chipmunk-reaction');
-    el.textContent = '?? null bubble: ' + clip.zkHash + ' — content is gone, proof remains';
+    el.textContent = '🫧 null bubble: ' + clip.zkHash + ' — content is gone, proof remains';
     el.style.opacity = '1';
     setTimeout(function() { el.style.opacity = '0'; }, 3000);
     return;
@@ -548,7 +548,7 @@ function playClip(idx) {
     ctx.font = '10px monospace';
     ctx.fillStyle = clip.author === 'chipmunk' ? '#f0c674' : '#8b949e';
     ctx.textAlign = 'left';
-    ctx.fillText(clip.author === 'chipmunk' ? '??? chipmunk made this' : '?? human made this', 8, H - 8);
+    ctx.fillText(clip.author === 'chipmunk' ? '🐿️ chipmunk made this' : '👤 human made this', 8, H - 8);
 
     // ZK hash + remaining life
     ctx.font = '8px monospace';
@@ -567,7 +567,7 @@ function playClip(idx) {
   renderPlayback();
 }
 
-// --- CHIPMUNK — watches, learns, makes its own clips ---
+// ═══ CHIPMUNK — watches, learns, makes its own clips ═══
 // The chipmunk observes human clips and eventually makes its own.
 // It learns: what colors humans use, what text they write,
 // what timing patterns they prefer. Then it remixes.
@@ -603,16 +603,16 @@ function chipmunkReact(clip) {
   // Dunning-Kruger progression
   if (chipmunkMemory.clipCount <= 2) {
     chipmunkMemory.confidence = 0.9; // Mount Stupid
-    el.textContent = '??? "I can do that! Easy!"';
+    el.textContent = '🐿️ "I can do that! Easy!"';
   } else if (chipmunkMemory.clipCount <= 5) {
     chipmunkMemory.confidence = 0.3; // Valley
-    el.textContent = '??? "...wait, this is harder than I thought"';
+    el.textContent = '🐿️ "...wait, this is harder than I thought"';
   } else if (chipmunkMemory.clipCount <= 10) {
     chipmunkMemory.confidence = 0.5; // Climbing
-    el.textContent = '??? "ok, I think I see the pattern..."';
+    el.textContent = '🐿️ "ok, I think I see the pattern..."';
   } else {
     chipmunkMemory.confidence = 0.7; // Real skill
-    el.textContent = '??? "let me try something..."';
+    el.textContent = '🐿️ "let me try something..."';
     // Chipmunk makes its own clip after enough observation
     setTimeout(chipmunkMakesClip, 2000);
   }
@@ -666,7 +666,7 @@ function chipmunkMakesClip() {
     id: Date.now(),
     frames: [],
     strokes: strokes,
-    text: text || '???',
+    text: text || '🐿️',
     media: { paint: true, text: !!text, audio: false, camera: false, easel: true },
     duration: VINE_DURATION,
     author: 'chipmunk',
@@ -682,26 +682,26 @@ function chipmunkMakesClip() {
   saveClipsToStorage();
 
   var el = document.getElementById('chipmunk-reaction');
-  el.textContent = '??? made vine #' + (vineState.chipmunkClips.length + 1) + ': "' + (text || '??') + '"';
+  el.textContent = '🐿️ made vine #' + (vineState.chipmunkClips.length + 1) + ': "' + (text || '🌀') + '"';
   el.style.opacity = '1';
   vineState.chipmunkClips.push(clip);
   setTimeout(function() { el.style.opacity = '0'; }, 4000);
 }
 
-// --- FEED — thumbnails on the right ---
+// ═══ FEED — thumbnails on the right ═══
 function addThumbToFeed(clip) {
   var feed = document.getElementById('vine-feed');
   var img = document.createElement('img');
   img.src = clip.thumbnail;
   img.className = 'vine-thumb';
-  img.title = (clip.author === 'chipmunk' ? '???' : '??') + ' ' +
+  img.title = (clip.author === 'chipmunk' ? '🐿️' : '👤') + ' ' +
     (clip.duration / 1000).toFixed(1) + 's';
   var idx = vineState.clips.length - 1;
   img.addEventListener('click', function() { playClip(idx); });
   feed.appendChild(img);
 }
 
-// --- PERSISTENCE — localStorage ---
+// ═══ PERSISTENCE — localStorage ═══
 function saveClipsToStorage() {
   try {
     // Save metadata only (thumbnails + stroke data), not full frames
@@ -730,7 +730,7 @@ function loadClipsFromStorage() {
 }
 loadClipsFromStorage();
 
-// --- IDLE STATE — when not recording or playing ---
+// ═══ IDLE STATE — when not recording or playing ═══
 function drawIdle() {
   if (vineState.recording || vineState.mode === 'playing') return;
 
@@ -803,7 +803,7 @@ function drawIdle() {
 }
 drawIdle();
 
-// --- COLOR PICKER — tap/click to cycle paint colors ---
+// ═══ COLOR PICKER — tap/click to cycle paint colors ═══
 var paintColors = ['#22c55e', '#58a6ff', '#d2a8ff', '#f85149', '#f0883e', '#f0c674', '#f0f6fc'];
 var colorIdx = 0;
 canvas.addEventListener('dblclick', function() {

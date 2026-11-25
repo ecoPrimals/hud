@@ -151,7 +151,7 @@ footer { padding: 6px 12px; border-top: 1px solid var(--border); font-size: .8em
 <div id="app">
 
   <header>
-    <span>?</span>
+    <span>⚗</span>
     <h1>periodic table of the membrane</h1>
     <span class="stats" id="stats">loading...</span>
     <div class="nav-links">
@@ -162,8 +162,8 @@ footer { padding: 6px 12px; border-top: 1px solid var(--border); font-size: .8em
 
   <div class="controls">
     <div class="view-btns">
-      <button class="active" data-view="table">? table</button>
-      <button data-view="cards">?? cards</button>
+      <button class="active" data-view="table">⚗ table</button>
+      <button data-view="cards">🃏 cards</button>
     </div>
     <label>sort:</label>
     <div class="sort-btns">
@@ -172,8 +172,8 @@ footer { padding: 6px 12px; border-top: 1px solid var(--border); font-size: .8em
       <button data-sort="period">period</button>
       <button data-sort="group">group</button>
       <button data-sort="state">state</button>
-      <button data-sort="musical">?</button>
-      <button data-sort="name">A?Z</button>
+      <button data-sort="musical">♪</button>
+      <button data-sort="name">A→Z</button>
       <button data-sort="locale">locale</button>
     </div>
   </div>
@@ -191,7 +191,7 @@ footer { padding: 6px 12px; border-top: 1px solid var(--border); font-size: .8em
 
 <div id="detail">
   <div class="card">
-    <span class="close" onclick="closeDetail()">?</span>
+    <span class="close" onclick="closeDetail()">✕</span>
     <div class="z-sym"><span class="z"></span><span class="sym"></span></div>
     <div class="full-name"></div>
     <div class="desc"></div>
@@ -344,7 +344,7 @@ function showDetail(z) {
     <div><span class="label">era</span><span class="value">${el.era}</span></div>
     <div><span class="label">type</span><span class="value">${el.type}</span></div>
   `;
-  d.querySelector('.musical-note').textContent = el.musical !== '�' ? '? ' + el.musical : '';
+  d.querySelector('.musical-note').textContent = el.musical !== '�' ? '♪ ' + el.musical : '';
   d.classList.add('open');
 }
 
