@@ -30,7 +30,8 @@
 
   // layers = major visual sections of the HUD, outermost first; each has its own hand.
   //   words: the layer carries text - what is inside is cross-rotated and stays straight
-  //   bar:   the frame is a long bar that sweeps the screen - it lets clicks through, its contents take them
+  //   bar:   the frame is a long bar that sweeps the whole screen (every frame that holds its contents lets clicks
+  //          through, bar or not - see the pairs below)
   var SELECTORS = [
     { sel: 'header, nav, .hud-nav', name: 'nav', epoch: 10, dir: CW, rate: TURN, words: true, bar: true },
     { sel: '#klein-window-overlay', name: 'klein', epoch: 8, dir: CCW, words: true },
@@ -113,15 +114,22 @@
         if (kids.length) next.push({ frame: f, kids: kids, bar: layer.bar });
       }
     });
-    // an inline box cannot be turned at all; as inline-block it can (same place in the line)
+    // an inline box cannot be turned at all; as inline-block it can (same place in the line).
+    // A turning frame is an empty box sweeping over its neighbours: left alone it swallows the clicks meant for
+    // whatever it crosses (the view tabs, the next card's links). So every frame that holds its contents lets
+    // clicks through, and the contents - which stay where they were laid out - take them as before. A child that
+    // was never meant to take clicks (pointer-events: none of its own) is left that way.
     next.forEach(function (p) {
-      p.kids.forEach(function (k) {
-        if (k.el.dataset.helixHeld) return;
+      var f = p.frame, fresh = p.kids.filter(function (k) { return !k.el.dataset.helixHeld; });
+      if (fresh.length && f.dataset.helixPe) f.style.pointerEvents = f.dataset.helixPe.trim();   // read the new children as they were meant
+      fresh.forEach(function (k) {
+        var cs = getComputedStyle(k.el);
         k.el.dataset.helixHeld = '1';
-        if (getComputedStyle(k.el).display === 'inline') { k.el.dataset.helixInline = k.el.style.display || ' '; k.el.style.display = 'inline-block'; }
-        if (p.bar) { k.el.dataset.helixPe = k.el.style.pointerEvents || ' '; k.el.style.pointerEvents = 'auto'; }
+        if (cs.display === 'inline') { k.el.dataset.helixInline = k.el.style.display || ' '; k.el.style.display = 'inline-block'; }
+        if (cs.pointerEvents !== 'none') { k.el.dataset.helixPe = k.el.style.pointerEvents || ' '; k.el.style.pointerEvents = 'auto'; }
       });
-      if (p.bar && !p.frame.dataset.helixPe) { p.frame.dataset.helixPe = p.frame.style.pointerEvents || ' '; p.frame.style.pointerEvents = 'none'; }
+      if (!f.dataset.helixPe) f.dataset.helixPe = f.style.pointerEvents || ' ';
+      f.style.pointerEvents = 'none';
     });
     // a child that is no longer held (removed, hidden, its frame gone) is let go
     var held = [];
@@ -146,6 +154,23 @@
     el.style.transformOrigin = '50% 50%';
     if (el.ownerSVGElement) el.style.transformBox = 'fill-box';      // a shape inside an svg turns about itself
     if (!HAS_ROTATE) el.dataset.helixBase = el.style.transform || '';  // taken ONCE: the turn is laid over it, never into it
+  }
+
+  // A drawing (an svg) turns whole, and its empty corners sweep over the links beside it. The drawing's box lets
+  // clicks through; what is actually drawn in it takes them exactly as before (visiblePainted is the svg default).
+  var throughCss = false;
+  function through(el) {
+    if (el.dataset.helixPe !== undefined || el.ownerSVGElement || !el.tagName || el.tagName.toLowerCase() !== 'svg') return;
+    el.dataset.helixPe = el.style.pointerEvents || ' ';
+    if (getComputedStyle(el).pointerEvents === 'none') return;       // already lets everything through
+    if (!throughCss) {
+      throughCss = true;
+      var st = document.createElement('style');
+      st.textContent = 'svg[data-helix-through] > :not([pointer-events]):not([style*="pointer-events"]) { pointer-events: visiblePainted; }';
+      document.head.appendChild(st);
+    }
+    el.setAttribute('data-helix-through', '');
+    el.style.pointerEvents = 'none';
   }
 
   function setAngle(el, deg) {
@@ -183,6 +208,7 @@
     });
     own.forEach(function (angle, el) {
       prepare(el);
+      through(el);
       var c = counter.get(el);
       el.style.rotate = (angle + (c ? c.turn : 0)).toFixed(2) + 'deg';
       if (c) { el.style.translate = c.tx.toFixed(1) + 'px ' + c.ty.toFixed(1) + 'px'; counter.delete(el); }

@@ -1,12 +1,12 @@
 {
- "ts": "2026-11-25T16:54:37Z",
+ "ts": "2026-11-25T17:10:28Z",
  "by": "eastgate",
- "tip": "8ae5d4431",
+ "tip": "f518d3dab",
  "read_from": {
-  "eastgate": 285
+  "eastgate": 291
  },
- "files": 288,
- "routes": 7,
+ "files": 294,
+ "routes": 8,
  "not_read": 52,
  "held_back": 2,
  "carried": [
@@ -14,8 +14,10 @@
   "canvas.html",
   "crates.html",
   "luna.html",
+  "nestgate.html",
   "record.html",
   "signal.html",
+  "static/atlas.html",
   "trailheads.html",
   "tuebor.html",
   "whitePaper.html"
