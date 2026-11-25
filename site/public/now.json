@@ -575,7 +575,7 @@
     },
     "access_paths": {
       "lan": "http://192.168.4.244:8080",
-      "wan": "http://primals.eco (162.226.225.148, port forward through router)",
+      "wan": "http://primals.eco ([home IP], port forward through router)",
       "tor": "http://iqwvbmlgvoiilj2hr43anj2keseao2lptquad36je5p5p2etw5e3riid.onion"
     },
     "forge_nucleation": {

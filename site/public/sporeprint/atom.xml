@@ -13183,7 +13183,7 @@ Looking backward from the present is retrieval — P, cheap, documented.&lt;&#x2
 &lt;h2 id=&quot;2-the-incident&quot;&gt;2. The Incident&lt;&#x2F;h2&gt;
 &lt;p&gt;On October 10, 2026, the RustDesk relay server (&lt;code&gt;beacon.primals.eco&lt;&#x2F;code&gt;) regenerated its Ed25519 key pair. The previous key &lt;code&gt;utlNOAWUDdV+Q+ifG3zHrQ5HU0FtQnOTHiAnu6prV7Q=&lt;&#x2F;code&gt; was replaced by &lt;code&gt;6oVQBFyHHNAJqm1OlS+XvpdoJ5plYrPzJoPTTYlgQdg=&lt;&#x2F;code&gt; when the hbbs process restarted and found no immutable flag on the key files.&lt;&#x2F;p&gt;
 &lt;p&gt;Every gate with the old key cached — including eastgate — was immediately locked out. The hbbs log showed:&lt;&#x2F;p&gt;
-&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;WARN Authentication failed from [::ffff:162.226.225.148]:51678&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;WARN Authentication failed from [::ffff:[home IP]]:51678&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;     for peer 19091278 - invalid key&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
 &lt;p&gt;The house WAN IP, the house gate, the house peer ID. Locked out of its own relay by its own key.&lt;&#x2F;p&gt;
 &lt;p&gt;The instinctive fix: update the key on all gates. Get the new key, distribute it, verify it, confirm it.&lt;&#x2F;p&gt;
@@ -22057,7 +22057,7 @@ immune surveillance, and accountability infrastructure.&lt;&#x2F;p&gt;
 &lt;p&gt;The fossils, by contrast, hold persistent TCP connections open indefinitely:&lt;&#x2F;p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;songbird federation&lt;&#x2F;strong&gt; (port 7700): 160 connections, all from &lt;code&gt;162.226.225.148&lt;&#x2F;code&gt; — the house network. songbird was designed for federated communication between gates. With 160 persistent connections from a single source, this is the house network maintaining federation channels that haven’t been used since the songbird era.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;songbird federation&lt;&#x2F;strong&gt; (port 7700): 160 connections, all from &lt;code&gt;[home IP]&lt;&#x2F;code&gt; — the house network. songbird was designed for federated communication between gates. With 160 persistent connections from a single source, this is the house network maintaining federation channels that haven’t been used since the songbird era.&lt;&#x2F;p&gt;
 &lt;&#x2F;li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;hbbr relay&lt;&#x2F;strong&gt; (port 21119): 67 connections from 66 unique IPs worldwide. The RustDesk relay is an open relay — anyone on the internet who knows the server address can route remote desktop traffic through it. These 66 IPs are strangers using golgiBody as a free relay node.&lt;&#x2F;p&gt;
