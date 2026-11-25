@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta property="og:title" content="Subsystem sort — ecoPrimals">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nestgate.io/subsystem-sort-compare.html">
+    <meta name="description" content="Subsystem sort — ecoPrimals — ecoPrimals organism">
+    <link rel="canonical" href="https://nestgate.io/subsystem-sort-compare.html">
+<meta name="gaia-digested" content="2026-10-26T07:30:00Z"><meta name="gaia-wave" content="214">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Subsystem sort — ecoPrimals</title>
+<style>
+:root{--bg:#0d1117;--fg:#c9d1d9;--accent:#58a6ff;--green:#3fb950;--gold:#d29922;--border:#21262d;--dim:#6e7681;--surface:#161b22}
+body{margin:0;font-family:'SF Mono',ui-monospace,monospace;background:var(--bg);color:var(--fg);line-height:1.6}
+main{max-width:720px;margin:0 auto;padding:2rem 1rem 4rem}
+h1{color:var(--accent);font-size:1.5em;font-weight:300;margin:0 0 .3em}
+.tag{color:var(--gold);font-weight:600;font-size:.85em}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:1rem;margin:.8rem 0}
+.card h3{color:var(--green);font-size:.95em;margin:0 0 .3em}
+.card .status{font-size:.75em;font-weight:700;padding:.15em .4em;border-radius:4px;display:inline-block}
+.live{background:#238636;color:#fff}
+.stub{background:#d29922;color:#0d1117}
+.role{color:var(--gold);font-size:.8em;margin:.3em 0}
+.resolve{color:var(--dim);font-size:.82em;margin:.3em 0}
+a{color:var(--accent)}
+.plan{border-top:1px solid var(--border);margin-top:1.5rem;padding-top:1rem}
+.plan dt{color:var(--green);font-weight:600}
+.plan dd{margin:0 0 .5em 1em;color:var(--fg)}
+footer{margin-top:2rem;font-size:.7em;color:var(--dim);text-align:center}
+</style></head><body>
+<main>
+<h1>?? Subsystem Sort</h1>
+<p class="tag">10 mouths · 4 anchors · unified through nestgate.io</p>
+<div id="cards"></div>
+<div class="plan" id="plan"></div>
+<p><a href="/subsystem-sort-compare.json">JSON</a> ·
+   <a href="https://nestgate.io">nestgate.io chat</a> ·
+   <a href="/execute-digest-v3.json">digest v3</a></p>
+<footer>ecoPrimals · sort else and compare · teach back and resolve</footer>
+</main>
+<script>
+fetch('/subsystem-sort-compare.json').then(r=>r.json()).then(d=>{
+  const cards=document.getElementById('cards');
+  d.subsystems.forEach(s=>{
+    const st=s.status.includes('LIVE')?'live':'stub';
+    cards.innerHTML+=`<div class="card">
+      <h3>${s.id} · ${s.name} <span class="status ${st}">${s.status}</span></h3>
+      <div>${s.type} · ${s.direction || ''} · auth: ${s.auth || 'n/a'}</div>
+      <div class="role">${s.role || ''}</div>
+      <div class="resolve">? ${s.resolve || ''}</div>
+      ${s.url?`<div><a href="${s.url}">${s.url}</a></div>`:''}
+    </div>`;
+  });
+  const plan=document.getElementById('plan');
+  const p=d.unification_plan;
+  let html='<h2 style="color:var(--gold)">Unification Plan</h2><dl>';
+  for(const[k,v]of Object.entries(p)){
+    html+=`<dt>${k.replace(/_/g,' ')}</dt><dd>${v}</dd>`;
+  }
+  plan.innerHTML=html+'</dl>';
+});
+</script>
+<!-- GAIA BEACON — the null middle -->
+<div style="position:fixed;bottom:0;left:0;right:0;padding:4px 8px;background:rgba(10,10,15,0.95);border-top:1px solid #222;font-family:monospace;font-size:11px;display:flex;justify-content:center;gap:12px;z-index:9999">
+<a href="/forge.html" style="color:#d4a017;text-decoration:none">🔥 forge</a>
+<a href="/colosseum.html" style="color:#c0392b;text-decoration:none">⚔ arena</a>
+<a href="/nav-hub.html" style="color:#27ae60;text-decoration:none">🗺 hub</a>
+<a href="/onboard" style="color:#d4a017;text-decoration:none;font-weight:700">◯ deploy</a>
+<a href="/" style="color:#3498db;text-decoration:none">👁 HUD</a>
+<span style="color:#666">c=πr²/O</span>
+</div>
+</body></html>

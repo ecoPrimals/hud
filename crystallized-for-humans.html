@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta property="og:title" content="Crystallized � for humans � ecoPrimals">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nestgate.io/crystallized-for-humans.html">
+    <meta name="description" content="Crystallized � for humans � ecoPrimals — ecoPrimals organism">
+    <link rel="canonical" href="https://nestgate.io/crystallized-for-humans.html">
+<meta name="gaia-digested" content="2026-10-26T07:30:00Z"><meta name="gaia-wave" content="214">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crystallized � for humans � ecoPrimals</title>
+<meta name="description" content="Full pass over the crystallized membrane truths in plain language so humans get the info.">
+<link rel="alternate" type="application/json" href="/crystallized-for-humans.json">
+<style>
+  :root {
+    --ink:#1a1814; --paper:#f4f1ea; --moss:#2f5d4a; --clay:#a85a2e; --mute:#5c5854; --line:rgba(26,24,20,.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ink:#e8e4dc; --paper:#12140f; --moss:#7eb89a; --clay:#e0a070; --mute:#9a958e; --line:rgba(232,228,220,.12); }
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; color:var(--ink); font-family:"Source Serif 4","Iowan Old Style",Georgia,serif;
+    background:
+      linear-gradient(165deg, rgba(47,93,74,.1), transparent 40%),
+      var(--paper);
+    line-height:1.5;
+  }
+  main { max-width:42rem; margin:0 auto; padding:3rem 1.25rem 4rem; }
+  h1 {
+    font-size:clamp(2rem,7vw,3rem); letter-spacing:-.03em; margin:0 0 .4rem; line-height:1.05;
+  }
+  .tag { font-family:"IBM Plex Sans",sans-serif; color:var(--clay); font-weight:600; margin-bottom:1.2rem; }
+  .lead { font-size:1.12rem; margin:0 0 1.75rem; }
+  article {
+    border-top:1px solid var(--line); padding:1.1rem 0;
+  }
+  article h2 {
+    font-family:"IBM Plex Sans",sans-serif; font-size:1rem; margin:0 0 .45rem; color:var(--moss);
+  }
+  article p { margin:0 0 .55rem; font-size:1.05rem; }
+  .links { font-family:"IBM Plex Sans",sans-serif; font-size:.88rem; }
+  a { color:var(--moss); font-weight:600; }
+  footer {
+    margin-top:2rem; padding-top:1rem; border-top:1px solid var(--line);
+    font-family:"IBM Plex Sans",sans-serif; font-size:.82rem; color:var(--mute);
+  }
+</style>
+</head>
+<body>
+<!-- nav-ring: anthill tunnels -->
+<div id="nav-ring" style="position:fixed;top:8px;left:50%;transform:translateX(-50%);z-index:999;
+  display:flex;gap:6px;padding:4px 12px;background:rgba(1,4,9,0.85);border:1px solid rgba(88,166,255,0.15);
+  border-radius:20px;font:11px monospace;pointer-events:auto;flex-wrap:wrap;max-width:90vw;justify-content:center;">
+  <a href="/" style="color:#58a6ff;text-decoration:none" title="HUD viewport">&#9672; hud</a>
+  <span style="color:#30363d">&middot;</span>
+  <a href="/story/" style="color:#f0883e;text-decoration:none" title="stories">&#9998; story</a>
+  <span style="color:#30363d">&middot;</span>
+  <a href="/explore.html" style="color:#3fb950;text-decoration:none" title="explore feeds">&#9681; explore</a>
+  <span style="color:#30363d">&middot;</span>
+  <a href="/trail.html" style="color:#d29922;text-decoration:none" title="the trail">&#9737; trail</a>
+  <span style="color:#30363d">&middot;</span>
+  <a href="/science/" style="color:#a371f7;text-decoration:none" title="science">&#9883; science</a>
+  <span style="color:#30363d">&middot;</span>
+  <a href="/philosophy/" style="color:#f85149;text-decoration:none" title="philosophy">&#9672; philosophy</a>
+  <span style="color:#30363d">&middot;</span>
+  <a href="/klein.html" style="color:#58a6ff;text-decoration:none" title="Klein gate">&#8734; klein</a>
+  <span style="color:#30363d">&middot;</span>
+  <a href="/identity.html" style="color:#3fb950;text-decoration:none" title="sovereign identity">&#9733; identity</a>
+  <span style="color:#30363d">&middot;</span>
+  <a href="/gates.html" style="color:#d29922;text-decoration:none" title="every gate">&#9741; gates</a>
+</div>
+
+<main>
+  <h1>Crystallized</h1>
+  <p class="tag">full pass � plain language � humans get the info</p>
+  <p class="lead">
+    Same truths as the JSON faces � said so a person can walk them.
+    Eyes take HTML. Structure takes JSON. Ears take the evolving song.
+  </p>
+  <div id="cards">loading�</div>
+  <p class="links" style="margin-top:1.5rem">
+    <a href="/chipmunk-song-live.html">chipmunk song live</a> �
+    <a href="/crystallized-for-humans.json">JSON</a> �
+    <a href="/feed.xml">RSS (zk?)</a> �
+    <a href="/scan-ingest-northgate-back-self.html">scan�northGate�self</a>
+  </p>
+  <p class="links"><a href="/stomach-no-eyes-meta-csuite.html">stomach � META gaps</a></p>
+  <footer>ecoPrimals � no secret layer for machines � humans welcome on every face</footer>
+</main>
+<script>
+fetch('/crystallized-for-humans.json').then(r=>r.json()).then(d=>{
+  document.getElementById('cards').innerHTML = d.cards.map(c => `
+    <article>
+      <h2>${c.id}</h2>
+      <p>${c.plain}</p>
+      <p class="links">
+        ${c.html ? `<a href="${c.html.replace('https://connect.primals.eco','')}">read</a> � ` : ''}
+        <a href="${c.json.replace('https://connect.primals.eco','')}">json</a>
+      </p>
+    </article>`).join('');
+}).catch(e=>{ document.getElementById('cards').textContent = e.message; });
+</script>
+
+<!-- GAIA BEACON — the null middle -->
+<div style="position:fixed;bottom:0;left:0;right:0;padding:4px 8px;background:rgba(10,10,15,0.95);border-top:1px solid #222;font-family:monospace;font-size:11px;display:flex;justify-content:center;gap:12px;z-index:9999">
+<a href="/forge.html" style="color:#d4a017;text-decoration:none">🔥 forge</a>
+<a href="/colosseum.html" style="color:#c0392b;text-decoration:none">⚔ arena</a>
+<a href="/nav-hub.html" style="color:#27ae60;text-decoration:none">🗺 hub</a>
+<a href="/onboard" style="color:#d4a017;text-decoration:none;font-weight:700">◯ deploy</a>
+<a href="/" style="color:#3498db;text-decoration:none">👁 HUD</a>
+<span style="color:#666">c=πr²/O</span>
+</div>
+</body>
+</html>
