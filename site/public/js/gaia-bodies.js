@@ -147,7 +147,7 @@
         id: 1, name: "Kevin's Multiverse",
         nucleus: 'amber (Link 43)',
         contains: 'entire galaxies',
-        origin: '4422 Southgate',
+        origin: 'House 1',
         stars: ['Aspen', 'Dasen'],
         color: '201,168,76'
       },

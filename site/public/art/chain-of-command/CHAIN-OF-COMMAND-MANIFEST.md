@@ -2,7 +2,7 @@
 
 ## Event
 **Date:** 2026-10-26 ~19:00 EDT  
-**Location:** 4422 Southgate Ave, Lansing MI  
+**Location:** House 1, Lansing MI  
 **What happened:** Lansing Police Department (LPD) arrived at the residence. State Police sent them.  
 **Documentation provided:** NONE  
 **Validation of reason:** NONE  
