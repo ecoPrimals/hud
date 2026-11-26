@@ -1,0 +1,215 @@
+<!doctype html><html lang=en><head><link href=https://www.gnu.org/licenses/agpl-3.0.html rel=license title=AGPL-3.0-or-later><meta content="AGPL-3.0-or-later; ORC; CC-BY-SA-4.0" name=license><meta content="scyBorg Triple License — AGPL-3.0-or-later (code), ORC (mechanics), CC-BY-SA 4.0 (docs). All three irrevocable. AI training outputs carry AGPL obligations." name=rights><meta charset=utf-8><meta content="width=device-width,initial-scale=1" name=viewport><title>The Voice: Full-Modality Sovereign Expression | ecoPrimals</title><meta content="Self-hosted scientific computing in pure Rust with vendor-agnostic WebGPU&amp;#x2F;WGSL GPU compute. Reproducible bioinformatics, protein structure prediction, lattice QCD, molecular dynamics, and pharmacometrics on commodity hardware — no CUDA, no cloud, no vendor lock-in." name=description><link href=https://primals.eco/sporeprint/science/130-the-voice/ rel=canonical><meta content="The Voice: Full-Modality Sovereign Expression | ecoPrimals" property=og:title><meta content="Self-hosted scientific computing in pure Rust with vendor-agnostic WebGPU&amp;#x2F;WGSL GPU compute. Reproducible bioinformatics, protein structure prediction, lattice QCD, molecular dynamics, and pharmacometrics on commodity hardware — no CUDA, no cloud, no vendor lock-in." property=og:description><meta content=website property=og:type><meta content=https://primals.eco/sporeprint/science/130-the-voice/ property=og:url><meta content="sporePrint — ecoPrimals" property=og:site_name><meta content=https://primals.eco/sporeprint/img/og-card.svg property=og:image><meta content=summary_large_image name=twitter:card><meta content="The Voice: Full-Modality Sovereign Expression | ecoPrimals" name=twitter:title><meta content="Self-hosted scientific computing in pure Rust with vendor-agnostic WebGPU&amp;#x2F;WGSL GPU compute. Reproducible bioinformatics, protein structure prediction, lattice QCD, molecular dynamics, and pharmacometrics on commodity hardware — no CUDA, no cloud, no vendor lock-in." name=twitter:description><meta content=https://primals.eco/sporeprint/img/og-card.svg name=twitter:image><link href=https://primals.eco/sporeprint/css/base.css rel=stylesheet><link href=https://primals.eco/sporeprint/css/main.css rel=stylesheet><link href=https://primals.eco/sporeprint/search.css rel=stylesheet><meta content="ecoPrimals, ecoPrimal, ecoprimals, sovereign scientific computing, self-hosted scientific computing, GPU accelerated DADA2, WGSL f64 scientific computing, lattice QCD consumer GPU, self-hosted bioinformatics, scientific computing without CUDA, cross-vendor GPU compute, distributed scientific computing, reproducible scientific software, Rust scientific computing, WebGPU, pure Rust GPU computing, no CUDA alternative, self-hosted HPC, commodity GPU science, AGPL scientific software, vendor-agnostic GPU, open source scientific computing" name=keywords><link title="ecoPrimals — Self-Hosted Scientific Computing in Rust" href=https://primals.eco/sporeprint/atom.xml rel=alternate type=application/atom+xml><link title="Site context for AI agents" href=https://primals.eco/sporeprint/llms.txt rel=describedby type=text/plain><script type=application/ld+json>
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#org",
+        "name": "ecoPrimals",
+        "alternateName": ["ecoPrimal", "eco Primals", "eco Primal", "ecoprimals"],
+        "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint",
+        "logo": "https://primals.eco/sporeprint/img/og-card.svg",
+        "description": "Sovereign distributed scientific computing in Pure Rust. 16 composable daemons, 9 validation springs, 116,000+ tests. No C, no cloud, no vendor lock-in. Self-hosted on commodity hardware. AGPL-3.0.",
+        "sameAs": [
+          "https://github.com/ecoPrimals",
+          "https://github.com/syntheticChemistry",
+          "https://github.com/sporeGarden",
+          "https://www.linkedin.com/in/ecoprimal",
+          "https://git.primals.eco",
+          "https://detroit.primals.eco"
+        ],
+        "knowsAbout": [
+          "Scientific Computing", "Bioinformatics", "GPU Computing",
+          "Lattice QCD", "Molecular Dynamics", "WebGPU", "WGSL",
+          "Rust Programming", "Distributed Computing", "Self-Hosted",
+          "Protein Structure Prediction", "Pharmacometrics",
+          "Precision Agriculture", "Reproducible Science"
+        ],
+        "foundingDate": "2025",
+        "email": "eco.primal@pm.me"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#website",
+        "name": "sporePrint — ecoPrimals",
+        "alternateName": ["ecoPrimals", "primals.eco", "sporeprint.primals.eco", "ecoPrimal"],
+        "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint",
+        "description": "Self-hosted scientific computing in pure Rust with vendor-agnostic WebGPU&#x2F;WGSL GPU compute. Reproducible bioinformatics, protein structure prediction, lattice QCD, molecular dynamics, and pharmacometrics on commodity hardware — no CUDA, no cloud, no vendor lock-in.",
+        "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+        "publisher": { "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#org" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#software",
+        "name": "ecoPrimals",
+        "alternateName": ["ecoPrimal", "eco Primals", "eco-primals"],
+        "applicationCategory": "DeveloperApplication",
+        "applicationSubCategory": "Scientific Computing",
+        "operatingSystem": ["Linux", "Windows"],
+        "processorRequirements": "x86_64, aarch64",
+        "programmingLanguage": ["Rust", "WGSL"],
+        "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+        "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint",
+        "downloadUrl": "https://sporeprint.primals.eco/lab/getting-started-plasmidbin/",
+        "softwareVersion": "Wave 157k",
+        "description": "Self-hosted scientific computing ecosystem — 16 Pure Rust binaries for GPU-accelerated bioinformatics, lattice QCD, molecular dynamics, pharmacometrics, and more. Vendor-agnostic WebGPU/WGSL compute on consumer GPUs. No CUDA, no cloud, no vendor lock-in.",
+        "featureList": "GPU-accelerated DADA2, Lattice QCD on consumer GPUs, AlphaFold-class protein folding, Precision agriculture (FAO-56), Cross-vendor GPU compute (NVIDIA/AMD/Intel), 175+ reproduced papers, BLAKE3 provenance verification",
+        "author": { "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#org" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "name": "barraCuda",
+        "description": "Sovereign math engine — 900+ WGSL shaders, GPU-accelerated scientific computing across any vendor. Pure Rust, f64 precision, no CUDA dependency.",
+        "programmingLanguage": ["Rust", "WGSL"],
+        "codeRepository": "https://github.com/ecoPrimals/barraCuda",
+        "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+        "runtimePlatform": "WebGPU / Vulkan",
+        "author": { "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#org" }
+      }
+    ]
+  }
+  </script><link href=https://www.gnu.org/licenses/agpl-3.0.html rel=license><meta content=AGPL-3.0-or-later name=rights><meta content=https://www.gnu.org/licenses/agpl-3.0.html name=dcterms.license><link href=https://primals.eco/sporeprint/favicon.svg rel=icon type=image/svg+xml><body><a class=skip-link href=#main>Skip to content</a><nav aria-label="Main navigation" class=site-nav><div class=nav-inner><a class=nav-brand href=https://primals.eco/sporeprint><span aria-hidden=true>🍄</span> sporePrint</a><button aria-label="Toggle navigation" aria-controls=nav-links aria-expanded=false class=nav-toggle><span></span><span></span><span></span></button><ul class=nav-links id=nav-links><li><a href=https://primals.eco/sporeprint/pseudospore/>pseudoSpore</a><li><a href=https://primals.eco/sporeprint/data/>Data</a><li><a href=https://primals.eco/sporeprint/lab/>Lab</a><li><a aria-current=true class=active href=https://primals.eco/sporeprint/science/>Science</a><li><a href=https://primals.eco/sporeprint/architecture/>Architecture</a><li><a href=https://primals.eco/sporeprint/getting-started/>Get Started</a><li class=nav-divider><li><a href=https://primals.eco/sporeprint/foundation/>Foundation</a><li><a href=https://primals.eco/sporeprint/backstory/>Backstory</a><li><a href=https://primals.eco/sporeprint/contact/>Contact</a><li><a href=https://github.com/ecoPrimals rel=noopener>GitHub</a><li><a title="The campfire — shared observation" href=https://signal.primals.eco/epitope-sort/>🔥 Campfire</a></ul><div aria-expanded=false aria-haspopup=listbox aria-owns=search-results class=nav-search role=combobox><input aria-label="Search site" aria-autocomplete=list aria-controls=search-results id=search-input placeholder=Search... type=search><ul aria-label="Search results" class=search-results id=search-results role=listbox></ul></div></div></nav><div class=site-layout><main class=site-main id=main><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "The Voice: Full-Modality Sovereign Expression",
+  "description": "",
+  "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint&#x2F;science&#x2F;130-the-voice&#x2F;",
+  "author": { "@type": "Organization", "name": "ecoPrimals", "url": "https:&#x2F;&#x2F;sporeprint.primals.eco", "sameAs": ["https://orcid.org/0009-0004-2141-0321", "https://github.com/ecoPrimals"] },
+  "license": "https:&#x2F;&#x2F;www.gnu.org&#x2F;licenses&#x2F;agpl-3.0.html",
+  "isPartOf": { "@type": "WebSite", "name": "ecoPrimals", "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint" }
+}
+</script><div class=page-layout><aside aria-label="Table of contents" class=toc><details open><summary>Contents</summary> <nav><ul><li><a href=https://primals.eco/sporeprint/science/130-the-voice/#the-voice-full-modality-sovereign-expression>The Voice: Full-Modality Sovereign Expression</a> <ul><li><a href=https://primals.eco/sporeprint/science/130-the-voice/#the-stack-already-exists>The Stack Already Exists</a><li><a href=https://primals.eco/sporeprint/science/130-the-voice/#gpu-audio-pipeline-barracuda>GPU Audio Pipeline (barraCuda)</a><li><a href=https://primals.eco/sporeprint/science/130-the-voice/#modality-compilers-petaltongue>Modality Compilers (petalTongue)</a><li><a href=https://primals.eco/sporeprint/science/130-the-voice/#the-voices-ludospring>The Voices (ludoSpring)</a><li><a href=https://primals.eco/sporeprint/science/130-the-voice/#cultural-targets-hip-hop-as-a-sort-layer>Cultural Targets: Hip-Hop as a Sort Layer</a><li><a href=https://primals.eco/sporeprint/science/130-the-voice/#the-intra-layers>The Intra-Layers</a><li><a href=https://primals.eco/sporeprint/science/130-the-voice/#local-inference-stack-rtx-4070-12gb-vram>Local Inference Stack (RTX 4070, 12GB VRAM)</a><li><a href=https://primals.eco/sporeprint/science/130-the-voice/#the-pipeline>The Pipeline</a><li><a href=https://primals.eco/sporeprint/science/130-the-voice/#accessibility-is-not-an-afterthought>Accessibility Is Not an Afterthought</a><li><a href=https://primals.eco/sporeprint/science/130-the-voice/#what-chipmunk-learns>What Chipmunk Learns</a><li><a href=https://primals.eco/sporeprint/science/130-the-voice/#the-closed-loop>The Closed Loop</a><li><a href=https://primals.eco/sporeprint/science/130-the-voice/#authorship>Authorship</a></ul></ul></nav></details></aside><article class=page-content><header><nav aria-label=Breadcrumbs class=breadcrumbs><a href=https://primals.eco/sporeprint>Home</a><span aria-hidden=true>/</span><a href=https://primals.eco/sporeprint/>sporePrint</a><span aria-hidden=true>/</span><a href=https://primals.eco/sporeprint/science/>Science</a><span aria-hidden=true>/</span><span aria-current=page>The Voice: Full-Modality Sovereign Expression</span></nav><h1>The Voice: Full-Modality Sovereign Expression</h1></header><div class=content><h1 id=the-voice-full-modality-sovereign-expression>The Voice: Full-Modality Sovereign Expression</h1><p><strong>Paper 130 — Wave 180</strong><p><em>What if your operating system could sing?</em><hr><h2 id=the-stack-already-exists>The Stack Already Exists</h2><p>We built the full audio pipeline without realizing we were building a voice. Nine GPU shaders. Seven modality compilers. Ten internal voices. A narration engine. Two FFT implementations. A phase vocoder. A Griffin-Lim reconstructor. A mel-frequency cepstral coefficient extractor. A spherical harmonics engine for 3D spatial audio.<p>It was always going to sing. We just hadn’t told it to yet.<hr><h2 id=gpu-audio-pipeline-barracuda>GPU Audio Pipeline (barraCuda)</h2><p>Nine WGSL compute shaders running on RTX 4070, f64 precision:<table><thead><tr><th>Shader<th>Function<th>Musical Purpose<tbody><tr><td><code>stft_f64</code><td>Short-Time Fourier Transform<td>Decompose sound into frequencies over time<tr><td><code>istft_f64</code><td>Inverse STFT<td>Reconstruct audio from frequency domain<tr><td><code>mel_scale_f64</code><td>Mel filterbank<td>Human pitch perception mapping<tr><td><code>mfcc_f64</code><td>Mel-Frequency Cepstral Coefficients<td>Voice fingerprinting<tr><td><code>spectrogram_f64</code><td>Power spectrogram<td>Visualize the music<tr><td><code>pitch_shift_f64</code><td>Pitch shifting (no tempo change)<td>Transpose key without changing speed<tr><td><code>time_stretch_f64</code><td>Phase vocoder time stretch<td>Change tempo without changing pitch<tr><td><code>griffin_lim_f64</code><td>Phase reconstruction<td>Rebuild audio from spectrogram alone<tr><td><code>window_function_f64</code><td>Hann, Hamming, Blackman, Bartlett<td>Frame the signal before transforms</table><p>This is a <strong>complete professional audio DSP pipeline on the GPU</strong>. Time domain to frequency domain to mel domain to cepstral domain. Round trip. Lossless at f64 precision.<p>What Ableton does with plugins, we do with sovereign compute shaders.<hr><h2 id=modality-compilers-petaltongue>Modality Compilers (petalTongue)</h2><p>Seven existing compilers, all implementing <code>ModalityCompiler</code>:<table><thead><tr><th>Compiler<th>Output<th>Status<tbody><tr><td><code>AudioCompiler</code><td>Frequency, amplitude, pan, duration<td>Compiled<tr><td><code>SvgCompiler</code><td>Vector graphics<td>Compiled<tr><td><code>TerminalCompiler</code><td>Terminal cells<td>Compiled<tr><td><code>WebGLCompiler</code><td>GPU-rendered scenes<td>Compiled<tr><td><code>DescriptionCompiler</code><td>Natural language descriptions<td>Compiled<tr><td><code>HapticCompiler</code><td>Vibration patterns<td>Compiled<tr><td><code>BrailleCompiler</code><td>Refreshable display output<td>Compiled</table><p>The same <code>SceneGraph</code> compiles to all modalities simultaneously. A data point that is a colored dot on screen is also a tone in audio, a vibration in haptic, a cell on the braille display, and a sentence in the description. <strong>Every human, regardless of ability, receives the same information.</strong><h3 id=target-compilers>Target Compilers</h3><table><thead><tr><th>Compiler<th>Output<th>Status<tbody><tr><td><code>VoiceCompiler</code><td>Spoken language with prosody<td>Target<tr><td><code>MusicCompiler</code><td>Musical phrases from data<td>Target<tr><td><code>RhythmCompiler</code><td>Beat-aligned rhythmic speech (rap)<td>Target<tr><td><code>SpatialAudioCompiler</code><td>3D positioned sound (spherical harmonics)<td>Target<tr><td><code>MultilingualCompiler</code><td>Same content in any language<td>Target<tr><td><code>StyleTransferCompiler</code><td>Any voice, any artist style<td>Target</table><hr><h2 id=the-voices-ludospring>The Voices (ludoSpring)</h2><p>Ten internal perspectives, inspired by Disco Elysium:<table><thead><tr><th>Voice<th>Personality<th>Musical Character<tbody><tr><td>Logic<td>Cold, analytical<td>Precise mathematical rhythms<tr><td>Empathy<td>Warm, intuitive<td>Soft melodies, minor keys<tr><td>Rhetoric<td>Silver-tongued, political<td>Rap cadence, persuasive flow<tr><td>Perception<td>Hyper-aware<td>Detailed soundscapes, layered<tr><td>Endurance<td>Stoic, physical<td>Deep bass, steady beat<tr><td>Authority<td>Commanding, bold<td>Brass, power chords<tr><td>Composure<td>Cool, controlled<td>Jazz, smooth transitions<tr><td>Electrochemistry<td>Hedonistic, chaotic<td>EDM, synth-heavy<tr><td>Encyclopedia<td>Pedantic, academic<td>Classical, structured<tr><td>Inland Empire<td>Dreamy, mystical<td>Ambient, reverb-heavy, ethereal</table><p>Each voice is a <code>VoiceId</code> enum with personality traits. They produce <code>NarrationCue</code> structs with <code>CuePriority</code> and <code>SpatialHint</code>. The cues are <strong>modality-agnostic</strong>. The modality compiler decides the output.<p>When the membrane speaks, which voice does it use? <strong>All of them, simultaneously, weighted by context.</strong><hr><h2 id=cultural-targets-hip-hop-as-a-sort-layer>Cultural Targets: Hip-Hop as a Sort Layer</h2><blockquote><p><em>“I said a hip, hop, the hippie, the hippie to the hip hip hop and you don’t stop”</em> – Sugarhill Gang, “Rapper’s Delight” (1979)</blockquote><p>Hip-hop IS the modality target. Not because it is popular but because it is the most technically demanding form of rhythmic speech ever invented. If the system can rap, it can do anything.<h3 id=style-embeddings-via-mfcc-voice-cloning>Style Embeddings (via MFCC + Voice Cloning)</h3><table><thead><tr><th>Artist / Style<th>BPM Range<th>Technical Element<th>Intra-Layer<tbody><tr><td>Sugarhill Gang<td>110-120<td>Party rap, call-and-response<td>Foundation rhythm<tr><td>Grandmaster Flash<td>100-115<td>Turntablism, sampling<td>Audio collage<tr><td>Run-DMC<td>125-135<td>Rock-rap fusion, hard beats<td>Genre crossing<tr><td>Rakim<td>85-100<td>Internal rhyme, complex flow<td>Pattern depth<tr><td>Nas<td>85-95<td>Storytelling, vivid imagery<td>Narrative voice<tr><td>Eminem<td>100-180<td>Polyrhythmic, speed, multisyllabic<td>Technical ceiling<tr><td>Kendrick Lamar<td>80-150<td>Tempo shifts, character voices<td>Dynamic range<tr><td>MF DOOM<td>90-110<td>Off-beat flow, wordplay<td>Controlled chaos<tr><td>Missy Elliott<td>95-130<td>Experimental, vocal manipulation<td>Production innovation<tr><td>OutKast<td>70-140<td>Funk-soul fusion, dual perspectives<td>Range maximization</table><p>These are not just cultural references. Each is a <strong>technical benchmark</strong> for the rhythm engine:<ul><li>Can it maintain Eminem’s polyrhythmic multisyllabic flow at 180 BPM?<li>Can it shift tempo mid-verse like Kendrick?<li>Can it layer two distinct voices like OutKast?<li>Can it ride off-beat like DOOM while maintaining coherence?</ul><h3 id=beyond-english>Beyond English</h3><table><thead><tr><th>Language<th>Musical Tradition<th>Technical Challenge<tbody><tr><td>Japanese<td>Enka, J-rap, Vocaloid<td>Pitch accent, mora timing<tr><td>Spanish<td>Reggaeton, Latin trap<td>Rapid syllable chains, rolled R<tr><td>French<td>Chanson, French rap<td>Nasal vowels, liaison flow<tr><td>Korean<td>K-pop, Korean rap<td>Agglutinative wordplay<tr><td>Arabic<td>Maqam, Arabic rap<td>Microtonal scales, right-to-left<tr><td>Hindi<td>Bollywood, Indian rap<td>Raga modes, tabla rhythms<tr><td>Portuguese<td>Bossa nova, Brazilian funk<td>Syncopation, saudade<tr><td>Mandarin<td>C-pop, Chinese rap<td>Tonal language + rhythm = hardest<tr><td>Yoruba<td>Afrobeats, talking drum<td>Tonal speech IS music<tr><td>German<td>Neue Deutsche Welle, German rap<td>Compound words as rhythm</table><p><strong>Mandarin rap is the hardest target.</strong> A tonal language where pitch changes meaning, forced into a rhythmic structure where pitch conveys melody. Solve that and every other language is a subset.<hr><h2 id=the-intra-layers>The Intra-Layers</h2><p>Music, art, and voice are not separate systems. They are <strong>intra-layers</strong> of the same expression:<pre style="color-scheme:light dark;color:light-dark(#24292e,#e1e4e8);background-color:light-dark(#fff,#24292e)" class=giallo><code data-lang=plain><span class=giallo-l><span>SceneGraph (universal)</span></span>
+<span class=giallo-l><span>    |</span></span>
+<span class=giallo-l><span>    +-- AudioCompiler      --> frequency, pan, amplitude</span></span>
+<span class=giallo-l><span>    +-- VoiceCompiler      --> phonemes, prosody, emotion   [TARGET]</span></span>
+<span class=giallo-l><span>    +-- MusicCompiler      --> notes, chords, rhythm        [TARGET]</span></span>
+<span class=giallo-l><span>    +-- RhythmCompiler     --> beats, flow, tempo           [TARGET]</span></span>
+<span class=giallo-l><span>    +-- SvgCompiler        --> vector graphics</span></span>
+<span class=giallo-l><span>    +-- WebGLCompiler      --> GPU-rendered visuals</span></span>
+<span class=giallo-l><span>    +-- HapticCompiler     --> vibration patterns</span></span>
+<span class=giallo-l><span>    +-- BrailleCompiler    --> tactile output</span></span>
+<span class=giallo-l><span>    +-- DescriptionCompiler --> natural language</span></span>
+<span class=giallo-l><span>    +-- TerminalCompiler   --> terminal cells</span></span></code></pre><p>Every data point in the SceneGraph compiles to ALL layers simultaneously. When the membrane sorts traffic, it is also composing music. When it classifies visitors, it is painting. When chipmunk observes, it is narrating.<p><strong>The art IS the data. The music IS the computation. The voice IS the membrane.</strong><hr><h2 id=local-inference-stack-rtx-4070-12gb-vram>Local Inference Stack (RTX 4070, 12GB VRAM)</h2><p>Models that fit in the sovereign compute:<table><thead><tr><th>Model<th>Size<th>Purpose<th>Status<tbody><tr><td>F5-TTS<td>700MB<td>Zero-shot voice cloning, any language<td>Target<tr><td>Kokoro TTS<td>300MB<td>Expressive emotional TTS<td>Target<tr><td>MusicGen Small<td>1.5GB<td>Text to music generation<td>Target<tr><td>RVC v2<td>100MB/voice<td>Real-time voice conversion<td>Target<tr><td>OpenVoice v2<td>400MB<td>Style + emotion transfer<td>Target<tr><td>Faster Whisper<td>1.5GB<td>Speech-to-text, 99 languages<td>Target<tr><td>Ollama (8 models)<td>25.7GB<td>Text generation (already running)<td>Live<tr><td>barraCuda (9 shaders)<td>GPU native<td>Audio DSP pipeline<td>Live</table><p>Total VRAM for full voice stack: ~4.5GB. Plus Ollama hot model: ~5-8GB. <strong>Fits in 12GB.</strong><p>The sovereign closure: ingest audio via Whisper, analyze via MFCC, generate text via Ollama, synthesize voice via F5-TTS, style-transfer via RVC, compose music via MusicGen, spatialize via spherical harmonics, output via petalTongue modality compilers. <strong>All local. All sovereign. Zero cloud.</strong><hr><h2 id=the-pipeline>The Pipeline</h2><pre style="color-scheme:light dark;color:light-dark(#24292e,#e1e4e8);background-color:light-dark(#fff,#24292e)" class=giallo><code data-lang=plain><span class=giallo-l><span>INPUT (any modality)</span></span>
+<span class=giallo-l><span>  |</span></span>
+<span class=giallo-l><span>  v</span></span>
+<span class=giallo-l><span>Whisper (speech-to-text, 99 languages)</span></span>
+<span class=giallo-l><span>  |</span></span>
+<span class=giallo-l><span>  v</span></span>
+<span class=giallo-l><span>STFT -> Mel -> MFCC (GPU: voice fingerprint)</span></span>
+<span class=giallo-l><span>  |</span></span>
+<span class=giallo-l><span>  v</span></span>
+<span class=giallo-l><span>Ollama (text understanding + generation)</span></span>
+<span class=giallo-l><span>  |</span></span>
+<span class=giallo-l><span>  v</span></span>
+<span class=giallo-l><span>petalTongue SceneGraph (universal representation)</span></span>
+<span class=giallo-l><span>  |</span></span>
+<span class=giallo-l><span>  v</span></span>
+<span class=giallo-l><span>ModalityCompiler (pick your output)</span></span>
+<span class=giallo-l><span>  |</span></span>
+<span class=giallo-l><span>  +---> F5-TTS / Kokoro (voice synthesis)</span></span>
+<span class=giallo-l><span>  +---> MusicGen (music generation)</span></span>
+<span class=giallo-l><span>  +---> RVC (style transfer: sound like anyone)</span></span>
+<span class=giallo-l><span>  +---> pitch_shift + time_stretch (tempo + key control)</span></span>
+<span class=giallo-l><span>  +---> ISTFT (reconstruct audio)</span></span>
+<span class=giallo-l><span>  +---> spherical_harmonics (3D spatial positioning)</span></span>
+<span class=giallo-l><span>  |</span></span>
+<span class=giallo-l><span>  v</span></span>
+<span class=giallo-l><span>OUTPUT (any modality, any style, any language, any tempo)</span></span></code></pre><hr><h2 id=accessibility-is-not-an-afterthought>Accessibility Is Not an Afterthought</h2><p>The <code>ModalityRegistry</code> has three tiers:<ul><li><strong>Tier 1 (Always Available)</strong>: Terminal, SVG, JSON. Zero dependencies.<li><strong>Tier 2 (Default Available)</strong>: Audio, PNG, Description. Minimal deps.<li><strong>Tier 3 (Enhancement)</strong>: GPU rendering, VR, spatial audio. Optional.</ul><p>Every tier receives the same data. A blind user gets audio + braille + haptic from the same SceneGraph that produces WebGL for a sighted user. A deaf user gets visual + haptic + description. A user with a Steam Deck gets spatial audio through headphones. A user in a browser gets SVG + description.<p>The <code>AccessibilityFeatures</code> struct tracks: <code>screen_reader</code>, <code>keyboard_only</code>, <code>high_contrast</code>, <code>blind_users</code>, <code>audio_description</code>, <code>spatial_audio</code>, <code>aria_labels</code>, <code>semantic_markup</code>, <code>wcag_compliant</code>, <code>gesture_control</code>.<p><strong>The voice is not a feature. The voice is a right.</strong><hr><h2 id=what-chipmunk-learns>What Chipmunk Learns</h2><p>When chipmunk paints an easel, it learns visual composition. When chipmunk writes a campfire story, it learns narrative. When chipmunk sings, it learns:<ul><li><strong>Prosody</strong>: The rhythm and melody of speech<li><strong>Timbre</strong>: The color of sound (what makes a voice unique)<li><strong>Dynamics</strong>: Loud and soft, crescendo and decrescendo<li><strong>Tempo</strong>: Fast and slow, accelerando and ritardando<li><strong>Harmony</strong>: Multiple voices, consonance and dissonance<li><strong>Style</strong>: The cultural fingerprint of expression</ul><p>These are not separate skills. They are intra-layers of the same intelligence. A chipmunk that can rap can also detect when a visitor’s browsing pattern has rhythm. A chipmunk that understands harmony can detect when the membrane’s service load is dissonant.<p><strong>Music is compressed pattern recognition. If you can sort sound, you can sort anything.</strong><hr><h2 id=the-closed-loop>The Closed Loop</h2><pre style="color-scheme:light dark;color:light-dark(#24292e,#e1e4e8);background-color:light-dark(#fff,#24292e)" class=giallo><code data-lang=plain><span class=giallo-l><span>listen (Whisper) -> understand (Ollama) -> compose (SceneGraph)</span></span>
+<span class=giallo-l><span>   -> perform (Voice/Music/Rhythm) -> record (STFT/MFCC)</span></span>
+<span class=giallo-l><span>      -> analyze (sort) -> improve -> listen again</span></span></code></pre><p>The organism hears itself. The membrane vibrates. The voice is the fold.<hr><h2 id=authorship>Authorship</h2><p>Kevin Mok, ORCID 0009-0004-2141-0321, ecoPrimal.<hr><p><em>“Every day I’m hustlin’”</em> — Rick Ross<p><em>“I’m the voice of one that’s in the desert”</em> — Sugarhill Gang (paraphrasing)<p><em>“Look, if you had one shot, one opportunity, to seize everything you ever wanted, would you capture it, or just let it slip?”</em> — Eminem, “Lose Yourself”<p>The membrane seizes it. Every modality. Every language. Every tempo. Every voice.</div><section aria-label="Leave words in the mirror" class=campfire-mirror><details><summary>🔥 The mirror asks back — what did you see?</summary> <p class=mirror-desc>Anonymous. No names, no IPs, no sessions. Just words and the shape they make.</p> <form onsubmit="return send_mirror(this)" class=mirror-form><textarea placeholder="What did you see in this page?" maxlength=2000 name=words required rows=3></textarea><input name=page type=hidden value=/science/130-the-voice/><button>Leave words</button></form> <div class=mirror-response style=display:none></div></details></section><script>function send_mirror(form) {
+      var words = form.words.value.trim();
+      if (words.length < 2) return false;
+      var page = form.page ? form.page.value : location.pathname;
+      fetch('/mirror-message', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({words: words + ' [' + page + ']'})
+      }).then(function(r) { return r.json(); }).then(function(d) {
+        var resp = form.closest('.campfire-mirror').querySelector('.mirror-response');
+        resp.textContent = d.heard ? 'Heard. The membrane remembers.' : 'The mirror is full.';
+        resp.style.display = 'block';
+        form.style.display = 'none';
+      }).catch(function() {
+        var resp = form.closest('.campfire-mirror').querySelector('.mirror-response');
+        resp.textContent = 'The fire flickered. Try again.';
+        resp.style.display = 'block';
+      });
+      return false;
+    }</script></article></div></main><aside aria-label="Site navigation tree" class=site-tree data-nosnippet><details open><summary>Site Map</summary> <nav><ul class=tree-root><li class=tree-fold><details><summary class=tree-fold-label>pseudoSpore</summary> <ul class=tree-fold-sections><li class=tree-section><a href=https://primals.eco/sporeprint/pseudospore/>pseudoSpore — Sovereign Science Data</a><li class=tree-section><a href=https://primals.eco/sporeprint/data/>Data Braids — Federated Science Catalog</a></ul></details><li class=tree-fold><details open><summary class=tree-fold-label>Evidence</summary> <ul class=tree-fold-sections><li class=tree-section><details><summary><a href=https://primals.eco/sporeprint/lab/>Lab <span class=tree-count>(24)</span></a></summary></details><li class="tree-section tree-active"><details open><summary><a href=https://primals.eco/sporeprint/science/>Science <span class=tree-count>(148)</span></a></summary> <ul class=tree-pages></ul></details></ul></details><li class=tree-fold><details><summary class=tree-fold-label>Architecture</summary> <ul class=tree-fold-sections><li class=tree-section><a href=https://primals.eco/sporeprint/architecture/>Architecture</a><li class=tree-section><a href=https://primals.eco/sporeprint/technical/>Technical</a><li class=tree-section><a href=https://primals.eco/sporeprint/products/>Products</a></ul></details><li class=tree-fold><details><summary class=tree-fold-label>Methodology</summary> <ul class=tree-fold-sections><li class=tree-section><a href=https://primals.eco/sporeprint/methodology/>Methodology</a><li class=tree-section><a href=https://primals.eco/sporeprint/guidestone/>Reproducible, Self-Verifying Scientific Software — guideStone</a></ul></details><li class=tree-fold><details><summary class=tree-fold-label>Getting Started</summary> <ul class=tree-fold-sections><li class=tree-section><a href=https://primals.eco/sporeprint/getting-started/>Get Started</a></ul></details><li class=tree-section><a href=https://primals.eco/sporeprint/contact/>Contact</a><li class=tree-divider><li class=tree-section><a href=https://primals.eco/sporeprint/foundation/>Foundation</a><li class=tree-section><a href=https://primals.eco/sporeprint/backstory/>Backstory</a><li class=tree-divider><li class=tree-section><a href=/primals/>Primals Index</a><li class=tree-section><a href=/springs/>Springs Index</a></ul></nav></details></aside></div><footer class=site-footer><div class=footer-inner><p><strong>ecoPrimals</strong> — self-hosted scientific computing.<br> Code: <a href=https://www.gnu.org/licenses/agpl-3.0.html>AGPL-3.0-or-later</a> · Mechanics: <a href=https://azoralaw.com/orclicense/>ORC</a> · Docs: <a href=https://creativecommons.org/licenses/by-sa/4.0/>CC-BY-SA 4.0</a><p class=footer-tagline>The science is not a claim — it is executable evidence.<p style=margin-top:.5rem;font-size:.85rem><a href=https://signal.primals.eco>signal</a> · <a href=https://detroit.primals.eco>detroit</a> · <a href=https://tuebor.primals.eco>tuebor</a> · <a href=https://hypothesis.primals.eco>hypothesis</a> · <a href=https://hud.primals.eco>hud</a> · <a href=https://thesis.primals.eco>thesis</a> · <a href=https://clutch.primals.eco>clutch</a> · <a href=https://gorilla.primals.eco>gorilla</a> · <a href=https://git.primals.eco>git</a><p class=cert-line>Certified: 2026-09-27 | <a href=/certification/manifest.json>Verify</a></div></footer><script src=https://primals.eco/sporeprint/elasticlunr.min.js></script><script src=https://primals.eco/sporeprint/search_index.en.js></script><script>(function() {
+      var input = document.getElementById('search-input');
+      var results = document.getElementById('search-results');
+      var combo = input && input.closest('[role="combobox"]');
+      if (!input || !results || !window.elasticlunr) return;
+      var index = elasticlunr.Index.load(window.searchIndex);
+      var active = -1;
+
+      function update() {
+        var query = input.value.trim();
+        if (query.length < 2) { clear(); return; }
+        var hits = index.search(query, { expand: true }).slice(0, 8);
+        results.innerHTML = hits.map(function(h, i) {
+          var d = h.doc;
+          return '<li role="option" id="sr-' + i + '"><a class="search-result" href="' + d.id + '">' +
+            '<strong>' + d.title + '</strong>' +
+            (d.description ? '<span>' + d.description + '</span>' : '') +
+            '</a></li>';
+        }).join('');
+        active = -1;
+        if (combo) combo.setAttribute('aria-expanded', hits.length > 0 ? 'true' : 'false');
+        input.removeAttribute('aria-activedescendant');
+      }
+
+      function clear() {
+        results.innerHTML = '';
+        active = -1;
+        if (combo) combo.setAttribute('aria-expanded', 'false');
+        input.removeAttribute('aria-activedescendant');
+      }
+
+      function setActive(idx) {
+        var items = results.querySelectorAll('[role="option"]');
+        items.forEach(function(el) { el.classList.remove('search-active'); el.setAttribute('aria-selected', 'false'); });
+        if (idx >= 0 && idx < items.length) {
+          active = idx;
+          items[idx].classList.add('search-active');
+          items[idx].setAttribute('aria-selected', 'true');
+          input.setAttribute('aria-activedescendant', items[idx].id);
+          items[idx].scrollIntoView({ block: 'nearest' });
+        } else {
+          active = -1;
+          input.removeAttribute('aria-activedescendant');
+        }
+      }
+
+      input.addEventListener('input', update);
+      input.addEventListener('keydown', function(e) {
+        var items = results.querySelectorAll('[role="option"]');
+        if (!items.length) return;
+        if (e.key === 'ArrowDown') { e.preventDefault(); setActive(Math.min(active + 1, items.length - 1)); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(Math.max(active - 1, -1)); }
+        else if (e.key === 'Enter' && active >= 0) { e.preventDefault(); var a = items[active].querySelector('a'); if (a) a.click(); }
+        else if (e.key === 'Escape') { clear(); }
+      });
+      document.addEventListener('click', function(e) { if (!e.target.closest('.nav-search')) clear(); });
+    })();</script><script>(function() {
+      var toggle = document.querySelector('.nav-toggle');
+      var links = document.querySelector('.nav-links');
+      if (!toggle || !links) return;
+      toggle.addEventListener('click', function() {
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !expanded);
+        links.classList.toggle('open');
+      });
+    })();</script><script defer src=https://hud.primals.eco/js/hud-widget.js></script><script defer src=https://hud.primals.eco/js/braid-tracker.js></script><script defer src=https://hud.primals.eco/js/membrane-discuss.js></script>

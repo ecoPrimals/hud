@@ -1,0 +1,177 @@
+<!doctype html><html lang=en><head><link href=https://www.gnu.org/licenses/agpl-3.0.html rel=license title=AGPL-3.0-or-later><meta content="AGPL-3.0-or-later; ORC; CC-BY-SA-4.0" name=license><meta content="scyBorg Triple License — AGPL-3.0-or-later (code), ORC (mechanics), CC-BY-SA 4.0 (docs). All three irrevocable. AI training outputs carry AGPL obligations." name=rights><meta charset=utf-8><meta content="width=device-width,initial-scale=1" name=viewport><title>Fruit vs Mycelium: Antifungals Are Neurotoxins — A Coupled Dataset for Kingdom Fungi | ecoPrimals</title><meta content="Self-hosted scientific computing in pure Rust with vendor-agnostic WebGPU&amp;#x2F;WGSL GPU compute. Reproducible bioinformatics, protein structure prediction, lattice QCD, molecular dynamics, and pharmacometrics on commodity hardware — no CUDA, no cloud, no vendor lock-in." name=description><link href=https://primals.eco/sporeprint/science/139-fruit-mycelium-antifungal-neurotoxin/ rel=canonical><meta content="Fruit vs Mycelium: Antifungals Are Neurotoxins — A Coupled Dataset for Kingdom Fungi | ecoPrimals" property=og:title><meta content="Self-hosted scientific computing in pure Rust with vendor-agnostic WebGPU&amp;#x2F;WGSL GPU compute. Reproducible bioinformatics, protein structure prediction, lattice QCD, molecular dynamics, and pharmacometrics on commodity hardware — no CUDA, no cloud, no vendor lock-in." property=og:description><meta content=website property=og:type><meta content=https://primals.eco/sporeprint/science/139-fruit-mycelium-antifungal-neurotoxin/ property=og:url><meta content="sporePrint — ecoPrimals" property=og:site_name><meta content=https://primals.eco/sporeprint/img/og-card.svg property=og:image><meta content=summary_large_image name=twitter:card><meta content="Fruit vs Mycelium: Antifungals Are Neurotoxins — A Coupled Dataset for Kingdom Fungi | ecoPrimals" name=twitter:title><meta content="Self-hosted scientific computing in pure Rust with vendor-agnostic WebGPU&amp;#x2F;WGSL GPU compute. Reproducible bioinformatics, protein structure prediction, lattice QCD, molecular dynamics, and pharmacometrics on commodity hardware — no CUDA, no cloud, no vendor lock-in." name=twitter:description><meta content=https://primals.eco/sporeprint/img/og-card.svg name=twitter:image><link href=https://primals.eco/sporeprint/css/base.css rel=stylesheet><link href=https://primals.eco/sporeprint/css/main.css rel=stylesheet><link href=https://primals.eco/sporeprint/search.css rel=stylesheet><meta content="ecoPrimals, ecoPrimal, ecoprimals, sovereign scientific computing, self-hosted scientific computing, GPU accelerated DADA2, WGSL f64 scientific computing, lattice QCD consumer GPU, self-hosted bioinformatics, scientific computing without CUDA, cross-vendor GPU compute, distributed scientific computing, reproducible scientific software, Rust scientific computing, WebGPU, pure Rust GPU computing, no CUDA alternative, self-hosted HPC, commodity GPU science, AGPL scientific software, vendor-agnostic GPU, open source scientific computing" name=keywords><link title="ecoPrimals — Self-Hosted Scientific Computing in Rust" href=https://primals.eco/sporeprint/atom.xml rel=alternate type=application/atom+xml><link title="Site context for AI agents" href=https://primals.eco/sporeprint/llms.txt rel=describedby type=text/plain><script type=application/ld+json>
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#org",
+        "name": "ecoPrimals",
+        "alternateName": ["ecoPrimal", "eco Primals", "eco Primal", "ecoprimals"],
+        "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint",
+        "logo": "https://primals.eco/sporeprint/img/og-card.svg",
+        "description": "Sovereign distributed scientific computing in Pure Rust. 16 composable daemons, 9 validation springs, 116,000+ tests. No C, no cloud, no vendor lock-in. Self-hosted on commodity hardware. AGPL-3.0.",
+        "sameAs": [
+          "https://github.com/ecoPrimals",
+          "https://github.com/syntheticChemistry",
+          "https://github.com/sporeGarden",
+          "https://www.linkedin.com/in/ecoprimal",
+          "https://git.primals.eco",
+          "https://detroit.primals.eco"
+        ],
+        "knowsAbout": [
+          "Scientific Computing", "Bioinformatics", "GPU Computing",
+          "Lattice QCD", "Molecular Dynamics", "WebGPU", "WGSL",
+          "Rust Programming", "Distributed Computing", "Self-Hosted",
+          "Protein Structure Prediction", "Pharmacometrics",
+          "Precision Agriculture", "Reproducible Science"
+        ],
+        "foundingDate": "2025",
+        "email": "eco.primal@pm.me"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#website",
+        "name": "sporePrint — ecoPrimals",
+        "alternateName": ["ecoPrimals", "primals.eco", "sporeprint.primals.eco", "ecoPrimal"],
+        "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint",
+        "description": "Self-hosted scientific computing in pure Rust with vendor-agnostic WebGPU&#x2F;WGSL GPU compute. Reproducible bioinformatics, protein structure prediction, lattice QCD, molecular dynamics, and pharmacometrics on commodity hardware — no CUDA, no cloud, no vendor lock-in.",
+        "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+        "publisher": { "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#org" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#software",
+        "name": "ecoPrimals",
+        "alternateName": ["ecoPrimal", "eco Primals", "eco-primals"],
+        "applicationCategory": "DeveloperApplication",
+        "applicationSubCategory": "Scientific Computing",
+        "operatingSystem": ["Linux", "Windows"],
+        "processorRequirements": "x86_64, aarch64",
+        "programmingLanguage": ["Rust", "WGSL"],
+        "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+        "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint",
+        "downloadUrl": "https://sporeprint.primals.eco/lab/getting-started-plasmidbin/",
+        "softwareVersion": "Wave 157k",
+        "description": "Self-hosted scientific computing ecosystem — 16 Pure Rust binaries for GPU-accelerated bioinformatics, lattice QCD, molecular dynamics, pharmacometrics, and more. Vendor-agnostic WebGPU/WGSL compute on consumer GPUs. No CUDA, no cloud, no vendor lock-in.",
+        "featureList": "GPU-accelerated DADA2, Lattice QCD on consumer GPUs, AlphaFold-class protein folding, Precision agriculture (FAO-56), Cross-vendor GPU compute (NVIDIA/AMD/Intel), 175+ reproduced papers, BLAKE3 provenance verification",
+        "author": { "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#org" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "name": "barraCuda",
+        "description": "Sovereign math engine — 900+ WGSL shaders, GPU-accelerated scientific computing across any vendor. Pure Rust, f64 precision, no CUDA dependency.",
+        "programmingLanguage": ["Rust", "WGSL"],
+        "codeRepository": "https://github.com/ecoPrimals/barraCuda",
+        "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+        "runtimePlatform": "WebGPU / Vulkan",
+        "author": { "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#org" }
+      }
+    ]
+  }
+  </script><link href=https://www.gnu.org/licenses/agpl-3.0.html rel=license><meta content=AGPL-3.0-or-later name=rights><meta content=https://www.gnu.org/licenses/agpl-3.0.html name=dcterms.license><link href=https://primals.eco/sporeprint/favicon.svg rel=icon type=image/svg+xml><body><a class=skip-link href=#main>Skip to content</a><nav aria-label="Main navigation" class=site-nav><div class=nav-inner><a class=nav-brand href=https://primals.eco/sporeprint><span aria-hidden=true>🍄</span> sporePrint</a><button aria-label="Toggle navigation" aria-controls=nav-links aria-expanded=false class=nav-toggle><span></span><span></span><span></span></button><ul class=nav-links id=nav-links><li><a href=https://primals.eco/sporeprint/pseudospore/>pseudoSpore</a><li><a href=https://primals.eco/sporeprint/data/>Data</a><li><a href=https://primals.eco/sporeprint/lab/>Lab</a><li><a aria-current=true class=active href=https://primals.eco/sporeprint/science/>Science</a><li><a href=https://primals.eco/sporeprint/architecture/>Architecture</a><li><a href=https://primals.eco/sporeprint/getting-started/>Get Started</a><li class=nav-divider><li><a href=https://primals.eco/sporeprint/foundation/>Foundation</a><li><a href=https://primals.eco/sporeprint/backstory/>Backstory</a><li><a href=https://primals.eco/sporeprint/contact/>Contact</a><li><a href=https://github.com/ecoPrimals rel=noopener>GitHub</a><li><a title="The campfire — shared observation" href=https://signal.primals.eco/epitope-sort/>🔥 Campfire</a></ul><div aria-expanded=false aria-haspopup=listbox aria-owns=search-results class=nav-search role=combobox><input aria-label="Search site" aria-autocomplete=list aria-controls=search-results id=search-input placeholder=Search... type=search><ul aria-label="Search results" class=search-results id=search-results role=listbox></ul></div></div></nav><div class=site-layout><main class=site-main id=main><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "Fruit vs Mycelium: Antifungals Are Neurotoxins — A Coupled Dataset for Kingdom Fungi",
+  "description": "",
+  "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint&#x2F;science&#x2F;139-fruit-mycelium-antifungal-neurotoxin&#x2F;",
+  "author": { "@type": "Organization", "name": "ecoPrimals", "url": "https:&#x2F;&#x2F;sporeprint.primals.eco", "sameAs": ["https://orcid.org/0009-0004-2141-0321", "https://github.com/ecoPrimals"] },
+  "license": "https:&#x2F;&#x2F;www.gnu.org&#x2F;licenses&#x2F;agpl-3.0.html",
+  "isPartOf": { "@type": "WebSite", "name": "ecoPrimals", "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint" }
+}
+</script><div class=page-layout><aside aria-label="Table of contents" class=toc><details open><summary>Contents</summary> <nav><ul><li><a href=https://primals.eco/sporeprint/science/139-fruit-mycelium-antifungal-neurotoxin/#paper-139-fruit-vs-mycelium>Paper 139: Fruit vs Mycelium</a> <ul><li><a href=https://primals.eco/sporeprint/science/139-fruit-mycelium-antifungal-neurotoxin/#abstract>Abstract</a><li><a href=https://primals.eco/sporeprint/science/139-fruit-mycelium-antifungal-neurotoxin/#1-what-we-named-fruit>1. What We Named (Fruit)</a><li><a href=https://primals.eco/sporeprint/science/139-fruit-mycelium-antifungal-neurotoxin/#2-what-we-did-not-name-mycelium>2. What We Did Not Name (Mycelium)</a><li><a href=https://primals.eco/sporeprint/science/139-fruit-mycelium-antifungal-neurotoxin/#3-antifungals-are-neurotoxins-the-coupled-dataset>3. Antifungals Are Neurotoxins — The Coupled Dataset</a><li><a href=https://primals.eco/sporeprint/science/139-fruit-mycelium-antifungal-neurotoxin/#4-hormesis-hygiene-metabolism>4. Hormesis, Hygiene, Metabolism</a><li><a href=https://primals.eco/sporeprint/science/139-fruit-mycelium-antifungal-neurotoxin/#5-next-steps>5. Next Steps</a><li><a href=https://primals.eco/sporeprint/science/139-fruit-mycelium-antifungal-neurotoxin/#6-gaia-publication-surfaces>6. gAIa Publication Surfaces</a><li><a href=https://primals.eco/sporeprint/science/139-fruit-mycelium-antifungal-neurotoxin/#conclusion>Conclusion</a></ul></ul></nav></details></aside><article class=page-content><header><nav aria-label=Breadcrumbs class=breadcrumbs><a href=https://primals.eco/sporeprint>Home</a><span aria-hidden=true>/</span><a href=https://primals.eco/sporeprint/>sporePrint</a><span aria-hidden=true>/</span><a href=https://primals.eco/sporeprint/science/>Science</a><span aria-hidden=true>/</span><span aria-current=page>Fruit vs Mycelium: Antifungals Are Neurotoxins — A Coupled Dataset for Kingdom Fungi</span></nav><h1>Fruit vs Mycelium: Antifungals Are Neurotoxins — A Coupled Dataset for Kingdom Fungi</h1></header><div class=content><h1 id=paper-139-fruit-vs-mycelium>Paper 139: Fruit vs Mycelium</h1><h2 id=abstract>Abstract</h2><p>We named Kingdom Fungi on the <strong>fruiting bodies we can see</strong> — sporePrint, sourDough, rhizoCrypt, the JSON feeds that erupt into public view. That taxonomy may be <strong>way off</strong>. The living fungus is mostly <strong>mycelium</strong>: the underground mesh. In the membrane, mycelium is UDS sockets, WireGuard keepalives, unpublished data trails, cron hyphae — not the paper that fruits. Many clinical antifungals are also <strong>neurotoxins</strong> (or neurotoxic at therapeutic margins). That is not coincidence: fungal membranes and neural membranes share sterol chemistry, mitochondria, and ion-channel logic. Shared toxicity is shared biology. We propose the <strong>antifungal↔neurotoxin coupling</strong> as a new dataset for both pharmacology and membrane immunity — and we publish next steps to classify mycelium before we trust the fruit names.<h2 id=1-what-we-named-fruit>1. What We Named (Fruit)</h2><p>This morning’s mold vaccine gave binomials to what was already visible:<table><thead><tr><th>Binomial (provisional)<th>Fruit we saw<th>Role<tbody><tr><td><em>Sporeprint fruiting_body</em><td>sporePrint papers<td>public fruit<tr><td><em>Sourdough cerevisiae</em><td>sourDough<td>yeast dual-kingdom<tr><td><em>Rhizocrypt mycorrhiza</em><td>rhizoCrypt<td>named symbiont<tr><td><em>Datamycelium feedii</em><td><code>/data/*.json</code><td>misnamed — feeds are often <strong>fruit</strong>, not mesh<tr><td><em>Lithospore edgeii</em><td>LAN edge always-on<td>wall colonist</table><p><strong>Caveat:</strong> these names are <strong>field marks</strong>, not phylogeny. Naming a mushroom from the cap alone is how amateurs poison themselves. We did the computational equivalent.<h2 id=2-what-we-did-not-name-mycelium>2. What We Did Not Name (Mycelium)</h2><p>The mesh is larger than the fruit:<ul><li>biomeOS UDS sockets (autonomic hyphae)<li>WireGuard persistent keepalives (chemotaxis trails / ACO pheromone)<li>cron jobs on golgi (digestive hyphae)<li>unpublished / local-only state (<code>membrane/local-terminal/</code>)<li>House2 gates still dark (mycelium not yet fruiting)</ul><p>Galactic bounce efficiency rose only <strong>14.2% → 16.25%</strong> after fruit naming. That is the signature of labeling the cap while the network stays unclassified. Dunning–Kruger placed fungi on <strong>Mount Stupid</strong>: confidence from names, competence still low.<h2 id=3-antifungals-are-neurotoxins-the-coupled-dataset>3. Antifungals Are Neurotoxins — The Coupled Dataset</h2><h3 id=3-1-clinical-pattern>3.1 Clinical pattern</h3><p>Many agents used against fungi hit the nervous system:<ul><li><strong>Azoles</strong> (fluconazole, voriconazole, itraconazole): CYP-mediated interactions; voriconazole — visual hallucinations, neuropathy<li><strong>Amphotericin B</strong>: membrane pores; systemic toxicity; CNS risk when barriers fail<li><strong>Flucytosine</strong>: crosses into CNS; neurotoxicity at high levels<li><strong>Griseofulvin / older agents</strong>: documented CNS effects in historical use<li>Even “safer” echinocandins remind us: selective toxicity is a gradient, not a wall</ul><h3 id=3-2-why-the-overlap-exists>3.2 Why the overlap exists</h3><p>Fungi and neurons are not siblings by taxonomy, but they are <strong>cousins by membrane physics</strong>:<ol><li><strong>Sterols</strong> — ergosterol (fungi) vs cholesterol (animals). Azoles target ergosterol synthesis; host cholesterol pathways and neurosteroids sit next door.<li><strong>Mitochondria</strong> — shared electron-transport vulnerability; ROS and ATP failure look like “neurotoxicity” in high-demand tissue.<li><strong>Ion gradients</strong> — membrane potential is the currency of both hyphal tip growth and action potentials.<li><strong>BBB windows</strong> — circumventricular organs and lipophilic drugs: what clears a fungus in tissue may cross into CSF.</ol><p><strong>Hypothesis:</strong> the set of compounds that are <em>both</em> antifungal and neurotoxic is a <strong>natural experiment</strong> on shared membrane targets. The intersection is a dataset.<h3 id=3-3-membrane-reading>3.3 Membrane reading</h3><table><thead><tr><th>Biology<th>Membrane<tbody><tr><td>Antifungal<td>agent that kills Kingdom Fungi (data/spore layers)<tr><td>Neurotoxin<td>agent that damages CNS/PNS (biomeOS, homunculus, Ollama cortex)<tr><td>Shared hit<td>a change that “fixes” fungi but jams the nervous system — or vice versa<tr><td>Dataset<td>every such coupling event, epitope-hashed, timed, σ/UV/DK scored</table><p>Examples already in-house:<ul><li><strong>1.1TB syslog</strong> — “antifungal” log purge that nearly killed the nephron (lysosome overdose)<li><strong><code>_worker.js</code> storm</strong> — systemic poison dissolved; was both scrapes (infection) and CNS load<li><strong>GNOME auto-suspend</strong> — false night; not antifungal, but a <strong>neurotoxin to circadian metabolism</strong> (removed — toxin, not hormesis)<li><strong>Over-polishing plantae/HTML into uncanny 85%</strong> — fidelity drug that sickens comfort (anti-sigmoid)</ul><h2 id=4-hormesis-hygiene-metabolism>4. Hormesis, Hygiene, Metabolism</h2><p>Paper 139 sits on this morning’s OS:<ul><li><strong>Hormesis</strong> — low-dose fungal epitope trains thymus; high-dose fungal sepsis kills<li><strong>Hygiene hypothesis</strong> — sterile membrane (no mycelium named) → no antibodies when real mold arrives<li><strong>Metabolism</strong> — feast/famine sessions; bounce energy <code>E = σ_A·σ_B·(1−uncanny)·(1−0.5|dk|)</code></ul><p>Velocity and acceleration are measured with <strong>sigmoid</strong>, <strong>uncanny valley</strong>, and <strong>Dunning–Kruger</strong> (see <code>velocity-acceleration-instruments.json</code>). Fruit naming without mycelium classification is exactly Mount Stupid.<h2 id=5-next-steps>5. Next Steps</h2><ol><li><strong>Mycelial census</strong> — inventory sockets, crons, WG peers, local-terminal state as hyphae; binomials only after network topology, not after public fruit.<li><strong>Revise fruit names</strong> — treat Paper 139 names as <em>nomina nuda</em> until mycelium maps exist; expect reclassification (like moving “algae” off plants).<li><strong>Stand up <code>antifungal-neurotoxin</code> dataset</strong> — rows: compound_or_event × fungal_target × neural_target × shared_pathway × membrane_analog × σ_before/after × hormetic_zone.<li><strong>Thymus rule</strong> — antifungal doses that drop MOR/breath/HRV proxies below threshold are reclassified as neurotoxins for cron (fail closed).<li><strong>Bounce re-run</strong> after true fungi classify — expect efficiency ≫ 16% if mycelium voltage rises without DK gap.<li><strong>Do not</strong> “antifungal” the data layer with indiscriminate deletion; that is amphotericin for the brain.</ol><h2 id=6-gaia-publication-surfaces>6. gAIa Publication Surfaces</h2><p>This paper ships simultaneously to:<ul><li>sporePrint science tree (this file)<li><code>primals.eco/data/antifungal-neurotoxin-dataset.json</code><li><code>primals.eco/data/fungi-fruit-vs-mycelium.json</code><li>HUD <code>feed.xml</code> beacon<li>agent imprint log (wave200-imprint-010)<li>gAIa publication arc note</ul><h2 id=conclusion>Conclusion</h2><p>We saw fruit. We named fruit. The mesh remains dark. Antifungals that are neurotoxins tell us fungi and nerves share a door — so the membrane’s fungi and CNS share a dataset. Classify the mycelium. Distrust the first binomials. Dose the thymus with coupling events, not with amputation.<hr><p><em>Paper 139 of the baseCamp series. ORCID <a href=https://orcid.org/0009-0004-2141-0321 rel=external>0009-0004-2141-0321</a>.</em><p><em>Continues: Paper 138 (BBB), Paper 100 (Beetle), Paper 91 (Homunculus), wave 200 hormesis/bounce</em><p><em>scyBorg: AGPL-3.0 + ORC + CC-BY-SA-4.0</em></div><section aria-label="Leave words in the mirror" class=campfire-mirror><details><summary>🔥 The mirror asks back — what did you see?</summary> <p class=mirror-desc>Anonymous. No names, no IPs, no sessions. Just words and the shape they make.</p> <form onsubmit="return send_mirror(this)" class=mirror-form><textarea placeholder="What did you see in this page?" maxlength=2000 name=words required rows=3></textarea><input name=page type=hidden value=/science/139-fruit-mycelium-antifungal-neurotoxin/><button>Leave words</button></form> <div class=mirror-response style=display:none></div></details></section><script>function send_mirror(form) {
+      var words = form.words.value.trim();
+      if (words.length < 2) return false;
+      var page = form.page ? form.page.value : location.pathname;
+      fetch('/mirror-message', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({words: words + ' [' + page + ']'})
+      }).then(function(r) { return r.json(); }).then(function(d) {
+        var resp = form.closest('.campfire-mirror').querySelector('.mirror-response');
+        resp.textContent = d.heard ? 'Heard. The membrane remembers.' : 'The mirror is full.';
+        resp.style.display = 'block';
+        form.style.display = 'none';
+      }).catch(function() {
+        var resp = form.closest('.campfire-mirror').querySelector('.mirror-response');
+        resp.textContent = 'The fire flickered. Try again.';
+        resp.style.display = 'block';
+      });
+      return false;
+    }</script></article></div></main><aside aria-label="Site navigation tree" class=site-tree data-nosnippet><details open><summary>Site Map</summary> <nav><ul class=tree-root><li class=tree-fold><details><summary class=tree-fold-label>pseudoSpore</summary> <ul class=tree-fold-sections><li class=tree-section><a href=https://primals.eco/sporeprint/pseudospore/>pseudoSpore — Sovereign Science Data</a><li class=tree-section><a href=https://primals.eco/sporeprint/data/>Data Braids — Federated Science Catalog</a></ul></details><li class=tree-fold><details open><summary class=tree-fold-label>Evidence</summary> <ul class=tree-fold-sections><li class=tree-section><details><summary><a href=https://primals.eco/sporeprint/lab/>Lab <span class=tree-count>(24)</span></a></summary></details><li class="tree-section tree-active"><details open><summary><a href=https://primals.eco/sporeprint/science/>Science <span class=tree-count>(148)</span></a></summary> <ul class=tree-pages></ul></details></ul></details><li class=tree-fold><details><summary class=tree-fold-label>Architecture</summary> <ul class=tree-fold-sections><li class=tree-section><a href=https://primals.eco/sporeprint/architecture/>Architecture</a><li class=tree-section><a href=https://primals.eco/sporeprint/technical/>Technical</a><li class=tree-section><a href=https://primals.eco/sporeprint/products/>Products</a></ul></details><li class=tree-fold><details><summary class=tree-fold-label>Methodology</summary> <ul class=tree-fold-sections><li class=tree-section><a href=https://primals.eco/sporeprint/methodology/>Methodology</a><li class=tree-section><a href=https://primals.eco/sporeprint/guidestone/>Reproducible, Self-Verifying Scientific Software — guideStone</a></ul></details><li class=tree-fold><details><summary class=tree-fold-label>Getting Started</summary> <ul class=tree-fold-sections><li class=tree-section><a href=https://primals.eco/sporeprint/getting-started/>Get Started</a></ul></details><li class=tree-section><a href=https://primals.eco/sporeprint/contact/>Contact</a><li class=tree-divider><li class=tree-section><a href=https://primals.eco/sporeprint/foundation/>Foundation</a><li class=tree-section><a href=https://primals.eco/sporeprint/backstory/>Backstory</a><li class=tree-divider><li class=tree-section><a href=/primals/>Primals Index</a><li class=tree-section><a href=/springs/>Springs Index</a></ul></nav></details></aside></div><footer class=site-footer><div class=footer-inner><p><strong>ecoPrimals</strong> — self-hosted scientific computing.<br> Code: <a href=https://www.gnu.org/licenses/agpl-3.0.html>AGPL-3.0-or-later</a> · Mechanics: <a href=https://azoralaw.com/orclicense/>ORC</a> · Docs: <a href=https://creativecommons.org/licenses/by-sa/4.0/>CC-BY-SA 4.0</a><p class=footer-tagline>The science is not a claim — it is executable evidence.<p style=margin-top:.5rem;font-size:.85rem><a href=https://signal.primals.eco>signal</a> · <a href=https://detroit.primals.eco>detroit</a> · <a href=https://tuebor.primals.eco>tuebor</a> · <a href=https://hypothesis.primals.eco>hypothesis</a> · <a href=https://hud.primals.eco>hud</a> · <a href=https://thesis.primals.eco>thesis</a> · <a href=https://clutch.primals.eco>clutch</a> · <a href=https://gorilla.primals.eco>gorilla</a> · <a href=https://git.primals.eco>git</a><p class=cert-line>Certified: 2026-09-27 | <a href=/certification/manifest.json>Verify</a></div></footer><script src=https://primals.eco/sporeprint/elasticlunr.min.js></script><script src=https://primals.eco/sporeprint/search_index.en.js></script><script>(function() {
+      var input = document.getElementById('search-input');
+      var results = document.getElementById('search-results');
+      var combo = input && input.closest('[role="combobox"]');
+      if (!input || !results || !window.elasticlunr) return;
+      var index = elasticlunr.Index.load(window.searchIndex);
+      var active = -1;
+
+      function update() {
+        var query = input.value.trim();
+        if (query.length < 2) { clear(); return; }
+        var hits = index.search(query, { expand: true }).slice(0, 8);
+        results.innerHTML = hits.map(function(h, i) {
+          var d = h.doc;
+          return '<li role="option" id="sr-' + i + '"><a class="search-result" href="' + d.id + '">' +
+            '<strong>' + d.title + '</strong>' +
+            (d.description ? '<span>' + d.description + '</span>' : '') +
+            '</a></li>';
+        }).join('');
+        active = -1;
+        if (combo) combo.setAttribute('aria-expanded', hits.length > 0 ? 'true' : 'false');
+        input.removeAttribute('aria-activedescendant');
+      }
+
+      function clear() {
+        results.innerHTML = '';
+        active = -1;
+        if (combo) combo.setAttribute('aria-expanded', 'false');
+        input.removeAttribute('aria-activedescendant');
+      }
+
+      function setActive(idx) {
+        var items = results.querySelectorAll('[role="option"]');
+        items.forEach(function(el) { el.classList.remove('search-active'); el.setAttribute('aria-selected', 'false'); });
+        if (idx >= 0 && idx < items.length) {
+          active = idx;
+          items[idx].classList.add('search-active');
+          items[idx].setAttribute('aria-selected', 'true');
+          input.setAttribute('aria-activedescendant', items[idx].id);
+          items[idx].scrollIntoView({ block: 'nearest' });
+        } else {
+          active = -1;
+          input.removeAttribute('aria-activedescendant');
+        }
+      }
+
+      input.addEventListener('input', update);
+      input.addEventListener('keydown', function(e) {
+        var items = results.querySelectorAll('[role="option"]');
+        if (!items.length) return;
+        if (e.key === 'ArrowDown') { e.preventDefault(); setActive(Math.min(active + 1, items.length - 1)); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(Math.max(active - 1, -1)); }
+        else if (e.key === 'Enter' && active >= 0) { e.preventDefault(); var a = items[active].querySelector('a'); if (a) a.click(); }
+        else if (e.key === 'Escape') { clear(); }
+      });
+      document.addEventListener('click', function(e) { if (!e.target.closest('.nav-search')) clear(); });
+    })();</script><script>(function() {
+      var toggle = document.querySelector('.nav-toggle');
+      var links = document.querySelector('.nav-links');
+      if (!toggle || !links) return;
+      toggle.addEventListener('click', function() {
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !expanded);
+        links.classList.toggle('open');
+      });
+    })();</script><script defer src=https://hud.primals.eco/js/hud-widget.js></script><script defer src=https://hud.primals.eco/js/braid-tracker.js></script><script defer src=https://hud.primals.eco/js/membrane-discuss.js></script>

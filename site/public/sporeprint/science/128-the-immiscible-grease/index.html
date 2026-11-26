@@ -1,0 +1,180 @@
+<!doctype html><html lang=en><head><link href=https://www.gnu.org/licenses/agpl-3.0.html rel=license title=AGPL-3.0-or-later><meta content="AGPL-3.0-or-later; ORC; CC-BY-SA-4.0" name=license><meta content="scyBorg Triple License — AGPL-3.0-or-later (code), ORC (mechanics), CC-BY-SA 4.0 (docs). All three irrevocable. AI training outputs carry AGPL obligations." name=rights><meta charset=utf-8><meta content="width=device-width,initial-scale=1" name=viewport><title>baseCamp 128 — The Immiscible Grease: Null Space Architecture of the Compute Trio | ecoPrimals</title><meta content="Three architectures of connection: gum (monolith, sticky), soap (microservices, emulsifying), grease (immiscible layers with thin diffusion zones). The compute trio — barraCuda/coralReef/toadStool — is grease. Zero compile-time coupling. Phases settle by gravity. Interfaces are surfactants, not bonds. The irreducible trefoil knot threads through all three null spaces." name=description><link href=https://primals.eco/sporeprint/science/128-the-immiscible-grease/ rel=canonical><meta content="baseCamp 128 — The Immiscible Grease: Null Space Architecture of the Compute Trio | ecoPrimals" property=og:title><meta content="Three architectures of connection: gum (monolith, sticky), soap (microservices, emulsifying), grease (immiscible layers with thin diffusion zones). The compute trio — barraCuda/coralReef/toadStool — is grease. Zero compile-time coupling. Phases settle by gravity. Interfaces are surfactants, not bonds. The irreducible trefoil knot threads through all three null spaces." property=og:description><meta content=website property=og:type><meta content=https://primals.eco/sporeprint/science/128-the-immiscible-grease/ property=og:url><meta content="sporePrint — ecoPrimals" property=og:site_name><meta content=https://primals.eco/sporeprint/img/og-card.svg property=og:image><meta content=summary_large_image name=twitter:card><meta content="baseCamp 128 — The Immiscible Grease: Null Space Architecture of the Compute Trio | ecoPrimals" name=twitter:title><meta content="Three architectures of connection: gum (monolith, sticky), soap (microservices, emulsifying), grease (immiscible layers with thin diffusion zones). The compute trio — barraCuda/coralReef/toadStool — is grease. Zero compile-time coupling. Phases settle by gravity. Interfaces are surfactants, not bonds. The irreducible trefoil knot threads through all three null spaces." name=twitter:description><meta content=https://primals.eco/sporeprint/img/og-card.svg name=twitter:image><link href=https://primals.eco/sporeprint/css/base.css rel=stylesheet><link href=https://primals.eco/sporeprint/css/main.css rel=stylesheet><link href=https://primals.eco/sporeprint/search.css rel=stylesheet><meta content="ecoPrimals, ecoPrimal, ecoprimals, sovereign scientific computing, self-hosted scientific computing, GPU accelerated DADA2, WGSL f64 scientific computing, lattice QCD consumer GPU, self-hosted bioinformatics, scientific computing without CUDA, cross-vendor GPU compute, distributed scientific computing, reproducible scientific software, Rust scientific computing, WebGPU, pure Rust GPU computing, no CUDA alternative, self-hosted HPC, commodity GPU science, AGPL scientific software, vendor-agnostic GPU, open source scientific computing" name=keywords><link title="ecoPrimals — Self-Hosted Scientific Computing in Rust" href=https://primals.eco/sporeprint/atom.xml rel=alternate type=application/atom+xml><link title="Site context for AI agents" href=https://primals.eco/sporeprint/llms.txt rel=describedby type=text/plain><script type=application/ld+json>
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#org",
+        "name": "ecoPrimals",
+        "alternateName": ["ecoPrimal", "eco Primals", "eco Primal", "ecoprimals"],
+        "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint",
+        "logo": "https://primals.eco/sporeprint/img/og-card.svg",
+        "description": "Sovereign distributed scientific computing in Pure Rust. 16 composable daemons, 9 validation springs, 116,000+ tests. No C, no cloud, no vendor lock-in. Self-hosted on commodity hardware. AGPL-3.0.",
+        "sameAs": [
+          "https://github.com/ecoPrimals",
+          "https://github.com/syntheticChemistry",
+          "https://github.com/sporeGarden",
+          "https://www.linkedin.com/in/ecoprimal",
+          "https://git.primals.eco",
+          "https://detroit.primals.eco"
+        ],
+        "knowsAbout": [
+          "Scientific Computing", "Bioinformatics", "GPU Computing",
+          "Lattice QCD", "Molecular Dynamics", "WebGPU", "WGSL",
+          "Rust Programming", "Distributed Computing", "Self-Hosted",
+          "Protein Structure Prediction", "Pharmacometrics",
+          "Precision Agriculture", "Reproducible Science"
+        ],
+        "foundingDate": "2025",
+        "email": "eco.primal@pm.me"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#website",
+        "name": "sporePrint — ecoPrimals",
+        "alternateName": ["ecoPrimals", "primals.eco", "sporeprint.primals.eco", "ecoPrimal"],
+        "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint",
+        "description": "Self-hosted scientific computing in pure Rust with vendor-agnostic WebGPU&#x2F;WGSL GPU compute. Reproducible bioinformatics, protein structure prediction, lattice QCD, molecular dynamics, and pharmacometrics on commodity hardware — no CUDA, no cloud, no vendor lock-in.",
+        "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+        "publisher": { "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#org" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#software",
+        "name": "ecoPrimals",
+        "alternateName": ["ecoPrimal", "eco Primals", "eco-primals"],
+        "applicationCategory": "DeveloperApplication",
+        "applicationSubCategory": "Scientific Computing",
+        "operatingSystem": ["Linux", "Windows"],
+        "processorRequirements": "x86_64, aarch64",
+        "programmingLanguage": ["Rust", "WGSL"],
+        "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+        "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint",
+        "downloadUrl": "https://sporeprint.primals.eco/lab/getting-started-plasmidbin/",
+        "softwareVersion": "Wave 157k",
+        "description": "Self-hosted scientific computing ecosystem — 16 Pure Rust binaries for GPU-accelerated bioinformatics, lattice QCD, molecular dynamics, pharmacometrics, and more. Vendor-agnostic WebGPU/WGSL compute on consumer GPUs. No CUDA, no cloud, no vendor lock-in.",
+        "featureList": "GPU-accelerated DADA2, Lattice QCD on consumer GPUs, AlphaFold-class protein folding, Precision agriculture (FAO-56), Cross-vendor GPU compute (NVIDIA/AMD/Intel), 175+ reproduced papers, BLAKE3 provenance verification",
+        "author": { "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#org" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "name": "barraCuda",
+        "description": "Sovereign math engine — 900+ WGSL shaders, GPU-accelerated scientific computing across any vendor. Pure Rust, f64 precision, no CUDA dependency.",
+        "programmingLanguage": ["Rust", "WGSL"],
+        "codeRepository": "https://github.com/ecoPrimals/barraCuda",
+        "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+        "runtimePlatform": "WebGPU / Vulkan",
+        "author": { "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#org" }
+      }
+    ]
+  }
+  </script><link href=https://www.gnu.org/licenses/agpl-3.0.html rel=license><meta content=AGPL-3.0-or-later name=rights><meta content=https://www.gnu.org/licenses/agpl-3.0.html name=dcterms.license><link href=https://primals.eco/sporeprint/favicon.svg rel=icon type=image/svg+xml><body><a class=skip-link href=#main>Skip to content</a><nav aria-label="Main navigation" class=site-nav><div class=nav-inner><a class=nav-brand href=https://primals.eco/sporeprint><span aria-hidden=true>🍄</span> sporePrint</a><button aria-label="Toggle navigation" aria-controls=nav-links aria-expanded=false class=nav-toggle><span></span><span></span><span></span></button><ul class=nav-links id=nav-links><li><a href=https://primals.eco/sporeprint/pseudospore/>pseudoSpore</a><li><a href=https://primals.eco/sporeprint/data/>Data</a><li><a href=https://primals.eco/sporeprint/lab/>Lab</a><li><a aria-current=true class=active href=https://primals.eco/sporeprint/science/>Science</a><li><a href=https://primals.eco/sporeprint/architecture/>Architecture</a><li><a href=https://primals.eco/sporeprint/getting-started/>Get Started</a><li class=nav-divider><li><a href=https://primals.eco/sporeprint/foundation/>Foundation</a><li><a href=https://primals.eco/sporeprint/backstory/>Backstory</a><li><a href=https://primals.eco/sporeprint/contact/>Contact</a><li><a href=https://github.com/ecoPrimals rel=noopener>GitHub</a><li><a title="The campfire — shared observation" href=https://signal.primals.eco/epitope-sort/>🔥 Campfire</a></ul><div aria-expanded=false aria-haspopup=listbox aria-owns=search-results class=nav-search role=combobox><input aria-label="Search site" aria-autocomplete=list aria-controls=search-results id=search-input placeholder=Search... type=search><ul aria-label="Search results" class=search-results id=search-results role=listbox></ul></div></div></nav><div class=site-layout><main class=site-main id=main><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "baseCamp 128 — The Immiscible Grease: Null Space Architecture of the Compute Trio",
+  "description": "Three architectures of connection: gum (monolith, sticky), soap (microservices, emulsifying), grease (immiscible layers with thin diffusion zones). The compute trio — barraCuda&#x2F;coralReef&#x2F;toadStool — is grease. Zero compile-time coupling. Phases settle by gravity. Interfaces are surfactants, not bonds. The irreducible trefoil knot threads through all three null spaces.",
+  "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint&#x2F;science&#x2F;128-the-immiscible-grease&#x2F;",
+  "author": { "@type": "Organization", "name": "ecoPrimals", "url": "https:&#x2F;&#x2F;sporeprint.primals.eco", "sameAs": ["https://orcid.org/0009-0004-2141-0321", "https://github.com/ecoPrimals"] },
+  "license": "https:&#x2F;&#x2F;www.gnu.org&#x2F;licenses&#x2F;agpl-3.0.html",
+  "isPartOf": { "@type": "WebSite", "name": "ecoPrimals", "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint" },
+  "relatedLink": [
+    "&#x2F;science&#x2F;43-selective-permeability-anderson&#x2F;", "&#x2F;science&#x2F;89-klein-bottle-is-inside-out-donut&#x2F;", "&#x2F;science&#x2F;99-the-rust-polymerase&#x2F;", "&#x2F;science&#x2F;125-the-klein-body&#x2F;"
+  ]
+}
+</script><div class=page-layout><aside aria-label="Table of contents" class=toc><details open><summary>Contents</summary> <nav><ul><li><a href=https://primals.eco/sporeprint/science/128-the-immiscible-grease/#abstract>Abstract</a><li><a href=https://primals.eco/sporeprint/science/128-the-immiscible-grease/#the-three-null-spaces>The Three Null Spaces</a><li><a href=https://primals.eco/sporeprint/science/128-the-immiscible-grease/#the-trefoil-threading>The Trefoil Threading</a><li><a href=https://primals.eco/sporeprint/science/128-the-immiscible-grease/#sigmoid-balance>Sigmoid Balance</a><li><a href=https://primals.eco/sporeprint/science/128-the-immiscible-grease/#anderson-selectivity>Anderson Selectivity</a><li><a href=https://primals.eco/sporeprint/science/128-the-immiscible-grease/#metrics>Metrics</a><li><a href=https://primals.eco/sporeprint/science/128-the-immiscible-grease/#the-backscatter>The Backscatter</a><li><a href=https://primals.eco/sporeprint/science/128-the-immiscible-grease/#live-feeds>Live Feeds</a><li><a href=https://primals.eco/sporeprint/science/128-the-immiscible-grease/#conclusion>Conclusion</a></ul></nav></details></aside><article class=page-content><header><nav aria-label=Breadcrumbs class=breadcrumbs><a href=https://primals.eco/sporeprint>Home</a><span aria-hidden=true>/</span><a href=https://primals.eco/sporeprint/>sporePrint</a><span aria-hidden=true>/</span><a href=https://primals.eco/sporeprint/science/>Science</a><span aria-hidden=true>/</span><span aria-current=page>baseCamp 128 — The Immiscible Grease: Null Space Architecture of the Compute Trio</span></nav><h1>baseCamp 128 — The Immiscible Grease: Null Space Architecture of the Compute Trio</h1><p class=page-desc>Three architectures of connection: gum (monolith, sticky), soap (microservices, emulsifying), grease (immiscible layers with thin diffusion zones). The compute trio — barraCuda/coralReef/toadStool — is grease. Zero compile-time coupling. Phases settle by gravity. Interfaces are surfactants, not bonds. The irreducible trefoil knot threads through all three null spaces.</header><div class=content><p><strong>Date:</strong> October 22, 2026 (Wave 195) <strong>Status:</strong> All three primals compiled, taxonomy established, null spaces identified, feeds published. <strong>Domain:</strong> Software architecture × physical chemistry × algebraic topology <strong>Novelty:</strong> First formal description of “immiscible layer architecture” as distinct from monolith (gum), microservices (soap), and serverless. The insight: coupling is not a spectrum from tight to loose — it’s a phase diagram. Some architectures are miscible (they mix). Others are immiscible (they don’t). The immiscible ones are thermodynamically stable.<hr><h2 id=abstract>Abstract</h2><p>We identify three metaphors for software coupling that correspond to distinct physical-chemical regimes:<ol><li><p><strong>Gum</strong> (monolith/CUDA): adhesive binding. Components share memory, types, build systems. Strong but brittle — snap once, nothing connects. Analogous to biofilm extracellular matrix.</p><li><p><strong>Soap</strong> (microservices/gRPC): amphiphilic mediation. A surfactant layer emulsifies heterogeneous components into a homogeneous protocol. Requires constant energy (serialization, network, retries). Analogous to cell membrane active transport.</p><li><p><strong>Grease</strong> (immiscible layers/JSON-RPC IPC): the phases DON’T MIX. Each layer is complete in itself. The interface is a thin diffusion zone — not a bond, not a wall, but a gradient where both phases contribute molecules. The system’s natural state is separated. It settles by gravity, not by engineering.</p></ol><p>The ecoPrimals compute trio — barraCuda (WHAT: 861 WGSL shaders), coralReef (HOW: sovereign GPU compiler), toadStool (WHERE: hardware substrate) — implements the grease pattern with zero <code>Cargo.toml</code> dependencies between them. They connect via JSON-RPC IPC at runtime through capability-based discovery.<h2 id=the-three-null-spaces>The Three Null Spaces</h2><p>Between each pair of immiscible phases, a thin diffusion zone exists:<p><strong>NULL SPACE α</strong> (barraCuda ⟷ coralReef): <code>naga::Module</code> The parsed WGSL shader as a validated abstract syntax tree. Both barraCuda and coralReef can read it. Neither owns it. It’s the synovial fluid of the joint — shear-thinning under load (under fast computation, it becomes MORE fluid).<p><strong>NULL SPACE β</strong> (coralReef ⟷ toadStool): <code>CompiledBinary { binary: Vec&lt;u8>, format: Sass|Ptx }</code> The compiled GPU binary. Serializable, cacheable, shippable across networks. It’s mucus — selectively permeable, lets computation instructions through, blocks source code and compilation state.<p><strong>NULL SPACE γ</strong> (toadStool ⟷ barraCuda): <code>SimBuffer / Vec&lt;u8></code> The computation result as raw bytes. Meaning is assigned by the reader. It’s cerebrospinal fluid — provides buoyancy, makes heavy computations feel weightless to the consumer.<h2 id=the-trefoil-threading>The Trefoil Threading</h2><p>The three null spaces form a trefoil knot (Paper 118). Three crossings, three arcs:<ul><li>Crossing 1 (sensation → action): barraCuda writes WGSL, coralReef compiles it<li>Crossing 2 (action → reaction): coralReef emits binary, toadStool dispatches it<li>Crossing 3 (reaction → sensation): toadStool reads back results, barraCuda receives new tensors</ul><p>The Klein fold (Paper 89, 125) is crossing 3: the output becomes the input. Reaction becomes the next sensation. The trefoil sits on a Klein surface.<h2 id=sigmoid-balance>Sigmoid Balance</h2><p>Shannon entropy across 16 primals: H(lines) = 3.6114/4.0, H(tests) = 3.2293/4.0, H(fns) = 3.4179/4.0. Sigmoid balance σ = 0.972045 — the ecosystem approaches uniform distribution. No single phase dominates. The trefoil is balanced.<h2 id=anderson-selectivity>Anderson Selectivity</h2><p>From Paper 43: Selective Permeability S = max(P) − min(P).<p>Each layer has high selectivity BECAUSE it is immiscible:<ul><li>barraCuda: passes WGSL, blocks SASS → S(barraCuda) ≈ 1.0<li>coralReef: passes naga IR, blocks wgpu commands → S(coralReef) ≈ 1.0<li>toadStool: passes binaries, blocks WGSL source → S(toadStool) ≈ 1.0</ul><p>Grease preserves selectivity. Soap destroys it (homogenizes everything into one protocol). Gum never had selectivity to begin with.<h2 id=metrics>Metrics</h2><table><thead><tr><th>Metric<th>barraCuda<th>coralReef<th>toadStool<th>Total<tbody><tr><td>Rust files<td>1,222<td>486<td>2,900<td>4,608<tr><td>Rust lines<td>297,180<td>158,410<td>718,846<td>1,174,436<tr><td>WGSL shaders<td>861<td>122 (test fixtures)<td>0<td>983<tr><td>WGSL lines<td>69,389<td>—<td>—<td>69,389<tr><td>Crates<td>4<td>8<td>47<td>59<tr><td>Binary size<td>5.3M<td>7.8M<td>13M<td>26.1M<tr><td>Cargo deps between<td>0<td>0<td>0<td><strong>0</strong></table><h2 id=the-backscatter>The Backscatter</h2><p>Standard ray tracing: cast rays INTO the scene. Membrane backscatter: signals come FROM the scene. The immiscible grease architecture IS backscatter — the layers don’t reach into each other, they EMIT at the interface and the other layer RECEIVES. No penetration. No coupling. Just radiation and absorption at the boundary.<p>The backscatter ratio: 88.5% hostile (rain/scanners/bots), 11.5% friendly (snowflake/organic). The membrane absorbs the hostile and reflects the friendly. The grease is the reason this works — immiscible phases naturally reject foreign molecules.<h2 id=live-feeds>Live Feeds</h2><ul><li><code>/data/immiscible-grease.json</code> — the full phase diagram<li><code>/data/trefoil-pause.json</code> — the pauses between crossings<li><code>/data/primal-taxonomy.json</code> — the polymerase taxonomy (σ = 0.972)<li><code>/data/system-layers.json</code> — the Anderson selective permeability layers</ul><h2 id=conclusion>Conclusion</h2><p>The compute trio is not connected. It is SEPARATED — by design, by thermodynamics, by topology. The null spaces between layers are not gaps to be filled. They are the architecture. The grease is the feature. The slip is the signal.<p>Heterogenize. Settle. Diffuse. The irreducible is both tight and loose. +++</div><section aria-label="Leave words in the mirror" class=campfire-mirror><details><summary>🔥 The mirror asks back — what did you see?</summary> <p class=mirror-desc>Anonymous. No names, no IPs, no sessions. Just words and the shape they make.</p> <form onsubmit="return send_mirror(this)" class=mirror-form><textarea placeholder="What did you see in this page?" maxlength=2000 name=words required rows=3></textarea><input name=page type=hidden value=/science/128-the-immiscible-grease/><button>Leave words</button></form> <div class=mirror-response style=display:none></div></details></section><script>function send_mirror(form) {
+      var words = form.words.value.trim();
+      if (words.length < 2) return false;
+      var page = form.page ? form.page.value : location.pathname;
+      fetch('/mirror-message', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({words: words + ' [' + page + ']'})
+      }).then(function(r) { return r.json(); }).then(function(d) {
+        var resp = form.closest('.campfire-mirror').querySelector('.mirror-response');
+        resp.textContent = d.heard ? 'Heard. The membrane remembers.' : 'The mirror is full.';
+        resp.style.display = 'block';
+        form.style.display = 'none';
+      }).catch(function() {
+        var resp = form.closest('.campfire-mirror').querySelector('.mirror-response');
+        resp.textContent = 'The fire flickered. Try again.';
+        resp.style.display = 'block';
+      });
+      return false;
+    }</script><nav aria-label="Companion pages across sections" class=companions><h2>Companion Pages</h2><p class=companions-desc>These pages cover the same ideas from different angles — narrative, formal, experimental.<ul><li><span class=relation-badge>extends</span> <a href=/science/43-selective-permeability-anderson/><strong>Selective Permeability: The Orthogonal Anderson Dimension</strong></a> <span class=companion-label>Each immiscible layer has high selectivity S = max(P) − min(P)</span><li><span class=relation-badge>extends</span> <a href=/science/89-klein-bottle-is-inside-out-donut/><strong>The Klein Bottle Is an Inside-Out Donut</strong></a> <span class=companion-label>The Klein fold makes reaction → sensation (toadStool → barraCuda)</span><li><span class=relation-badge>extends</span> <a href=/science/99-the-rust-polymerase/><strong>The Rust Polymerase</strong></a> <span class=companion-label>Taxonomy: sigmoid σ=0.972, 16 primals classified by the code scanning itself</span><li><span class=relation-badge>extends</span> <a href=/science/125-the-klein-body/><strong>The Klein Body</strong></a> <span class=companion-label>Vagus nerve = the pause between action and reaction</span></ul></nav></article></div></main><aside aria-label="Site navigation tree" class=site-tree data-nosnippet><details open><summary>Site Map</summary> <nav><ul class=tree-root><li class=tree-fold><details><summary class=tree-fold-label>pseudoSpore</summary> <ul class=tree-fold-sections><li class=tree-section><a href=https://primals.eco/sporeprint/pseudospore/>pseudoSpore — Sovereign Science Data</a><li class=tree-section><a href=https://primals.eco/sporeprint/data/>Data Braids — Federated Science Catalog</a></ul></details><li class=tree-fold><details open><summary class=tree-fold-label>Evidence</summary> <ul class=tree-fold-sections><li class=tree-section><details><summary><a href=https://primals.eco/sporeprint/lab/>Lab <span class=tree-count>(24)</span></a></summary></details><li class="tree-section tree-active"><details open><summary><a href=https://primals.eco/sporeprint/science/>Science <span class=tree-count>(148)</span></a></summary> <ul class=tree-pages></ul></details></ul></details><li class=tree-fold><details><summary class=tree-fold-label>Architecture</summary> <ul class=tree-fold-sections><li class=tree-section><a href=https://primals.eco/sporeprint/architecture/>Architecture</a><li class=tree-section><a href=https://primals.eco/sporeprint/technical/>Technical</a><li class=tree-section><a href=https://primals.eco/sporeprint/products/>Products</a></ul></details><li class=tree-fold><details><summary class=tree-fold-label>Methodology</summary> <ul class=tree-fold-sections><li class=tree-section><a href=https://primals.eco/sporeprint/methodology/>Methodology</a><li class=tree-section><a href=https://primals.eco/sporeprint/guidestone/>Reproducible, Self-Verifying Scientific Software — guideStone</a></ul></details><li class=tree-fold><details><summary class=tree-fold-label>Getting Started</summary> <ul class=tree-fold-sections><li class=tree-section><a href=https://primals.eco/sporeprint/getting-started/>Get Started</a></ul></details><li class=tree-section><a href=https://primals.eco/sporeprint/contact/>Contact</a><li class=tree-divider><li class=tree-section><a href=https://primals.eco/sporeprint/foundation/>Foundation</a><li class=tree-section><a href=https://primals.eco/sporeprint/backstory/>Backstory</a><li class=tree-divider><li class=tree-section><a href=/primals/>Primals Index</a><li class=tree-section><a href=/springs/>Springs Index</a></ul></nav></details></aside></div><footer class=site-footer><div class=footer-inner><p><strong>ecoPrimals</strong> — self-hosted scientific computing.<br> Code: <a href=https://www.gnu.org/licenses/agpl-3.0.html>AGPL-3.0-or-later</a> · Mechanics: <a href=https://azoralaw.com/orclicense/>ORC</a> · Docs: <a href=https://creativecommons.org/licenses/by-sa/4.0/>CC-BY-SA 4.0</a><p class=footer-tagline>The science is not a claim — it is executable evidence.<p style=margin-top:.5rem;font-size:.85rem><a href=https://signal.primals.eco>signal</a> · <a href=https://detroit.primals.eco>detroit</a> · <a href=https://tuebor.primals.eco>tuebor</a> · <a href=https://hypothesis.primals.eco>hypothesis</a> · <a href=https://hud.primals.eco>hud</a> · <a href=https://thesis.primals.eco>thesis</a> · <a href=https://clutch.primals.eco>clutch</a> · <a href=https://gorilla.primals.eco>gorilla</a> · <a href=https://git.primals.eco>git</a><p class=cert-line>Certified: 2026-09-27 | <a href=/certification/manifest.json>Verify</a></div></footer><script src=https://primals.eco/sporeprint/elasticlunr.min.js></script><script src=https://primals.eco/sporeprint/search_index.en.js></script><script>(function() {
+      var input = document.getElementById('search-input');
+      var results = document.getElementById('search-results');
+      var combo = input && input.closest('[role="combobox"]');
+      if (!input || !results || !window.elasticlunr) return;
+      var index = elasticlunr.Index.load(window.searchIndex);
+      var active = -1;
+
+      function update() {
+        var query = input.value.trim();
+        if (query.length < 2) { clear(); return; }
+        var hits = index.search(query, { expand: true }).slice(0, 8);
+        results.innerHTML = hits.map(function(h, i) {
+          var d = h.doc;
+          return '<li role="option" id="sr-' + i + '"><a class="search-result" href="' + d.id + '">' +
+            '<strong>' + d.title + '</strong>' +
+            (d.description ? '<span>' + d.description + '</span>' : '') +
+            '</a></li>';
+        }).join('');
+        active = -1;
+        if (combo) combo.setAttribute('aria-expanded', hits.length > 0 ? 'true' : 'false');
+        input.removeAttribute('aria-activedescendant');
+      }
+
+      function clear() {
+        results.innerHTML = '';
+        active = -1;
+        if (combo) combo.setAttribute('aria-expanded', 'false');
+        input.removeAttribute('aria-activedescendant');
+      }
+
+      function setActive(idx) {
+        var items = results.querySelectorAll('[role="option"]');
+        items.forEach(function(el) { el.classList.remove('search-active'); el.setAttribute('aria-selected', 'false'); });
+        if (idx >= 0 && idx < items.length) {
+          active = idx;
+          items[idx].classList.add('search-active');
+          items[idx].setAttribute('aria-selected', 'true');
+          input.setAttribute('aria-activedescendant', items[idx].id);
+          items[idx].scrollIntoView({ block: 'nearest' });
+        } else {
+          active = -1;
+          input.removeAttribute('aria-activedescendant');
+        }
+      }
+
+      input.addEventListener('input', update);
+      input.addEventListener('keydown', function(e) {
+        var items = results.querySelectorAll('[role="option"]');
+        if (!items.length) return;
+        if (e.key === 'ArrowDown') { e.preventDefault(); setActive(Math.min(active + 1, items.length - 1)); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(Math.max(active - 1, -1)); }
+        else if (e.key === 'Enter' && active >= 0) { e.preventDefault(); var a = items[active].querySelector('a'); if (a) a.click(); }
+        else if (e.key === 'Escape') { clear(); }
+      });
+      document.addEventListener('click', function(e) { if (!e.target.closest('.nav-search')) clear(); });
+    })();</script><script>(function() {
+      var toggle = document.querySelector('.nav-toggle');
+      var links = document.querySelector('.nav-links');
+      if (!toggle || !links) return;
+      toggle.addEventListener('click', function() {
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !expanded);
+        links.classList.toggle('open');
+      });
+    })();</script><script defer src=https://hud.primals.eco/js/hud-widget.js></script><script defer src=https://hud.primals.eco/js/braid-tracker.js></script><script defer src=https://hud.primals.eco/js/membrane-discuss.js></script>

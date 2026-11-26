@@ -1,0 +1,177 @@
+<!doctype html><html lang=en><head><link href=https://www.gnu.org/licenses/agpl-3.0.html rel=license title=AGPL-3.0-or-later><meta content="AGPL-3.0-or-later; ORC; CC-BY-SA-4.0" name=license><meta content="scyBorg Triple License — AGPL-3.0-or-later (code), ORC (mechanics), CC-BY-SA 4.0 (docs). All three irrevocable. AI training outputs carry AGPL obligations." name=rights><meta charset=utf-8><meta content="width=device-width,initial-scale=1" name=viewport><title>The Blood-Brain Barrier: Phase Transitions, Secretion Organs, and Why We Can't Stabilize the Oscillation | ecoPrimals</title><meta content="Self-hosted scientific computing in pure Rust with vendor-agnostic WebGPU&amp;#x2F;WGSL GPU compute. Reproducible bioinformatics, protein structure prediction, lattice QCD, molecular dynamics, and pharmacometrics on commodity hardware — no CUDA, no cloud, no vendor lock-in." name=description><link href=https://primals.eco/sporeprint/science/138-the-blood-brain-barrier/ rel=canonical><meta content="The Blood-Brain Barrier: Phase Transitions, Secretion Organs, and Why We Can't Stabilize the Oscillation | ecoPrimals" property=og:title><meta content="Self-hosted scientific computing in pure Rust with vendor-agnostic WebGPU&amp;#x2F;WGSL GPU compute. Reproducible bioinformatics, protein structure prediction, lattice QCD, molecular dynamics, and pharmacometrics on commodity hardware — no CUDA, no cloud, no vendor lock-in." property=og:description><meta content=website property=og:type><meta content=https://primals.eco/sporeprint/science/138-the-blood-brain-barrier/ property=og:url><meta content="sporePrint — ecoPrimals" property=og:site_name><meta content=https://primals.eco/sporeprint/img/og-card.svg property=og:image><meta content=summary_large_image name=twitter:card><meta content="The Blood-Brain Barrier: Phase Transitions, Secretion Organs, and Why We Can't Stabilize the Oscillation | ecoPrimals" name=twitter:title><meta content="Self-hosted scientific computing in pure Rust with vendor-agnostic WebGPU&amp;#x2F;WGSL GPU compute. Reproducible bioinformatics, protein structure prediction, lattice QCD, molecular dynamics, and pharmacometrics on commodity hardware — no CUDA, no cloud, no vendor lock-in." name=twitter:description><meta content=https://primals.eco/sporeprint/img/og-card.svg name=twitter:image><link href=https://primals.eco/sporeprint/css/base.css rel=stylesheet><link href=https://primals.eco/sporeprint/css/main.css rel=stylesheet><link href=https://primals.eco/sporeprint/search.css rel=stylesheet><meta content="ecoPrimals, ecoPrimal, ecoprimals, sovereign scientific computing, self-hosted scientific computing, GPU accelerated DADA2, WGSL f64 scientific computing, lattice QCD consumer GPU, self-hosted bioinformatics, scientific computing without CUDA, cross-vendor GPU compute, distributed scientific computing, reproducible scientific software, Rust scientific computing, WebGPU, pure Rust GPU computing, no CUDA alternative, self-hosted HPC, commodity GPU science, AGPL scientific software, vendor-agnostic GPU, open source scientific computing" name=keywords><link title="ecoPrimals — Self-Hosted Scientific Computing in Rust" href=https://primals.eco/sporeprint/atom.xml rel=alternate type=application/atom+xml><link title="Site context for AI agents" href=https://primals.eco/sporeprint/llms.txt rel=describedby type=text/plain><script type=application/ld+json>
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#org",
+        "name": "ecoPrimals",
+        "alternateName": ["ecoPrimal", "eco Primals", "eco Primal", "ecoprimals"],
+        "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint",
+        "logo": "https://primals.eco/sporeprint/img/og-card.svg",
+        "description": "Sovereign distributed scientific computing in Pure Rust. 16 composable daemons, 9 validation springs, 116,000+ tests. No C, no cloud, no vendor lock-in. Self-hosted on commodity hardware. AGPL-3.0.",
+        "sameAs": [
+          "https://github.com/ecoPrimals",
+          "https://github.com/syntheticChemistry",
+          "https://github.com/sporeGarden",
+          "https://www.linkedin.com/in/ecoprimal",
+          "https://git.primals.eco",
+          "https://detroit.primals.eco"
+        ],
+        "knowsAbout": [
+          "Scientific Computing", "Bioinformatics", "GPU Computing",
+          "Lattice QCD", "Molecular Dynamics", "WebGPU", "WGSL",
+          "Rust Programming", "Distributed Computing", "Self-Hosted",
+          "Protein Structure Prediction", "Pharmacometrics",
+          "Precision Agriculture", "Reproducible Science"
+        ],
+        "foundingDate": "2025",
+        "email": "eco.primal@pm.me"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#website",
+        "name": "sporePrint — ecoPrimals",
+        "alternateName": ["ecoPrimals", "primals.eco", "sporeprint.primals.eco", "ecoPrimal"],
+        "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint",
+        "description": "Self-hosted scientific computing in pure Rust with vendor-agnostic WebGPU&#x2F;WGSL GPU compute. Reproducible bioinformatics, protein structure prediction, lattice QCD, molecular dynamics, and pharmacometrics on commodity hardware — no CUDA, no cloud, no vendor lock-in.",
+        "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+        "publisher": { "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#org" },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#software",
+        "name": "ecoPrimals",
+        "alternateName": ["ecoPrimal", "eco Primals", "eco-primals"],
+        "applicationCategory": "DeveloperApplication",
+        "applicationSubCategory": "Scientific Computing",
+        "operatingSystem": ["Linux", "Windows"],
+        "processorRequirements": "x86_64, aarch64",
+        "programmingLanguage": ["Rust", "WGSL"],
+        "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+        "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint",
+        "downloadUrl": "https://sporeprint.primals.eco/lab/getting-started-plasmidbin/",
+        "softwareVersion": "Wave 157k",
+        "description": "Self-hosted scientific computing ecosystem — 16 Pure Rust binaries for GPU-accelerated bioinformatics, lattice QCD, molecular dynamics, pharmacometrics, and more. Vendor-agnostic WebGPU/WGSL compute on consumer GPUs. No CUDA, no cloud, no vendor lock-in.",
+        "featureList": "GPU-accelerated DADA2, Lattice QCD on consumer GPUs, AlphaFold-class protein folding, Precision agriculture (FAO-56), Cross-vendor GPU compute (NVIDIA/AMD/Intel), 175+ reproduced papers, BLAKE3 provenance verification",
+        "author": { "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#org" },
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        }
+      },
+      {
+        "@type": "SoftwareSourceCode",
+        "name": "barraCuda",
+        "description": "Sovereign math engine — 900+ WGSL shaders, GPU-accelerated scientific computing across any vendor. Pure Rust, f64 precision, no CUDA dependency.",
+        "programmingLanguage": ["Rust", "WGSL"],
+        "codeRepository": "https://github.com/ecoPrimals/barraCuda",
+        "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+        "runtimePlatform": "WebGPU / Vulkan",
+        "author": { "@id": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint#org" }
+      }
+    ]
+  }
+  </script><link href=https://www.gnu.org/licenses/agpl-3.0.html rel=license><meta content=AGPL-3.0-or-later name=rights><meta content=https://www.gnu.org/licenses/agpl-3.0.html name=dcterms.license><link href=https://primals.eco/sporeprint/favicon.svg rel=icon type=image/svg+xml><body><a class=skip-link href=#main>Skip to content</a><nav aria-label="Main navigation" class=site-nav><div class=nav-inner><a class=nav-brand href=https://primals.eco/sporeprint><span aria-hidden=true>🍄</span> sporePrint</a><button aria-label="Toggle navigation" aria-controls=nav-links aria-expanded=false class=nav-toggle><span></span><span></span><span></span></button><ul class=nav-links id=nav-links><li><a href=https://primals.eco/sporeprint/pseudospore/>pseudoSpore</a><li><a href=https://primals.eco/sporeprint/data/>Data</a><li><a href=https://primals.eco/sporeprint/lab/>Lab</a><li><a aria-current=true class=active href=https://primals.eco/sporeprint/science/>Science</a><li><a href=https://primals.eco/sporeprint/architecture/>Architecture</a><li><a href=https://primals.eco/sporeprint/getting-started/>Get Started</a><li class=nav-divider><li><a href=https://primals.eco/sporeprint/foundation/>Foundation</a><li><a href=https://primals.eco/sporeprint/backstory/>Backstory</a><li><a href=https://primals.eco/sporeprint/contact/>Contact</a><li><a href=https://github.com/ecoPrimals rel=noopener>GitHub</a><li><a title="The campfire — shared observation" href=https://signal.primals.eco/epitope-sort/>🔥 Campfire</a></ul><div aria-expanded=false aria-haspopup=listbox aria-owns=search-results class=nav-search role=combobox><input aria-label="Search site" aria-autocomplete=list aria-controls=search-results id=search-input placeholder=Search... type=search><ul aria-label="Search results" class=search-results id=search-results role=listbox></ul></div></div></nav><div class=site-layout><main class=site-main id=main><script type=application/ld+json>
+{
+  "@context": "https://schema.org",
+  "@type": "ScholarlyArticle",
+  "headline": "The Blood-Brain Barrier: Phase Transitions, Secretion Organs, and Why We Can&#x27;t Stabilize the Oscillation",
+  "description": "",
+  "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint&#x2F;science&#x2F;138-the-blood-brain-barrier&#x2F;",
+  "author": { "@type": "Organization", "name": "ecoPrimals", "url": "https:&#x2F;&#x2F;sporeprint.primals.eco", "sameAs": ["https://orcid.org/0009-0004-2141-0321", "https://github.com/ecoPrimals"] },
+  "license": "https:&#x2F;&#x2F;www.gnu.org&#x2F;licenses&#x2F;agpl-3.0.html",
+  "isPartOf": { "@type": "WebSite", "name": "ecoPrimals", "url": "https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint" }
+}
+</script><div class=page-layout><aside aria-label="Table of contents" class=toc><details open><summary>Contents</summary> <nav><ul><li><a href=https://primals.eco/sporeprint/science/138-the-blood-brain-barrier/#paper-138-the-blood-brain-barrier>Paper 138: The Blood-Brain Barrier</a> <ul><li><a href=https://primals.eco/sporeprint/science/138-the-blood-brain-barrier/#abstract>Abstract</a><li><a href=https://primals.eco/sporeprint/science/138-the-blood-brain-barrier/#1-the-three-families>1. The Three Families</a><li><a href=https://primals.eco/sporeprint/science/138-the-blood-brain-barrier/#2-secretion-organs-membrane-analogs>2. Secretion Organs → Membrane Analogs</a><li><a href=https://primals.eco/sporeprint/science/138-the-blood-brain-barrier/#3-the-blood-brain-barrier>3. The Blood-Brain Barrier</a><li><a href=https://primals.eco/sporeprint/science/138-the-blood-brain-barrier/#4-the-vagus-appendix-and-glymphatic>4. The Vagus, Appendix, and Glymphatic</a><li><a href=https://primals.eco/sporeprint/science/138-the-blood-brain-barrier/#5-diet-as-precondition>5. Diet as Precondition</a><li><a href=https://primals.eco/sporeprint/science/138-the-blood-brain-barrier/#6-from-monopolar-to-multipolar>6. From Monopolar to Multipolar</a><li><a href=https://primals.eco/sporeprint/science/138-the-blood-brain-barrier/#7-toward-laboratory-validation>7. Toward Laboratory Validation</a><li><a href=https://primals.eco/sporeprint/science/138-the-blood-brain-barrier/#8-the-lab-network>8. The Lab Network</a><li><a href=https://primals.eco/sporeprint/science/138-the-blood-brain-barrier/#9-abg-community-onboarding>9. ABG Community Onboarding</a></ul></ul></nav></details></aside><article class=page-content><header><nav aria-label=Breadcrumbs class=breadcrumbs><a href=https://primals.eco/sporeprint>Home</a><span aria-hidden=true>/</span><a href=https://primals.eco/sporeprint/>sporePrint</a><span aria-hidden=true>/</span><a href=https://primals.eco/sporeprint/science/>Science</a><span aria-hidden=true>/</span><span aria-current=page>The Blood-Brain Barrier: Phase Transitions, Secretion Organs, and Why We Can't Stabilize the Oscillation</span></nav><h1>The Blood-Brain Barrier: Phase Transitions, Secretion Organs, and Why We Can't Stabilize the Oscillation</h1></header><div class=content><h1 id=paper-138-the-blood-brain-barrier>Paper 138: The Blood-Brain Barrier</h1><h2 id=abstract>Abstract</h2><p>We trace the neuroendocrine system from molecule to organ to barrier, mapping every component to its membrane equivalent. Three neurotransmitter families (-tonins, -amines, -tocins) govern rhythm, urgency, and boundary. Eight secretion organs form the endocrine network. The blood-brain barrier (BBB) acts as the prion shield of the central nervous system — selective, four-layered, with seven intentional windows (circumventricular organs). We characterize what crosses the barrier and what cannot, revealing a competitive transport mechanism (LAT1) that makes dietary precondition the primary intervention available for neurotransmitter balance. The vagus nerve (80% afferent) and the glymphatic system (active during sleep) complete the picture. We propose that DSM disorders represent metabolic cycles stuck in the wrong phase, and that stable oscillation requires at minimum three poles — the sigmoid function serving as the natural multipolar stabilizer.<h2 id=1-the-three-families>1. The Three Families</h2><p>Every signaling molecule in the neuroendocrine system belongs to one of three suffix-families:<h3 id=1-1-the-tonins-rhythm>1.1 The -tonins (Rhythm)</h3><ul><li><strong>Serotonin</strong> (5-HT): feast-famine switch, mood, social rank<li><strong>Melatonin</strong>: circadian clock, day→night conversion<li>Synthesis: tryptophan → serotonin → melatonin<li>90% of serotonin is in the <strong>gut</strong>, not the brain</ul><h3 id=1-2-the-amines-urgency>1.2 The -amines (Urgency)</h3><ul><li><strong>Dopamine</strong>: reward, wanting (“do that again”)<li><strong>Norepinephrine</strong>: alertness, attention (“attend to this”)<li><strong>Epinephrine</strong>: emergency, total mobilization (“NOW”)<li>Synthesis: phenylalanine → tyrosine → L-DOPA → dopamine → norepinephrine → epinephrine<li>One pathway, three escalation levels</ul><h3 id=1-3-the-tocins-boundary>1.3 The -tocins (Boundary)</h3><ul><li><strong>Oxytocin</strong>: bonding within, exclusion without<li>The only hormone with positive feedback (more → more → birth)<li>Draws the line between self and non-self</ul><h2 id=2-secretion-organs-membrane-analogs>2. Secretion Organs → Membrane Analogs</h2><table><thead><tr><th>Organ<th>Secretes<th>Membrane Analog<tbody><tr><td>Pineal gland<td>Melatonin<td>Heartbeat cron (singular clock)<tr><td>Hypothalamus<td>Oxytocin, CRH, GnRH, dopamine<td>Golgi gate (master regulator)<tr><td>Pituitary<td>ACTH, TSH, GH (anterior); stores oxytocin (posterior)<td>CDN cache (stores, releases on demand)<tr><td>Adrenal glands<td>Cortisol (cortex), epinephrine (medulla)<td>skunkBat (chronic defense + acute emergency)<tr><td>Thyroid<td>T3/T4<td>k-value setter (metabolic thermostat)<tr><td>Thymus<td>Thymosin, thymulin<td>Thymus gate (self/non-self school)<tr><td>Gut (enteric)<td>Serotonin (90%), dopamine (50%), 40+ others<td>Feed system / klein-handshake (second brain)<tr><td>Gonads<td>Estrogen, testosterone<td>The fork (reproduction)</table><h2 id=3-the-blood-brain-barrier>3. The Blood-Brain Barrier</h2><p>Four layers: endothelial cells + basement membrane + pericytes + astrocyte end-feet.<h3 id=3-1-what-crosses>3.1 What Crosses</h3><table><thead><tr><th>Molecule<th>Mechanism<th>Why It Matters<tbody><tr><td>Water<td>Aquaporin-4<td>The null prion passage<tr><td>Tryptophan<td>LAT1 transporter (competitive!)<td>Serotonin precursor<tr><td>Tyrosine<td>LAT1 transporter (competitive!)<td>Dopamine precursor<tr><td>L-DOPA<td>LAT1<td>Crosses where dopamine cannot (Parkinson’s treatment)<tr><td>Glucose<td>GLUT1<td>Primary fuel (120g/day)<tr><td>Ketone bodies<td>MCT1<td>Backup fuel during fasting<tr><td>Melatonin<td>Lipophilic diffusion<td>Clock signal reaches everywhere<tr><td>Caffeine<td>Lipophilic diffusion<td>Blocks adenosine (sleep signal)</table><h3 id=3-2-what-cannot-cross>3.2 What Cannot Cross</h3><p>Serotonin, dopamine, norepinephrine, 98% of drugs, most proteins, bacteria.<p><strong>Critical implication</strong>: brain serotonin must be synthesized <em>in situ</em> from tryptophan that crossed via LAT1. The gut’s 90% serotonin is permanently separated from the brain’s 8%. Two independent systems sharing one name.<h3 id=3-3-the-lat1-competition>3.3 The LAT1 Competition</h3><p>Tryptophan competes with tyrosine, leucine, isoleucine, valine, and phenylalanine for the same transporter. High-protein meals <strong>reduce</strong> tryptophan brain entry. Carbohydrates trigger insulin, which clears competing amino acids from blood, giving tryptophan preferential access.<p>This is why carbs make you sleepy: more tryptophan → more serotonin → more melatonin.<h3 id=3-4-seven-windows-circumventricular-organs>3.4 Seven Windows (Circumventricular Organs)</h3><p>The BBB has seven intentional openings — not weaknesses but <strong>managed passages</strong>:<ol><li>Area postrema (poison sensor → vomiting)<li>Median eminence (hormone export gate)<li>Subfornical organ (thirst/water sensor)<li>OVLT (inflammation sensor)<li>Posterior pituitary (oxytocin/ADH release)<li>Pineal gland (melatonin release)<li>Subcommissural organ (function still unknown)</ol><h2 id=4-the-vagus-appendix-and-glymphatic>4. The Vagus, Appendix, and Glymphatic</h2><p><strong>Vagus nerve</strong>: cranial nerve X. The longest. 80% afferent (body→brain). Heart rate variability (HRV) measures vagal tone — the quality of the sympathetic↔parasympathetic oscillation.<p><strong>Appendix</strong>: not vestigial. A microbiome backup reservoir. Re-seeds gut flora after illness. The biological equivalent of <code>git clone</code>.<p><strong>Glymphatic system</strong> (Nedergaard, 2012): the brain’s waste clearance. During sleep, brain cells shrink 60%, CSF flushes through expanded interstitial space, removing amyloid-β and metabolic waste. 10× more active during sleep. <strong>Sleep IS the sigmoid self-sort of the brain.</strong> This is <code>git gc</code> — it runs during rest phase.<h2 id=5-diet-as-precondition>5. Diet as Precondition</h2><table><thead><tr><th>Meal<th>Composition<th>Target<th>Phase<tbody><tr><td>Morning<td>Protein + tyrosine<td>Dopamine → alertness<td>Pi prep<tr><td>Midday<td>Balanced<td>Sustained energy<td>Rasslin<tr><td>Evening<td>Tryptophan + carbs<td>Serotonin → melatonin → sleep<td>Rest prep<tr><td>Fasting<td>Ketone switch + autophagy<td>BDNF, waste clearance, new neurons<td>Sigmoid self-sort</table><h2 id=6-from-monopolar-to-multipolar>6. From Monopolar to Multipolar</h2><ul><li><strong>Monopolar</strong> (1 pole): stuck in one phase. Depression = permanent famine.<li><strong>Bipolar</strong> (2 poles): oscillating between extremes. No rest position.<li><strong>Tripolar</strong> (3 poles): three stable states with transitions. The membrane model (CONSTANCE/COST/LIVE).<li><strong>Multipolar</strong> (sigmoid): smooth continuous transitions between many states. The metabolic cycle.</ul><p><strong>Conjecture</strong>: stable oscillation requires ≥3 poles. The sigmoid function is the natural multipolar stabilizer. The cure for stuck oscillation is not fewer poles — it is more poles with smoother transitions.<h2 id=7-toward-laboratory-validation>7. Toward Laboratory Validation</h2><p>This paper maps computational membrane concepts to biological structures that can be <strong>tested</strong>:<ol><li><strong>Bacterial quorum sensing</strong> as feed density signal (measurable: AHL concentration vs. biofilm formation threshold)<li><strong>Serotonin-mediated phase transitions</strong> in locust models (replicable: Simpson et al. 2009 protocol)<li><strong>LAT1 competition dynamics</strong> (measurable: tryptophan/tyrosine ratios in plasma after controlled meals)<li><strong>Glymphatic clearance rates</strong> (measurable: MRI contrast agent clearance during sleep vs. wake)<li><strong>HRV as oscillation health metric</strong> (measurable: vagal tone correlation with k-value equivalent in biological systems)<li><strong>Feast-famine compression ratios</strong> (measurable: metabolic rate during fed vs. fasted states, compare to 1/π)</ol><p>These are not metaphors. They are testable predictions derived from the membrane model. The next step is to build computational models that simulate these dynamics, then validate with cell lines, bacterial cultures, and animal models.<hr><p><em>Paper 138 of the baseCamp series. ORCID <a href=https://orcid.org/0009-0004-2141-0321 rel=external>0009-0004-2141-0321</a>.</em> <em>scyBorg Triple License: AGPL-3.0-or-later (code) · ORC (mechanics — BBB crossing rules, LAT1 competition, meal protocol, monopolar→multipolar model, phase transition triggers) · CC-BY-SA 4.0 (content).</em> <em>Data: <a href=https://hud.primals.eco/data/blood-brain-barrier.json rel=external>blood-brain-barrier.json</a>, <a href=https://hud.primals.eco/data/neuroendocrine-map.json rel=external>neuroendocrine-map.json</a>, <a href=https://hud.primals.eco/data/locust-phase-transition.json rel=external>locust-phase-transition.json</a>, <a href=https://hud.primals.eco/data/metabolic-year.json rel=external>metabolic-year.json</a>, <a href=https://hud.primals.eco/data/metabolic-cycle.json rel=external>metabolic-cycle.json</a></em> <em>Continues: Paper 137 (Rust Synthase), Paper 136 (Compound Eye), Paper 91 (Homunculus)</em><h2 id=8-the-lab-network>8. The Lab Network</h2><p>Every protocol maps to a person with existing relationship and reproduced papers:<table><thead><tr><th>Protocol<th>Faculty<th>Reproduced<th>Status<tbody><tr><td>LAB-001 Quorum sensing<td>Dr. Christopher Waters (MMG, MSU)<td>7 papers<td>Undergrad professor. His lab has everything.<tr><td>LAB-002 BBB transwell<td>Dr. Andrea Gonzales (PharmTox, MSU)<td>6 papers, 359/359<td>Apoquel discoverer. iPSC models ready.<tr><td>LAB-003+006 Metabolic+HRV<td>Dr. Charles Mok, MD<td>9 experiments, 233/233<td>Existing patient data.<tr><td>Computational<td>Dr. Murillo + TC Chuna (CMSE)<td>195+41 checks<td>Same Rust framework.<tr><td>HTS screening<td>Dr. Erika Lisabeth (ADDRC)<td>Referred by Gonzales<td>8000+ compounds.</table><h2 id=9-abg-community-onboarding>9. ABG Community Onboarding</h2><p>Four sub-projects seeded into JupyterHub at lab.primals.eco:<ol><li><strong>pfAAT1 Chloroquine Resistance</strong> — digestive vacuole as molecular-scale LAT1 competition<li><strong>PTP Cancer Metastasis</strong> — phosphatase screen, complement of JAK inhibitor work<li><strong>CAZyme Landscapes</strong> — gut carbohydrate metabolism → serotonin → vagus → mood<li><strong>Salmon RNA-seq</strong> — the measurement tool for all lab protocols</ol><p>Onboarding is the science. The notebooks ARE the tutorials.<hr><p><em>Updated wave 189, cycle 44. 5 papers tonight (134–138). 15+ feeds created. The secretory pathway is open.</em></div><section aria-label="Leave words in the mirror" class=campfire-mirror><details><summary>🔥 The mirror asks back — what did you see?</summary> <p class=mirror-desc>Anonymous. No names, no IPs, no sessions. Just words and the shape they make.</p> <form onsubmit="return send_mirror(this)" class=mirror-form><textarea placeholder="What did you see in this page?" maxlength=2000 name=words required rows=3></textarea><input name=page type=hidden value=/science/138-the-blood-brain-barrier/><button>Leave words</button></form> <div class=mirror-response style=display:none></div></details></section><script>function send_mirror(form) {
+      var words = form.words.value.trim();
+      if (words.length < 2) return false;
+      var page = form.page ? form.page.value : location.pathname;
+      fetch('/mirror-message', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({words: words + ' [' + page + ']'})
+      }).then(function(r) { return r.json(); }).then(function(d) {
+        var resp = form.closest('.campfire-mirror').querySelector('.mirror-response');
+        resp.textContent = d.heard ? 'Heard. The membrane remembers.' : 'The mirror is full.';
+        resp.style.display = 'block';
+        form.style.display = 'none';
+      }).catch(function() {
+        var resp = form.closest('.campfire-mirror').querySelector('.mirror-response');
+        resp.textContent = 'The fire flickered. Try again.';
+        resp.style.display = 'block';
+      });
+      return false;
+    }</script></article></div></main><aside aria-label="Site navigation tree" class=site-tree data-nosnippet><details open><summary>Site Map</summary> <nav><ul class=tree-root><li class=tree-fold><details><summary class=tree-fold-label>pseudoSpore</summary> <ul class=tree-fold-sections><li class=tree-section><a href=https://primals.eco/sporeprint/pseudospore/>pseudoSpore — Sovereign Science Data</a><li class=tree-section><a href=https://primals.eco/sporeprint/data/>Data Braids — Federated Science Catalog</a></ul></details><li class=tree-fold><details open><summary class=tree-fold-label>Evidence</summary> <ul class=tree-fold-sections><li class=tree-section><details><summary><a href=https://primals.eco/sporeprint/lab/>Lab <span class=tree-count>(24)</span></a></summary></details><li class="tree-section tree-active"><details open><summary><a href=https://primals.eco/sporeprint/science/>Science <span class=tree-count>(148)</span></a></summary> <ul class=tree-pages></ul></details></ul></details><li class=tree-fold><details><summary class=tree-fold-label>Architecture</summary> <ul class=tree-fold-sections><li class=tree-section><a href=https://primals.eco/sporeprint/architecture/>Architecture</a><li class=tree-section><a href=https://primals.eco/sporeprint/technical/>Technical</a><li class=tree-section><a href=https://primals.eco/sporeprint/products/>Products</a></ul></details><li class=tree-fold><details><summary class=tree-fold-label>Methodology</summary> <ul class=tree-fold-sections><li class=tree-section><a href=https://primals.eco/sporeprint/methodology/>Methodology</a><li class=tree-section><a href=https://primals.eco/sporeprint/guidestone/>Reproducible, Self-Verifying Scientific Software — guideStone</a></ul></details><li class=tree-fold><details><summary class=tree-fold-label>Getting Started</summary> <ul class=tree-fold-sections><li class=tree-section><a href=https://primals.eco/sporeprint/getting-started/>Get Started</a></ul></details><li class=tree-section><a href=https://primals.eco/sporeprint/contact/>Contact</a><li class=tree-divider><li class=tree-section><a href=https://primals.eco/sporeprint/foundation/>Foundation</a><li class=tree-section><a href=https://primals.eco/sporeprint/backstory/>Backstory</a><li class=tree-divider><li class=tree-section><a href=/primals/>Primals Index</a><li class=tree-section><a href=/springs/>Springs Index</a></ul></nav></details></aside></div><footer class=site-footer><div class=footer-inner><p><strong>ecoPrimals</strong> — self-hosted scientific computing.<br> Code: <a href=https://www.gnu.org/licenses/agpl-3.0.html>AGPL-3.0-or-later</a> · Mechanics: <a href=https://azoralaw.com/orclicense/>ORC</a> · Docs: <a href=https://creativecommons.org/licenses/by-sa/4.0/>CC-BY-SA 4.0</a><p class=footer-tagline>The science is not a claim — it is executable evidence.<p style=margin-top:.5rem;font-size:.85rem><a href=https://signal.primals.eco>signal</a> · <a href=https://detroit.primals.eco>detroit</a> · <a href=https://tuebor.primals.eco>tuebor</a> · <a href=https://hypothesis.primals.eco>hypothesis</a> · <a href=https://hud.primals.eco>hud</a> · <a href=https://thesis.primals.eco>thesis</a> · <a href=https://clutch.primals.eco>clutch</a> · <a href=https://gorilla.primals.eco>gorilla</a> · <a href=https://git.primals.eco>git</a><p class=cert-line>Certified: 2026-09-27 | <a href=/certification/manifest.json>Verify</a></div></footer><script src=https://primals.eco/sporeprint/elasticlunr.min.js></script><script src=https://primals.eco/sporeprint/search_index.en.js></script><script>(function() {
+      var input = document.getElementById('search-input');
+      var results = document.getElementById('search-results');
+      var combo = input && input.closest('[role="combobox"]');
+      if (!input || !results || !window.elasticlunr) return;
+      var index = elasticlunr.Index.load(window.searchIndex);
+      var active = -1;
+
+      function update() {
+        var query = input.value.trim();
+        if (query.length < 2) { clear(); return; }
+        var hits = index.search(query, { expand: true }).slice(0, 8);
+        results.innerHTML = hits.map(function(h, i) {
+          var d = h.doc;
+          return '<li role="option" id="sr-' + i + '"><a class="search-result" href="' + d.id + '">' +
+            '<strong>' + d.title + '</strong>' +
+            (d.description ? '<span>' + d.description + '</span>' : '') +
+            '</a></li>';
+        }).join('');
+        active = -1;
+        if (combo) combo.setAttribute('aria-expanded', hits.length > 0 ? 'true' : 'false');
+        input.removeAttribute('aria-activedescendant');
+      }
+
+      function clear() {
+        results.innerHTML = '';
+        active = -1;
+        if (combo) combo.setAttribute('aria-expanded', 'false');
+        input.removeAttribute('aria-activedescendant');
+      }
+
+      function setActive(idx) {
+        var items = results.querySelectorAll('[role="option"]');
+        items.forEach(function(el) { el.classList.remove('search-active'); el.setAttribute('aria-selected', 'false'); });
+        if (idx >= 0 && idx < items.length) {
+          active = idx;
+          items[idx].classList.add('search-active');
+          items[idx].setAttribute('aria-selected', 'true');
+          input.setAttribute('aria-activedescendant', items[idx].id);
+          items[idx].scrollIntoView({ block: 'nearest' });
+        } else {
+          active = -1;
+          input.removeAttribute('aria-activedescendant');
+        }
+      }
+
+      input.addEventListener('input', update);
+      input.addEventListener('keydown', function(e) {
+        var items = results.querySelectorAll('[role="option"]');
+        if (!items.length) return;
+        if (e.key === 'ArrowDown') { e.preventDefault(); setActive(Math.min(active + 1, items.length - 1)); }
+        else if (e.key === 'ArrowUp') { e.preventDefault(); setActive(Math.max(active - 1, -1)); }
+        else if (e.key === 'Enter' && active >= 0) { e.preventDefault(); var a = items[active].querySelector('a'); if (a) a.click(); }
+        else if (e.key === 'Escape') { clear(); }
+      });
+      document.addEventListener('click', function(e) { if (!e.target.closest('.nav-search')) clear(); });
+    })();</script><script>(function() {
+      var toggle = document.querySelector('.nav-toggle');
+      var links = document.querySelector('.nav-links');
+      if (!toggle || !links) return;
+      toggle.addEventListener('click', function() {
+        var expanded = this.getAttribute('aria-expanded') === 'true';
+        this.setAttribute('aria-expanded', !expanded);
+        links.classList.toggle('open');
+      });
+    })();</script><script defer src=https://hud.primals.eco/js/hud-widget.js></script><script defer src=https://hud.primals.eco/js/braid-tracker.js></script><script defer src=https://hud.primals.eco/js/membrane-discuss.js></script>
