@@ -131,7 +131,7 @@
       var tense = {
         is: fates.length ? fates[0].pct + '% pass' : '—',
         was: prevFates ? prevFates[0].pct + '% pass' : 'first scan',
-        now: new Date().toLocaleTimeString('en-US',{timeZone:'America/Detroit',hour12:false,hour:'2-digit',minute:'2-digit'}) + ' EST'
+        now: new Date().toISOString().slice(11, 16) + ' UTC'
       };
 
       // Save IS as next WAS
@@ -153,7 +153,7 @@
           {code: 404, name: 'EXPLORING', pct: 19.9}
         ],
         remainder_pct: 14.6,
-        tense: {is: '26.1% pass', was: 'first scan', now: new Date().toLocaleTimeString('en-US',{timeZone:'America/Detroit',hour12:false,hour:'2-digit',minute:'2-digit'}) + ' EST'}
+        tense: {is: '26.1% pass', was: 'first scan', now: new Date().toISOString().slice(11, 16) + ' UTC'}
       };
       renderTrace();
     });

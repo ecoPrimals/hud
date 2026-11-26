@@ -1,14 +1,14 @@
 {
- "ts": "2026-11-26T21:12:34Z",
- "by": "eastgate",
+ "ts": "2026-11-26T21:48:00Z",
+ "by": "polaris",
  "tip": "f211b1e28",
  "read_from": {
-  "eastgate": 292
+  "polaris": 187
  },
- "files": 295,
+ "files": 190,
  "routes": 8,
- "not_read": 52,
- "held_back": 2,
+ "not_read": 152,
+ "held_back": 0,
  "carried": [
   "artisan.html",
   "canvas.html",
