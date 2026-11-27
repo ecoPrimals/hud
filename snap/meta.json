@@ -1,11 +1,11 @@
 {
- "ts": "2026-11-27T13:20:36Z",
+ "ts": "2026-11-27T13:36:25Z",
  "by": "eastgate",
- "tip": "33efbbdf6",
+ "tip": "a7fa04aec",
  "read_from": {
-  "eastgate": 294
+  "eastgate": 299
  },
- "files": 297,
+ "files": 302,
  "routes": 8,
  "not_read": 52,
  "held_back": 2,
@@ -18,6 +18,7 @@
   "record.html",
   "signal.html",
   "static/atlas.html",
+  "static/mercator.html",
   "trailheads.html",
   "tuebor.html",
   "whitePaper.html"
