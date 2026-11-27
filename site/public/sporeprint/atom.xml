@@ -33510,7 +33510,7 @@ additional primals.&lt;&#x2F;p&gt;
         
         <content type="html" xml:base="https://primals.eco/sporeprint/products/lithospore/">&lt;h2 id=&quot;what-this-is&quot;&gt;What This Is&lt;&#x2F;h2&gt;
 &lt;p&gt;lithoSpore is the ecosystem’s deployment system for &lt;strong&gt;self-verifying scientific artifacts&lt;&#x2F;strong&gt;. A lithoSpore is a USB drive (or network-deployable archive) that carries validated science, its data, its tools, and its provenance chain — everything needed to independently reproduce results on any machine, with zero dependencies and no internet.&lt;&#x2F;p&gt;
-&lt;p&gt;The first instance targets the &lt;strong&gt;Barrick Lab at UT Austin&lt;&#x2F;strong&gt; — the continuation of Richard Lenski’s Long-Term Evolution Experiment (LTEE), the longest-running evolutionary biology experiment in history.&lt;&#x2F;p&gt;
+&lt;p&gt;The first instance targets the &lt;strong&gt;Barrick Lab&lt;&#x2F;strong&gt; (Michigan State University since 2025; previously UT Austin) — the continuation of Richard Lenski’s Long-Term Evolution Experiment (LTEE), the longest-running evolutionary biology experiment in history.&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;strong&gt;Repository&lt;&#x2F;strong&gt;: &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;sporeGarden&#x2F;lithoSpore&quot;&gt;sporeGarden&#x2F;lithoSpore&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;h2 id=&quot;spore-taxonomy&quot;&gt;Spore Taxonomy&lt;&#x2F;h2&gt;
@@ -48815,7 +48815,7 @@ understand your land. No account required. No data leaves your machine.&lt;&#x2F
     <entry xml:lang="en">
         <title>tideGlass — Sovereign GPS Platform</title>
         <published>2026-07-15T00:00:00+00:00</published>
-        <updated>2026-07-15T00:00:00+00:00</updated>
+        <updated>2026-11-27T00:00:00+00:00</updated>
         
         <author>
           <name>
@@ -48836,17 +48836,20 @@ understand your land. No account required. No data leaves your machine.&lt;&#x2F
 
 
 
-&lt;span class=&quot;maturity-badge maturity-architectural&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;📐&lt;&#x2F;span&gt; Architecture-ready&lt;&#x2F;span&gt;
- Phase 0: GPS paper reproduction in progress. Sovereign pallet hardware designed.&lt;&#x2F;p&gt;
+&lt;span class=&quot;maturity-badge maturity-implemented&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;✅&lt;&#x2F;span&gt; Implemented&lt;&#x2F;span&gt;
+ GPS platform: reconstruction, reproduction, validation and the Rust rebuild are complete (220 tests); Phase 4, packaging, is in progress. Sovereign pallet: hardware designed, not built.&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
 &lt;h2 id=&quot;what-it-is&quot;&gt;What It Is&lt;&#x2F;h2&gt;
 &lt;p&gt;tideGlass has two identities that share one architecture:&lt;&#x2F;p&gt;
 &lt;ol&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;Sovereign GPS Platform&lt;&#x2F;strong&gt; (Phase 0, active) — reproducing published GPS
-methodology in pure Rust, validated against Python baselines. This is the
-immediate deliverable: a self-hosted GPS data analysis tool that replaces
-commercial platforms with sovereign computation.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Sovereign GPS Platform&lt;&#x2F;strong&gt; (Phase 4, packaging) — a rebuild of GPS, the
+gene-expression-based drug-screening platform from the Bin Chen Lab at
+Michigan State University (Xing et al., &lt;em&gt;Cell&lt;&#x2F;em&gt;, 2026), in pure Rust. GPS
+predicts how a compound changes gene expression from its chemical structure
+and searches compound libraries for ones that reverse a disease’s expression
+signature. It is not satellite positioning. This is the immediate
+deliverable: the same science as one self-hosted, self-checking program.&lt;&#x2F;p&gt;
 &lt;&#x2F;li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Sovereign Pallet&lt;&#x2F;strong&gt; (future) — a self-sustaining deployable unit providing
@@ -48857,21 +48860,35 @@ and humanitarian infrastructure.&lt;&#x2F;p&gt;
 &lt;p&gt;The GPS platform is the first composition that runs on the pallet. Build the
 software first, then deploy it to sovereign hardware.&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
-&lt;h2 id=&quot;gps-platform-phase-0&quot;&gt;GPS Platform — Phase 0&lt;&#x2F;h2&gt;
-&lt;p&gt;The immediate focus: reproduce GPS paper figures from the Gonzales NF data
-mining collaboration, validated against the Python baseline. This proves
-that sovereign Rust can replace commercial GPS analysis tools.&lt;&#x2F;p&gt;
-&lt;h3 id=&quot;validation-modules-per-guidestone-spec&quot;&gt;Validation Modules (per guideStone spec)&lt;&#x2F;h3&gt;
-&lt;p&gt;Seven validation modules, each reproducing a specific GPS analysis capability:&lt;&#x2F;p&gt;
-&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Module&lt;&#x2F;th&gt;&lt;th&gt;What it validates&lt;&#x2F;th&gt;&lt;th&gt;Status&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Coordinate transforms&lt;&#x2F;td&gt;&lt;td&gt;WGS84 ↔ UTM ↔ local frames&lt;&#x2F;td&gt;&lt;td&gt;Planned&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
-&lt;tr&gt;&lt;td&gt;Signal processing&lt;&#x2F;td&gt;&lt;td&gt;L1&#x2F;L2 carrier phase, pseudorange&lt;&#x2F;td&gt;&lt;td&gt;Planned&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
-&lt;tr&gt;&lt;td&gt;Positioning engine&lt;&#x2F;td&gt;&lt;td&gt;Least-squares + Kalman filter&lt;&#x2F;td&gt;&lt;td&gt;Planned&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
-&lt;tr&gt;&lt;td&gt;Atmospheric correction&lt;&#x2F;td&gt;&lt;td&gt;Troposphere&#x2F;ionosphere models&lt;&#x2F;td&gt;&lt;td&gt;Planned&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
-&lt;tr&gt;&lt;td&gt;Time series analysis&lt;&#x2F;td&gt;&lt;td&gt;Station velocity, seasonal signals&lt;&#x2F;td&gt;&lt;td&gt;Planned&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
-&lt;tr&gt;&lt;td&gt;Network adjustment&lt;&#x2F;td&gt;&lt;td&gt;Multi-station baseline resolution&lt;&#x2F;td&gt;&lt;td&gt;Planned&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
-&lt;tr&gt;&lt;td&gt;Visualization&lt;&#x2F;td&gt;&lt;td&gt;Displacement maps, time series plots&lt;&#x2F;td&gt;&lt;td&gt;Planned&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;h2 id=&quot;gps-platform-where-it-stands&quot;&gt;GPS Platform — Where It Stands&lt;&#x2F;h2&gt;
+&lt;p&gt;The task came from the Gonzales NF data mining collaboration: rebuild the GPS
+platform so that it can be handed on, and extend it to neurofibromatosis. The
+work was done from the published methods and the primary data rather than by
+porting the original code: read the methods as a specification, fetch the raw
+data from its source, implement from the mathematics, and compare the outputs
+with the published claims.&lt;&#x2F;p&gt;
+&lt;p&gt;The result is one Rust program (nine crates, a single &lt;code&gt;tideglass&lt;&#x2F;code&gt; binary) with
+220 tests. Code: &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;protoKarya&#x2F;tideGlass&quot;&gt;github.com&#x2F;protoKarya&#x2F;tideGlass&lt;&#x2F;a&gt;.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;seven-science-modules&quot;&gt;Seven Science Modules&lt;&#x2F;h3&gt;
+&lt;p&gt;Each module takes one published claim as its target:&lt;&#x2F;p&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Module&lt;&#x2F;th&gt;&lt;th&gt;Paper&lt;&#x2F;th&gt;&lt;th&gt;Claim it is checked against&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;RGES correlation&lt;&#x2F;td&gt;&lt;td&gt;Chen 2017 (&lt;em&gt;Nat Commun&lt;&#x2F;em&gt;)&lt;&#x2F;td&gt;&lt;td&gt;Reversal score correlates with drug potency (r = 0.52)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;RCL noise cleaning&lt;&#x2F;td&gt;&lt;td&gt;Xing 2026 (&lt;em&gt;Cell&lt;&#x2F;em&gt;)&lt;&#x2F;td&gt;&lt;td&gt;Cleaning improves signal-to-noise in the expression profiles&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Expression prediction&lt;&#x2F;td&gt;&lt;td&gt;Xing 2026 (&lt;em&gt;Cell&lt;&#x2F;em&gt;)&lt;&#x2F;td&gt;&lt;td&gt;Expression change predicted from chemical structure&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Reversal screening&lt;&#x2F;td&gt;&lt;td&gt;Xing 2026 (&lt;em&gt;Cell&lt;&#x2F;em&gt;)&lt;&#x2F;td&gt;&lt;td&gt;A library screen recovers known liver-cancer actives&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Lead optimisation (tree search)&lt;&#x2F;td&gt;&lt;td&gt;Xing 2026 (&lt;em&gt;Cell&lt;&#x2F;em&gt;)&lt;&#x2F;td&gt;&lt;td&gt;Search improves a liver-cancer lead compound&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;OCTAD parity&lt;&#x2F;td&gt;&lt;td&gt;Zeng 2021 (&lt;em&gt;Nat Protocols&lt;&#x2F;em&gt;)&lt;&#x2F;td&gt;&lt;td&gt;GPS compared with the earlier OCTAD method&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;NF extension&lt;&#x2F;td&gt;&lt;td&gt;New work&lt;&#x2F;td&gt;&lt;td&gt;Reversal scoring for NF1-driven tumours&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
 &lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;h3 id=&quot;phases&quot;&gt;Phases&lt;&#x2F;h3&gt;
+&lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Phase&lt;&#x2F;th&gt;&lt;th&gt;Scope&lt;&#x2F;th&gt;&lt;th&gt;Status&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
+&lt;tr&gt;&lt;td&gt;0. Archaeology&lt;&#x2F;td&gt;&lt;td&gt;Fetch the published artifact, inventory it, map its dependencies&lt;&#x2F;td&gt;&lt;td&gt;Complete&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;1. Reproduce&lt;&#x2F;td&gt;&lt;td&gt;Stand up each module and match the published outputs&lt;&#x2F;td&gt;&lt;td&gt;Complete&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;2. Validate&lt;&#x2F;td&gt;&lt;td&gt;Cross-validate against the primary data sources&lt;&#x2F;td&gt;&lt;td&gt;Complete&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;3. Rebuild&lt;&#x2F;td&gt;&lt;td&gt;Rust workspace, content-addressed data, provenance&lt;&#x2F;td&gt;&lt;td&gt;Complete&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;4. Package&lt;&#x2F;td&gt;&lt;td&gt;Self-verifying artifact, NF extension, review by the Bin Chen lab&lt;&#x2F;td&gt;&lt;td&gt;In progress&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
+&lt;p&gt;Status as of the repository’s record, August 2026.&lt;&#x2F;p&gt;
 &lt;h3 id=&quot;drawbridge-bonds&quot;&gt;Drawbridge Bonds&lt;&#x2F;h3&gt;
 &lt;p&gt;tideGlass consumes external data via 
 
@@ -48886,15 +48903,15 @@ that sovereign Rust can replace commercial GPS analysis tools.&lt;&#x2F;p&gt;
 &lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
 &lt;h3 id=&quot;composition-evolution&quot;&gt;Composition Evolution&lt;&#x2F;h3&gt;
 &lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Step&lt;&#x2F;th&gt;&lt;th&gt;Owner&lt;&#x2F;th&gt;&lt;th&gt;Status&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Clone repo into &lt;code&gt;protists&#x2F;tideGlass&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;overwatch&lt;&#x2F;td&gt;&lt;td&gt;Planned&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
-&lt;tr&gt;&lt;td&gt;Phase 0: reproduce GPS paper figures&lt;&#x2F;td&gt;&lt;td&gt;tideGlass team&lt;&#x2F;td&gt;&lt;td&gt;Planned&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Repository at &lt;code&gt;protoKarya&#x2F;tideGlass&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;overwatch&lt;&#x2F;td&gt;&lt;td&gt;Done&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Phases 0–3: reconstruct, reproduce, validate, rebuild&lt;&#x2F;td&gt;&lt;td&gt;tideGlass team&lt;&#x2F;td&gt;&lt;td&gt;Done&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
 &lt;tr&gt;&lt;td&gt;Caddy block at &lt;code&gt;tideglass.primals.eco&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;cellMembrane team&lt;&#x2F;td&gt;&lt;td&gt;Planned&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
 &lt;tr&gt;&lt;td&gt;Drawbridge bond registration&lt;&#x2F;td&gt;&lt;td&gt;songBird team&lt;&#x2F;td&gt;&lt;td&gt;Planned&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
 &lt;tr&gt;&lt;td&gt;
 
 
 
-&lt;a href=&quot;&amp;#x2F;lab&amp;#x2F;lithospore&amp;#x2F;&quot; class=&quot;entity-ref entity-product&quot; title=&quot;First Targeted GuideStone — USB-deployable LTEE validation artifact. 7 science modules, 75 checks, musl-static + Windows cross-compiled. ALL CLEAR: USB round-trip, ring dropped.&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;🪨🌱&amp;nbsp;&lt;&#x2F;span&gt;&lt;span&gt;lithoSpore&lt;&#x2F;span&gt;&lt;&#x2F;a&gt; packaging&lt;&#x2F;td&gt;&lt;td&gt;lithoSpore team&lt;&#x2F;td&gt;&lt;td&gt;Planned&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;a href=&quot;&amp;#x2F;lab&amp;#x2F;lithospore&amp;#x2F;&quot; class=&quot;entity-ref entity-product&quot; title=&quot;First Targeted GuideStone — USB-deployable LTEE validation artifact. 7 science modules, 75 checks, musl-static + Windows cross-compiled. ALL CLEAR: USB round-trip, ring dropped.&quot;&gt;&lt;span aria-hidden=&quot;true&quot;&gt;🪨🌱&amp;nbsp;&lt;&#x2F;span&gt;&lt;span&gt;lithoSpore&lt;&#x2F;span&gt;&lt;&#x2F;a&gt; packaging&lt;&#x2F;td&gt;&lt;td&gt;lithoSpore team&lt;&#x2F;td&gt;&lt;td&gt;In progress (Phase 4)&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
 &lt;tr&gt;&lt;td&gt;&lt;code&gt;tideglass-composition-routing&lt;&#x2F;code&gt; scenario&lt;&#x2F;td&gt;&lt;td&gt;
 
 
@@ -73388,7 +73405,7 @@ artifact — and the first &lt;strong&gt;Targeted GuideStone&lt;&#x2F;strong&gt;
 computational physics on consumer GPUs, lithoSpore proves evolutionary biology: 7 science
 modules reproducing LTEE papers from Barrick, Lenski, and collaborators across 75,000+
 generations of continuous evolution.&lt;&#x2F;p&gt;
-&lt;p&gt;The target audience is &lt;strong&gt;Barrick Lab, UT Austin&lt;&#x2F;strong&gt; — the continuation of Richard Lenski’s
+&lt;p&gt;The target audience is the &lt;strong&gt;Barrick Lab&lt;&#x2F;strong&gt; (Michigan State University since 2025; previously UT Austin) — the continuation of Richard Lenski’s
 Long-Term Evolution Experiment. The artifact is designed to be handed to a researcher as
 a USB drive, plugged into any Linux machine, and validated with zero dependencies.&lt;&#x2F;p&gt;
 &lt;hr &#x2F;&gt;
@@ -73531,7 +73548,7 @@ guided reading path through the LTEE literature.&lt;&#x2F;p&gt;
 &lt;p&gt;Long-Term Evolution Experiment (LTEE) reproduction — power-law fitness, mutation accumulation, allele trajectories, citrate innovation, BioBrick burden, 264-genome comparison, Anderson disorder predictions.&lt;&#x2F;p&gt;
 &lt;p&gt;&lt;strong&gt;Repository&lt;&#x2F;strong&gt;: &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;sporeGarden&#x2F;lithoSpore&quot;&gt;sporeGarden&#x2F;lithoSpore&lt;&#x2F;a&gt;&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;the-science-story&quot;&gt;The Science Story&lt;&#x2F;h2&gt;
-&lt;p&gt;lithoSpore is the ecosystem’s first &lt;strong&gt;Targeted GuideStone&lt;&#x2F;strong&gt; — a self-contained artifact that reproduces key results from the LTEE, the longest-running evolutionary biology experiment in history. It targets the Barrick Lab at UT Austin, where the experiment continues past 75,000 generations with &lt;em&gt;E. coli&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;lithoSpore is the ecosystem’s first &lt;strong&gt;Targeted GuideStone&lt;&#x2F;strong&gt; — a self-contained artifact that reproduces key results from the LTEE, the longest-running evolutionary biology experiment in history. It targets the Barrick Lab, which moved from UT Austin to Michigan State University in 2025 and where the experiment continues past 75,000 generations with &lt;em&gt;E. coli&lt;&#x2F;em&gt;.&lt;&#x2F;p&gt;
 &lt;p&gt;The artifact proves two things simultaneously: (1) the LTEE’s published results are computationally reproducible from public data, and (2) the ecoPrimals infrastructure — pure Rust, musl-static, zero dependencies — can carry scientific validation to any machine on the planet.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;headline-results&quot;&gt;Headline Results&lt;&#x2F;h2&gt;
 &lt;ul&gt;
@@ -73554,7 +73571,7 @@ guided reading path through the LTEE literature.&lt;&#x2F;p&gt;
 &lt;&#x2F;tbody&gt;&lt;&#x2F;table&gt;
 &lt;h2 id=&quot;researchers-reproduced&quot;&gt;Researchers Reproduced&lt;&#x2F;h2&gt;
 &lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Researcher&lt;&#x2F;th&gt;&lt;th&gt;Department&lt;&#x2F;th&gt;&lt;th&gt;Domain&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
-&lt;tr&gt;&lt;td&gt;Jeffrey Barrick&lt;&#x2F;td&gt;&lt;td&gt;Molecular Biosciences, UT Austin&lt;&#x2F;td&gt;&lt;td&gt;LTEE continuation, mutation dynamics&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
+&lt;tr&gt;&lt;td&gt;Jeffrey Barrick&lt;&#x2F;td&gt;&lt;td&gt;Microbiology, Genetics &amp;amp; Immunology, Michigan State University (at UT Austin until 2025)&lt;&#x2F;td&gt;&lt;td&gt;LTEE continuation, mutation dynamics&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
 &lt;tr&gt;&lt;td&gt;Richard Lenski&lt;&#x2F;td&gt;&lt;td&gt;BEACON Center, MSU&lt;&#x2F;td&gt;&lt;td&gt;LTEE founder, evolutionary biology&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
 &lt;tr&gt;&lt;td&gt;Michael Wiser&lt;&#x2F;td&gt;&lt;td&gt;BEACON Center, MSU&lt;&#x2F;td&gt;&lt;td&gt;Power-law fitness models&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
 &lt;tr&gt;&lt;td&gt;Benjamin Good&lt;&#x2F;td&gt;&lt;td&gt;Physics, Stanford&lt;&#x2F;td&gt;&lt;td&gt;Allele dynamics, clonal interference&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
@@ -74528,7 +74545,7 @@ Anyone with a USB port can verify.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
     <entry xml:lang="en">
         <title>Compute Access — ABG Compute Lab</title>
         <published>2026-05-07T00:00:00+00:00</published>
-        <updated>2026-05-07T00:00:00+00:00</updated>
+        <updated>2026-11-27T00:00:00+00:00</updated>
         
         <author>
           <name>
@@ -74541,9 +74558,16 @@ Anyone with a USB port can verify.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
         <link rel="alternate" type="text/html" href="https://primals.eco/sporeprint/lab/compute-access/"/>
         <id>https://primals.eco/sporeprint/lab/compute-access/</id>
         
-        <content type="html" xml:base="https://primals.eco/sporeprint/lab/compute-access/">&lt;h2 id=&quot;live-at-lab-primals-eco&quot;&gt;Live at &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;lab.primals.eco&quot;&gt;lab.primals.eco&lt;&#x2F;a&gt;&lt;&#x2F;h2&gt;
-&lt;p&gt;&lt;strong&gt;JupyterHub 5.4.5&lt;&#x2F;strong&gt; is live on &lt;a href=&quot;&#x2F;primals&#x2F;#songbird&quot;&gt;songBird&lt;&#x2F;a&gt;-routed sovereign hardware at &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;lab.primals.eco&quot;&gt;lab.primals.eco&lt;&#x2F;a&gt;. No cloud. No exposed ports. Students, researchers, and collaborators connect through the WireGuard sovereign mesh — songBird’s drawbridge routes HTTP traffic from golgi (VPS) to ironGate (compute node) via capability-based dispatch.&lt;&#x2F;p&gt;
-&lt;p&gt;The compute substrate runs on a 64-core AMD EPYC 9124 with an RTX 5070 Ti GPU, 128GB ECC RAM, and NVMe storage. All primals communicate via BTSP Phase 3 AEAD (ChaCha20-Poly1305) and bind to &lt;code&gt;127.0.0.1&lt;&#x2F;code&gt; by default. Every notebook runs against real primals, not mocks — the same infrastructure that produced the baseCamp results.&lt;&#x2F;p&gt;
+        <content type="html" xml:base="https://primals.eco/sporeprint/lab/compute-access/">&lt;h2 id=&quot;status-not-online-at-present&quot;&gt;Status: not online at present&lt;&#x2F;h2&gt;
+&lt;p&gt;As of 27 November 2026 the JupyterHub cannot be reached. The relay path described below is not in service, and &lt;code&gt;lab.primals.eco&lt;&#x2F;code&gt; shows the Gaia home page instead of the hub. This page describes the lab as it was set up and ran. Until it is back:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;the notebooks published from it are at &lt;a href=&quot;&#x2F;lab&#x2F;notebooks&#x2F;&quot;&gt;&#x2F;lab&#x2F;notebooks&#x2F;&lt;&#x2F;a&gt;, with their outputs;&lt;&#x2F;li&gt;
+&lt;li&gt;one experiment needs no account at all and runs in your own browser: &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;primals.eco&#x2F;static&#x2F;anderson.html&quot;&gt;the Anderson model&lt;&#x2F;a&gt;;&lt;&#x2F;li&gt;
+&lt;li&gt;the whole system can be stood up on your own machine: &lt;a href=&quot;https:&#x2F;&#x2F;primals.eco&#x2F;sporeprint&#x2F;lab&#x2F;reproduce&#x2F;&quot;&gt;Reproduce Results&lt;&#x2F;a&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;how-it-ran&quot;&gt;How it ran&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;strong&gt;JupyterHub 5.4.5&lt;&#x2F;strong&gt; ran on &lt;a href=&quot;&#x2F;primals&#x2F;#songbird&quot;&gt;songBird&lt;&#x2F;a&gt;-routed sovereign hardware at &lt;code&gt;lab.primals.eco&lt;&#x2F;code&gt;. No cloud. No exposed ports. Students, researchers, and collaborators connected through the WireGuard sovereign mesh — songBird’s drawbridge routed HTTP traffic from golgi (VPS) to ironGate (compute node) via capability-based dispatch.&lt;&#x2F;p&gt;
+&lt;p&gt;The compute substrate ran on a 64-core AMD EPYC 9124 with an RTX 5070 Ti GPU, 128GB ECC RAM, and NVMe storage. All primals communicate via BTSP Phase 3 AEAD (ChaCha20-Poly1305) and bind to &lt;code&gt;127.0.0.1&lt;&#x2F;code&gt; by default. Every notebook runs against real primals, not mocks — the same infrastructure that produced the baseCamp results.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;who-can-access&quot;&gt;Who Can Access&lt;&#x2F;h2&gt;
 &lt;table&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Tier&lt;&#x2F;th&gt;&lt;th&gt;Linux Group&lt;&#x2F;th&gt;&lt;th&gt;Access&lt;&#x2F;th&gt;&lt;th&gt;Can Do&lt;&#x2F;th&gt;&lt;&#x2F;tr&gt;&lt;&#x2F;thead&gt;&lt;tbody&gt;
 &lt;tr&gt;&lt;td&gt;&lt;strong&gt;Admin&lt;&#x2F;strong&gt;&lt;&#x2F;td&gt;&lt;td&gt;&lt;code&gt;abg-admin&lt;&#x2F;code&gt;&lt;&#x2F;td&gt;&lt;td&gt;Full JupyterHub, 48G &#x2F; 16 cores&lt;&#x2F;td&gt;&lt;td&gt;Run notebooks, manage users, full primal API access&lt;&#x2F;td&gt;&lt;&#x2F;tr&gt;
@@ -74562,25 +74586,26 @@ Anyone with a USB port can verify.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
 &lt;&#x2F;ul&gt;
 &lt;p&gt;The shared workspace at &lt;code&gt;&#x2F;shared&#x2F;abg&#x2F;&lt;&#x2F;code&gt; is visible to all members. Results, notebooks, and datasets are collaborative by default.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;how-to-request-access&quot;&gt;How to Request Access&lt;&#x2F;h2&gt;
+&lt;p&gt;Accounts are not being opened while the hub is offline. The steps below are how access worked, and how it will work when the hub returns.&lt;&#x2F;p&gt;
 &lt;ol&gt;
 &lt;li&gt;Contact the ecoPrimals team with your research interest and desired tier&lt;&#x2F;li&gt;
 &lt;li&gt;An account is created with appropriate Linux group membership&lt;&#x2F;li&gt;
-&lt;li&gt;Navigate to &lt;a rel=&quot;external&quot; href=&quot;https:&#x2F;&#x2F;lab.primals.eco&quot;&gt;lab.primals.eco&lt;&#x2F;a&gt; — no VPN, no port forwarding, no cloud tunnel&lt;&#x2F;li&gt;
+&lt;li&gt;Navigate to &lt;code&gt;lab.primals.eco&lt;&#x2F;code&gt; — no VPN, no port forwarding, no cloud tunnel&lt;&#x2F;li&gt;
 &lt;li&gt;Log in with your credentials — your JupyterHub session starts with the shared workspace linked and all 13 primal ports available as environment variables&lt;&#x2F;li&gt;
 &lt;&#x2F;ol&gt;
 &lt;p&gt;For PIs and administrators: the shared workspace demonstrates what your researchers want to run on institutional HPC. Every notebook has full provenance — point your HPC team at the exact pipeline.&lt;&#x2F;p&gt;
-&lt;h2 id=&quot;architecture&quot;&gt;Architecture&lt;&#x2F;h2&gt;
+&lt;h2 id=&quot;architecture-as-it-ran&quot;&gt;Architecture (as it ran)&lt;&#x2F;h2&gt;
 &lt;pre class=&quot;giallo&quot; style=&quot;color-scheme: light dark; color: light-dark(#24292E, #E1E4E8); background-color: light-dark(#FFFFFF, #24292E);&quot;&gt;&lt;code data-lang=&quot;plain&quot;&gt;&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;Browser → lab.primals.eco&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    │&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    ├─ DNS → golgi VPS (157.230.3.183)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    ├─ DNS → golgi VPS&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    │        Caddy :443 (TLS termination, Let&amp;#39;s Encrypt)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    │        └─ reverse_proxy → WireGuard mesh&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    │&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    ├─ WireGuard → sporeGate (10.13.37.2)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    ├─ WireGuard → sporeGate&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    │              songBird drawbridge :7780&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    │              └─ capability.call(&amp;quot;jupyter&amp;quot;) → ironGate&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    │&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
-&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    └─ ironGate (10.13.37.7)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
+&lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;    └─ ironGate&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;       JupyterHub :8000 (PAM auth, tiered pre_spawn_hook)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;       │&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;       ├── &#x2F;shared&#x2F;abg&#x2F;          ← collaborative workspace (all tiers read)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
@@ -74598,7 +74623,7 @@ Anyone with a USB port can verify.&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;           ├── coralReef (data pipeline)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;           ├── bearDog (crypto + auth)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;
 &lt;span class=&quot;giallo-l&quot;&gt;&lt;span&gt;           └── songBird (mesh routing + capability discovery)&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
-&lt;p&gt;The path from browser to notebook is fully sovereign: DNS → golgi TLS → WireGuard tunnel → songBird capability routing → JupyterHub. No Cloudflare. No cloud tunnels. Every hop is inspectable.&lt;&#x2F;p&gt;
+&lt;p&gt;The path from browser to notebook was fully sovereign: DNS → golgi TLS → WireGuard tunnel → songBird capability routing → JupyterHub. No Cloudflare. No cloud tunnels. Every hop is inspectable.&lt;&#x2F;p&gt;
 &lt;h2 id=&quot;connection-to-sporeprint&quot;&gt;Connection to sporePrint&lt;&#x2F;h2&gt;
 &lt;p&gt;Selected notebooks from the shared workspace are elevated to &lt;a href=&quot;&#x2F;lab&#x2F;&quot;&gt;primals.eco&#x2F;lab&#x2F;&lt;&#x2F;a&gt; via the notebook rendering pipeline. The elevation process:&lt;&#x2F;p&gt;
 &lt;ol&gt;
