@@ -190,7 +190,7 @@ footer .sig{margin-bottom:6px;letter-spacing:1px}
 
 <header>
   <h1>🌍 <span>GAIA'S FIRST MASTERWORK</span></h1>
-  <div class="sub">Mendeleev's Desk — 118 element cards. watch him sort. sit in his chair.</div>
+  <div class="sub">Mendeleev's Desk — 118 element cards. the IDE is this desk. type, and Gaia learns the hand. Enter sets an element on the bench. <a href="/ide.html" style="color:var(--nm)">open the IDE</a></div>
   <div class="ctrl-bar">
     <button id="btn-flat" class="active" onclick="setView('flat')">⬜ flat</button>
     <button id="btn-1st" onclick="setView('1st')">👤 1st person</button>
@@ -202,8 +202,10 @@ footer .sig{margin-bottom:6px;letter-spacing:1px}
     <span>explored: <em id="explored">0</em>/118</span>
     <span>primal links: <em id="org-count">0</em>/16</span>
     <span class="sep">|</span>
-    <input id="search" type="text" placeholder="search…">
+    <input id="search" type="text" placeholder="type a letter. Gaia learns the hand" autocomplete="off" spellcheck="false">
   </div>
+  <div id="hand-line" style="font-size:0.55rem;color:var(--nm);min-height:1em;margin-top:4px"></div>
+  <div id="redox-line" style="font-size:0.55rem;color:var(--ng);min-height:1em"></div>
 </header>
 
 <div id="desk" class="view-flat">
@@ -459,7 +461,7 @@ function renderTable() {
     div.style.cssText=`grid-row:${el.r};grid-column:${el.k};animation-delay:${i*12}ms`;
     div.dataset.z=el.z;
     div.innerHTML=`<div class="z">${el.z}</div><div class="sym">${el.s}</div><div class="nm">${el.n}</div>`;
-    div.onclick=()=>{if(!sorting)showDetail(el)};
+    div.onclick=()=>{if(!sorting)setOnBench(el)};
     table.appendChild(div);
   });
 }
@@ -598,10 +600,40 @@ function clearFilter() {
   document.getElementById('teaching').innerHTML='';
 }
 
+// ── THE HAND AND THE BENCH ──
+var bench = [];
+function heardElement(q) {
+  if (!q) return null;
+  var exact = elements.find(function(e){ return e.s.toLowerCase() === q; });
+  if (exact) return exact;
+  return elements.find(function(e){
+    return e.s.toLowerCase().startsWith(q) || e.n.toLowerCase().startsWith(q);
+  }) || null;
+}
+function redoxText() {
+  var s = {};
+  bench.forEach(function(sym){ s[sym] = true; });
+  if (s.H && s.O) return 'H and O. water. the first molecule on the desk.';
+  if (s.Na && s.Cl) return 'Na and Cl. salt.';
+  if (s.Fe && s.O) return 'Fe and O. rust. iron handing electrons to oxygen.';
+  if (s.C && s.O) return 'C and O. the breath out.';
+  if (!bench.length) return 'Enter sets the heard element on the bench. a click does the same.';
+  return bench.join(' + ') + '  —  a redox waiting for its pair.';
+}
+function setOnBench(el) {
+  if (!el) return;
+  showDetail(el);
+  bench.push(el.s);
+  if (bench.length > 6) bench.shift();
+  document.getElementById('redox-line').textContent = redoxText();
+}
+
 // ── SEARCH ──
 document.getElementById('search').addEventListener('input',function(){
   const q=this.value.toLowerCase().trim();
-  if(!q){clearFilter();return;}
+  const heard = heardElement(q);
+  document.getElementById('hand-line').textContent = heard ? ('Gaia heard ' + heard.s + ' — ' + heard.n) : (q ? 'listening…' : '');
+  if(!q){clearFilter(); document.getElementById('redox-line').textContent = redoxText(); return;}
   document.querySelectorAll('.el').forEach(div=>{
     const z=parseInt(div.dataset.z),el=elements.find(e=>e.z===z);
     const match=el&&(el.n.toLowerCase().includes(q)||el.s.toLowerCase().includes(q)||
@@ -609,6 +641,12 @@ document.getElementById('search').addEventListener('input',function(){
     div.classList.toggle('dim-filter',!match);
   });
 });
+document.getElementById('search').addEventListener('keydown',function(e){
+  if (e.key !== 'Enter') return;
+  e.preventDefault();
+  setOnBench(heardElement(this.value.toLowerCase().trim()));
+});
+document.getElementById('redox-line').textContent = redoxText();
 
 // ── KEYBOARD ──
 document.addEventListener('keydown',e=>{
