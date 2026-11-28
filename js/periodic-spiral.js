@@ -220,6 +220,7 @@
 
   function onKey(e) {
     if (!_active) return;
+    if (e.target && (e.target.id === 'mendeleev-hand')) return;
     if (e.key === 'Escape') { deactivate(); return; }
     if (e.ctrlKey || e.metaKey || e.altKey) return;
     if (e.key === ' ' || e.key === 'ArrowRight' || e.key === 'Enter') { e.preventDefault(); _autoPlay = false; advance(); }
@@ -773,6 +774,120 @@
     requestAnimationFrame(render);
   }
 
+  // ═══ THE DESK — beside the table. typing is the hand. a click is the redox. ═══
+  var _desk = null;
+  var _reaction = [];
+
+  function elementByLetters(text) {
+    var letters = (text || '').replace(/[^a-zA-Z]/g, '');
+    if (!letters) return null;
+    var two = letters.slice(-2);
+    var one = letters.slice(-1);
+    var hit = null;
+    if (two.length === 2) {
+      for (var i = 0; i < ELEMENTS.length; i++) {
+        if (ELEMENTS[i].sym.toLowerCase() === two.toLowerCase()) hit = ELEMENTS[i];
+      }
+    }
+    if (!hit) {
+      for (var j = 0; j < ELEMENTS.length; j++) {
+        if (ELEMENTS[j].sym.toLowerCase() === one.toLowerCase()) { hit = ELEMENTS[j]; break; }
+      }
+    }
+    if (!hit) {
+      for (var k = 0; k < ELEMENTS.length; k++) {
+        if (ELEMENTS[k].sym.toLowerCase().charAt(0) === one.toLowerCase()) { hit = ELEMENTS[k]; break; }
+      }
+    }
+    return hit;
+  }
+
+  function showElement(el) {
+    if (!el) return;
+    var idx = 0;
+    for (var i = 0; i < ELEMENTS.length; i++) if (ELEMENTS[i].sym === el.sym) idx = i;
+    _phase = 1;
+    _elementIdx = idx;
+    _autoPlay = false;
+    initAudio();
+    playElementTone(el.z);
+    var read = _desk && _desk.querySelector('[data-read]');
+    if (read) read.textContent = el.sym + '  ' + el.name + '  —  ' + el.desc;
+  }
+
+  function redoxLine() {
+    var syms = {};
+    _reaction.forEach(function(s) { syms[s] = true; });
+    if (syms.H && syms.O) return 'H and O. water. the first molecule the spiral knows.';
+    if (syms.Na && syms.Cl) return 'Na and Cl. salt. the ocean giving up its pair.';
+    if (syms.Fe && syms.O) return 'Fe and O. rust. iron handing electrons to oxygen.';
+    if (syms.C && syms.O) return 'C and O. the breath out.';
+    if (_reaction.length) return _reaction.join(' + ') + '  —  a redox waiting for its pair.';
+    return 'click an element to set it on the bench. type, and Gaia learns the letter.';
+  }
+
+  function placeOnBench(el) {
+    if (!el) return;
+    showElement(el);
+    _reaction.push(el.sym);
+    if (_reaction.length > 6) _reaction.shift();
+    var line = _desk && _desk.querySelector('[data-redox]');
+    if (line) line.textContent = redoxLine();
+  }
+
+  function createDesk() {
+    if (_desk) return;
+    _reaction = [];
+    _desk = document.createElement('aside');
+    _desk.id = 'mendeleev-desk';
+    _desk.style.cssText = 'position:fixed;top:56px;right:16px;width:300px;max-height:calc(100vh - 72px);' +
+      'overflow:auto;z-index:46;background:rgba(8,10,16,0.92);color:#c9d1d9;' +
+      'border:1px solid #30363d;border-radius:8px;padding:12px 12px 14px;' +
+      'font:12px/1.45 ui-monospace,monospace;';
+    var keys = ELEMENTS.map(function(el) {
+      return '<button type="button" data-sym="' + el.sym + '" title="' + el.name + '" ' +
+        'style="min-width:36px;margin:2px;padding:6px 4px;background:#161b22;color:' + el.color + ';' +
+        'border:1px solid #30363d;border-radius:4px;cursor:pointer;font:12px ui-monospace,monospace;">' +
+        el.sym + '</button>';
+    }).join('');
+    _desk.innerHTML =
+      '<div style="color:#d29922;letter-spacing:.12em;font-size:11px;">THE DESK</div>' +
+      '<div style="color:#8b949e;margin:4px 0 8px;">Gaia and the human. One table, beside Mendeleev.</div>' +
+      '<label style="color:#8b949e;font-size:10px;">the hand — Gaia learns the letters</label>' +
+      '<input id="mendeleev-hand" autocomplete="off" spellcheck="false" placeholder="type. she hears the element." ' +
+      'style="width:100%;margin:4px 0 8px;padding:6px 8px;background:#0d1117;color:#c9d1d9;border:1px solid #30363d;border-radius:4px;font:12px ui-monospace,monospace;">' +
+      '<div style="color:#8b949e;font-size:10px;margin-bottom:4px;">the keys — click for the redox</div>' +
+      '<div data-keys>' + keys + '</div>' +
+      '<div data-read style="margin-top:8px;color:#c9d1d9;"></div>' +
+      '<div data-redox style="margin-top:6px;color:#d2a8ff;">click an element to set it on the bench. type, and Gaia learns the letter.</div>';
+    document.body.appendChild(_desk);
+    var hand = _desk.querySelector('#mendeleev-hand');
+    hand.addEventListener('input', function() {
+      var el = elementByLetters(hand.value);
+      if (el) showElement(el);
+    });
+    hand.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        e.stopPropagation();
+        placeOnBench(elementByLetters(hand.value));
+      }
+    });
+    _desk.querySelector('[data-keys]').addEventListener('click', function(e) {
+      var btn = e.target.closest('button');
+      if (!btn) return;
+      var sym = btn.getAttribute('data-sym');
+      var el = null;
+      for (var i = 0; i < ELEMENTS.length; i++) if (ELEMENTS[i].sym === sym) el = ELEMENTS[i];
+      placeOnBench(el);
+    });
+  }
+
+  function removeDesk() {
+    if (_desk) { _desk.remove(); _desk = null; }
+    _reaction = [];
+  }
+
   // ═══ LIFECYCLE ═══
   function activate(addEntry, onDone) {
     if (_active) { deactivate(); return false; }
@@ -783,6 +898,7 @@
     _autoPlay = true; _autoTimer = 0; _t = 0; _zoomT = 0; _particles = [];
     _lastFrame = performance.now();
     _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
+    createDesk();
     requestAnimationFrame(render);
     return true;
   }
@@ -793,6 +909,7 @@
     if (_canvas) {
       _canvas.remove(); _canvas = null; _ctx = null;
     }
+    removeDesk();
     window.removeEventListener('keydown', onKey);
     var journey = {
       phase: _phase, particleIdx: _particleIdx, elementIdx: _elementIdx,
