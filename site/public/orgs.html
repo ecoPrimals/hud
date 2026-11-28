@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="GAIA — six orgs, one sealed case file, the rest in the open.">
+<title>GAIA — Orgs</title>
+<link rel="alternate" type="application/rss+xml" title="GAIA Spine" href="/feed.xml">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#050508;color:#c8c8d0;font-family:'Courier New',monospace;min-height:100vh}
+a{color:#d4af37;text-decoration:none}a:hover{color:#fff}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,0.03) 2px,rgba(0,0,0,0.03) 4px);pointer-events:none;z-index:9999}
+.header{text-align:center;padding:30px 20px 20px;border-bottom:1px solid #1a1a22}
+.header h1{font-size:2em;letter-spacing:0.2em;color:#d4af37}
+.header .sub{color:#556;font-size:0.75em;margin-top:6px}
+.nav-bar{display:flex;justify-content:center;gap:10px;padding:12px;flex-wrap:wrap;border-bottom:1px solid #111}
+.nav-bar a{padding:4px 12px;border:1px solid #222;border-radius:4px;font-size:0.7em;color:#888}
+.nav-bar a:hover,.nav-bar a.on{border-color:#d4af37;color:#d4af37}
+.wrap{max-width:920px;margin:24px auto;padding:0 16px 40px}
+.lead{color:#889;font-size:0.8em;line-height:1.6;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.card{background:#0c0c14;border:1px solid #1a1a22;border-radius:8px;padding:14px}
+.card h2{color:#d4af37;font-size:0.85em;letter-spacing:1px;margin-bottom:8px}
+.card p{color:#99a;font-size:0.72em;line-height:1.5}
+.split{margin-top:22px;background:#0a0a10;border:1px solid #1a1a22;border-radius:8px;padding:16px}
+.split h2{color:#d4af37;font-size:0.85em;letter-spacing:1px;margin-bottom:10px}
+.split li{margin:8px 0 8px 16px;font-size:0.75em;color:#aab;line-height:1.45}
+.sealed{color:#c96}
+</style>
+</head>
+<body>
+<div class="header">
+  <h1>ORGS</h1>
+  <div class="sub">Six homes. One sealed file.</div>
+</div>
+<div class="nav-bar">
+  <a href="/">🏠 Home</a>
+  <a href="/senses">👁️ Senses</a>
+  <a href="/membrane">🧬 Membrane</a>
+  <a href="/organism">🦠 Organism</a>
+  <a href="/orgs" class="on">⬡ Orgs</a>
+  <a href="/feed.xml">📡 RSS</a>
+</div>
+<div class="wrap">
+  <p class="lead" id="lead">The work lives in the org that matches it. The user account keeps forks of other people's projects. One repository stays private.</p>
+  <div class="grid" id="grid"></div>
+  <div class="split">
+    <h2>BLUEGATE TENANCY</h2>
+    <ul id="split"></ul>
+  </div>
+</div>
+<script>
+const ORG_HOMES = {"woven":"2026-11-28","private_repo":"bluegate-tenancy","private_note":"The sealed case file is the only private repository. Identity documents, the unredacted text, service packets, and family material stay there.","orgs":[{"name":"ecoPrimals","holds":"The organism. The primals, the HUD, the gate faces, the papers, the fossil, the membrane.","url":"https://github.com/ecoPrimals"},{"name":"syntheticChemistry","holds":"The springs, the bench, the reagents, coralForge.","url":"https://github.com/syntheticChemistry"},{"name":"sporeGarden","holds":"The gardens. lithoSpore, cellMembrane, the project lineages.","url":"https://github.com/sporeGarden"},{"name":"protoKarya","holds":"The faces and field tools. inkFish, octoPus, footPrint, tideGlass, the IDE.","url":"https://github.com/protoKarya"},{"name":"amicusContra","holds":"Place and case. Lansing, tuebor, the redacted bluegate text, the MI-7 brief.","url":"https://github.com/amicusContra"},{"name":"defendDetroit","holds":"The Detroit record. publicRecord, the deeds, the PACER dockets, the charter contract.","url":"https://github.com/defendDetroit"}],"bluegate":{"sealed":"bluegate-tenancy","text":"https://github.com/amicusContra/bluegate-tenancy","records":"https://github.com/defendDetroit/publicRecord/tree/main/evidence/bluegate-tenancy"}};
+fetch('/data/org-homes.json').then(r => r.ok ? r.json() : ORG_HOMES).catch(() => ORG_HOMES).then(data => {
+  const grid = document.getElementById('grid');
+  data.orgs.forEach(org => {
+    const card = document.createElement('a');
+    card.className = 'card';
+    card.href = org.url;
+    card.innerHTML = '<h2>' + org.name + '</h2><p>' + org.holds + '</p>';
+    grid.appendChild(card);
+  });
+  const split = document.getElementById('split');
+  split.innerHTML =
+    '<li class="sealed">Sealed core: ' + data.private_repo + '. ' + data.private_note + '</li>' +
+    '<li>Redacted text: <a href="' + data.bluegate.text + '">amicusContra/bluegate-tenancy</a></li>' +
+    '<li>Deeds, PACER, charter: <a href="' + data.bluegate.records + '">defendDetroit/publicRecord</a></li>';
+}).catch(() => {
+  document.getElementById('lead').textContent = 'The org map could not be read.';
+});
+</script>
+</body>
+</html>
