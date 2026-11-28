@@ -18,8 +18,10 @@
       { n:'sweetGrass', kb:3154, t:0, org:'eco' },
     ]},
     { name: 'evidence', color: [88,166,255], repos: [
-      { n:'publicRecord', kb:252201, t:0, org:'defend' },
-      { n:'detroit', kb:48, t:0, org:'eco' },
+      { n:'publicRecord', kb:360745, t:0, org:'defend' },
+      { n:'bluegate records', kb:108544, t:0, org:'defend' },
+      { n:'bluegate text', kb:6572, t:0, org:'amicus' },
+      { n:'detroit', kb:48, t:0, org:'defend' },
       { n:'whitePaper', kb:35299, t:0, org:'eco' },
     ]},
     { name: 'science', color: [63,185,80], repos: [
@@ -44,7 +46,7 @@
       { n:'HUD', kb:1656, t:0, org:'eco' },
       { n:'petalTongue', kb:9467, t:0, org:'eco' },
       { n:'wateringHole', kb:40424, t:0, org:'eco' },
-      { n:'cellMembrane', kb:2584, t:0, org:'eco' },
+      { n:'cellMembrane', kb:2584, t:0, org:'garden' },
     ]},
     { name: 'culture', color: [247,120,186], repos: [
       { n:'sourDough', kb:6909, t:0, org:'eco' },
